@@ -1,0 +1,44 @@
+html, body {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+#Logo {
+    width: 100px;
+    height: 30px;
+}
+
+#superiorbarCollapse {
+    color: #FFFFFF;
+    background-color: #9EA3BF;
+    float: left;
+}
+
+#MenuSuperior .navbar nav {
+    border: 0px;
+    width: 100%;
+    background-color: #353640;
+}
+
+#MenuSuperior .nav-item:hover {
+    background-color: #494a53;
+}
+
+#MenuSuperior li .dropdown-menu {
+    margin: 0px;
+    border: 0px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 0px;
+}
+
+#MenuSuperior .dropdown-menu a:hover {
+    background-color: #9EA3BF;
+}
+
+#MenuSuperior a {
+    font-weight: bold;
+}
