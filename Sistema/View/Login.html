@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html lang="pt-BR"><head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Gabriel Marques, Raphaelli, Igor e Thiago" />
@@ -13,13 +12,60 @@
 	
 	<!-- Links CSS -->
     <link rel="stylesheet" type="text/css" href="../Assets/css/Login/Login.css" />
-	
-	 <!-- Links JS -->
-	<script rel="stylesheet" type="text/javascript" src="../Assets/js/Login/Login.js"></script>
-	<script rel="stylesheet" type="text/javascript" src="../Assets/lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Frameworks CSS -->
+    <link rel="stylesheet" type="text/css" href="../Assets/lib/bootstrap/css/bootstrap.min.css" />
+
+    <!-- Links Fontes -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" />
+
+    <!-- Links JS -->
+    <script rel="stylesheet" type="text/javascript" src="../Assets/js/Login/Login.js"></script>
+
+    <!-- Frameworks JS -->
     <script rel="stylesheet" type="text/javascript" src="../Assets/lib/jquery/jquery.min.js"></script>
+    <script rel="stylesheet" type="text/javascript" src="../Assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 </head>
 <body>
-	
+	<div class="login-form">
+		<form action="" method="post">
+			<h2 class="text-center">LOGIN</h2>
+
+			<br />
+
+			<div class="form-group col-lg-15">
+				<label class="sr-only" for="inlineFormInputGroup">Username</label>
+				<div class="input-group mb-2">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<i class="fas fa-envelope"></i>
+						</div>
+					</div>
+					<input type="text" class="form-control" name="username" placeholder="Username" required="required">
+				</div>
+			</div>
+
+			<div class="form-group col-lg-15">
+				<label class="sr-only" for="inlineFormInputGroup">Username</label>
+				<div class="input-group mb-2">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<i class="fas fa-unlock"></i>
+						</div>
+					</div>
+					<input type="password" class="form-control" name="password" placeholder="Password" required="required">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-lg btn-block">ENTRAR</button>
+			</div>
+
+			<p><a href="#">Esqueceu sua senha?</a></p>
+			<p class="text-center small">Não possuí uma conta? <a href="#">Assine aqui!</a></p>
+		</form>
+	</div>
 </body>
 </html>
