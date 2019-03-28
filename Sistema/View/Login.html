@@ -7,8 +7,11 @@
     <meta name="description" content="INSIRA O NOME AQUI" />
 
     <title>
-        INSIRA O NOME AQUI - Login
+        Smart Gym - Login
     </title>
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="../Assets/imagens/favicon.ico" />
 	
 	<!-- Links CSS -->
     <link rel="stylesheet" type="text/css" href="../Assets/css/Login/Login.css" />
@@ -21,6 +24,7 @@
 
     <!-- Links JS -->
     <script rel="stylesheet" type="text/javascript" src="../Assets/js/Login/Login.js"></script>
+    <script defer rel="stylesheet" type="text/javascript" src="../Controller/LoginController.js"></script>
 
     <!-- Frameworks JS -->
     <script rel="stylesheet" type="text/javascript" src="../Assets/lib/jquery/jquery.min.js"></script>
@@ -36,31 +40,33 @@
 			<br />
 
 			<div class="form-group col-lg-15">
-				<label class="sr-only" for="inlineFormInputGroup">Username</label>
+				<label class="sr-only" for="inlineFormInputGroup">Email</label>
+				
 				<div class="input-group mb-2">
 					<div class="input-group-prepend">
 						<div class="input-group-text">
 							<i class="fas fa-envelope"></i>
 						</div>
 					</div>
-					<input type="text" class="form-control" name="username" placeholder="Username" required="required">
+					<input type="text" id="Email" class="form-control" name="email" placeholder="Email" required="required">
 				</div>
 			</div>
 
 			<div class="form-group col-lg-15">
-				<label class="sr-only" for="inlineFormInputGroup">Username</label>
+				<label class="sr-only" for="inlineFormInputGroup">Password</label>
+				
 				<div class="input-group mb-2">
 					<div class="input-group-prepend">
 						<div class="input-group-text">
 							<i class="fas fa-unlock"></i>
 						</div>
 					</div>
-					<input type="password" class="form-control" name="password" placeholder="Password" required="required">
+					<input type="password" id="Password" class="form-control" name="password" placeholder="Password" required="required">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary btn-lg btn-block">ENTRAR</button>
+				<button type="submit" id="Login" class="btn btn-primary btn-lg btn-block">ENTRAR</button>
 			</div>
 
 			<p><a href="#">Esqueceu sua senha?</a></p>
