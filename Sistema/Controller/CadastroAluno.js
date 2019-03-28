@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	/* Máscara dos campos */
 	$('#Cpf').mask('000.000.000-00', {reverse: true});
 	$('#DataNascimento').mask('00/00/00', {reverse: true});
 	$('#Rg').mask('00-00.000.000', {reverse: true});
@@ -7,14 +8,15 @@ $(document).ready(function(){
 	
 	/* Preview da Imagem */
 	function PreviewImagem(input) {
-		if (input.files && input.files[0]) {
+		var Imagem = input.files[0];
+		if (Imagem != null) {
 			var reader = new FileReader();
-
+			
 			reader.onload = function(e) {
 				$('#ImagemPreview').attr('src', e.target.result);
 			}
 			
-			reader.readAsDataURL(input.files[0]);
+			reader.readAsDataURL(Imagem);
 		}
 	}
 
@@ -33,9 +35,7 @@ $(document).ready(function(){
 		var DataNascimento = $('#DataNascimento').val();
 		var Cpf = $('#Cpf').val();
 		var Rg = $('#Rg').val();
-		
-		var ImagemPerfil = $('#ImagemPerfil').val();
-		var EncodeImagemPerfil = $.base64.encode(ImagemPerfil);
+		var ImagemPerfil = $('#ImagemPreview').attr("src");
 		
 		var data = new FormData();
 		data.append(NomeCompleto, NomeCompleto);
@@ -47,10 +47,10 @@ $(document).ready(function(){
 		data.append(DataNascimento, DataNascimento);
 		data.append(Cpf, Cpf);
 		data.append(Rg, Rg);
-		data.append(ImagemPerfil, EncodeImagemPerfil);
+		data.append(ImagemPerfil, ImagemPerfil);
 		
 		$.ajax({
-			url: "controller/Login",
+			url: "controller/CadastroAluno",
 			type: 'POST',
 			dataType: 'json',
 			contentType: 'application/json',
@@ -60,7 +60,7 @@ $(document).ready(function(){
 			},
 			success: function(result) {
 				if(result == 'ERRO'){
-					alert("Login ou senha incorretos.");
+					alert("Campos incorretos.");
 				}else{
 					window.location.replace("Principal.html");
 				}
