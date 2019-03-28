@@ -5,7 +5,9 @@ html, body {
     height: 100%;
     position: fixed;
 }
-
+#NavbarSuperior{
+	margin: 0px;
+}
 #Logo {
     width: 100px;
     height: 30px;

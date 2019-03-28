@@ -1,0 +1,45 @@
+body, html{
+	background-color: #696D7F !important; 
+}
+
+#IconeCadastrarAluno{
+	color: #FFFFFF;
+}
+
+.card-header{
+	color: #FFFFFF;
+	background-color: #9EA3BF !important;
+}
+
+.card-body{
+	background-color: #FFFFFF !important;
+}
+
+#Titulo{
+	color: #FFFFFF;
+	background-color: #9EA3BF;
+	font-family: 'Ubuntu', sans-serif;
+	border: 15px solid #9EA3BF;
+}
+
+#DadosPessoais{
+	float: left;
+}
+
+.ls-label-text{
+	font-weight: bold;
+}
+
+#ConfirmarCadastroAluno{
+	float: right !important;
+	margin-left: 15px;
+}
+
+#ResetCadastroAluno{
+	float: right !important; 
+}
+
+#ImagemPreview{
+	width: 350px;
+	height: 320px;
+}

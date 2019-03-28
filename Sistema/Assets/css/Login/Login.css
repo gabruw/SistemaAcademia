@@ -12,6 +12,13 @@ body {
 	background-image: url("../../imagens/Login/Academia.jpg");
 }
 
+#Logo{
+	width: auto;
+    height: auto;
+	max-width: 210px;
+    max-height: 200px;   
+}
+
 .form-control {
     background: #F2F2F2;
     min-height: 41px;
