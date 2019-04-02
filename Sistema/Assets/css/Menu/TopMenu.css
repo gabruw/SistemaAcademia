@@ -6,6 +6,7 @@ html, body {
     position: fixed;
 }
 #NavbarSuperior{
+	background-color: #353535 !important;
 	margin: 0px;
 }
 #Logo {
@@ -13,7 +14,7 @@ html, body {
     height: 30px;
 }
 
-#superiorbarCollapse {
+#SuperiorbarCollapse {
     color: #FFFFFF;
     background-color: #9EA3BF;
     float: left;
