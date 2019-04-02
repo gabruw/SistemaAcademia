@@ -7,7 +7,7 @@ html, body {
     background: #FAFAFA;
 }
 
-#Side_Logo{
+#SideLogo{
 	width: auto;
     height: auto;
 	max-width: 210px;
@@ -61,7 +61,7 @@ a, a:hover, a:focus {
 }
 
 /* Menu Lateral */
-#sidebar {
+#Sidebar {
     z-index: 999;
     position: fixed;
     width: 250px;
@@ -69,13 +69,13 @@ a, a:hover, a:focus {
     top: 0;
     left: -250px;
     color: #FFFFFF;
-    background-color: #353640;
+    background-color: #353535;
     transition: all 0.3s;
     overflow-y: scroll;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-#sidebar.active {
+#Sidebar.active {
     left: 0;
 }
 
@@ -83,16 +83,16 @@ a, a:hover, a:focus {
     background-color: #353640;
 }
 
-#sidebarCollapse {
-    border-color: #696D7F;
-    background-color: #9EA3BF;
+#SidebarCollapse {
+    border-color: #8f2828;
+    background-color: #8f2828;
 }
 
 #MenuUsuario:hover {
     background-color: #696D7F;
 }
 
-#dismiss {
+#Dismiss {
     position: absolute;
     width: 35px;
     height: 35px;
@@ -107,9 +107,9 @@ a, a:hover, a:focus {
     -o-transition: all 0.3s;
 }
 
-#dismiss:hover {
+#Dismiss:hover {
     color: #7386D5;
-    background: #FFFFFF;
+    background-color: #FFFFFF;
 }
 
 .overlay {
@@ -129,44 +129,39 @@ a, a:hover, a:focus {
     opacity: 0.3;
 }
 
-#Side_Logo {
-    width: 14vw;
-    height: 22vh;
+#Sidebar .sidebar-header {
+    background-color: #353535;
 }
 
-#sidebar .sidebar-header {
-    padding: 20px;
-    background-color: #353640;
+#Sidebar ul.components {
+    padding-bottom: : 5px;
+    border-top: 2px solid #454444;
+    border-bottom: 2px solid #454444;
 }
 
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
-}
-
-#sidebar ul p {
+#Sidebar ul p {
     color: #FFFFFF;
     padding: 10px;
 }
 
-#sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
+#Sidebar ul li a {
     display: block;
+    font-size: 1.1em;
+    color: #737373;
+    padding: 10px;
+    border-top: 1px solid #454444;
+    border-bottom: 1px solid #454444;
+    text-decoration: none;
 }
 
-#sidebar ul li a:hover {
+#Sidebar ul li a:hover {
+    color: #FFFFFF;
+    background-color: #850000;
+}
+
+#Sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #FFFFFF;
     background-color: #696D7F;
-}
-
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #FFFFFF;
-    background-color: #696D7F;
-}
-
-#Indice {
-    background-color: #9EA3BF;
 }
 
 a[data-toggle="collapse"] {

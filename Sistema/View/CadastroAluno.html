@@ -28,7 +28,7 @@
     <!-- Links JS -->
     <script rel="stylesheet" type="text/javascript" src="../Assets/js/Main/Main.js"></script>
 	<script defer rel="stylesheet" type="text/javascript" src="../Assets/js/SideMenu/SideMenu.js"></script>
-	<script defer rel="stylesheet" type="text/javascript" src="../Controller/CadastroAluno.js"></script>
+	<script defer rel="stylesheet" type="text/javascript" src="../Controller/CadastroAlunoController.js"></script>
 
     <!-- Frameworks JS -->
     <script rel="stylesheet" type="text/javascript" src="../Assets/lib/jquery/jquery.min.js"></script>
@@ -42,25 +42,42 @@
 <body>
 	<div class="wrapper">
 		<!-- Menu Lateral-->
-        <nav id="sidebar">
-            <div id="dismiss">
+        <nav id="Sidebar">
+            <div id="Dismiss">
                 <i class="fas fa-arrow-left"></i>
             </div>
 
             <div class="sidebar-header">
-                <img id="Side_Logo" class="img-fluid" alt="Logo" src="../Assets/imagens/Logo/Logo Smart Gym Academia.png" />
+                <img class="img-fluid" alt="Logo" src="../Assets/imagens/Logo/Logo Smart Gym Academia.png" />
             </div>
 
-            <ul class="list-unstyled components">
-                <p id="Indice">Menu</p>
+            <ul id="SidebarMenu" class="list-unstyled components">
+                <li>
+                	<a class="title" href="CadastroAluno.html">
+	                	<i class="fas fa-user-plus"></i>
+	                	Cadastro de Aluno
+                	</a>
+                </li>
 
-                <li><a class="title" href="CadastroAluno.html">Cadastro de Aluno</a></li>
+                <li>
+                	<a class="title" href="#">
+	                	<i class="fas fa-walking"></i>
+	                	Cadastro de Professor
+                	</a>
+                </li>
+
+                <li>
+                	<a class="title" href="#">
+	                	<i class="fas fa-dumbbell"></i>
+	                	Cadastro de Exercicios
+                	</a>
+                </li>
             </ul>
         </nav>
 		
 		<!-- Menu Superior -->
         <nav id="NavbarSuperior" class="navbar navbar-expand-md bg-dark navbar-dark w-100">
-            <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <button type="button" id="SidebarCollapse" class="btn btn-info">
                 <i class="fas fa-align-left"></i>
             </button>
         </nav>

@@ -1,15 +1,15 @@
 $(document).ready(function () {
-    $("#sidebar").mCustomScrollbar({
+    $("#Sidebar").mCustomScrollbar({
         theme: "minimal"
     });
 
-    $('#dismiss, .overlay').on('click', function () {
-        $('#sidebar').removeClass('active');
+    $('#Dismiss, .overlay').on('click', function () {
+        $('#Sidebar').removeClass('active');
         $('.overlay').removeClass('active');
     });
 
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').addClass('active');
+    $('#SidebarCollapse').on('click', function () {
+        $('#Sidebar').addClass('active');
         $('.overlay').addClass('active');
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
