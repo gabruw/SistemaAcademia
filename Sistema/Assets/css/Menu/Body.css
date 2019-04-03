@@ -3,3 +3,30 @@ body, html{
 	overflow-y: auto !important;
 	overflow-x: hidden !important;
 }
+
+#IconeTitulo{
+	color: #FFFFFF;
+}
+
+.card{
+	border: none !important;
+	border-radius: 0px !important;
+}
+
+.card-header{
+	color: #FFFFFF;
+	background-color: #8F2828 !important;
+	border-radius: 0px !important;
+}
+
+.card-body{
+	background-color: #FFFFFF !important;
+}
+
+#Titulo{
+	color: #FFFFFF;
+	background-color: #8F2828;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 25px;
+	border: 8px solid #8F2828; 	
+}
