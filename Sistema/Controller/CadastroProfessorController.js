@@ -35,6 +35,7 @@ $(document).ready(function(){
 		var DataNascimento = $('#DataNascimento').val();
 		var Cpf = $('#Cpf').val();
 		var Cref = $('#Cref').val();
+		var Unidade = $("#Unidade option:selected").val();
 		var ImagemPerfil = $('#ImagemPreview').attr("src");
 		
 		var data = new FormData();
@@ -47,6 +48,7 @@ $(document).ready(function(){
 		data.append(DataNascimento, DataNascimento);
 		data.append(Cpf, Cpf);
 		data.append(Cref, Cref);
+		data.append(Unidade, Unidade);
 		data.append(ImagemPerfil, ImagemPerfil);
 		
 		$.ajax({
