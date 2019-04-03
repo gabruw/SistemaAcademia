@@ -2,7 +2,7 @@ $(document).ready(function(){
 	/* Máscara dos campos */
 	$('#Cpf').mask('000.000.000-00', {reverse: true});
 	$('#DataNascimento').mask('00/00/00', {reverse: true});
-	$('#Rg').mask('00-00.000.000', {reverse: true});
+	$('#Cref').mask('0000000-0/00', {reverse: true});
 	$('#Telefone').mask('(00)0000-0000', {reverse: true});
 	$('#Celular').mask('(00)00000-0000', {reverse: true});
 	
@@ -34,7 +34,7 @@ $(document).ready(function(){
 		var Sexo = $('input:radio[name=Sexo]:checked').val();
 		var DataNascimento = $('#DataNascimento').val();
 		var Cpf = $('#Cpf').val();
-		var Rg = $('#Rg').val();
+		var Cref = $('#Cref').val();
 		var ImagemPerfil = $('#ImagemPreview').attr("src");
 		
 		var data = new FormData();
@@ -46,7 +46,7 @@ $(document).ready(function(){
 		data.append(Sexo, Sexo);
 		data.append(DataNascimento, DataNascimento);
 		data.append(Cpf, Cpf);
-		data.append(Rg, Rg);
+		data.append(Cref, Cref);
 		data.append(ImagemPerfil, ImagemPerfil);
 		
 		$.ajax({
