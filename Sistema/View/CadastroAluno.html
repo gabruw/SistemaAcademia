@@ -13,11 +13,14 @@
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="../Assets/imagens/favicon.ico" />
 	
-	<!-- Links CSS -->
+	<!-- Links CSS Geral -->
+	<link rel="stylesheet" type="text/css" href="../Assets/css/Menu/Body.css" />
     <link rel="stylesheet" type="text/css" href="../Assets/css/Menu/TopMenu.css" />
     <link rel="stylesheet" type="text/css" href="../Assets/css/Menu/SideMenu.css" />
-    <link rel="stylesheet" type="text/css" href="../Assets/css/CadastroAluno/Body.css" />
-
+	
+	<!-- Links CSS -->
+    <link rel="stylesheet" type="text/css" href="../Assets/css/CadastroAluno/Content.css" />
+   	
     <!-- Frameworks CSS -->
     <link rel="stylesheet" type="text/css" href="../Assets/lib/bootstrap/css/bootstrap.min.css" />
 
@@ -25,9 +28,10 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" />
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu" />
 
-    <!-- Links JS -->
-    <script rel="stylesheet" type="text/javascript" src="../Assets/js/Main/Main.js"></script>
+    <!-- Links JS Geral -->
 	<script defer rel="stylesheet" type="text/javascript" src="../Assets/js/SideMenu/SideMenu.js"></script>
+	
+	<!-- Links JS -->
 	<script defer rel="stylesheet" type="text/javascript" src="../Controller/CadastroAlunoController.js"></script>
 
     <!-- Frameworks JS -->
@@ -103,11 +107,11 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="col-sm-4">
-											<img id="ImagemPreview" class="img-fluid" src="../Assets/imagens/CadastroAluno/Default_Image.png" alt="Imagem Perfil."/>
-											<br><br>
+											<img id="ImagemPreview" class="img-fluid mx-auto d-block" src="../Assets/imagens/CadastroAluno/Default_Image.png" alt="Imagem Perfil."/>
+											<br>
 											<input type="file" id="ImagemPerfil" class="form-control-file" name="ImagemPerfil" accept="image/*">
 										</div>
-
+											
 										<div class="col-sm-8">
 											<span class="ls-label-text">Nome Completo</span>
 											<input type="text" id="NomeCompleto" class="form-control" name="NomeCompleto" required>
@@ -129,38 +133,47 @@
 													<input type="text" id="Celular" class="form-control" name="Celular" required>
 												</div>
 											</div>
+											
+											<div class="row">
+												<div class="col-sm-6">
+													<span class="ls-label-text">RG</span>
+													<input type="text" id="Rg" class="form-control" name="Rg" required>
+												</div>
+
+												<div class="col-sm-6">
+													<span class="ls-label-text">CPF</span>
+													<input type="text" id="Cpf" class="form-control" name="Cpf" required>
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-sm-6">
+													<span class="ls-label-text">Data de Nascimento</span>
+													<input type="text" id="DataNascimento" class="form-control" name="DataNascimento" required>
+												</div>
+
+												<div class="col-sm-6">
+													<span class="ls-label-text">Sexo</span>
+													<br>
+													<div class="custom-control custom-radio custom-control-inline">
+														<label class="radio-inline control-label" for="Masculino">
+															<input class="form-check-input" type="radio" name="Sexo" id="Masculino" value="Masculino">
+															Masculino
+														</label>
+													</div>
+
+													<div class="custom-control custom-radio custom-control-inline">
+														<label class="radio-inline control-label" for="Feminino">
+															<input class="form-check-input" type="radio" name="Sexo" id="Feminino" value="Feminino">
+															Feminino
+														</label>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 
 									<div class="row">
-										<div class="col-sm-4">
-											<span class="ls-label-text">Data de Nascimento</span>
-											<input type="text" id="DataNascimento" class="form-control" name="DataNascimento" required>
-										</div>
-
-										<div class="col-sm-4">
-											<span class="ls-label-text">CPF</span>
-											<input type="text" id="Cpf" class="form-control" name="Cpf" required>
-										</div>
-
-										<div class="col-sm-4">
-											<span class="ls-label-text">Sexo</span>
-											<br>
-											<div class="custom-control custom-radio custom-control-inline">
-												<label class="radio-inline control-label" for="Masculino">
-													<input class="form-check-input" type="radio" name="Sexo" id="Masculino" value="Masculino">
-													Masculino
-												</label>
-											</div>
-
-											<div class="custom-control custom-radio custom-control-inline">
-												<label class="radio-inline control-label" for="Feminino">
-													<input class="form-check-input" type="radio" name="Sexo" id="Feminino" value="Feminino">
-													Feminino
-												</label>
-											</div>
-										</div>
-										
 										<div class="col-sm-12">
 											<br>
 											<button type="submit" id="ConfirmarCadastroAluno" class="btn btn-primary">Confirmar</button>
