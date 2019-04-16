@@ -9,18 +9,17 @@ public class AlunoDTO {
     private int IdFicha;
     private int IdAvaliacao;
     private int Permissao;
-    private String Matricula;
-    private String Nome; 
     private String Email;
     private String Senha;
-    private String Rua;
-    private String Bairro;
-    private Date DataNascimento;
-    private int Numero;
-    private int Complemento;
-    private int Cep;
+    private String Matricula;
+    private String Nome; 
     private int Cpf;
+    private Date DataNascimento;
     private int Telefone;
     private int Celular;
     private int Sexo;
+    private String Rua;
+    private String Bairro;
+    private int Numero;
+    private int Complemento;
 }

@@ -3,8 +3,9 @@ package DTO;
 import lombok.Data;
 
 @Data
-public class ExercicioDTO {
+public class SerieDTO {
+    private int IdSerie;
     private int IdExercicio;
-    private int IdAparelho;
+    private int IdFicha;
     private String Nome;
 }
