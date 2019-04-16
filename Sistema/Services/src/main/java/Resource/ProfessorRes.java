@@ -1,7 +1,7 @@
 package Resource;
 
-import Model.Aluno;
-import DTO.AlunoDTO;
+import Model.Professor;
+import DTO.ProfessorDTO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -14,22 +14,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/aluno")
-public class AlunoRes {
+@RequestMapping("/professor")
+public class ProfessorRes {
     @Autowired
-    AlunoRes Alunos;
+    ProfessorRes Professores;
 
     @PersistenceContext
     EntityManager EntityM;
     
     @PostMapping("/login")
-    public Aluno getAllUsers(@RequestBody AlunoDTO aluno) {
+    public Professor getAllUsers(@RequestBody ProfessorDTO professor) {
         try {
-            Query query = EntityM.createQuery("SELECT u FROM Aluno u WHERE u.Email = :email " + "and u.Senha = :senha");
-            query.setParameter("email", aluno.getEmail());
-            query.setParameter("senha", aluno.getSenha());
+            Query query = EntityM.createQuery("SELECT u FROM Professor u WHERE u.Email = :email " + "and u.Senha = :senha");
+            query.setParameter("email", professor.getEmail());
+            query.setParameter("senha", professor.getSenha());
 
-            return (Aluno) query.getSingleResult();
+            return (Professor) query.getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
