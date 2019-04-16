@@ -9,6 +9,6 @@ package DTO;
  *
  * @author SHU Aeronáutica 01
  */
-public class Agenda {
+public class AgendaDTO {
     
 }

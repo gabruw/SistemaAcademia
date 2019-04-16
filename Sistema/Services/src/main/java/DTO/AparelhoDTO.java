@@ -3,7 +3,7 @@ package DTO;
 import lombok.Data;
 
 @Data
-public class Aparelho {
+public class AparelhoDTO {
     private String IdAparelho;
     private String Nome;
 }
