@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DTO;
 
-/**
- *
- * @author SHU Aeronáutica 01
- */
+import java.util.Date;
+import lombok.Data;
+
+@Data
 public class AgendaDTO {
-    
+    private int IdAgenda;
+    private int IdProfessor;
+    private int IdAluno;
+    private String NomeAluno;
+    private String NomeProfessor;
+    private Date Data;
 }
