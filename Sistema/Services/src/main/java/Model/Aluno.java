@@ -51,6 +51,12 @@ public class Aluno implements Serializable {
     @ManyToOne
     @JoinColumn(name = "IdFicha")
     private Ficha IdFicha;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 1)
+    @Column(name = "Permissao")
+    private int Permissao = 2;
 
     @Basic(optional = false)
     @NotNull
