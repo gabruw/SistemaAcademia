@@ -14,5 +14,7 @@ public interface AlunoRep extends JpaRepository<Aluno, Integer>{
     
     public Aluno findByCpf(int Cpf);
     
+    public Aluno findByEmail(String Email);
+    
     public Aluno findByEmailAndSenha(String Email, String Senha);
 }

@@ -17,5 +17,7 @@ public interface ProfessorRep extends JpaRepository<Professor, Integer>{
     
     public Professor findBySexo(int Sexo);
     
+    public Professor findByEmail(String Email);
+    
     public Professor findByEmailAndSenha(String Email, String Senha);
 }
