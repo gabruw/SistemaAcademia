@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 
 @Entity
-@Table(name = "aluno")
+@Table(name = "professor")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Professor.findAll", query = "SELECT u FROM Professor u"),
