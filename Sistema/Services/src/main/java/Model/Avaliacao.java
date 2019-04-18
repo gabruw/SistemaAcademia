@@ -44,12 +44,12 @@ public class Avaliacao implements Serializable{
     @Basic(optional = false)
     @ManyToOne
     @JoinColumn(name = "IdAluno")
-    private Avaliacao IdAluno;
+    private Aluno IdAluno;
     
     @Basic(optional = false)
     @ManyToOne
     @JoinColumn(name = "IdProfessor")
-    private Avaliacao IdProfessor;
+    private Professor IdProfessor;
     
     @Basic(optional = false)
     @NotNull

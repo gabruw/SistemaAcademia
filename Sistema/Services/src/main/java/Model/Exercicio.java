@@ -43,7 +43,7 @@ public class Exercicio implements Serializable{
     @Basic(optional = false)
     @ManyToOne
     @JoinColumn(name = "IdAparelho")
-    private Avaliacao IdAparelho;
+    private Aparelho IdAparelho;
     
     @Basic(optional = false)
     @NotNull
