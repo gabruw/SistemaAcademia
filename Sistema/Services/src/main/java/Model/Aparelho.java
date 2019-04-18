@@ -45,6 +45,6 @@ public class Aparelho implements Serializable{
     @NotNull
     @Size(min = 4, max = 20)
     @Column(name = "Nome")
-    private int Nome;
+    private String Nome;
     
 }
