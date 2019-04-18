@@ -30,7 +30,7 @@ import lombok.Data;
     @NamedQuery(name = "Avaliacao.findByIdProfessor", query = "SELECT u FROM Avaliacao u WHERE u.IdProfessor = :IdProfessor")
 })
 
-
+@Data
 public class Avaliacao implements Serializable{
     
     private static final long serialVersionUID = 1L;
