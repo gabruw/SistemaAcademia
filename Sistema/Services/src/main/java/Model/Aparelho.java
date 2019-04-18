@@ -35,4 +35,16 @@ public class Aparelho implements Serializable{
     
     private static final long serialVersionUID = 1L;
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "IdAparelho")
+    private int IdAparelho;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 4, max = 20)
+    @Column(name = "Nome")
+    private int Nome;
+    
 }

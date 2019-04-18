@@ -53,7 +53,6 @@ public class Agenda implements Serializable{
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 1)
     @Column(name = "Data")
     private int Data;
     
