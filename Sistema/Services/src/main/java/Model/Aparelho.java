@@ -26,7 +26,7 @@ import lombok.Data;
 @NamedQueries({
     @NamedQuery(name = "Aparelho.findAll", query = "SELECT u FROM Aparelho u"),
     @NamedQuery(name = "Aparelho.findByIdAparelho", query = "SELECT u FROM Aparelho u WHERE u.IdAparelho = :IdAparelho"),
-    @NamedQuery(name = "Aparelho.findByIdAparelho", query = "SELECT u FROM Aparelho u WHRE u.Nome = :Nome")
+    @NamedQuery(name = "Aparelho.findByNome", query = "SELECT u FROM Aparelho u WHRE u.Nome = :Nome")
     
 })
 

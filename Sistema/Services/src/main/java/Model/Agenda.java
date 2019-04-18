@@ -54,6 +54,6 @@ public class Agenda implements Serializable{
     @Basic(optional = false)
     @NotNull
     @Column(name = "Data")
-    private int Data;
+    private Data Data;
     
 }
