@@ -1,8 +1,6 @@
-
 package Model;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,11 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
-
 
 @Entity
 @Table(name = "Ficha")
@@ -34,7 +29,6 @@ import lombok.Data;
 
 @Data
 public class Ficha implements Serializable{
-    
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -61,6 +55,5 @@ public class Ficha implements Serializable{
     @Basic(optional = false)
     @ManyToOne
     @JoinColumn(name = "IdSerie")
-    private Serie IdSerie;
-    
+    private Serie IdSerie; 
 }

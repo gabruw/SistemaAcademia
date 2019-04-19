@@ -1,8 +1,6 @@
-
 package Model;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,8 +17,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 
-
-
 @Entity
 @Table(name = "serie")
 @XmlRootElement
@@ -32,10 +28,8 @@ import lombok.Data;
     @NamedQuery(name = "Serie.findByNome", query = "SELECT u FROM Serie u WHERE u.Nome = :Nome")
 })
 
-
 @Data
-public class Serie implements Serializable{
-    
+public class Serie implements Serializable{    
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -58,6 +52,5 @@ public class Serie implements Serializable{
     @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "Nome")
-    private String Nome;
-    
+    private String Nome;  
 }

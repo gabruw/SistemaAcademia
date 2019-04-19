@@ -1,4 +1,3 @@
-
 package Model;
 
 import java.io.Serializable;
@@ -19,7 +18,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 
-
 @Entity
 @Table(name = "avaliacao")
 @XmlRootElement
@@ -32,7 +30,6 @@ import lombok.Data;
 
 @Data
 public class Avaliacao implements Serializable{
-    
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -168,7 +165,5 @@ public class Avaliacao implements Serializable{
     @NotNull
     @Size(min = 2, max = 4)
     @Column(name = "PercentualGordura")
-    private double PercentualGordura;
-    
-    
+    private double PercentualGordura; 
 }

@@ -1,14 +1,14 @@
-
 package Repository;
 
 import Model.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
-public interface SerieRep extends JpaRepository<Serie, Integer>{
+public interface SerieRep extends JpaRepository<Serie, Integer>{  
+    public Serie findByIdSerie(int IdSerie);
     
-    public Serie findByIdSerie(int idSerie);
-    public Serie findByIdExercicio(int idExercicio);
-    public Serie findByIdFicha(int idFicha);
-    public Serie findByNome(String nome);
+    public Serie findByIdExercicio(int IdExercicio);
+    
+    public Serie findByIdFicha(int IdFicha);
+    
+    public Serie findByNome(String Nome);
 }

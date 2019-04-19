@@ -1,8 +1,6 @@
-
 package Model;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +29,6 @@ import lombok.Data;
 
 @Data
 public class Exercicio implements Serializable{
-    
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -49,6 +46,5 @@ public class Exercicio implements Serializable{
     @NotNull
     @Size(min = 1, max = 250)
     @Column(name = "Nome")
-    private String Nome;
-    
+    private String Nome;  
 }
