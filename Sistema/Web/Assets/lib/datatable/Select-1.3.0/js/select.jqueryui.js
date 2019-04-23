@@ -1,11 +1,11 @@
-/*! Semanic UI styling wrapper for KeyTable
+/*! jQuery UI styling wrapper for Select
  * ©2018 SpryMedia Ltd - datatables.net/license
  */
 
 (function( factory ){
 	if ( typeof define === 'function' && define.amd ) {
 		// AMD
-		define( ['jquery', 'datatables.net-se', 'datatables.net-keytable'], function ( $ ) {
+		define( ['jquery', 'datatables.net-jqui', 'datatables.net-select'], function ( $ ) {
 			return factory( $, window, document );
 		} );
 	}
@@ -17,11 +17,11 @@
 			}
 
 			if ( ! $ || ! $.fn.dataTable ) {
-				$ = require('datatables.net-se')(root, $).$;
+				$ = require('datatables.net-jqui')(root, $).$;
 			}
 
-			if ( ! $.fn.dataTable.KeyTable ) {
-				require('datatables.net-keytable')(root, $);
+			if ( ! $.fn.dataTable.select ) {
+				require('datatables.net-select')(root, $);
 			}
 
 			return factory( $, root, root.document );

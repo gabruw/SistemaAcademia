@@ -1,11 +1,11 @@
-/*! DataTables styling wrapper for KeyTable
+/*! DataTables styling wrapper for Select
  * ©2018 SpryMedia Ltd - datatables.net/license
  */
 
 (function( factory ){
 	if ( typeof define === 'function' && define.amd ) {
 		// AMD
-		define( ['jquery', 'datatables.net-dt', 'datatables.net-keytable'], function ( $ ) {
+		define( ['jquery', 'datatables.net-dt', 'datatables.net-select'], function ( $ ) {
 			return factory( $, window, document );
 		} );
 	}
@@ -20,8 +20,8 @@
 				$ = require('datatables.net-dt')(root, $).$;
 			}
 
-			if ( ! $.fn.dataTable.KeyTable ) {
-				require('datatables.net-keytable')(root, $);
+			if ( ! $.fn.dataTable.select ) {
+				require('datatables.net-select')(root, $);
 			}
 
 			return factory( $, root, root.document );
