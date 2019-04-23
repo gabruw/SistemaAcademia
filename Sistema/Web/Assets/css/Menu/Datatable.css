@@ -1,0 +1,23 @@
+.datatable{
+	width: 100% !important;
+}
+
+.dataTables_length {
+	font-weight: bold;
+	font-family: Roboto;
+}
+
+.dataTables_filter{
+	font-weight: bold;
+	font-family: Roboto;
+}
+
+.dataTables_info {
+	font-weight: bold;
+	font-family: Roboto;
+}
+
+.paginate_button {
+	font-weight: bold;
+	font-family: Roboto;
+}

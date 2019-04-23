@@ -1,7 +1,31 @@
 $(document).ready(function(){
-	$('#TableAparelho').DataTable( {
-		
-	} );
+	/* Datatable */
+	$('#TableAparelho').DataTable({
+		"responsive": true,
+		"select": true,
+		"bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+		"sDom": '<"search-box"r><"H"lf>t<"F"ip>',
+		"oLanguage": {
+            "sLengthMenu": "Mostrar _MENU_ registros por página",
+            "sZeroRecords": "Nenhum registro encontrado",
+            "sInfo": "Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+            "sInfoEmpty": "0 registros encontrados",
+            "sInfoFiltered": "(filtrado de _MAX_ registros)",
+            "sSearch": "Pesquisar: ",
+            "oPaginate": {
+                "sFirst": "Início",
+                "sPrevious": "Anterior",
+                "sNext": "Próximo",
+                "sLast": "Último"
+            }
+        },
+		"aaSorting": [[0, 'desc']],
+        "aoColumnDefs": [
+            {"sType": "num-html", "aTargets": [0]}
+ 
+        ]
+	});
 	
 	/* Captura dos campos e envio */
 	$("#ConfirmarCadastroAluno").click(function(){
