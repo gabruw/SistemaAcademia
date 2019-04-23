@@ -1,4 +1,8 @@
 $(document).ready(function(){
+	$('#TableAparelho').DataTable( {
+		
+	} );
+	
 	/* Captura dos campos e envio */
 	$("#ConfirmarCadastroAluno").click(function(){
 		var Nome = $('#Nome').val();
