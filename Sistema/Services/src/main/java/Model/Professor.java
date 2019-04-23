@@ -101,12 +101,12 @@ public class Professor implements Serializable {
     private Date DataAdmissao;
     
     @Basic(optional = false)
-    @Size(min = 10, max = 10)
+    @Size(min = 0, max = 10)
     @Column(name = "Telefone")
     private int Telefone;
     
     @Basic(optional = false)
-    @Size(min = 11, max = 11)
+    @Size(min = 0, max = 11)
     @Column(name = "Celular")
     private int Celular;
     

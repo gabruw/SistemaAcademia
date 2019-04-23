@@ -8,4 +8,5 @@ public class SerieDTO {
     private int IdExercicio;
     private int IdFicha;
     private String Nome;
+    private String Observacao;
 }

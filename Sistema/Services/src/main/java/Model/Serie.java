@@ -52,5 +52,10 @@ public class Serie implements Serializable{
     @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "Nome")
-    private String Nome;  
+    private String Nome; 
+    
+    @Basic(optional = false)
+    @Size(min = 0, max = 200)
+    @Column(name = "Observacao")
+    private String Observacao; 
 }

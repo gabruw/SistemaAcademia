@@ -28,4 +28,5 @@ public class AvaliacaoDTO {
     private double DobraCutaneaQuadril;
     private double DobraCutaneaPanurrilha;
     private double PercentualGordura;
+    private String Observacao;
 }

@@ -28,7 +28,10 @@ $(document).ready(function(){
 	$("#ConfirmarCadastroAluno").click(function(){
 		var NomeCompleto = $('#NomeCompleto').val();
 		var Email = $('#Email').val();
-		var Endereco = $('#Endereco').val();
+		var Rua = $('#Rua').val();
+		var Bairro = $('#Bairro').val();
+		var Numero = $('#Numero').val();
+		var Complemento = $('#Complemento').val();
 		var Telefone = $('#Telefone').val();
 		var Celular = $('#Celular').val();
 		var Sexo = $('input:radio[name=Sexo]:checked').val();
@@ -41,7 +44,10 @@ $(document).ready(function(){
 		var data = new FormData();
 		data.append(NomeCompleto, NomeCompleto);
 		data.append(Email, Email);
-		data.append(Endereco, Endereco);
+		data.append(Rua, Rua);
+		data.append(Bairro, Bairro);
+		data.append(Numero, Numero);
+		data.append(Complemento, Complemento);
 		data.append(Telefone, Telefone);
 		data.append(Celular, Celular);
 		data.append(Sexo, Sexo);

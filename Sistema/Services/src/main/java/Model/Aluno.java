@@ -95,12 +95,12 @@ public class Aluno implements Serializable {
     private Date DataNascimento;
     
     @Basic(optional = false)
-    @Size(min = 10, max = 10)
+    @Size(min = 0, max = 10)
     @Column(name = "Telefone")
     private int Telefone;
     
     @Basic(optional = false)
-    @Size(min = 11, max = 11)
+    @Size(min = 0, max = 11)
     @Column(name = "Celular")
     private int Celular;
     
@@ -129,7 +129,7 @@ public class Aluno implements Serializable {
     private int Numero;
     
     @Basic(optional = false)
-    @Size(min = 1, max = 10)
+    @Size(min = 0, max = 10)
     @Column(name = "Complemento")
     private int Complemento;
 }

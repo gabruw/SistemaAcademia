@@ -69,8 +69,7 @@ public class Unidade implements Serializable{
     private int Numero;
     
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 0, max = 10)
     @Column(name = "Complemento")
     private int Complemento;  
 }

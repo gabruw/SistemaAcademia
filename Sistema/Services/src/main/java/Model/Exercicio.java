@@ -47,4 +47,10 @@ public class Exercicio implements Serializable{
     @Size(min = 1, max = 250)
     @Column(name = "Nome")
     private String Nome;  
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 300)
+    @Column(name = "Observacao")
+    private String Observacao; 
 }

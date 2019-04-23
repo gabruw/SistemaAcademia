@@ -166,4 +166,10 @@ public class Avaliacao implements Serializable{
     @Size(min = 2, max = 4)
     @Column(name = "PercentualGordura")
     private double PercentualGordura; 
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 300)
+    @Column(name = "Observacao")
+    private String Observacao; 
 }
