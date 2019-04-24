@@ -5,10 +5,12 @@ html, body {
     height: 100%;
     position: fixed;
 }
+
 #NavbarSuperior{
 	background-color: #353535 !important;
 	margin: 0px;
 }
+
 #Logo {
     width: 100px;
     height: 30px;
