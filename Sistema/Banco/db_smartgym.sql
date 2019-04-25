@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 16-Abr-2019 às 23:24
+-- Generation Time: 25-Abr-2019 às 20:35
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.3
 
@@ -101,7 +101,8 @@ CREATE TABLE `avaliacao` (
   `DobraCutaneaQuadril` decimal(4,0) NOT NULL,
   `DobraCutaneaPanturrilha` decimal(4,0) NOT NULL,
   `DobraCutaneaCoxa` decimal(4,0) NOT NULL,
-  `PercentualGordura` decimal(4,0) NOT NULL
+  `PercentualGordura` decimal(4,0) NOT NULL,
+  `Observacao` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -113,7 +114,8 @@ CREATE TABLE `avaliacao` (
 CREATE TABLE `exercicio` (
   `IdExercicio` int(11) NOT NULL,
   `IdAparelho` int(11) NOT NULL,
-  `Nome` varchar(250) NOT NULL
+  `Nome` varchar(250) NOT NULL,
+  `Observacao` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -148,13 +150,13 @@ CREATE TABLE `professor` (
   `Cpf` int(11) NOT NULL,
   `DataNascimento` datetime(6) NOT NULL,
   `DataAdmissao` datetime(6) NOT NULL,
-  `Telefone` int(10) NOT NULL,
-  `Celular` int(11) NOT NULL,
+  `Telefone` int(10) DEFAULT NULL,
+  `Celular` int(11) DEFAULT NULL,
   `Sexo` int(1) NOT NULL,
   `Rua` varchar(200) NOT NULL,
   `Bairro` varchar(50) NOT NULL,
   `Numero` int(10) NOT NULL,
-  `Complemento` int(10) NOT NULL
+  `Complemento` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -167,7 +169,8 @@ CREATE TABLE `serie` (
   `IdSerie` int(11) NOT NULL,
   `IdExercicio` int(11) NOT NULL,
   `IdFicha` int(11) NOT NULL,
-  `Nome` varchar(200) NOT NULL
+  `Nome` varchar(200) NOT NULL,
+  `Observacao` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
