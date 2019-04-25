@@ -4,35 +4,78 @@ html, body {
     width: 100%;
     height: 100%;
     position: fixed;
-    background: #FAFAFA;
+    background: #E8E8E8;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
 
-.darkBackground{
+.backgroundA{
 	width: 100%;
-	background-color: #E6E6E6;
+	height: 100%;
+	background-color: #E8E8E8;
 	display: flex;
-	align-items: center;
-	justify-content: center;	
+    justify-content: center;
+    align-items: center;	
+}
+
+.backgroundB{
+	width: 100%;
+	height: 100%;
+	background-color: #404040;
+	display: flex;
+    justify-content: center;
+    align-items: center;	
 }
 
 .card-deck{
-	width: 75%;
+	width: 85%;
 	padding-top: 3%;
 	padding-bottom: 3%; 
 	border-radius: 0px !important;	
 }
 
-.card{	
+.card{
+	width: 100% !important;
+	height: 100% !important;
 	border: none !important;
 	border-radius: 0px !important;
+	background-color: #343A40 !important;
+}
+
+.cardLine{
+    width: 100%;
+	height: 6px ;
+    background-color: #8F2828 !important;
 }
 
 .card img{
-	height: 50%;
+	height: 30vh;
+}
+
+.card h5, .card p{
+    font-family: 'Roboto', sans-serif; 
+    color: #E8E8E8 !important;
+}
+
+.card-text{
+    color: #343A40 !important;
 }
 
 .card-img-top{
+	position: relative;
+    border-radius: 0px !important; 
+}
+
+.card button{
+	margin-left: 4%;
+	margin-bottom: 3%;
 	border-radius: 0px !important;
+	border-color: #8F2828;	
+	background: #8F2828 !important;
+}
+
+.divCard{
+	width: 100%;
+	height: 100%;
+	background: #343A40 !important;
 }
