@@ -139,7 +139,6 @@ html, body {
     justify-content: center;
     align-items: center;
 	width: 100%;
-	background-color: aqua;
 	font-weight: bold;
 	z-index: 1;
 }
