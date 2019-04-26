@@ -48,7 +48,7 @@ html, body {
     background-color: #8F2828 !important;
 }
 
-.zoom img{
+.zoom{
 	-webkit-transition: 0.4s;
 	-moz-transition: 0.4s;
 	-o-transition: 0.4s;
@@ -57,7 +57,7 @@ html, body {
 }
 
 
-.zoom img:hover{
+.zoom:hover{
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
   -o-transform: scale(1.1);
@@ -125,41 +125,37 @@ html, body {
 }
 
 .card button{
-	margin-top: -8%;
+	margin-top: -2%;
 	margin-bottom: 3%;
 	border-color: #8F2828;
 	border-radius: 0px !important;
 	background-color: #8F2828 !important;
 }
 
-.row{
-	position: absolute;
+
+.card-body .row{
+	position: relative;
 	display: flex;
     justify-content: center;
     align-items: center;
-	top: 131px;
 	width: 100%;
-	left: 0%;
-	right: 0%;
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: aqua;
 	font-weight: bold;
 	z-index: 1;
 }
 
-.row h5{
+.card-body .row h5{
 	font-size: 15px;
 }
 
-.row p{
+.card-body .row p{
 	 font-size: 22px;
-	 text-shadow: 2px 2px black;
+	 text-shadow: 2px 2px #000000;
 }
 
 .divCardA{
-	width: 100%;
-	height: 100%;
 	text-align: right;
-	border-right: 0.5px solid white;
+	border-right: 0.5px solid #FFFFFF;
 }
 
 .divCardA:hover p{
@@ -172,8 +168,6 @@ html, body {
 }
 
 .divCardB{
-	width: 100%;
-	height: 100%;
 	text-align: left;
 }
 
