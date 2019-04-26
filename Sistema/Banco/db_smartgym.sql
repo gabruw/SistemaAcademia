@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25-Abr-2019 às 20:35
+-- Generation Time: 26-Abr-2019 às 19:18
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.3
 
@@ -58,7 +58,8 @@ CREATE TABLE `aluno` (
   `Rua` varchar(200) NOT NULL,
   `Bairro` varchar(50) NOT NULL,
   `Numero` int(10) NOT NULL,
-  `Complemento` int(10) NOT NULL
+  `Complemento` int(10) NOT NULL,
+  `Imagem` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -156,7 +157,8 @@ CREATE TABLE `professor` (
   `Rua` varchar(200) NOT NULL,
   `Bairro` varchar(50) NOT NULL,
   `Numero` int(10) NOT NULL,
-  `Complemento` int(10) DEFAULT NULL
+  `Complemento` int(10) DEFAULT NULL,
+  `Imagem` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

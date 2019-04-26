@@ -23,4 +23,5 @@ public class ProfessorDTO {
     private String Bairro;
     private int Numero;
     private int Complemento;
+    private String Imagem;
 }

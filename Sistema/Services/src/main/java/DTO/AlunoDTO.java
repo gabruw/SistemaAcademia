@@ -22,4 +22,5 @@ public class AlunoDTO {
     private String Bairro;
     private int Numero;
     private int Complemento;
+    private String Imagem;
 }

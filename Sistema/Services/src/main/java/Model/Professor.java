@@ -138,4 +138,10 @@ public class Professor implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "Complemento")
     private int Complemento;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 5000)
+    @Column(name = "Imagem")
+    private String Imagem;
 }
