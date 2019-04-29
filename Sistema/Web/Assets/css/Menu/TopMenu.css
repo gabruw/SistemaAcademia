@@ -12,8 +12,27 @@ html, body {
 }
 
 #Logo {
-    width: 100px;
-    height: 30px;
+    height: 40px;
+}
+
+.nav-link, .nav-link button{
+	color: #FFFFFF;
+}
+
+.navText:hover{
+	color: #FFFFFF;
+	background-color: #3D3E45;
+}
+
+.nav-link button{
+	background-color: #8F2828;
+	border-color: #8F2828;
+	border-radius: 0px;
+}
+
+.nav-link button:hover{
+	background-color: #9A2828;
+	border-color: #9A2828;
 }
 
 #SuperiorbarCollapse {
