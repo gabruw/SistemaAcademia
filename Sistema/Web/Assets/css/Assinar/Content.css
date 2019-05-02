@@ -67,19 +67,20 @@ html, body {
 }
 
 .text-item{
+	padding-top: 50px;
 	text-align: center;
 }
 
 .text-item h2{
 	color: #FFFFFF;
-	font-size: 20px;
+	font-size: 28px;
 	font-weight: bold;
 	font-family: 'Roboto', sans-serif;
 }
 
 .text-item h5{
 	color: #E8E8E8;
-	font-size: 18px;
+	font-size: 23px;
 	font-weight: bold;
 	font-family: 'Roboto', sans-serif;
 	line-height: 0.0;
@@ -87,16 +88,17 @@ html, body {
 	-webkit-margin-after: 1em;
 }
 
-.sepLine{
-	width: 100%;
-	height: 2px;
-	text-align: center;
-	background-color: #FFFFFF;
-}
-
 .card h5, .card p{
     font-family: 'Roboto', sans-serif; 
     color: #E8E8E8 !important;
+}
+
+.card-price{
+	color: #FFFFFF;
+	font-size: 40px;
+	font-weight: bold;
+	font-family: 'Roboto', sans-serif;
+	text-shadow: 2px 2px #000000;
 }
 
 .card-text{
@@ -115,13 +117,12 @@ html, body {
 }
 
 .card button{
-	margin-top: -2%;
+	margin-top: 3%;
 	margin-bottom: 3%;
 	border-color: #8F2828;
 	border-radius: 0px !important;
 	background-color: #8F2828 !important;
 }
-
 
 .card-body .row{
 	position: relative;
