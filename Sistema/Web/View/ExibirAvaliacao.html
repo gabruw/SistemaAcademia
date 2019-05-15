@@ -8,7 +8,7 @@
     <meta name="description" content="Smart Gym" />
 
     <title>
-        Smart Gym - Cadastro de Avaliação   
+        Smart Gym - Exibir Avaliação   
     </title>
 	
 	<!-- Favicon -->
@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="../Assets/css/Menu/SideMenu.css" />
 	
 	<!-- Links CSS -->
-    <link rel="stylesheet" type="text/css" href="../Assets/css/CadastroAvaliacao/Content.css" />
+    <link rel="stylesheet" type="text/css" href="../Assets/css/ExibirAvaliacao/Content.css" />
    	
     <!-- Frameworks CSS -->
     <link rel="stylesheet" type="text/css" href="../Assets/lib/bootstrap/css/bootstrap.min.css" />
@@ -33,7 +33,7 @@
 	<script defer rel="stylesheet" type="text/javascript" src="../Assets/js/SideMenu/SideMenu.js"></script>
 	
 	<!-- Links JS -->
-	<script defer rel="stylesheet" type="text/javascript" src="../Controller/CadastroAvaliacaoController.js"></script>
+	<script defer rel="stylesheet" type="text/javascript" src="../Controller/ExibirAvaliacaoController.js"></script>
 
     <!-- Frameworks JS -->
     <script rel="stylesheet" type="text/javascript" src="../Assets/lib/jquery/jquery.min.js"></script>
@@ -58,7 +58,7 @@
 
             <ul id="SidebarMenu" class="list-unstyled components">
                 <li>
-                	<a class="title" href="CadastroAvaliacao.html">
+                	<a class="title" href="CadastroAluno.html">
 	                	<i class="fas fa-user-plus"></i>
 	                	Cadastro de Aluno
                 	</a>
@@ -109,8 +109,8 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="col-sm-8">
-                                                <span class="ls-label-text">Nome Professor</span>
-                                                <input type="text" id="NomeProfessor" class="form-control" name="NomeProfessor" required>
+                                            <span class="ls-label-text">Nome Professor</span>
+                                            <p type="text" id="NomeProfessor" >Nome Professor</p>
                                             <span class="ls-label-text">Nome Aluno</span>
                                             <p type="text" id="NomeAluno" >Nome Aluno</p>
                                             <div class="row">
@@ -210,15 +210,6 @@
                                                     <p type="text" id="Observacoes" row="3"></p>
                                                 </div>
 											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-sm-12">
-											<br>
-											<button type="submit" id="ConfirmarCadastroAvaliacao" class="btn btn-primary">Confirmar</button>
-											
-											<button type="reset"  id="ResetCadastroAvaliacao" class="btn btn-secondary">Resetar</button>
 										</div>
 									</div>
 								</div>
