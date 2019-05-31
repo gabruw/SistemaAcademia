@@ -34,4 +34,41 @@ public class AlunoRes {
             return null;
         }
     }
+    
+    @PostMapping("/search")
+    public Aluno getAlunoById(@RequestBody AlunoDTO aluno) {
+        try {
+            Query query = EntityM.createQuery("SELECT u FROM Aluno u WHERE u.IdAluno = :idAluno");
+            query.setParameter("idAluno", aluno.getIdAluno());
+
+            return (Aluno) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    public Aluno getAlunoByCpf(@RequestBody AlunoDTO aluno) {
+        try {
+            Query query = EntityM.createQuery("SELECT u FROM Aluno u WHERE u.cpf = :cpf");
+            query.setParameter("cpf", aluno.getCpf());
+
+            return (Aluno) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    public Aluno getAvaliacaoByAluno(@RequestBody AlunoDTO aluno) {
+        try {
+            Query query = EntityM.createQuery("SELECT u FROM Aluno u WHERE u.IdAluno = :idAluno "
+                    + "INNER JOIN Avaliacao k ON k.IdAvaliacao = u.IdAvaliacao "
+                    + "WHERE k.IdAvaliacao = u.idAvaliacao");
+            query.setParameter("idAluno", aluno.getIdAluno());
+            query.setParameter("idAvaliacao", aluno.getIdAvaliacao());
+
+            return (Aluno) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 }
