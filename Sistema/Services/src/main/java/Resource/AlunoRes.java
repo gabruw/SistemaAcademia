@@ -23,6 +23,19 @@ public class AlunoRes {
     EntityManager EntityM;
     
     @PostMapping("/login")
+    public Aluno getAlunoByEmailAndSenha(@RequestBody AlunoDTO aluno) {
+        try {
+            Query query = EntityM.createQuery("SELECT u FROM Aluno u WHERE u.email = :email AND u.senha = :senha");
+            query.setParameter("email", aluno.getEmail());
+            query.setParameter("senha", aluno.getSenha());
+
+            return (Aluno) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    @PostMapping("/search")
     public Aluno getAllUsers(@RequestBody AlunoDTO aluno) {
         try {
             Query query = EntityM.createQuery("SELECT u FROM Aluno u WHERE u.Email = :email " + "and u.Senha = :senha");
@@ -35,7 +48,6 @@ public class AlunoRes {
         }
     }
     
-    @PostMapping("/search")
     public Aluno getAlunoById(@RequestBody AlunoDTO aluno) {
         try {
             Query query = EntityM.createQuery("SELECT u FROM Aluno u WHERE u.IdAluno = :idAluno");
@@ -58,7 +70,7 @@ public class AlunoRes {
         }
     }
     
-    public Aluno getAvaliacaoByAluno(@RequestBody AlunoDTO aluno) {
+    public Avaliacao getAvaliacaoByAluno(@RequestBody AlunoDTO aluno) {
         try {
             Query query = EntityM.createQuery("SELECT u FROM Aluno u WHERE u.IdAluno = :idAluno "
                     + "INNER JOIN Avaliacao k ON k.IdAvaliacao = u.IdAvaliacao "
