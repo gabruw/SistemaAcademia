@@ -47,7 +47,7 @@ public class ProfessorRes {
     }
     
     @PostMapping("/search")
-    public Professor getAllUsers(@RequestBody ProfessorDTO professor) {
+    public Professor getAllProfessor(@RequestBody ProfessorDTO professor) {
         try {
             Query query = EntityM.createQuery("SELECT * FROM Professor");
             
