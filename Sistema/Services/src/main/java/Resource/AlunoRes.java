@@ -47,7 +47,7 @@ public class AlunoRes {
     }
     
     @PostMapping("/search")
-    public Aluno getAllUsers(@RequestBody AlunoDTO aluno) {
+    public Aluno getAllAluno(@RequestBody AlunoDTO aluno) {
         try {
             Query query = EntityM.createQuery("SELECT * FROM Aluno");
             
