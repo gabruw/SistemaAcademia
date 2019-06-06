@@ -78,4 +78,43 @@ public class ProfessorRes {
             return null;
         }
     }
+    
+    public Professor getProfessorByCref(@RequestBody ProfessorDTO professor) {
+        try {
+            Query query = EntityM.createQuery("SELECT u FROM Professor u WHERE u.cref = :cref");
+            query.setParameter("cref", professor.getCref());
+
+            return (Professor) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    public Agenda getAgendaByProfessor(@RequestBody ProfessorDTO professor) {
+        try {
+            Query query = EntityM.createQuery("SELECT u FROM Professor u WHERE u.IdProfessor = :IdProfessor "
+                    + "INNER JOIN Agenda k ON k.IdAgenda = u.IdAgenda "
+                    + "WHERE k.IdAgenda = u.idAgenda");
+            query.setParameter("idProfessor", professor.getIdProfessor());
+            query.setParameter("idAgenda", professor.getIdAgenda());
+
+            return (Agenda) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+     public Unidade getUnidadeByProfessor(@RequestBody ProfessorDTO professor) {
+        try {
+            Query query = EntityM.createQuery("SELECT u FROM Professor u WHERE u.IdProfessor = :IdProfessor "
+                    + "INNER JOIN Unidade k ON k.IdUnidade = u.IdUnidade "
+                    + "WHERE k.IdUnidade = u.idUnidade");
+            query.setParameter("idProfessor", professor.getIdProfessor());
+            query.setParameter("idUnidade", professor.getIdUnidade());
+
+            return (Unidade) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 }
