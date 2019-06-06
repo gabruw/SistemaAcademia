@@ -49,10 +49,8 @@ public class AlunoRes {
     @PostMapping("/search")
     public Aluno getAllUsers(@RequestBody AlunoDTO aluno) {
         try {
-            Query query = EntityM.createQuery("SELECT u FROM Aluno u WHERE u.Email = :email " + "and u.Senha = :senha");
-            query.setParameter("email", aluno.getEmail());
-            query.setParameter("senha", aluno.getSenha());
-
+            Query query = EntityM.createQuery("SELECT * FROM Aluno");
+            
             return (Aluno) query.getSingleResult();
         } catch (NoResultException e) {
             return null;
