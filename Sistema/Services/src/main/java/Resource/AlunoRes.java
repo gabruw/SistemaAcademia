@@ -87,7 +87,21 @@ public class AlunoRes {
             query.setParameter("idAluno", aluno.getIdAluno());
             query.setParameter("idAvaliacao", aluno.getIdAvaliacao());
 
-            return (Aluno) query.getSingleResult();
+            return (Avaliacao) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+     public Ficha getFichaByAluno(@RequestBody AlunoDTO aluno) {
+        try {
+            Query query = EntityM.createQuery("SELECT u FROM Aluno u WHERE u.IdAluno = :idAluno "
+                    + "INNER JOIN Ficha k ON k.IdFicha = u.IdFicha "
+                    + "WHERE k.IdFicha = u.idFicha");
+            query.setParameter("idAluno", aluno.getIdAluno());
+            query.setParameter("idFicha", aluno.getIdFicha());
+
+            return (Ficha) query.getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
