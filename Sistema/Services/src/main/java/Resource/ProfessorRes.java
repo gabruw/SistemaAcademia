@@ -117,4 +117,37 @@ public class ProfessorRes {
             return null;
         }
     }
+
+    public boolean includeProfessor(@RequestBody ProfessorDTO professor) {
+        try {
+            Query query = EntityM.createQuery("INSERT INTO Professor(IdUnidade, IdAgenda, Permissao, " +
+                "Email, Senha, Cref, Nome, Cpf, DataNascimento, DataAdmissao, Telefone, " +
+                "Celular, Sexo, Rua, Bairro, Numero, Complemento, Imagem) values(:IdUnidade, :IdAgenda, :Permissao, " +
+                ":Email, :Senha, :Cref, :Nome, :Cpf, :DataNascimento, :DataAdmissao, :Telefone, " +
+                ":Celular, :Sexo, :Rua, :Bairro, :Numero, :Complemento, :Imagem)")
+            );
+            query.setParameter("IdUnidade", avaliacao.getIdUnidade());
+            query.setParameter("IdAgenda", avaliacao.getIdAgenda());
+            query.setParameter("Permissao", avaliacao.getPermissao());
+            query.setParameter("Email", avaliacao.getEmail());
+            query.setParameter("Senha", avaliacao.getSenha());
+            query.setParameter("Cref", avaliacao.getCref());
+            query.setParameter("Nome", avaliacao.getBracoNome());
+            query.setParameter("Cpf", avaliacao.getBracoCpf());
+            query.setParameter("DataNascimento", avaliacao.getDataNascimento());
+            query.setParameter("DataAdmissao", avaliacao.getDataAdmissao());
+            query.setParameter("Telefone", avaliacao.getTelefone());
+            query.setParameter("Celular", avaliacao.getCelular());
+            query.setParameter("Sexo", avaliacao.getSexo());
+            query.setParameter("Rua", avaliacao.getRua());
+            query.setParameter("Bairro", avaliacao.getBairro());
+            query.setParameter("Numero", avaliacao.getNumero());
+            query.setParameter("Complemento", avaliacao.getComplemento());
+            query.setParameter("Imagem", avaliacao.getImagem());
+
+            return true;
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
 }
