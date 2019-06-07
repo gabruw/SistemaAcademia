@@ -1,7 +1,7 @@
 package Resource;
 
-import Model.Avaliacao;
-import DTO.AvaliacaoDTO;
+import Model.Agenda;
+import DTO.AgendaDTO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/agenda")
-public class AvaliacaoRes {
+public class AgendaRes {
     @Autowired
     AgendaRes Agenda;
 
@@ -23,7 +23,7 @@ public class AvaliacaoRes {
     EntityManager EntityM;
     
     @PostMapping("/search")
-    public Avaliacao getAllAgenda(@RequestBody AgendaDTO agenda) {
+    public Agenda getAllAgenda(@RequestBody AgendaDTO agenda) {
         try {
             Query query = EntityM.createQuery("SELECT * FROM Agenda");
             
