@@ -124,7 +124,7 @@ public class ProfessorRes {
                 "Email, Senha, Cref, Nome, Cpf, DataNascimento, DataAdmissao, Telefone, " +
                 "Celular, Sexo, Rua, Bairro, Numero, Complemento, Imagem) values(:IdUnidade, :IdAgenda, :Permissao, " +
                 ":Email, :Senha, :Cref, :Nome, :Cpf, :DataNascimento, :DataAdmissao, :Telefone, " +
-                ":Celular, :Sexo, :Rua, :Bairro, :Numero, :Complemento, :Imagem)")
+                ":Celular, :Sexo, :Rua, :Bairro, :Numero, :Complemento, :Imagem)"
             );
             query.setParameter("IdUnidade", avaliacao.getIdUnidade());
             query.setParameter("IdAgenda", avaliacao.getIdAgenda());
@@ -150,4 +150,5 @@ public class ProfessorRes {
             return false;
         }
     }
+    
 }

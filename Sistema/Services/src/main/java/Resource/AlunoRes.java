@@ -114,7 +114,7 @@ public class AlunoRes {
                     "Senha, Matricula, Nome, Cpf, DataNascimento, Telefone, Celular, Sexo, Rua, Bairro, " +
                     "Numero, Complemento, Imagem) values(:IdFicha, :IdAvaliacao, :Permissao, :Email, " +
                     ":Senha, :Matricula, :Nome, :Cpf, :DataNascimento, :Telefone, :Celular, :Sexo, :Rua, :Bairro, " +
-                    ":Numero, :Complemento, :Imagem)")
+                    ":Numero, :Complemento, :Imagem)"
             );
 
             query.setParameter("IdFicha", avaliacao.getIdFicha());

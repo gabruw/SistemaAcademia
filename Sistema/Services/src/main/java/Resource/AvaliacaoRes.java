@@ -58,7 +58,7 @@ public class AvaliacaoRes {
                             " :Peso, :Imc, :BracoDireito, :BracoEsquerdo, :Peitoral, :Abdomem, :Quadril," +
                             " :QuadricepsDireito, :QuadrcepsEsquerdo, :PanturrilhaDireita, :PanturrilhaEsquerda," +
                             " :DobraCutaneaPeito, :DobraCutaneaCoxa, :DobraCutaneaTriceps, :DobraCutaneaAbdomem," +
-                            " :DobraCutaneaQuadril, :DobraCutaneaPanurrilha, :PercentualGordura, :Observacao)")
+                            " :DobraCutaneaQuadril, :DobraCutaneaPanurrilha, :PercentualGordura, :Observacao)"
             );
             query.setParameter("IdAluno", avaliacao.getIdAluno());
             query.setParameter("IdProfessor", avaliacao.getIdProfessor());

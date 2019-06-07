@@ -57,4 +57,22 @@ public class ExercicioRes {
             return null;
         }
     }
+
+    public boolean includeExercicio(@RequestBody ExercicioDTO exercicio){
+        try {
+
+            Query query = EntityM.createQuery("INSERT INTO Exercicio(IdAparelho, Nome, Observacao)" + 
+                            " values(:IdAparelho, :Nome, :Observacao)"
+            );
+
+            query.setParameter("IdAparelho", avaliacao.getIdAparelho());
+            query.setParameter("Nome", avaliacao.getNome());
+            query.setParameter("Observacao", avaliacao.getObservacao());
+
+            return true;
+            
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
 }
