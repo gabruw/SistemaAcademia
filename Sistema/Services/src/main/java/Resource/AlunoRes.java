@@ -106,4 +106,39 @@ public class AlunoRes {
             return null;
         }
     }
+
+    public boolean includeAluno(@RequestBody AlunoDTO aluno){
+        try {
+
+            Query query = EntityM.createQuery("INSERT INTO Aluno(IdFicha, IdAvaliacao, Permissao, Email, " +
+                    "Senha, Matricula, Nome, Cpf, DataNascimento, Telefone, Celular, Sexo, Rua, Bairro, " +
+                    "Numero, Complemento, Imagem) values(:IdFicha, :IdAvaliacao, :Permissao, :Email, " +
+                    ":Senha, :Matricula, :Nome, :Cpf, :DataNascimento, :Telefone, :Celular, :Sexo, :Rua, :Bairro, " +
+                    ":Numero, :Complemento, :Imagem)")
+            );
+
+            query.setParameter("IdFicha", avaliacao.getIdFicha());
+            query.setParameter("IdAvaliacao", avaliacao.getIdAvaliacao());
+            query.setParameter("Permissao", avaliacao.getPermissao());
+            query.setParameter("Email", avaliacao.getEmail());
+            query.setParameter("Senha", avaliacao.getSenha());
+            query.setParameter("Matricula", avaliacao.getMatricula());
+            query.setParameter("Nome", avaliacao.getNome());
+            query.setParameter("Cpf", avaliacao.getCpf());
+            query.setParameter("DataNascimento", avaliacao.getDataNascimento());
+            query.setParameter("Telefone", avaliacao.getTelefone());
+            query.setParameter("Celular", avaliacao.getCelular());
+            query.setParameter("Sexo", avaliacao.getSexo());
+            query.setParameter("Rua", avaliacao.getRua());
+            query.setParameter("Bairro", avaliacao.getBairro());
+            query.setParameter("Numero", avaliacao.getNumero());
+            query.setParameter("Complemento", avaliacao.getComplemento());
+            query.setParameter("Imagem", avaliacao.getImagem());
+
+            return true;
+            
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
 }
