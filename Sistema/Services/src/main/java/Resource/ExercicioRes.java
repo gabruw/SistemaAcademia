@@ -48,7 +48,7 @@ public class ExercicioRes {
         try {
             Query query = EntityM.createQuery("SELECT u FROM Exercicio u WHERE u.IdExercicio = :idExercicio "
                     + "INNER JOIN Aparelho k ON k.IdAparelho = u.IdAparelho "
-                    + "WHERE k.IdAparelho = u.idAparelho");
+                    + "WHERE k.IdAparelho = u.idAparelho"); //observar
             query.setParameter("idExercicio", exercicio.getIdExercicio());
             query.setParameter("idAparelho", exercicio.getIdAparelho());
 
