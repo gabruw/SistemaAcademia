@@ -1,13 +1,20 @@
 package Resource;
 
 import Model.Aluno;
+import Model.Avaliacao;
 import DTO.AlunoDTO;
+
+import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +28,76 @@ public class AlunoRes {
 
     @PersistenceContext
     EntityManager EntityM;
-    
-    @PostMapping("/login")
+
+    private String email;
+   
+
+
+
+    @GetMapping("/{id}")
+    public Aluno getAlunoById(@PathVariable int id) {
+        try {
+
+            Query query = EntityM.createQuery("SELECT u FROM Aluno u "+
+            " WHERE u.IdAluno = :id ");
+            query.setParameter("id", id);
+
+            return (Aluno) query.getSingleResult();
+
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @GetMapping("/{nome}")
+    public Aluno getAlunoByNome(@PathVariable String nome){
+        try {
+
+            Query query = EntityM.createQuery("Select u FROM Aluno u "+
+                "WHERE u.Nome = :nome"
+            );
+            query.setParameter("nome", nome);
+
+            return (Aluno) query.getSingleResult();
+            
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @GetMapping("/{email}")
+    public Aluno getAlunoByEmail(@PathVariable String email){
+        try {
+
+            Query query = EntityM.createQuery("Select u FROM Aluno u "+
+                "WHERE u.Email = :email"
+            );
+            query.setParameter("email", email);
+
+            return (Aluno) query.getSingleResult();
+            
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @GetMapping("/{matricula}")
+    public Aluno getAlunoByMatricula(@PathVariable String matricula){
+        try {
+
+            Query query = EntityM.createQuery("Select u FROM Aluno u "+
+                "WHERE u.Matricula = :matricula"
+            );
+            query.setParameter("matricula", matricula);
+
+            return (Aluno) query.getSingleResult();
+            
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    /*@PostMapping("/login")
     public Aluno getAlunoByEmail(@RequestBody AlunoDTO aluno) {
         try {
             Query query = EntityM.createQuery("SELECT u FROM Aluno u WHERE u.email = :email");
@@ -140,5 +215,5 @@ public class AlunoRes {
         } catch (NoResultException e) {
             return false;
         }
-    }
+    }*/
 }

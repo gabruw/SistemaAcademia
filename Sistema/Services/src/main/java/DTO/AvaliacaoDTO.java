@@ -29,4 +29,7 @@ public class AvaliacaoDTO {
     private double DobraCutaneaPanurrilha;
     private double PercentualGordura;
     private String Observacao;
+	public Object getIdProfessor() {
+		return null;
+	}
 }
