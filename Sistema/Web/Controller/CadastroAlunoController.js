@@ -56,7 +56,7 @@ $(document).ready(function(){
 		data.append(ImagemPerfil, ImagemPerfil);
 		
 		$.ajax({
-			url: "controller/CadastroAluno",
+			url: "http://localhost:8080/aluno",
 			type: 'POST',
 			dataType: 'json',
 			contentType: 'application/json',

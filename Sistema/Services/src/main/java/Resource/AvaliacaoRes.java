@@ -22,24 +22,34 @@ public class AvaliacaoRes {
     @PersistenceContext
     EntityManager EntityM;
     
-    @PostMapping("/search")
-    public Avaliacao getAllAvaliacao(@RequestBody AvaliacaoDTO avaliacao) {
-        try {
-            Query query = EntityM.createQuery("SELECT * FROM Avaliacao");
+    //localhost:8080/avaliacao/all
+    @GetMapping("/all")
+    public List<Avaliacao> getAllAvaliacao() {
+            Query query = EntityM.createQuery("SELECT a FROM Avaliacao a");
             
-            return (Avaliacao) query.getSingleResult();
-        } catch (NoResultException e) {
+            return query.getListResult();
             return null;
-        }
     }
     
-    public Aluno getAlunoByAvaliacao(@RequestBody AvaliacaoDTO avaliacao) {
+
+
+    //localhost:8080/avaliacao/aluno/1
+    @GetMapping("/aluno/{idAluno}")
+    public List<Avaliacao> getAvaliacaoByAluno(@PathVariable int idAluno) {
+            Query query = EntityM.createQuery("SELECT u FROM Avaliacao u "+
+            " WHERE u.idAluno.idAluno = :idAluno ");
+            query.setParameter("idAluno", idAluno);
+
+            return query.getListResult();
+    }
+
+    @GetMapping("/{id}")
+    public Aluno getAlunoByAvaliacao(@PathVariable int id) {
         try {
-            Query query = EntityM.createQuery("SELECT u FROM Avaliacao u WHERE u.IdAluno = :idAluno "
-                    + "INNER JOIN Aluno k ON k.IdAvaliacao = u.IdAvaliacao "
-                    + "WHERE k.IdAvaliacao = u.idAvaliacao");
-            query.setParameter("idAluno", avaliacao.getIdAluno());
-            query.setParameter("idAvaliacao", avaliacao.getIdAvaliacao());
+            Query query = EntityM.createQuery("SELECT u.IdAluno FROM Avaliacao u "+
+            " WHERE u.idAvaliacao = :idAvaliacao ");
+            //query.setParameter("idAluno", avaliacao.getIdAluno());
+            query.setParameter("idAvaliacao", id);
 
             return (Aluno) query.getSingleResult();
         } catch (NoResultException e) {
@@ -47,8 +57,46 @@ public class AvaliacaoRes {
         }
     }
     
+    @PostMapping
     public boolean includeAvaliacao(@RequestBody AvaliacaoDTO avaliacao) {
         try {
+
+            Aluno a = new Aluno();
+            a.setIdAluno(avaliacao.getIdAluno());
+
+            Professor p = new Professor();
+            a.setIdProfessor(avaliacao.getIdProfessor());
+
+
+            Avaliacao ava = new Avaliacao();
+            ava.setIdAluno( a );
+            ava.setNome( p );
+            ava.setDate( avaliacao.getData() );
+            ava.setAltura( avaliacao.getAltura() );
+            ava.setPeso( avaliacao.getPeso() );
+            ava.setImc( avaliacao.getImc() );
+            ava.setBracoDireito( avaliacao.getBracoDireito() );
+            ava.setBracoEsquerdo( avaliacao.getBracoEsquerdo() );
+            ava.setPeitoral( avaliacao.getPeitoral() );
+            ava.setAbdomem( avaliacao.getAbdomem() );
+            ava.setQuadril( avaliacao.getQuadril() );
+            ava.setQuadricepsDireito( avaliacao.getQuadricepsDireito() );
+            ava.setQuadricepsEsquerdo( avaliacao.getQuadricepsEsquerdo() );
+            ava.setPanturrilhaDireita( avaliacao.getPanturrilhaDireita() );
+            ava.setPanturrilhaEsqueda( avaliacao.getPanturrilhaEsqueda() );
+            ava.setDobraCutaneaPeito( avaliacao.getDobraCutaneaPeito() );
+            ava.setDobraCutaneaTriceps( avaliacao.getDobraCutaneaTriceps() );
+            ava.setDobraCutaneaAbdomem( avaliacao.getDobraCutaneaAbdomem() );
+            ava.setDobraCutaneaQuadril( avaliacao.getDobraCutaneaQuadril() );
+            ava.setDobraCutaneaPanturrilha( avaliacao.getDobraCutaneaPanturrilha() );
+            ava.setDobraCutaneaCoxa( avaliacao.getDobraCutaneaCoxa() );
+            ava.setPercentualGordura( avaliacao.getPercentualGordura() );
+            ava.setObservacao( avaliacao.getObservacao() );
+ 
+           
+
+            EntityM.persite(ava);
+/*
             Query query = EntityM.createQuery("INSERT INTO Avaliacao(IdAluno, IdProfessor, Data, Altura," + 
                             " Peso, Imc, BracoDireito, BracoEsquerdo, Peitoral, Abdomem, Quadril," +
                             " QuadricepsDireito, QuadrcepsEsquerdo, PanturrilhaDireita, PanturrilhaEsquerda," +
@@ -83,7 +131,7 @@ public class AvaliacaoRes {
             query.setParameter("DobraCutaneaPanurrilha", avaliacao.getDobraCutaneaPanurrilha());
             query.setParameter("PercentualGordura", avaliacao.getPercentualGordura());
             query.setParameter("Observacao", avaliacao.getObservacao());
-
+*/
             return true;
         } catch (NoResultException e) {
             return false;
