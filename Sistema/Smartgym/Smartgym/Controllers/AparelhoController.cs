@@ -1,40 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Smartgym.Controllers
 {
     public class AparelhoController : Controller
     {
+        private readonly IAparelhoRepository _aparelhoRepository;
+
+        public AparelhoController(IAparelhoRepository aparelhoRepository)
+        {
+            _aparelhoRepository = aparelhoRepository;
+        }
+
         // GET: Aparelho
         public ActionResult Index()
         {
-            return View();
-        }
-
-        // GET: Aparelho/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+            return View("~/Views/Main/AparelhoMain");
         }
 
         // GET: Aparelho/Create
         public ActionResult Create()
         {
-            return View();
+            return View("~/Views/Register/AparelhoRegister");
         }
 
         // POST: Aparelho/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Models.Aparelho newAparelho)
         {
             try
             {
-                // TODO: Add insert logic here
+                Domain.DTO.Aparelho aparelhoDTO = new Domain.DTO.Aparelho();
+                aparelhoDTO.NomeAparelho = newAparelho.NomeAparelho;
+
+                _aparelhoRepository.Incluid(aparelhoDTO);
+
+                Created("Aparelho/Create", aparelhoDTO);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -47,17 +49,25 @@ namespace Smartgym.Controllers
         // GET: Aparelho/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var aparelhoDTO = _aparelhoRepository.GetbyId(id);
+
+            return View("~/Views/Edit/AparelhoEdit", aparelhoDTO);
         }
 
         // POST: Aparelho/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Models.Aparelho newAparelho)
         {
             try
             {
-                // TODO: Add update logic here
+                Domain.DTO.Aparelho aparelhoDTO = new Domain.DTO.Aparelho();
+                aparelhoDTO.IdAparelho = id;
+                aparelhoDTO.NomeAparelho = newAparelho.NomeAparelho;
+
+                _aparelhoRepository.Update(aparelhoDTO);
+
+                Created("Aparelho/Edit", aparelhoDTO);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -70,24 +80,12 @@ namespace Smartgym.Controllers
         // GET: Aparelho/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
+            Domain.DTO.Aparelho aparelhoDTO = new Domain.DTO.Aparelho();
+            aparelhoDTO.IdAparelho = id;
 
-        // POST: Aparelho/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+            _aparelhoRepository.Remove(aparelhoDTO);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return View("~/Views/Main/AparelhoMain");
         }
     }
 }

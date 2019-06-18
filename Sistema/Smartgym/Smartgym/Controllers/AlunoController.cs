@@ -12,9 +12,12 @@ namespace Smartgym.Controllers
     {
         private readonly IAlunoRepository _alunoRepository;
 
-        public AlunoController(IAlunoRepository alunoRepository)
+        private readonly IEnderecoRepository _enderecoRepository;
+
+        public AlunoController(IAlunoRepository alunoRepository, IEnderecoRepository enderecoRepository)
         {
             _alunoRepository = alunoRepository;
+            _enderecoRepository = enderecoRepository;
         }
 
         // GET: Aluno
@@ -22,29 +25,37 @@ namespace Smartgym.Controllers
         {
             var alunoDTO = _alunoRepository.GetAll();
 
-            return View();
-        }
-
-        // GET: Aluno/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+            return View("~/Views/Main/AlunoMain", alunoDTO);
         }
 
         // GET: Aluno/Create
         public ActionResult Create()
         {
-            return View();
+            return View("~/Views/Register/AlunoRegister");
         }
 
         // POST: Aluno/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Models.Aluno newAluno, Models.Endereco newEndereco)
         {
             try
             {
+                // Endereço
+                Domain.DTO.Endereco enderecoDTO = new Domain.DTO.Endereco();
+                enderecoDTO.CepEndereco = newEndereco.CepEndereco;
+                enderecoDTO.RuaEndereco = newEndereco.RuaEndereco;
+                enderecoDTO.BairroEndereco = newEndereco.BairroEndereco;
+                enderecoDTO.NumeroEndereco = newEndereco.NumeroEndereco;
+                enderecoDTO.ComplementoEndereco = newEndereco.ComplementoEndereco;
+
+                // Aluno
                 Domain.DTO.Aluno alunoDTO = new Domain.DTO.Aluno();
+                alunoDTO.EnderecoAluno = enderecoDTO;
+                alunoDTO.PermissaoAluno = 1;
+                alunoDTO.EmailAluno = newAluno.EmailAluno;
+                alunoDTO.SenhaAluno = newAluno.SenhaAluno;
+                alunoDTO.MatriculaAluno = GerarMatricula(newAluno.NomeAluno, newAluno.DataNascimentoAluno);
 
                 _alunoRepository.Incluid(alunoDTO);
 
@@ -63,7 +74,7 @@ namespace Smartgym.Controllers
         {
             var alunoDTO = _alunoRepository.GetbyId(id);
 
-            return View();
+            return View("~/Views/Edit/AlunoEdit", alunoDTO);
         }
 
         // POST: Aluno/Edit/5
@@ -90,24 +101,12 @@ namespace Smartgym.Controllers
         // GET: Aluno/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
+            Domain.DTO.Aluno alunoDTO = new Domain.DTO.Aluno();
+            alunoDTO.IdAluno = id;
 
-        // POST: Aluno/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+            _alunoRepository.Remove(alunoDTO);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return View("~/Views/Main/AlunoMain");
         }
     }
 }
