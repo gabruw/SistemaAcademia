@@ -9,34 +9,6 @@ namespace Repository.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Aluno",
-                columns: table => new
-                {
-                    IdAluno = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PermissaoAluno = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
-                    EmailAluno = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
-                    SenhaAluno = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
-                    MatriculaAluno = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false),
-                    NomeAluno = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
-                    CpfAluno = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
-                    DataNascimentoAluno = table.Column<DateTime>(type: "date", nullable: false),
-                    TelefoneAluno = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
-                    CelularAluno = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
-                    SexoAluno = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
-                    CepAluno = table.Column<int>(type: "int(8)", maxLength: 8, nullable: false),
-                    RuaEnderecoAluno = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false),
-                    BairroEnderecoAluno = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false),
-                    NumeroEnderecoAluno = table.Column<int>(type: "int(5)", maxLength: 5, nullable: false),
-                    ComplementoEnderecoAluno = table.Column<int>(type: "int(5)", maxLength: 5, nullable: false),
-                    ImagemAluno = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Aluno", x => x.IdAluno);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Aparelho",
                 columns: table => new
                 {
@@ -49,20 +21,71 @@ namespace Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Endereco",
+                columns: table => new
+                {
+                    IdEndereco = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CepEndereco = table.Column<int>(type: "int(8)", maxLength: 8, nullable: false),
+                    RuaEndereco = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false),
+                    BairroEndereco = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false),
+                    NumeroEndereco = table.Column<int>(type: "int(5)", maxLength: 5, nullable: false),
+                    ComplementoEndereco = table.Column<int>(type: "int(5)", maxLength: 5, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Endereco", x => x.IdEndereco);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Aluno",
+                columns: table => new
+                {
+                    IdAluno = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    IdEnderecoAluno = table.Column<int>(nullable: false),
+                    PermissaoAluno = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
+                    EmailAluno = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
+                    SenhaAluno = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
+                    MatriculaAluno = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false),
+                    NomeAluno = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
+                    CpfAluno = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
+                    DataNascimentoAluno = table.Column<DateTime>(type: "date", nullable: false),
+                    TelefoneAluno = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
+                    CelularAluno = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
+                    SexoAluno = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
+                    ImagemAluno = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Aluno", x => x.IdAluno);
+                    table.ForeignKey(
+                        name: "FK_Aluno_Endereco_IdEnderecoAluno",
+                        column: x => x.IdEnderecoAluno,
+                        principalTable: "Endereco",
+                        principalColumn: "IdEndereco",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Unidade",
                 columns: table => new
                 {
                     IdUnidade = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CepUnidade = table.Column<int>(type: "int(8)", maxLength: 8, nullable: false),
-                    RuaEnderecoUnidade = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false),
-                    BairroEnderecoUnidade = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false),
-                    NumeroEnderecoUnidade = table.Column<int>(type: "int(5)", maxLength: 5, nullable: false),
-                    ComplementoEnderecoUnidade = table.Column<int>(type: "int(5)", maxLength: 5, nullable: false)
+                    IdEnderecoUnidade = table.Column<int>(nullable: false),
+                    NomeUnidade = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
+                    ImagemUnidade = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Unidade", x => x.IdUnidade);
+                    table.ForeignKey(
+                        name: "FK_Unidade_Endereco_IdEnderecoUnidade",
+                        column: x => x.IdEnderecoUnidade,
+                        principalTable: "Endereco",
+                        principalColumn: "IdEndereco",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,6 +94,7 @@ namespace Repository.Migrations
                 {
                     IdProfessor = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    IdEnderecoProfessor = table.Column<int>(nullable: false),
                     IdUnidadeProfessor = table.Column<int>(nullable: false),
                     IdAgendaProfessor = table.Column<int>(nullable: false),
                     PermissaoProfessor = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
@@ -84,16 +108,17 @@ namespace Repository.Migrations
                     TelefoneProfessor = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
                     CelularProfessor = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
                     SexoProfessor = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
-                    CepProfessor = table.Column<int>(type: "int(8)", maxLength: 8, nullable: false),
-                    RuaEnderecoProfessor = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false),
-                    BairroEnderecoProfessor = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false),
-                    NumeroEnderecoProfessor = table.Column<int>(type: "int(5)", maxLength: 5, nullable: false),
-                    ComplementoEnderecoProfessor = table.Column<int>(type: "int(5)", maxLength: 5, nullable: false),
                     ImagemProfessor = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Professor", x => x.IdProfessor);
+                    table.ForeignKey(
+                        name: "FK_Professor_Endereco_IdEnderecoProfessor",
+                        column: x => x.IdEnderecoProfessor,
+                        principalTable: "Endereco",
+                        principalColumn: "IdEndereco",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Professor_Unidade_IdProfessor",
                         column: x => x.IdProfessor,
@@ -283,6 +308,11 @@ namespace Repository.Migrations
                 column: "IdProfessorAgenda");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Aluno_IdEnderecoAluno",
+                table: "Aluno",
+                column: "IdEnderecoAluno");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Avaliacao_AlunoIdAluno",
                 table: "Avaliacao",
                 column: "AlunoIdAluno");
@@ -323,6 +353,11 @@ namespace Repository.Migrations
                 column: "IdAgendaProfessor");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Professor_IdEnderecoProfessor",
+                table: "Professor",
+                column: "IdEnderecoProfessor");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Serie_FichaIdFicha",
                 table: "Serie",
                 column: "FichaIdFicha");
@@ -331,6 +366,11 @@ namespace Repository.Migrations
                 name: "IX_Serie_IdFichaSerie",
                 table: "Serie",
                 column: "IdFichaSerie");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Unidade_IdEnderecoUnidade",
+                table: "Unidade",
+                column: "IdEnderecoUnidade");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Professor_Agenda_IdAgendaProfessor",
@@ -377,6 +417,9 @@ namespace Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "Unidade");
+
+            migrationBuilder.DropTable(
+                name: "Endereco");
         }
     }
 }

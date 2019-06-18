@@ -72,6 +72,12 @@ namespace Smartgym
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            //app.UseCookieAuthentication(options => {
+            //    options.LoginPath = new PathString("");
+            //    options.AccessDeniedPath = new PathString("");
+            //    options.
+            //});
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -16,6 +16,11 @@ namespace Domain.DTO
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdAluno { get; set;  }
 
+        public int IdEnderecoAluno { get; set;  }
+
+        [ForeignKey("IdEnderecoAluno")]
+        public virtual Endereco EnderecoAluno { get; set; }
+
         public virtual ICollection<Ficha> FichaAluno { get; set; }
 
         public virtual ICollection<Avaliacao> AvaliacaoAluno { get; set; }
@@ -40,26 +45,11 @@ namespace Domain.DTO
 
         public int SexoAluno { get; set; }
 
-        public int CepAluno { get; set; }
-
-        public string RuaEnderecoAluno { get; set; }
-
-        public string BairroEnderecoAluno { get; set; }
-
-        public int NumeroEnderecoAluno { get; set; }
-
-        public int ComplementoEnderecoAluno { get; set; }
-
         public string ImagemAluno { get; set; }
 
         public override void Validate()
         {
             ClearValidateMensages();
-
-            if (CepAluno.ToString().Length < 8)
-            {
-                AddError("O campo CEP do Aluno não foi informado.");
-            }
 
             if (PermissaoAluno < 1)
             {
@@ -104,21 +94,6 @@ namespace Domain.DTO
             if (SexoAluno.ToString().Length < 1)
             {
                 AddError("O campo Sexo do Aluno não foi informado.");
-            }
-
-            if (RuaEnderecoAluno.Length < 1)
-            {
-                AddError("O campo Rua do Endereço do Aluno não foi informado.");
-            }
-
-            if (BairroEnderecoAluno.Length < 1)
-            {
-                AddError("O campo Bairro do Endereço do Aluno não foi informado.");
-            }
-
-            if (NumeroEnderecoAluno.ToString().Length < 1)
-            {
-                AddError("O campo Número do Endereço do Aluno não foi informado.");
             }
         }
     }

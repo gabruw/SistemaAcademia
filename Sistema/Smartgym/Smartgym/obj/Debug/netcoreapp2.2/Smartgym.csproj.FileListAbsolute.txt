@@ -33,3 +33,5 @@ C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym
 C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Smartgym.dll
 C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Smartgym.pdb
 C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Account\SemPermissao.g.cshtml.cs
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Account\SemAutorizacao.g.cshtml.cs

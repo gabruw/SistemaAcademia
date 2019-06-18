@@ -43,22 +43,9 @@ namespace Repository.Migrations
                     b.Property<int>("IdAluno")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("BairroEnderecoAluno")
-                        .IsRequired()
-                        .HasColumnType("varchar(80)")
-                        .HasMaxLength(80);
-
                     b.Property<int>("CelularAluno")
                         .HasColumnType("int(11)")
                         .HasMaxLength(11);
-
-                    b.Property<int>("CepAluno")
-                        .HasColumnType("int(8)")
-                        .HasMaxLength(8);
-
-                    b.Property<int>("ComplementoEnderecoAluno")
-                        .HasColumnType("int(5)")
-                        .HasMaxLength(5);
 
                     b.Property<string>("CpfAluno")
                         .IsRequired()
@@ -74,6 +61,8 @@ namespace Repository.Migrations
                         .HasColumnType("varchar(60)")
                         .HasMaxLength(60);
 
+                    b.Property<int>("IdEnderecoAluno");
+
                     b.Property<string>("ImagemAluno")
                         .HasColumnType("varchar(64)")
                         .HasMaxLength(64);
@@ -88,18 +77,9 @@ namespace Repository.Migrations
                         .HasColumnType("varchar(120)")
                         .HasMaxLength(120);
 
-                    b.Property<int>("NumeroEnderecoAluno")
-                        .HasColumnType("int(5)")
-                        .HasMaxLength(5);
-
                     b.Property<int>("PermissaoAluno")
                         .HasColumnType("int(1)")
                         .HasMaxLength(1);
-
-                    b.Property<string>("RuaEnderecoAluno")
-                        .IsRequired()
-                        .HasColumnType("varchar(80)")
-                        .HasMaxLength(80);
 
                     b.Property<string>("SenhaAluno")
                         .IsRequired()
@@ -115,6 +95,8 @@ namespace Repository.Migrations
                         .HasMaxLength(11);
 
                     b.HasKey("IdAluno");
+
+                    b.HasIndex("IdEnderecoAluno");
 
                     b.ToTable("Aluno");
                 });
@@ -240,6 +222,38 @@ namespace Repository.Migrations
                     b.ToTable("Avaliacao");
                 });
 
+            modelBuilder.Entity("Domain.DTO.Endereco", b =>
+                {
+                    b.Property<int>("IdEndereco")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BairroEndereco")
+                        .IsRequired()
+                        .HasColumnType("varchar(80)")
+                        .HasMaxLength(80);
+
+                    b.Property<int>("CepEndereco")
+                        .HasColumnType("int(8)")
+                        .HasMaxLength(8);
+
+                    b.Property<int>("ComplementoEndereco")
+                        .HasColumnType("int(5)")
+                        .HasMaxLength(5);
+
+                    b.Property<int>("NumeroEndereco")
+                        .HasColumnType("int(5)")
+                        .HasMaxLength(5);
+
+                    b.Property<string>("RuaEndereco")
+                        .IsRequired()
+                        .HasColumnType("varchar(80)")
+                        .HasMaxLength(80);
+
+                    b.HasKey("IdEndereco");
+
+                    b.ToTable("Endereco");
+                });
+
             modelBuilder.Entity("Domain.DTO.Exercicio", b =>
                 {
                     b.Property<int>("IdExercicio")
@@ -293,22 +307,9 @@ namespace Repository.Migrations
                     b.Property<int>("IdProfessor")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("BairroEnderecoProfessor")
-                        .IsRequired()
-                        .HasColumnType("varchar(80)")
-                        .HasMaxLength(80);
-
                     b.Property<int>("CelularProfessor")
                         .HasColumnType("int(11)")
                         .HasMaxLength(11);
-
-                    b.Property<int>("CepProfessor")
-                        .HasColumnType("int(8)")
-                        .HasMaxLength(8);
-
-                    b.Property<int>("ComplementoEnderecoProfessor")
-                        .HasColumnType("int(5)")
-                        .HasMaxLength(5);
 
                     b.Property<string>("CpfProfessor")
                         .IsRequired()
@@ -334,6 +335,8 @@ namespace Repository.Migrations
 
                     b.Property<int>("IdAgendaProfessor");
 
+                    b.Property<int>("IdEnderecoProfessor");
+
                     b.Property<int>("IdUnidadeProfessor");
 
                     b.Property<string>("ImagemProfessor")
@@ -345,18 +348,9 @@ namespace Repository.Migrations
                         .HasColumnType("varchar(120)")
                         .HasMaxLength(120);
 
-                    b.Property<int>("NumeroEnderecoProfessor")
-                        .HasColumnType("int(5)")
-                        .HasMaxLength(5);
-
                     b.Property<int>("PermissaoProfessor")
                         .HasColumnType("int(1)")
                         .HasMaxLength(1);
-
-                    b.Property<string>("RuaEnderecoProfessor")
-                        .IsRequired()
-                        .HasColumnType("varchar(80)")
-                        .HasMaxLength(80);
 
                     b.Property<string>("SenhaProfessor")
                         .IsRequired()
@@ -374,6 +368,8 @@ namespace Repository.Migrations
                     b.HasKey("IdProfessor");
 
                     b.HasIndex("IdAgendaProfessor");
+
+                    b.HasIndex("IdEnderecoProfessor");
 
                     b.ToTable("Professor");
                 });
@@ -410,29 +406,21 @@ namespace Repository.Migrations
                     b.Property<int>("IdUnidade")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("BairroEnderecoUnidade")
+                    b.Property<int>("IdEnderecoUnidade");
+
+                    b.Property<string>("ImagemUnidade")
                         .IsRequired()
-                        .HasColumnType("varchar(80)")
-                        .HasMaxLength(80);
+                        .HasColumnType("varchar(64)")
+                        .HasMaxLength(64);
 
-                    b.Property<int>("CepUnidade")
-                        .HasColumnType("int(8)")
-                        .HasMaxLength(8);
-
-                    b.Property<int>("ComplementoEnderecoUnidade")
-                        .HasColumnType("int(5)")
-                        .HasMaxLength(5);
-
-                    b.Property<int>("NumeroEnderecoUnidade")
-                        .HasColumnType("int(5)")
-                        .HasMaxLength(5);
-
-                    b.Property<string>("RuaEnderecoUnidade")
+                    b.Property<string>("NomeUnidade")
                         .IsRequired()
-                        .HasColumnType("varchar(80)")
-                        .HasMaxLength(80);
+                        .HasColumnType("varchar(120)")
+                        .HasMaxLength(120);
 
                     b.HasKey("IdUnidade");
+
+                    b.HasIndex("IdEnderecoUnidade");
 
                     b.ToTable("Unidade");
                 });
@@ -447,6 +435,14 @@ namespace Repository.Migrations
                     b.HasOne("Domain.DTO.Professor", "ProfessorAgenda")
                         .WithMany()
                         .HasForeignKey("IdProfessorAgenda")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Domain.DTO.Aluno", b =>
+                {
+                    b.HasOne("Domain.DTO.Endereco", "EnderecoAluno")
+                        .WithMany()
+                        .HasForeignKey("IdEnderecoAluno")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -504,6 +500,11 @@ namespace Repository.Migrations
                         .HasForeignKey("IdAgendaProfessor")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("Domain.DTO.Endereco", "EnderecoProfessor")
+                        .WithMany()
+                        .HasForeignKey("IdEnderecoProfessor")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("Domain.DTO.Unidade", "UnidadeProfessor")
                         .WithMany("ProfessorUnidade")
                         .HasForeignKey("IdProfessor")
@@ -519,6 +520,14 @@ namespace Repository.Migrations
                     b.HasOne("Domain.DTO.Ficha", "FichaSerie")
                         .WithMany()
                         .HasForeignKey("IdFichaSerie")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Domain.DTO.Unidade", b =>
+                {
+                    b.HasOne("Domain.DTO.Endereco", "EnderecoUnidade")
+                        .WithMany()
+                        .HasForeignKey("IdEnderecoUnidade")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

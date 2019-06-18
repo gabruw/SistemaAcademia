@@ -13,6 +13,8 @@ namespace Repository.Config
         {
             builder.HasKey(al => al.IdAluno);
 
+            builder.HasOne(al => al.EnderecoAluno).WithMany().HasForeignKey(al => al.IdEnderecoAluno);
+
             builder.HasMany(al => al.FichaAluno).WithOne(fc => fc.AlunoFicha).HasForeignKey(fc => fc.IdFicha);
             builder.HasMany(al => al.AvaliacaoAluno).WithOne(fc => fc.AlunoAvaliacao).HasForeignKey(fc => fc.IdAvaliacao);
 
@@ -27,12 +29,6 @@ namespace Repository.Config
             builder.Property(al => al.TelefoneAluno).HasMaxLength(11).HasColumnType("int(11)");
             builder.Property(al => al.CelularAluno).HasMaxLength(11).HasColumnType("int(11)");
             builder.Property(al => al.SexoAluno).IsRequired().HasMaxLength(1).HasColumnType("int(1)");
-
-            builder.Property(al => al.CepAluno).IsRequired().HasMaxLength(8).HasColumnType("int(8)");
-            builder.Property(al => al.RuaEnderecoAluno).IsRequired().HasMaxLength(80).HasColumnType("varchar(80)");
-            builder.Property(al => al.BairroEnderecoAluno).IsRequired().HasMaxLength(80).HasColumnType("varchar(80)");
-            builder.Property(al => al.NumeroEnderecoAluno).IsRequired().HasMaxLength(5).HasColumnType("int(5)");
-            builder.Property(al => al.ComplementoEnderecoAluno).HasMaxLength(5).HasColumnType("int(5)");
 
             builder.Property(al => al.ImagemAluno).HasMaxLength(64).HasColumnType("varchar(64)");
         }

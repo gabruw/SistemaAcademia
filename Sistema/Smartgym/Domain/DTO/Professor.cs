@@ -15,6 +15,11 @@ namespace Domain.DTO
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdProfessor { get; set; }
 
+        public int IdEnderecoProfessor { get; set; }
+
+        [ForeignKey("IdEnderecoProfessor")]
+        public virtual Endereco EnderecoProfessor { get; set; }
+
         public int IdUnidadeProfessor { get; set; }
 
         [ForeignKey("IdUnidadeProfessor")]
@@ -47,26 +52,11 @@ namespace Domain.DTO
 
         public int SexoProfessor { get; set; }
 
-        public int CepProfessor { get; set; }
-
-        public string RuaEnderecoProfessor { get; set; }
-
-        public string BairroEnderecoProfessor { get; set; }
-
-        public int NumeroEnderecoProfessor { get; set; }
-
-        public int ComplementoEnderecoProfessor { get; set; }
-
         public string ImagemProfessor { get; set; }
 
         public override void Validate()
         {
             ClearValidateMensages();
-
-            if (CepProfessor.ToString().Length < 8)
-            {
-                AddError("O campo CEP da Professor não foi informado.");
-            }
 
             if (PermissaoProfessor < 1)
             {
@@ -116,21 +106,6 @@ namespace Domain.DTO
             if (SexoProfessor.ToString().Length < 1)
             {
                 AddError("O campo Sexo do Professor não foi informado.");
-            }
-
-            if (RuaEnderecoProfessor.Length < 1)
-            {
-                AddError("O campo Rua do Endereço do Professor não foi informado.");
-            }
-
-            if (BairroEnderecoProfessor.Length < 1)
-            {
-                AddError("O campo Bairro do Endereço do Professor não foi informado.");
-            }
-
-            if (NumeroEnderecoProfessor.ToString().Length < 1)
-            {
-                AddError("O campo Número do Endereço do Professor não foi informado.");
             }
         }
     }

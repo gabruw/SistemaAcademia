@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +10,18 @@ namespace Smartgym.Controllers
 {
     public class AlunoController : Controller
     {
+        private readonly IAlunoRepository _alunoRepository;
+
+        public AlunoController(IAlunoRepository alunoRepository)
+        {
+            _alunoRepository = alunoRepository;
+        }
+
         // GET: Aluno
         public ActionResult Index()
         {
+            var alunoDTO = _alunoRepository.GetAll();
+
             return View();
         }
 
@@ -34,7 +44,11 @@ namespace Smartgym.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                Domain.DTO.Aluno alunoDTO = new Domain.DTO.Aluno();
+
+                _alunoRepository.Incluid(alunoDTO);
+
+                Created("Aluno/Create", alunoDTO);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -47,17 +61,23 @@ namespace Smartgym.Controllers
         // GET: Aluno/Edit/5
         public ActionResult Edit(int id)
         {
+            var alunoDTO = _alunoRepository.GetbyId(id);
+
             return View();
         }
 
         // POST: Aluno/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Models.Aluno newAluno)
         {
             try
             {
-                // TODO: Add update logic here
+                Domain.DTO.Aluno alunoDTO = new Domain.DTO.Aluno();
+
+                _alunoRepository.Update(alunoDTO);
+
+                Created("Aluno/Edit", alunoDTO);
 
                 return RedirectToAction(nameof(Index));
             }

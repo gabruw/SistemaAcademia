@@ -10,13 +10,12 @@ namespace Repository.Config
         {
             builder.HasKey(u => u.IdUnidade);
 
+            builder.HasOne(u => u.EnderecoUnidade).WithMany().HasForeignKey(u => u.IdEnderecoUnidade);
+
             builder.HasMany(u => u.ProfessorUnidade).WithOne(p => p.UnidadeProfessor).HasForeignKey(p => p.IdProfessor);
 
-            builder.Property(u => u.CepUnidade).IsRequired().HasMaxLength(8).HasColumnType("int(8)");
-            builder.Property(u => u.RuaEnderecoUnidade).IsRequired().HasMaxLength(80).HasColumnType("varchar(80)");
-            builder.Property(u => u.BairroEnderecoUnidade).IsRequired().HasMaxLength(80).HasColumnType("varchar(80)");
-            builder.Property(u => u.NumeroEnderecoUnidade).IsRequired().HasMaxLength(5).HasColumnType("int(5)");
-            builder.Property(u => u.ComplementoEnderecoUnidade).HasMaxLength(5).HasColumnType("int(5)");
+            builder.Property(u => u.NomeUnidade).IsRequired().HasMaxLength(120).HasColumnType("varchar(120)");
+            builder.Property(u => u.ImagemUnidade).IsRequired().HasMaxLength(64).HasColumnType("varchar(64)");
         }
     }
 }

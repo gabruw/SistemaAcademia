@@ -15,40 +15,29 @@ namespace Domain.DTO
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdUnidade { get; set; }
 
+        public int IdEnderecoUnidade { get; set; }
+
+        [ForeignKey("IdEnderecoUnidade")]
+        public virtual Endereco EnderecoUnidade { get; set; }
+
         public virtual ICollection<Professor> ProfessorUnidade { get; set; }
 
-        public int CepUnidade { get; set; }
+        public string NomeUnidade { get; set; }
 
-        public string RuaEnderecoUnidade { get; set; }
-
-        public string BairroEnderecoUnidade { get; set; }
-
-        public int NumeroEnderecoUnidade { get; set; }
-
-        public int ComplementoEnderecoUnidade { get; set; }
+        public string ImagemUnidade { get; set; }
 
         public override void Validate()
         {
             ClearValidateMensages();
 
-            if (CepUnidade.ToString().Length < 8)
+            if (NomeUnidade.Length < 1)
             {
-                AddError("O campo CEP da Unidade não foi informado.");
+                AddError("O campo Nome da Unidade não foi informado.");
             }
 
-            if (RuaEnderecoUnidade.Length < 1)
+            if (ImagemUnidade.Length < 1)
             {
-                AddError("O campo Rua do Endereço da Unidade não foi informado.");
-            }
-
-            if (BairroEnderecoUnidade.Length < 1)
-            {
-                AddError("O campo Bairro do Endereço da Unidade não foi informado.");
-            }
-
-            if (NumeroEnderecoUnidade.ToString().Length < 1)
-            {
-                AddError("O campo Número do Endereço da Unidade não foi informado.");
+                AddError("O campo Imagem da Unidade não foi informado.");
             }
         }
     }

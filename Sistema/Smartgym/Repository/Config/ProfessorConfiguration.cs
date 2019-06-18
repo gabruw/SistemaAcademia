@@ -10,6 +10,8 @@ namespace Repository.Config
         {
             builder.HasKey(p => p.IdProfessor);
 
+            builder.HasOne(p => p.EnderecoProfessor).WithMany().HasForeignKey(p => p.IdEnderecoProfessor);
+
             builder.HasOne(p => p.UnidadeProfessor).WithMany().HasForeignKey(p => p.IdUnidadeProfessor);
             builder.HasOne(p => p.AgendaProfessor).WithMany().HasForeignKey(p => p.IdAgendaProfessor);
 
@@ -25,12 +27,6 @@ namespace Repository.Config
             builder.Property(p => p.TelefoneProfessor).HasMaxLength(11).HasColumnType("int(11)");
             builder.Property(p => p.CelularProfessor).HasMaxLength(11).HasColumnType("int(11)");
             builder.Property(p => p.SexoProfessor).IsRequired().HasMaxLength(1).HasColumnType("int(1)");
-
-            builder.Property(p => p.RuaEnderecoProfessor).IsRequired().HasMaxLength(80).HasColumnType("varchar(80)");
-            builder.Property(p => p.BairroEnderecoProfessor).IsRequired().HasMaxLength(80).HasColumnType("varchar(80)");
-            builder.Property(p => p.NumeroEnderecoProfessor).IsRequired().HasMaxLength(5).HasColumnType("int(5)");
-            builder.Property(p => p.ComplementoEnderecoProfessor).HasMaxLength(5).HasColumnType("int(5)");
-            builder.Property(p => p.CepProfessor).IsRequired().HasMaxLength(8).HasColumnType("int(8)");
 
             builder.Property(p => p.ImagemProfessor).HasMaxLength(64).HasColumnType("varchar(64)");
         }
