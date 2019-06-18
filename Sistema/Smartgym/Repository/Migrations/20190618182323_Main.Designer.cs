@@ -9,7 +9,7 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(SmartgymContext))]
-    [Migration("20190618160207_Main")]
+    [Migration("20190618182323_Main")]
     partial class Main
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,57 +123,68 @@ namespace Repository.Migrations
                     b.Property<int>("IdAvaliacao")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<double>("AbdomemAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("AbdomemAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("AlturaAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("AlturaAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
                     b.Property<int?>("AlunoIdAluno");
 
-                    b.Property<double>("BracoDireitoAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("BracoDireitoAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("BracoEsquerdoAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("BracoEsquerdoAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
                     b.Property<DateTime>("DataAvaliacao")
                         .HasColumnType("date");
 
-                    b.Property<double>("DobraCutaneaAbdomemAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("DobraCutaneaAbdomemAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("DobraCutaneaCoxaAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("DobraCutaneaCoxaAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("DobraCutaneaPanturrilhaAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("DobraCutaneaPanturrilhaAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("DobraCutaneaPeitoAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("DobraCutaneaPeitoAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("DobraCutaneaQuadrilAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("DobraCutaneaQuadrilAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("DobraCutaneaTricepsAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("DobraCutaneaTricepsAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
                     b.Property<int>("IdAlunoAvaliacao");
 
                     b.Property<int>("IdProfessorAvaliacao");
 
-                    b.Property<double>("ImcAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("ImcAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
                     b.Property<string>("ObservacaoAvaliacao")
@@ -181,36 +192,44 @@ namespace Repository.Migrations
                         .HasColumnType("varchar(800)")
                         .HasMaxLength(800);
 
-                    b.Property<double>("PanturrilhaDireitaAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("PanturrilhaDireitaAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("PanturrilhaEsquerdaAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("PanturrilhaEsquerdaAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("PeitoralAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("PeitoralAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("PercentualGorduraAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("PercentualGorduraAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("PesoAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("PesoAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("QuadrcepsEsquerdoAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("QuadrcepsEsquerdoAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("QuadricepsDireitoAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("QuadricepsDireitoAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<double>("QuadrilAvaliacao")
-                        .HasColumnType("double(4)")
+                    b.Property<decimal>("QuadrilAvaliacao")
+                        .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
+                        .HasColumnType("decimal")
                         .HasMaxLength(4);
 
                     b.HasKey("IdAvaliacao");
