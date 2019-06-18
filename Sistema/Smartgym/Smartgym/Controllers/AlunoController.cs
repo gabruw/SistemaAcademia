@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Auxiliary;
 using Domain.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +13,11 @@ namespace Smartgym.Controllers
     {
         private readonly IAlunoRepository _alunoRepository;
 
-        private readonly IEnderecoRepository _enderecoRepository;
+        private Geradores newGerador = new Geradores();
 
-        public AlunoController(IAlunoRepository alunoRepository, IEnderecoRepository enderecoRepository)
+        public AlunoController(IAlunoRepository alunoRepository)
         {
             _alunoRepository = alunoRepository;
-            _enderecoRepository = enderecoRepository;
         }
 
         // GET: Aluno
@@ -55,7 +55,7 @@ namespace Smartgym.Controllers
                 alunoDTO.PermissaoAluno = 1;
                 alunoDTO.EmailAluno = newAluno.EmailAluno;
                 alunoDTO.SenhaAluno = newAluno.SenhaAluno;
-                alunoDTO.MatriculaAluno = GerarMatricula(newAluno.NomeAluno, newAluno.DataNascimentoAluno);
+                alunoDTO.MatriculaAluno = newGerador.GerarMatricula(newAluno.NomeAluno, newAluno.DataNascimentoAluno);
 
                 _alunoRepository.Incluid(alunoDTO);
 

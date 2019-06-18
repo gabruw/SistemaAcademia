@@ -4870,6 +4870,16 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "Auxiliary/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Auxiliary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Auxiliary.dll": {}
+        }
+      },
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
@@ -13377,6 +13387,11 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "Auxiliary/1.0.0": {
+      "type": "project",
+      "path": "../Auxiliary/Auxiliary.csproj",
+      "msbuildProject": "../Auxiliary/Auxiliary.csproj"
+    },
     "Domain/1.0.0": {
       "type": "project",
       "path": "../Domain/Domain.csproj",
@@ -13390,6 +13405,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "Auxiliary >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0",
@@ -13430,6 +13446,9 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
+            "C:\\Users\\snyp_\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Auxiliary\\Auxiliary.csproj": {
+              "projectPath": "C:\\Users\\snyp_\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Auxiliary\\Auxiliary.csproj"
+            },
             "C:\\Users\\snyp_\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Repository\\Repository.csproj": {
               "projectPath": "C:\\Users\\snyp_\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Repository\\Repository.csproj"
             }

@@ -1,0 +1,8 @@
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Auxiliary.deps.json
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Auxiliary.dll
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Auxiliary.pdb
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.csproj.CoreCompileInputs.cache
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.AssemblyInfoInputs.cache
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.AssemblyInfo.cs
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.dll
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.pdb
