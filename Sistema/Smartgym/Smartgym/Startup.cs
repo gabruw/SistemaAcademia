@@ -45,6 +45,7 @@ namespace Smartgym
             // Scope's
             services.AddScoped<Domain.Repository.IAgendaRepository, Repository.Repository.AgendaRepository>();
             services.AddScoped<Domain.Repository.IAlunoRepository, Repository.Repository.AlunoRepository>();
+            services.AddScoped<Domain.Repository.IContaRepository, Repository.Repository.ContaRepository>();
             services.AddScoped<Domain.Repository.IAparelhoRepository, Repository.Repository.AparelhoRepository>();
             services.AddScoped<Domain.Repository.IAvaliacaoRepository, Repository.Repository.AvaliacaoRepository>();
             services.AddScoped<Domain.Repository.IExercicioRepository, Repository.Repository.ExercicioRepository>();

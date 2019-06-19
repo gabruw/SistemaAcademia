@@ -1,9 +1,11 @@
 ﻿using Auxiliary.Partial;
 using Domain.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Smartgym.Controllers
 {
+    [Authorize]
     public class AgendaController : Controller
     {
         private readonly IAgendaRepository _agendaRepository;

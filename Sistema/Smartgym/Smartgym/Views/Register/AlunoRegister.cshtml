@@ -3,5 +3,127 @@
     Layout = "_Register";
 }
 
-<h1>AlunoRegister</h1>
+@*Body*@
+<div>
+    <section>
+        <p id="Titulo">
+            <i id="IconeTitulo" class="fas fa-user-plus"></i>
+            Cadastrar Aluno
+        </p>
+    </section>
+
+    <section id="DadosPessoais" class="col-sm-8">
+        <form action="" method="post">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="ls-label-text">Identificação</span>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <img id="ImagemPreview" class="img-fluid mx-auto d-block" src="../Assets/imagens/CadastroAluno/Default_Image.png" alt="Imagem Perfil." />
+                                    <br>
+                                    <input type="file" id="ImagemPerfil" class="form-control-file" name="ImagemPerfil" accept="image/*">
+                                </div>
+
+                                <div class="col-sm-8">
+                                    <span class="ls-label-text">Nome Completo</span>
+                                    <input type="text" id="NomeCompleto" class="form-control" name="NomeCompleto" required>
+
+                                    <span class="ls-label-text =">Email</span>
+                                    <input type="text" id="Email" class="form-control" name="Email" required>
+
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <span class="ls-label-text">Rua</span>
+                                            <input type="text" id="Rua" class="form-control" name="Rua" required>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Bairro</span>
+                                            <input type="text" id="Bairro" class="form-control" name="Bairro" required>
+                                        </div>
+
+                                        <div class="col-sm-2">
+                                            <span class="ls-label-text">Número</span>
+                                            <input type="text" id="Numero" class="form-control" name="Numero" required>
+                                        </div>
+
+                                        <div class="col-sm-2">
+                                            <span class="ls-label-text">Complemento</span>
+                                            <input type="text" id="Complemento" class="form-control" name="Complemento" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Telefone</span>
+                                            <input type="text" id="Telefone" class="form-control" name="Telefone" required>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Celular</span>
+                                            <input type="text" id="Celular" class="form-control" name="Celular" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">RG</span>
+                                            <input type="text" id="Rg" class="form-control" name="Rg" required>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">CPF</span>
+                                            <input type="text" id="Cpf" class="form-control" name="Cpf" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Data de Nascimento</span>
+                                            <input type="text" id="DataNascimento" class="form-control" name="DataNascimento" required>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Sexo</span>
+                                            <br>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <label class="radio-inline control-label" for="Masculino">
+                                                    <input class="form-check-input" type="radio" name="Sexo" id="Masculino" value="Masculino">
+                                                    Masculino
+                                                </label>
+                                            </div>
+
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <label class="radio-inline control-label" for="Feminino">
+                                                    <input class="form-check-input" type="radio" name="Sexo" id="Feminino" value="Feminino">
+                                                    Feminino
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <br>
+                                    <button type="submit" id="ConfirmarCadastroAluno" class="btn btn-primary">Confirmar</button>
+                                    <button type="submit" id="EditarCadastroAluno" class="btn btn-ligth">Editar</button>
+
+                                    <button type="reset" id="ResetCadastroAluno" class="btn btn-secondary">Resetar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+<div class="overlay"></div>
 
