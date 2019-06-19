@@ -103,7 +103,7 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Aparelho", b =>
                 {
-                    b.Property<string>("IdAparelho")
+                    b.Property<int>("IdAparelho")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("NomeAparelho")

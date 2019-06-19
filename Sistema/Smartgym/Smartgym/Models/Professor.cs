@@ -67,6 +67,10 @@ namespace Smartgym.Models
 
         public DateTime DataAdmissaoProfessor { get; set; }
 
+        public int TelefoneProfessor { get; set; }
+
+        public int CelularProfessor { get; set; }
+
         [MinLength(1)]
         [MaxLength(1)]
         [Required(ErrorMessage = "Necessário adicionar um Sexo ao Professor.")]

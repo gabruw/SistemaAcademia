@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,13 @@ namespace Smartgym.Controllers
 {
     public class UnidadeController : Controller
     {
+        private readonly IUnidadeRepository _unidadeRepository;
+
+        public UnidadeController(IUnidadeRepository unidadeRepository)
+        {
+            _unidadeRepository = unidadeRepository;
+        }
+
         // GET: Unidade
         public ActionResult Index()
         {

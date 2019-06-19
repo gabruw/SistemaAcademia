@@ -72,3 +72,5 @@ C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\net
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Smartgym.csproj.CopyComplete
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Smartgym.dll
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Smartgym.pdb
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\bin\Debug\netcoreapp2.2\Auxiliary.dll
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\bin\Debug\netcoreapp2.2\Auxiliary.pdb

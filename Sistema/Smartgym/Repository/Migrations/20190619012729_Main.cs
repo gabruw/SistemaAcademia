@@ -12,7 +12,8 @@ namespace Repository.Migrations
                 name: "Aparelho",
                 columns: table => new
                 {
-                    IdAparelho = table.Column<string>(nullable: false),
+                    IdAparelho = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     NomeAparelho = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
                 },
                 constraints: table =>

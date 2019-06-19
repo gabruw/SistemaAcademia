@@ -1,40 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Auxiliary.Partial;
+using Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Smartgym.Controllers
 {
     public class AgendaController : Controller
     {
+        private readonly IAgendaRepository _agendaRepository;
+        private readonly IProfessorRepository _professorRepository;
+        private readonly IAlunoRepository _alunoRepository;
+
+        public AgendaController(IAgendaRepository agendaRepository, IProfessorRepository professorRepository, IAlunoRepository alunoRepository)
+        {
+            _agendaRepository = agendaRepository;
+            _professorRepository = professorRepository;
+            _alunoRepository = alunoRepository;
+        }
+
         // GET: Agenda
         public ActionResult Index()
         {
-            return View();
-        }
+            var agendaDTO = _agendaRepository.GetAll();
 
-        // GET: Agenda/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+            return View("~/Views/Main/AgendaMain", agendaDTO);
         }
 
         // GET: Agenda/Create
         public ActionResult Create()
         {
-            return View();
+            ViewAgenda newViewAgenda = new ViewAgenda();
+            newViewAgenda.ProfessorViewAgenda = _professorRepository.GetAll();
+            newViewAgenda.AlunoViewAgenda = _alunoRepository.GetAll();
+
+            return View("~/Views/Register/AgendaRegister", newViewAgenda);
         }
 
         // POST: Agenda/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(int idAluno, int idProfessor, Models.Agenda newAgenda)
         {
             try
             {
-                // TODO: Add insert logic here
+                var professorDTO = _professorRepository.GetbyId(idProfessor);
+                var alunoDTO =_alunoRepository.GetbyId(idAluno);
+                
+                Domain.DTO.Agenda agendaDTO = new Domain.DTO.Agenda();
+                agendaDTO.ProfessorAgenda = professorDTO;
+                agendaDTO.AlunoAgenda = alunoDTO;
+                agendaDTO.DataAgenda = newAgenda.DataAgenda;
+
+                _agendaRepository.Incluid(agendaDTO);
+
+                Created("Agenda/Create", agendaDTO);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -47,17 +65,32 @@ namespace Smartgym.Controllers
         // GET: Agenda/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ViewAgenda newViewAgenda = new ViewAgenda();
+            newViewAgenda.AgendaViewAgenda = _agendaRepository.GetbyId(id);
+            newViewAgenda.ProfessorViewAgenda = _professorRepository.GetAll();
+            newViewAgenda.AlunoViewAgenda = _alunoRepository.GetAll();
+
+            return View("~/Views/Edit/AgendaEdit", newViewAgenda);
         }
 
         // POST: Agenda/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int idAluno, int idProfessor, Models.Agenda newAgenda)
         {
             try
             {
-                // TODO: Add update logic here
+                var professorDTO = _professorRepository.GetbyId(idProfessor);
+                var alunoDTO = _alunoRepository.GetbyId(idAluno);
+
+                Domain.DTO.Agenda agendaDTO = new Domain.DTO.Agenda();
+                agendaDTO.ProfessorAgenda = professorDTO;
+                agendaDTO.AlunoAgenda = alunoDTO;
+                agendaDTO.DataAgenda = newAgenda.DataAgenda;
+
+                _agendaRepository.Update(agendaDTO);
+
+                Created("Agenda/Edit", agendaDTO);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -70,24 +103,12 @@ namespace Smartgym.Controllers
         // GET: Agenda/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
+            Domain.DTO.Agenda agendaDTO = new Domain.DTO.Agenda();
+            agendaDTO.IdAgenda = id;
 
-        // POST: Agenda/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+            _agendaRepository.Remove(agendaDTO);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return View("~/Views/Remove/AgendaMain");
         }
     }
 }

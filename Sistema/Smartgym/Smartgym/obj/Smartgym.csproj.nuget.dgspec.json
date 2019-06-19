@@ -31,7 +31,11 @@
         },
         "frameworks": {
           "netstandard2.0": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\snyp_\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\snyp_\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Domain\\Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

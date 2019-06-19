@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Auxiliary;
+﻿using Auxiliary;
 using Domain.Repository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Smartgym.Controllers
@@ -56,6 +51,13 @@ namespace Smartgym.Controllers
                 alunoDTO.EmailAluno = newAluno.EmailAluno;
                 alunoDTO.SenhaAluno = newAluno.SenhaAluno;
                 alunoDTO.MatriculaAluno = newGerador.GerarMatricula(newAluno.NomeAluno, newAluno.DataNascimentoAluno);
+                alunoDTO.NomeAluno = newAluno.NomeAluno;
+                alunoDTO.CpfAluno = newAluno.CpfAluno;
+                alunoDTO.DataNascimentoAluno = newAluno.DataNascimentoAluno;
+                alunoDTO.TelefoneAluno = newAluno.TelefoneAluno;
+                alunoDTO.CelularAluno = newAluno.CelularAluno;
+                alunoDTO.SexoAluno = newAluno.SexoAluno;
+                alunoDTO.ImagemAluno = newAluno.ImagemAluno;
 
                 _alunoRepository.Incluid(alunoDTO);
 
@@ -80,11 +82,32 @@ namespace Smartgym.Controllers
         // POST: Aluno/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Models.Aluno newAluno)
+        public ActionResult Edit(int id, Models.Aluno newAluno, Models.Endereco newEndereco)
         {
             try
             {
+                // Endereço
+                Domain.DTO.Endereco enderecoDTO = new Domain.DTO.Endereco();
+                enderecoDTO.CepEndereco = newEndereco.CepEndereco;
+                enderecoDTO.RuaEndereco = newEndereco.RuaEndereco;
+                enderecoDTO.BairroEndereco = newEndereco.BairroEndereco;
+                enderecoDTO.NumeroEndereco = newEndereco.NumeroEndereco;
+                enderecoDTO.ComplementoEndereco = newEndereco.ComplementoEndereco;
+
+                // Aluno
                 Domain.DTO.Aluno alunoDTO = new Domain.DTO.Aluno();
+                alunoDTO.EnderecoAluno = enderecoDTO;
+                alunoDTO.PermissaoAluno = 1;
+                alunoDTO.EmailAluno = newAluno.EmailAluno;
+                alunoDTO.SenhaAluno = newAluno.SenhaAluno;
+                alunoDTO.MatriculaAluno = newAluno.MatriculaAluno;
+                alunoDTO.NomeAluno = newAluno.NomeAluno;
+                alunoDTO.CpfAluno = newAluno.CpfAluno;
+                alunoDTO.DataNascimentoAluno = newAluno.DataNascimentoAluno;
+                alunoDTO.TelefoneAluno = newAluno.TelefoneAluno;
+                alunoDTO.CelularAluno = newAluno.CelularAluno;
+                alunoDTO.SexoAluno = newAluno.SexoAluno;
+                alunoDTO.ImagemAluno = newAluno.ImagemAluno;
 
                 _alunoRepository.Update(alunoDTO);
 

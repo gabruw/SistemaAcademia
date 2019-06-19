@@ -9,7 +9,7 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(SmartgymContext))]
-    [Migration("20190618182323_Main")]
+    [Migration("20190619012729_Main")]
     partial class Main
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,7 +105,7 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Aparelho", b =>
                 {
-                    b.Property<string>("IdAparelho")
+                    b.Property<int>("IdAparelho")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("NomeAparelho")
