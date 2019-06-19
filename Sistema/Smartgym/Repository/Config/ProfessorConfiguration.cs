@@ -10,14 +10,13 @@ namespace Repository.Config
         {
             builder.HasKey(p => p.IdProfessor);
 
+            builder.HasOne(p => p.ContaProfessor).WithMany().HasForeignKey(p => p.IdContaProfessor);
             builder.HasOne(p => p.EnderecoProfessor).WithMany().HasForeignKey(p => p.IdEnderecoProfessor);
 
             builder.HasOne(p => p.UnidadeProfessor).WithMany().HasForeignKey(p => p.IdUnidadeProfessor);
             builder.HasOne(p => p.AgendaProfessor).WithMany().HasForeignKey(p => p.IdAgendaProfessor);
 
             builder.Property(p => p.PermissaoProfessor).IsRequired().HasMaxLength(1).HasColumnType("int(1)");
-            builder.Property(p => p.EmailProfessor).IsRequired().HasMaxLength(60).HasColumnType("varchar(60)");
-            builder.Property(p => p.SenhaProfessor).IsRequired().HasMaxLength(40).HasColumnType("varchar(40)");
 
             builder.Property(p => p.CrefProfessor).IsRequired().HasMaxLength(9).HasColumnType("varchar(9)");
             builder.Property(p => p.NomeProfessor).IsRequired().HasMaxLength(120).HasColumnType("varchar(120)");

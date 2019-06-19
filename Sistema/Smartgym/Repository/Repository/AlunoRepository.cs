@@ -7,7 +7,7 @@ namespace Repository.Repository
     {
         public AlunoRepository(SmartgymContext smartgymContext) : base(smartgymContext)
         {
-
+           
         }
     }
 }

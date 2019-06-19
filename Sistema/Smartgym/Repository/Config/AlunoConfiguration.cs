@@ -1,9 +1,6 @@
 ﻿using Domain.DTO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Repository.Config
 {
@@ -13,14 +10,13 @@ namespace Repository.Config
         {
             builder.HasKey(al => al.IdAluno);
 
+            builder.HasOne(p => p.ContaAluno).WithMany().HasForeignKey(p => p.IdContaAluno);
             builder.HasOne(al => al.EnderecoAluno).WithMany().HasForeignKey(al => al.IdEnderecoAluno);
 
             builder.HasMany(al => al.FichaAluno).WithOne(fc => fc.AlunoFicha).HasForeignKey(fc => fc.IdFicha);
             builder.HasMany(al => al.AvaliacaoAluno).WithOne(fc => fc.AlunoAvaliacao).HasForeignKey(fc => fc.IdAvaliacao);
 
             builder.Property(al => al.PermissaoAluno).IsRequired().HasMaxLength(1).HasColumnType("int(1)");
-            builder.Property(al => al.EmailAluno).IsRequired().HasMaxLength(60).HasColumnType("varchar(60)");
-            builder.Property(al => al.SenhaAluno).IsRequired().HasMaxLength(40).HasColumnType("varchar(40)");
 
             builder.Property(al => al.MatriculaAluno).IsRequired().HasMaxLength(8).HasColumnType("varchar(8)");
             builder.Property(al => al.NomeAluno).IsRequired().HasMaxLength(120).HasColumnType("varchar(120)");

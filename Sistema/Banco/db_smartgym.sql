@@ -35,7 +35,7 @@ CREATE TABLE `__efmigrationshistory` (
 
 LOCK TABLES `__efmigrationshistory` WRITE;
 /*!40000 ALTER TABLE `__efmigrationshistory` DISABLE KEYS */;
-INSERT INTO `__efmigrationshistory` VALUES ('20190619012729_Main','2.2.4-servicing-10062');
+INSERT INTO `__efmigrationshistory` VALUES ('20190619213138_Main','2.2.4-servicing-10062');
 /*!40000 ALTER TABLE `__efmigrationshistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,10 +77,9 @@ DROP TABLE IF EXISTS `aluno`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `aluno` (
   `IdAluno` int(11) NOT NULL AUTO_INCREMENT,
+  `IdContaAluno` int(11) NOT NULL,
   `IdEnderecoAluno` int(11) NOT NULL,
   `PermissaoAluno` int(1) NOT NULL,
-  `EmailAluno` varchar(60) NOT NULL,
-  `SenhaAluno` varchar(40) NOT NULL,
   `MatriculaAluno` varchar(8) NOT NULL,
   `NomeAluno` varchar(120) NOT NULL,
   `CpfAluno` varchar(11) NOT NULL,
@@ -90,7 +89,9 @@ CREATE TABLE `aluno` (
   `SexoAluno` int(1) NOT NULL,
   `ImagemAluno` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`IdAluno`),
+  KEY `IX_Aluno_IdContaAluno` (`IdContaAluno`),
   KEY `IX_Aluno_IdEnderecoAluno` (`IdEnderecoAluno`),
+  CONSTRAINT `FK_Aluno_Conta_IdContaAluno` FOREIGN KEY (`IdContaAluno`) REFERENCES `conta` (`IdConta`) ON DELETE CASCADE,
   CONSTRAINT `FK_Aluno_Endereco_IdEnderecoAluno` FOREIGN KEY (`IdEnderecoAluno`) REFERENCES `endereco` (`IdEndereco`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -177,6 +178,36 @@ CREATE TABLE `avaliacao` (
 LOCK TABLES `avaliacao` WRITE;
 /*!40000 ALTER TABLE `avaliacao` DISABLE KEYS */;
 /*!40000 ALTER TABLE `avaliacao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `conta`
+--
+
+DROP TABLE IF EXISTS `conta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `conta` (
+  `IdConta` int(11) NOT NULL AUTO_INCREMENT,
+  `IdAlunoConta` int(11) NOT NULL,
+  `IdProfessorConta` int(11) NOT NULL,
+  `EmailConta` varchar(60) NOT NULL,
+  `SenhaConta` varchar(40) NOT NULL,
+  PRIMARY KEY (`IdConta`),
+  KEY `IX_Conta_IdAlunoConta` (`IdAlunoConta`),
+  KEY `IX_Conta_IdProfessorConta` (`IdProfessorConta`),
+  CONSTRAINT `FK_Conta_Aluno_IdAlunoConta` FOREIGN KEY (`IdAlunoConta`) REFERENCES `aluno` (`IdAluno`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Conta_Professor_IdProfessorConta` FOREIGN KEY (`IdProfessorConta`) REFERENCES `professor` (`IdProfessor`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `conta`
+--
+
+LOCK TABLES `conta` WRITE;
+/*!40000 ALTER TABLE `conta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `conta` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -275,12 +306,11 @@ DROP TABLE IF EXISTS `professor`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `professor` (
   `IdProfessor` int(11) NOT NULL AUTO_INCREMENT,
+  `IdContaProfessor` int(11) NOT NULL,
   `IdEnderecoProfessor` int(11) NOT NULL,
   `IdUnidadeProfessor` int(11) NOT NULL,
   `IdAgendaProfessor` int(11) NOT NULL,
   `PermissaoProfessor` int(1) NOT NULL,
-  `EmailProfessor` varchar(60) NOT NULL,
-  `SenhaProfessor` varchar(40) NOT NULL,
   `CrefProfessor` varchar(9) NOT NULL,
   `NomeProfessor` varchar(120) NOT NULL,
   `CpfProfessor` varchar(11) NOT NULL,
@@ -292,8 +322,10 @@ CREATE TABLE `professor` (
   `ImagemProfessor` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`IdProfessor`),
   KEY `IX_Professor_IdAgendaProfessor` (`IdAgendaProfessor`),
+  KEY `IX_Professor_IdContaProfessor` (`IdContaProfessor`),
   KEY `IX_Professor_IdEnderecoProfessor` (`IdEnderecoProfessor`),
   CONSTRAINT `FK_Professor_Agenda_IdAgendaProfessor` FOREIGN KEY (`IdAgendaProfessor`) REFERENCES `agenda` (`IdAgenda`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Professor_Conta_IdContaProfessor` FOREIGN KEY (`IdContaProfessor`) REFERENCES `conta` (`IdConta`) ON DELETE CASCADE,
   CONSTRAINT `FK_Professor_Endereco_IdEnderecoProfessor` FOREIGN KEY (`IdEnderecoProfessor`) REFERENCES `endereco` (`IdEndereco`) ON DELETE CASCADE,
   CONSTRAINT `FK_Professor_Unidade_IdProfessor` FOREIGN KEY (`IdProfessor`) REFERENCES `unidade` (`IdUnidade`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -374,4 +406,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-19 14:02:02
+-- Dump completed on 2019-06-19 18:39:52

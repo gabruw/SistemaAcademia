@@ -32,10 +32,15 @@ namespace Smartgym.Controllers
         // POST: Aluno/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Models.Aluno newAluno, Models.Endereco newEndereco)
+        public ActionResult Create(Models.Conta newConta, Models.Endereco newEndereco, Models.Aluno newAluno)
         {
             try
             {
+                // Conta
+                Domain.DTO.Conta contaDTO = new Domain.DTO.Conta();
+                contaDTO.EmailConta = newConta.EmailConta;
+                contaDTO.SenhaConta = newConta.SenhaConta;
+
                 // Endereço
                 Domain.DTO.Endereco enderecoDTO = new Domain.DTO.Endereco();
                 enderecoDTO.CepEndereco = newEndereco.CepEndereco;
@@ -46,10 +51,9 @@ namespace Smartgym.Controllers
 
                 // Aluno
                 Domain.DTO.Aluno alunoDTO = new Domain.DTO.Aluno();
+                alunoDTO.ContaAluno = contaDTO;
                 alunoDTO.EnderecoAluno = enderecoDTO;
                 alunoDTO.PermissaoAluno = 1;
-                alunoDTO.EmailAluno = newAluno.EmailAluno;
-                alunoDTO.SenhaAluno = newAluno.SenhaAluno;
                 alunoDTO.MatriculaAluno = newGerador.GerarMatricula(newAluno.NomeAluno, newAluno.DataNascimentoAluno);
                 alunoDTO.NomeAluno = newAluno.NomeAluno;
                 alunoDTO.CpfAluno = newAluno.CpfAluno;
@@ -82,10 +86,15 @@ namespace Smartgym.Controllers
         // POST: Aluno/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Models.Aluno newAluno, Models.Endereco newEndereco)
+        public ActionResult Edit(int id, Models.Conta newConta, Models.Endereco newEndereco, Models.Aluno newAluno)
         {
             try
             {
+                // Conta
+                Domain.DTO.Conta contaDTO = new Domain.DTO.Conta();
+                contaDTO.EmailConta = newConta.EmailConta;
+                contaDTO.SenhaConta = newConta.SenhaConta;
+
                 // Endereço
                 Domain.DTO.Endereco enderecoDTO = new Domain.DTO.Endereco();
                 enderecoDTO.CepEndereco = newEndereco.CepEndereco;
@@ -96,10 +105,9 @@ namespace Smartgym.Controllers
 
                 // Aluno
                 Domain.DTO.Aluno alunoDTO = new Domain.DTO.Aluno();
+                alunoDTO.ContaAluno = contaDTO;
                 alunoDTO.EnderecoAluno = enderecoDTO;
                 alunoDTO.PermissaoAluno = 1;
-                alunoDTO.EmailAluno = newAluno.EmailAluno;
-                alunoDTO.SenhaAluno = newAluno.SenhaAluno;
                 alunoDTO.MatriculaAluno = newAluno.MatriculaAluno;
                 alunoDTO.NomeAluno = newAluno.NomeAluno;
                 alunoDTO.CpfAluno = newAluno.CpfAluno;

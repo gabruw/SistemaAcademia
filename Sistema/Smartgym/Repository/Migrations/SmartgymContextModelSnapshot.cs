@@ -56,10 +56,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("DataNascimentoAluno")
                         .HasColumnType("date");
 
-                    b.Property<string>("EmailAluno")
-                        .IsRequired()
-                        .HasColumnType("varchar(60)")
-                        .HasMaxLength(60);
+                    b.Property<int>("IdContaAluno");
 
                     b.Property<int>("IdEnderecoAluno");
 
@@ -81,11 +78,6 @@ namespace Repository.Migrations
                         .HasColumnType("int(1)")
                         .HasMaxLength(1);
 
-                    b.Property<string>("SenhaAluno")
-                        .IsRequired()
-                        .HasColumnType("varchar(40)")
-                        .HasMaxLength(40);
-
                     b.Property<int>("SexoAluno")
                         .HasColumnType("int(1)")
                         .HasMaxLength(1);
@@ -95,6 +87,8 @@ namespace Repository.Migrations
                         .HasMaxLength(11);
 
                     b.HasKey("IdAluno");
+
+                    b.HasIndex("IdContaAluno");
 
                     b.HasIndex("IdEnderecoAluno");
 
@@ -241,6 +235,34 @@ namespace Repository.Migrations
                     b.ToTable("Avaliacao");
                 });
 
+            modelBuilder.Entity("Domain.DTO.Conta", b =>
+                {
+                    b.Property<int>("IdConta")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("EmailConta")
+                        .IsRequired()
+                        .HasColumnType("varchar(60)")
+                        .HasMaxLength(60);
+
+                    b.Property<int>("IdAlunoConta");
+
+                    b.Property<int>("IdProfessorConta");
+
+                    b.Property<string>("SenhaConta")
+                        .IsRequired()
+                        .HasColumnType("varchar(40)")
+                        .HasMaxLength(40);
+
+                    b.HasKey("IdConta");
+
+                    b.HasIndex("IdAlunoConta");
+
+                    b.HasIndex("IdProfessorConta");
+
+                    b.ToTable("Conta");
+                });
+
             modelBuilder.Entity("Domain.DTO.Endereco", b =>
                 {
                     b.Property<int>("IdEndereco")
@@ -347,12 +369,9 @@ namespace Repository.Migrations
                     b.Property<DateTime>("DataNascimentoProfessor")
                         .HasColumnType("date");
 
-                    b.Property<string>("EmailProfessor")
-                        .IsRequired()
-                        .HasColumnType("varchar(60)")
-                        .HasMaxLength(60);
-
                     b.Property<int>("IdAgendaProfessor");
+
+                    b.Property<int>("IdContaProfessor");
 
                     b.Property<int>("IdEnderecoProfessor");
 
@@ -371,11 +390,6 @@ namespace Repository.Migrations
                         .HasColumnType("int(1)")
                         .HasMaxLength(1);
 
-                    b.Property<string>("SenhaProfessor")
-                        .IsRequired()
-                        .HasColumnType("varchar(40)")
-                        .HasMaxLength(40);
-
                     b.Property<int>("SexoProfessor")
                         .HasColumnType("int(1)")
                         .HasMaxLength(1);
@@ -387,6 +401,8 @@ namespace Repository.Migrations
                     b.HasKey("IdProfessor");
 
                     b.HasIndex("IdAgendaProfessor");
+
+                    b.HasIndex("IdContaProfessor");
 
                     b.HasIndex("IdEnderecoProfessor");
 
@@ -459,6 +475,11 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Aluno", b =>
                 {
+                    b.HasOne("Domain.DTO.Conta", "ContaAluno")
+                        .WithMany()
+                        .HasForeignKey("IdContaAluno")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("Domain.DTO.Endereco", "EnderecoAluno")
                         .WithMany()
                         .HasForeignKey("IdEnderecoAluno")
@@ -479,6 +500,19 @@ namespace Repository.Migrations
                     b.HasOne("Domain.DTO.Professor", "ProfessorAvaliacao")
                         .WithMany()
                         .HasForeignKey("IdProfessorAvaliacao")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Domain.DTO.Conta", b =>
+                {
+                    b.HasOne("Domain.DTO.Aluno", "AlunoConta")
+                        .WithMany()
+                        .HasForeignKey("IdAlunoConta")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Domain.DTO.Professor", "ProfessorConta")
+                        .WithMany()
+                        .HasForeignKey("IdProfessorConta")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -517,6 +551,11 @@ namespace Repository.Migrations
                     b.HasOne("Domain.DTO.Agenda", "AgendaProfessor")
                         .WithMany()
                         .HasForeignKey("IdAgendaProfessor")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Domain.DTO.Conta", "ContaProfessor")
+                        .WithMany()
+                        .HasForeignKey("IdContaProfessor")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Domain.DTO.Endereco", "EnderecoProfessor")

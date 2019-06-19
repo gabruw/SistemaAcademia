@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Smartgym.Models
 {
@@ -17,6 +14,11 @@ namespace Smartgym.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdProfessor { get; set; }
+
+        public int IdContaProfessor { get; set; }
+
+        [ForeignKey("IdContaProfessor")]
+        public virtual Conta ContaProfessor { get; set; }
 
         public int IdEnderecoProfessor { get; set; }
 
@@ -37,16 +39,6 @@ namespace Smartgym.Models
         [MaxLength(1)]
         [Required(ErrorMessage = "Necessário adicionar uma Permissão ao Professor.")]
         public int PermissaoProfessor { get; set; }
-
-        [MinLength(4)]
-        [MaxLength(60)]
-        [Required(ErrorMessage = "Necessário adicionar um Email ao Professor.")]
-        public string EmailProfessor { get; set; }
-
-        [MinLength(5)]
-        [MaxLength(40)]
-        [Required(ErrorMessage = "Necessário adicionar uma Senha ao Professor.")]
-        public string SenhaProfessor { get; set; }
 
         [MinLength(8)]
         [MaxLength(8)]

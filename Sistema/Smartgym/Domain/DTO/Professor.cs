@@ -15,6 +15,11 @@ namespace Domain.DTO
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdProfessor { get; set; }
 
+        public int IdContaProfessor { get; set; }
+
+        [ForeignKey("IdContaProfessor")]
+        public virtual Conta ContaProfessor { get; set; }
+
         public int IdEnderecoProfessor { get; set; }
 
         [ForeignKey("IdEnderecoProfessor")]
@@ -31,10 +36,6 @@ namespace Domain.DTO
         public virtual Agenda AgendaProfessor { get; set; }
 
         public int PermissaoProfessor { get; set; }
-
-        public string EmailProfessor { get; set; }
-
-        public string SenhaProfessor { get; set; }
 
         public string CrefProfessor { get; set; }
 
@@ -61,16 +62,6 @@ namespace Domain.DTO
             if (PermissaoProfessor < 1)
             {
                 AddError("O campo Permissão do Professor não foi informado.");
-            }
-
-            if (EmailProfessor.Length < 1)
-            {
-                AddError("O campo Email do Professor não foi informado.");
-            }
-
-            if (SenhaProfessor.Length < 1)
-            {
-                AddError("O campo Senha do Professor não foi informado.");
             }
 
             if (CrefProfessor.Length < 1)

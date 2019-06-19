@@ -3,6 +3,8 @@
     Layout = string.Empty;
 }
 
+@model Conta
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -44,7 +46,7 @@
 </head>
 <body>
     <div class="login-form">
-        <form action="" method="post">
+        <form asp-action="CheckLogin" asp-controller="Account" method="post">
             <img id="Logo" src="~/img/Logo/Logo Smartgym.png" />
 
             <br>
@@ -59,7 +61,7 @@
                         </div>
                     </div>
 
-                    <input type="text" id="Email" class="form-control" name="email" placeholder="Email" required>
+                    <input type="text" asp-for="EmailConta" id="Email" class="form-control" name="email" placeholder="Email" required>
                 </div>
             </div>
 
@@ -73,7 +75,7 @@
                         </div>
                     </div>
 
-                    <input type="password" id="Password" class="form-control" name="password" placeholder="Password" required>
+                    <input type="password" asp-for="SenhaConta"  id="Password" class="form-control" name="password" placeholder="Password" required>
                 </div>
             </div>
 

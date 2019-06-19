@@ -16,6 +16,11 @@ namespace Smartgym.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdAluno { get; set; }
 
+        public int IdContaAluno { get; set; }
+
+        [ForeignKey("IdContaAluno")]
+        public virtual Conta ContaAluno { get; set; }
+
         public int IdEnderecoAluno { get; set; }
 
         [ForeignKey("IdEnderecoAluno")]
@@ -29,16 +34,6 @@ namespace Smartgym.Models
         [MaxLength(1)]
         [Required(ErrorMessage = "Necessário adicionar uma Permissão ao Aluno.")]
         public int PermissaoAluno { get; set; }
-
-        [MinLength(4)]
-        [MaxLength(60)]
-        [Required(ErrorMessage = "Necessário adicionar um Email ao Aluno.")]
-        public string EmailAluno { get; set; }
-
-        [MinLength(5)]
-        [MaxLength(40)]
-        [Required(ErrorMessage = "Necessário adicionar uma Senha ao Aluno.")]
-        public string SenhaAluno { get; set; }
 
         [MinLength(8)]
         [MaxLength(8)]

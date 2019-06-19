@@ -16,6 +16,11 @@ namespace Domain.DTO
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdAluno { get; set;  }
 
+        public int IdContaAluno { get; set; }
+
+        [ForeignKey("IdContaAluno")]
+        public virtual Conta ContaAluno { get; set; }
+
         public int IdEnderecoAluno { get; set;  }
 
         [ForeignKey("IdEnderecoAluno")]
@@ -26,10 +31,6 @@ namespace Domain.DTO
         public virtual ICollection<Avaliacao> AvaliacaoAluno { get; set; }
 
         public int PermissaoAluno { get; set; }
-
-        public string EmailAluno { get; set; }
-
-        public string SenhaAluno { get; set; }
 
         public string MatriculaAluno { get; set; }
 
@@ -54,16 +55,6 @@ namespace Domain.DTO
             if (PermissaoAluno < 1)
             {
                 AddError("O campo Permissão do Aluno não foi informado.");
-            }
-
-            if (EmailAluno.Length < 1)
-            {
-                AddError("O campo Email do Aluno não foi informado.");
-            }
-
-            if (SenhaAluno.Length < 1)
-            {
-                AddError("O campo Senha do Aluno não foi informado.");
             }
 
             if (MatriculaAluno.Length < 1)

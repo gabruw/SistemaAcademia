@@ -39,36 +39,6 @@ namespace Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Aluno",
-                columns: table => new
-                {
-                    IdAluno = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdEnderecoAluno = table.Column<int>(nullable: false),
-                    PermissaoAluno = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
-                    EmailAluno = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
-                    SenhaAluno = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
-                    MatriculaAluno = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false),
-                    NomeAluno = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
-                    CpfAluno = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
-                    DataNascimentoAluno = table.Column<DateTime>(type: "date", nullable: false),
-                    TelefoneAluno = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
-                    CelularAluno = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
-                    SexoAluno = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
-                    ImagemAluno = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Aluno", x => x.IdAluno);
-                    table.ForeignKey(
-                        name: "FK_Aluno_Endereco_IdEnderecoAluno",
-                        column: x => x.IdEnderecoAluno,
-                        principalTable: "Endereco",
-                        principalColumn: "IdEndereco",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Unidade",
                 columns: table => new
                 {
@@ -95,12 +65,11 @@ namespace Repository.Migrations
                 {
                     IdProfessor = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    IdContaProfessor = table.Column<int>(nullable: false),
                     IdEnderecoProfessor = table.Column<int>(nullable: false),
                     IdUnidadeProfessor = table.Column<int>(nullable: false),
                     IdAgendaProfessor = table.Column<int>(nullable: false),
                     PermissaoProfessor = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
-                    EmailProfessor = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
-                    SenhaProfessor = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
                     CrefProfessor = table.Column<string>(type: "varchar(9)", maxLength: 9, nullable: false),
                     NomeProfessor = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
                     CpfProfessor = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
@@ -141,12 +110,6 @@ namespace Repository.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Agenda", x => x.IdAgenda);
-                    table.ForeignKey(
-                        name: "FK_Agenda_Aluno_IdAlunoAgenda",
-                        column: x => x.IdAlunoAgenda,
-                        principalTable: "Aluno",
-                        principalColumn: "IdAluno",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Agenda_Professor_IdProfessorAgenda",
                         column: x => x.IdProfessorAgenda,
@@ -190,22 +153,67 @@ namespace Repository.Migrations
                 {
                     table.PrimaryKey("PK_Avaliacao", x => x.IdAvaliacao);
                     table.ForeignKey(
-                        name: "FK_Avaliacao_Aluno_AlunoIdAluno",
-                        column: x => x.AlunoIdAluno,
-                        principalTable: "Aluno",
-                        principalColumn: "IdAluno",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Avaliacao_Aluno_IdAlunoAvaliacao",
-                        column: x => x.IdAlunoAvaliacao,
-                        principalTable: "Aluno",
-                        principalColumn: "IdAluno",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Avaliacao_Professor_IdProfessorAvaliacao",
                         column: x => x.IdProfessorAvaliacao,
                         principalTable: "Professor",
                         principalColumn: "IdProfessor",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Conta",
+                columns: table => new
+                {
+                    IdConta = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    IdAlunoConta = table.Column<int>(nullable: false),
+                    IdProfessorConta = table.Column<int>(nullable: false),
+                    EmailConta = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
+                    SenhaConta = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Conta", x => x.IdConta);
+                    table.ForeignKey(
+                        name: "FK_Conta_Professor_IdProfessorConta",
+                        column: x => x.IdProfessorConta,
+                        principalTable: "Professor",
+                        principalColumn: "IdProfessor",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Aluno",
+                columns: table => new
+                {
+                    IdAluno = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    IdContaAluno = table.Column<int>(nullable: false),
+                    IdEnderecoAluno = table.Column<int>(nullable: false),
+                    PermissaoAluno = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
+                    MatriculaAluno = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false),
+                    NomeAluno = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
+                    CpfAluno = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
+                    DataNascimentoAluno = table.Column<DateTime>(type: "date", nullable: false),
+                    TelefoneAluno = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
+                    CelularAluno = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
+                    SexoAluno = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
+                    ImagemAluno = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Aluno", x => x.IdAluno);
+                    table.ForeignKey(
+                        name: "FK_Aluno_Conta_IdContaAluno",
+                        column: x => x.IdContaAluno,
+                        principalTable: "Conta",
+                        principalColumn: "IdConta",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Aluno_Endereco_IdEnderecoAluno",
+                        column: x => x.IdEnderecoAluno,
+                        principalTable: "Endereco",
+                        principalColumn: "IdEndereco",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -309,6 +317,11 @@ namespace Repository.Migrations
                 column: "IdProfessorAgenda");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Aluno_IdContaAluno",
+                table: "Aluno",
+                column: "IdContaAluno");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Aluno_IdEnderecoAluno",
                 table: "Aluno",
                 column: "IdEnderecoAluno");
@@ -327,6 +340,16 @@ namespace Repository.Migrations
                 name: "IX_Avaliacao_IdProfessorAvaliacao",
                 table: "Avaliacao",
                 column: "IdProfessorAvaliacao");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Conta_IdAlunoConta",
+                table: "Conta",
+                column: "IdAlunoConta");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Conta_IdProfessorConta",
+                table: "Conta",
+                column: "IdProfessorConta");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Exercicio_IdAparelhoExercicio",
@@ -354,6 +377,11 @@ namespace Repository.Migrations
                 column: "IdAgendaProfessor");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Professor_IdContaProfessor",
+                table: "Professor",
+                column: "IdContaProfessor");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Professor_IdEnderecoProfessor",
                 table: "Professor",
                 column: "IdEnderecoProfessor");
@@ -374,11 +402,51 @@ namespace Repository.Migrations
                 column: "IdEnderecoUnidade");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_Professor_Conta_IdContaProfessor",
+                table: "Professor",
+                column: "IdContaProfessor",
+                principalTable: "Conta",
+                principalColumn: "IdConta",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_Professor_Agenda_IdAgendaProfessor",
                 table: "Professor",
                 column: "IdAgendaProfessor",
                 principalTable: "Agenda",
                 principalColumn: "IdAgenda",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Agenda_Aluno_IdAlunoAgenda",
+                table: "Agenda",
+                column: "IdAlunoAgenda",
+                principalTable: "Aluno",
+                principalColumn: "IdAluno",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Avaliacao_Aluno_AlunoIdAluno",
+                table: "Avaliacao",
+                column: "AlunoIdAluno",
+                principalTable: "Aluno",
+                principalColumn: "IdAluno",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Avaliacao_Aluno_IdAlunoAvaliacao",
+                table: "Avaliacao",
+                column: "IdAlunoAvaliacao",
+                principalTable: "Aluno",
+                principalColumn: "IdAluno",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Conta_Aluno_IdAlunoConta",
+                table: "Conta",
+                column: "IdAlunoConta",
+                principalTable: "Aluno",
+                principalColumn: "IdAluno",
                 onDelete: ReferentialAction.Cascade);
         }
 
@@ -389,8 +457,16 @@ namespace Repository.Migrations
                 table: "Agenda");
 
             migrationBuilder.DropForeignKey(
+                name: "FK_Conta_Aluno_IdAlunoConta",
+                table: "Conta");
+
+            migrationBuilder.DropForeignKey(
                 name: "FK_Agenda_Professor_IdProfessorAgenda",
                 table: "Agenda");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Conta_Professor_IdProfessorConta",
+                table: "Conta");
 
             migrationBuilder.DropTable(
                 name: "Aparelho");
@@ -415,6 +491,9 @@ namespace Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "Agenda");
+
+            migrationBuilder.DropTable(
+                name: "Conta");
 
             migrationBuilder.DropTable(
                 name: "Unidade");

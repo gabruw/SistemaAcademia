@@ -1,0 +1,31 @@
+﻿using Domain.Repository;
+using Repository.Context;
+
+namespace Repository.Repository
+{
+    public class ContaRepository : BaseRepository<Domain.DTO.Conta>, IContaRepository
+    {
+        public ContaRepository(SmartgymContext smartgymContext) : base(smartgymContext)
+        {
+           
+        }
+
+        public Domain.DTO.Conta Logar(Domain.DTO.Conta newConta)
+        {
+
+            var entidadeBanco = SmartgymContext.Set<Domain.DTO.Conta>().Find(newConta.EmailConta);
+            var senha = entidadeBanco.SenhaConta;
+
+            if (entidadeBanco != null)
+            {
+                entidadeBanco.EmailConta = "Email inválido!";
+            }
+            else if(senha != newConta.SenhaConta)
+            {
+                entidadeBanco.EmailConta = "Senha inválida!";
+            }
+
+            return entidadeBanco;
+        }
+    }
+}

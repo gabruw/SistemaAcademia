@@ -15,6 +15,7 @@ namespace Repository.Context
         {
             modelBuilder.Ignore<Agenda>();
             modelBuilder.Ignore<Aluno>();
+            modelBuilder.Ignore<Conta>();
             modelBuilder.Ignore<Aparelho>();
             modelBuilder.Ignore<Avaliacao>();
             modelBuilder.Ignore<Endereco>();
@@ -26,6 +27,7 @@ namespace Repository.Context
 
             modelBuilder.ApplyConfiguration(new AgendaConfiguration());
             modelBuilder.ApplyConfiguration(new AlunoConfiguration());
+            modelBuilder.ApplyConfiguration(new ContaConfiguration());
             modelBuilder.ApplyConfiguration(new AparelhoConfiguration());
             modelBuilder.ApplyConfiguration(new AvaliacaoConfiguration());
             modelBuilder.ApplyConfiguration(new EnderecoConfiguration());
@@ -41,6 +43,8 @@ namespace Repository.Context
         public DbSet<Agenda> Agenda { get; set; }
 
         public DbSet<Aluno> Aluno { get; set; }
+
+        public DbSet<Conta> Conta { get; set; }
 
         public DbSet<Aparelho> Aparelho { get; set; }
 

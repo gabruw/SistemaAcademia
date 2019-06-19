@@ -31,12 +31,17 @@ namespace Smartgym.Controllers
         // POST: Professor/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int idUnidade, Models.Professor newProfessor, Models.Endereco newEndereco)
+        public ActionResult Create(int idUnidade, Models.Conta newConta, Models.Endereco newEndereco, Models.Professor newProfessor)
         {
             try
             {
                 // Unidade
                 var unidadeDTO = _unidadeRepository.GetbyId(idUnidade);
+
+                // Conta
+                Domain.DTO.Conta contaDTO = new Domain.DTO.Conta();
+                contaDTO.EmailConta = newConta.EmailConta;
+                contaDTO.SenhaConta = newConta.SenhaConta;
 
                 // Endereço
                 Domain.DTO.Endereco enderecoDTO = new Domain.DTO.Endereco();
@@ -48,11 +53,10 @@ namespace Smartgym.Controllers
 
                 // Professor
                 Domain.DTO.Professor professorDTO = new Domain.DTO.Professor();
+                professorDTO.ContaProfessor = contaDTO;
                 professorDTO.EnderecoProfessor = enderecoDTO;
                 professorDTO.UnidadeProfessor = unidadeDTO;
                 professorDTO.PermissaoProfessor = 2;
-                professorDTO.EmailProfessor = newProfessor.EmailProfessor;
-                professorDTO.SenhaProfessor = newProfessor.SenhaProfessor;
                 professorDTO.CrefProfessor = newProfessor.CrefProfessor;
                 professorDTO.NomeProfessor = newProfessor.NomeProfessor;
                 professorDTO.CpfProfessor = newProfessor.CpfProfessor;
@@ -85,12 +89,17 @@ namespace Smartgym.Controllers
         // POST: Professor/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int idUnidade, Models.Professor newProfessor, Models.Endereco newEndereco)
+        public ActionResult Edit(int idUnidade, Models.Conta newConta, Models.Endereco newEndereco, Models.Professor newProfessor)
         {
             try
             {
                 // Unidade
                 var unidadeDTO = _unidadeRepository.GetbyId(idUnidade);
+
+                // Conta
+                Domain.DTO.Conta contaDTO = new Domain.DTO.Conta();
+                contaDTO.EmailConta = newConta.EmailConta;
+                contaDTO.SenhaConta = newConta.SenhaConta;
 
                 // Endereço
                 Domain.DTO.Endereco enderecoDTO = new Domain.DTO.Endereco();
@@ -102,11 +111,10 @@ namespace Smartgym.Controllers
 
                 // Professor
                 Domain.DTO.Professor professorDTO = new Domain.DTO.Professor();
+                professorDTO.ContaProfessor = contaDTO;
                 professorDTO.EnderecoProfessor = enderecoDTO;
                 professorDTO.UnidadeProfessor = unidadeDTO;
                 professorDTO.PermissaoProfessor = 2;
-                professorDTO.EmailProfessor = newProfessor.EmailProfessor;
-                professorDTO.SenhaProfessor = newProfessor.SenhaProfessor;
                 professorDTO.CrefProfessor = newProfessor.CrefProfessor;
                 professorDTO.NomeProfessor = newProfessor.NomeProfessor;
                 professorDTO.CpfProfessor = newProfessor.CpfProfessor;
