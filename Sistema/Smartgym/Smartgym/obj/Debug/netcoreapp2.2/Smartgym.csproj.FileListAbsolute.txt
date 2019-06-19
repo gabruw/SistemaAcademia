@@ -89,3 +89,5 @@ C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\net
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Edit\ExercicioEdit.g.cshtml.cs
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Edit\FichaEdit.g.cshtml.cs
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Edit\ProfessorEdit.g.cshtml.cs
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Edit\UnidadeEdit.g.cshtml.cs
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Register.g.cshtml.cs
