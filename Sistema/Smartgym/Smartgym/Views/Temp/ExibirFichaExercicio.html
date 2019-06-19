@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Gabriel Marques, Raphaelli, Igor e Thiago" />
+    <meta name="keywords" content="HTML, CSS e JavaScript" />
+    <meta name="description" content="Smart Gym" />
+
+    <title>
+        Smart Gym - Exibir Avaliação   
+    </title>
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="../Assets/imagens/favicon.ico" />
+	
+	<!-- Links CSS Geral -->
+	<link rel="stylesheet" type="text/css" href="../Assets/css/Menu/Body.css" />
+    <link rel="stylesheet" type="text/css" href="../Assets/css/Menu/TopMenu.css" />
+    <link rel="stylesheet" type="text/css" href="../Assets/css/Menu/SideMenu.css" />
+	<link rel="stylesheet" type="text/css" href="../Assets/css/Menu/Datatable.css" />
+	
+	<!-- Links CSS -->
+    <link rel="stylesheet" type="text/css" href="../Assets/css/ExibirFichaExercicio/Content.css" />
+    <link rel="stylesheet" type="text/css" href="../Assets/lib/datatable/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../Assets/lib/datatable/datatables.css" />
+   	
+    <!-- Frameworks CSS -->
+    <link rel="stylesheet" type="text/css" href="../Assets/lib/bootstrap/css/bootstrap.min.css" />
+
+    <!-- Links Fontes -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" />
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu" />
+
+    <!-- Links JS Geral -->
+	<script defer rel="stylesheet" type="text/javascript" src="../Assets/js/SideMenu/SideMenu.js"></script>
+	
+	<!-- Links JS -->
+	<script defer rel="stylesheet" type="text/javascript" src="../Controller/ExibirFichaExercicioController.js"></script>
+
+    <!-- Frameworks JS -->
+    <script rel="stylesheet" type="text/javascript" src="../Assets/lib/jquery/jquery.min.js"></script>
+    <script rel="stylesheet" type="text/javascript" src="../Assets/lib/jquery_mask_plugin/jquery.mask.min.js"></script>
+    <script rel="stylesheet" type="text/javascript" src="../Assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script rel="stylesheet" type="text/javascript" src="../Assets/lib/datatable/datatables.js"></script>
+    <script rel="stylesheet" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script defer rel="stylesheet" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<!-- Menu Lateral-->
+        <nav id="Sidebar">
+            <div id="Dismiss">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+
+            <div class="sidebar-header">
+                <img class="img-fluid" alt="Logo" src="../Assets/imagens/Logo/Logo Smart Gym Academia.png" />
+            </div>
+
+            <ul id="SidebarMenu" class="list-unstyled components">
+                <li>
+                	<a class="title" href="CadastroAluno.html">
+	                	<i class="fas fa-user-plus"></i>
+	                	Cadastro de Aluno
+                	</a>
+                </li>
+
+                <li>
+                	<a class="title" href="CadastroProfessor.html">
+	                	<i class="fas fa-walking"></i>
+	                	Cadastro de Professor
+                	</a>
+                </li>
+
+                <li>
+                	<a class="title" href="CadastroExercicio.html">
+	                	<i class="fas fa-dumbbell"></i>
+	                	Cadastro de Exercícios
+                	</a>
+                </li>
+
+            </ul>
+        </nav>
+		
+		<!-- Menu Superior -->
+        <nav id="NavbarSuperior" class="navbar navbar-expand-md w-100">
+            <button type="button" id="SidebarCollapse" class="btn btn-info">
+                <i class="fas fa-align-left"></i>
+            </button>
+        </nav>
+		
+		<!-- Body-->
+        <div>
+			<section>
+				<p id="Titulo">
+                <i class="fas fa-folder"></i>
+					 Exibir Ficha de Exercícios
+				</p>
+			</section>
+
+			<section id="DadosPessoais" class="col-sm-12">			
+				<form action="" method="post">
+					<div class="row">
+                            <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <span class="ls-label-text">Selecione a ficha</span>
+                                        </div>
+        
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table id="TableAparelho" class="display datatable" width="100%">		
+                                                        
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>					
+                                    </div>	
+                                </div>
+                        
+					</div>
+				</form>
+			</section>
+		</div>
+    </div>
+    <div class="overlay"></div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+body, html{
+	background-color: #404040 !important;
+	overflow-y: auto !important;
+	overflow-x: hidden !important;
+}
+
+#IconeTitulo{
+	color: #FFFFFF !important;
+}
+
+.card{
+	border: none !important;
+	border-radius: 0px !important;
+}
+
+.card-header{
+	color: #FFFFFF;
+	background-color: #8F2828 !important;
+	border-radius: 0px !important;
+}
+
+.card-body{
+	background-color: #FFFFFF !important;
+}
+
+#Titulo{
+	color: #FFFFFF !important;
+	background-color: #8F2828 !important;
+	font-family: 'Ubuntu', sans-serif !important;
+	font-size: 25px !important;
+	border: 8px solid #8F2828 !important; 	
+}
+
+#DadosPessoais{
+	float: left !important;
+}
+
+.ls-label-text{
+	font-weight: bold !important;
+}
+
+.btn-primary{
+	float: right !important;
+	margin-left: 15px !important;
+	border-color: #8F2828 !important;
+	background-color: #8F2828 !important;
+}
+
+.btn-secondary{
+	float: right !important;
+	border-color: #404040 !important;
+	background-color: #404040 !important;
+}
+
+#ImagemPreview{
+	width: 350px !important;
+	height: 320px !important;
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1919px) {
+    .img-fluid {
+		max-height: 200px !important;
+    }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1365px) {
+    .img-fluid {
+		max-height: 150px !important;
+    }
+}
+
+@media screen and (min-width: 584px) and (max-width: 800px) {
+    .img-fluid {
+		max-height: 100px !important;
+    }
+}
+
+@media screen and (max-width: 583px) {
+    .img-fluid {
+		max-height: 300px !important;
+    }
+}

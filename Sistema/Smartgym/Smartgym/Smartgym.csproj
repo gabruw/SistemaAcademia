@@ -25,4 +25,10 @@
     </Content>
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Views\Edit\" />
+    <Folder Include="Views\Register\" />
+  </ItemGroup>
+
 </Project>
