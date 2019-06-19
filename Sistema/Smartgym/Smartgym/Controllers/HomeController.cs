@@ -15,7 +15,7 @@ namespace Smartgym.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Assinar()
         {
             return View();
         }

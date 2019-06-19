@@ -27,8 +27,7 @@
 
 
   <ItemGroup>
-    <Folder Include="Views\Edit\" />
-    <Folder Include="Views\Register\" />
+    <Folder Include="Views\Main\" />
   </ItemGroup>
 
 </Project>

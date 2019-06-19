@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Gabriel Marques, Raphaelli e Igor" />
+    <meta name="keywords" content="ASP.NET Core, HTML, CSS e JavaScript" />
+    <meta name="description" content="Smart Gym" />
+
+    <title>Smartgym - @ViewData["Title"]</title>
+
+    @*Favicon*@
+    <environment include="Development">
+        <link rel="shortcut icon" href="~/favicon.ico" />
+    </environment>
+
+    @*Links CSS Geral*@
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="~/css/Menu/TopMenu.css" />
+        <link rel="stylesheet" type="text/css" href="~/css/Menu/Footer.css" />
+    </environment>
+
+    @*Links CSS*@
+    <environment include="Development">
+        @if (ViewData.Values.First().Equals("Home"))
+        {
+            <link rel="stylesheet" type="text/css" href="~/css/Principal/Content.css" />
+            <link rel="stylesheet" type="text/css" href="~/css/Carousel/Content.css" />
+        }
+        else
+        {
+            <link rel="stylesheet" type="text/css" href="~/css/Assinar/Content.css" />
+        }
+    </environment>
+
+    @*Frameworks CSS*@
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+
+    @*Links Fontes*@
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu" />
+    </environment>
+
+    @*Frameworks JS*@
+    <environment include="Development">
+        <script rel="stylesheet" type="text/javascript" src="~/lib/jquery/dist/jquery-min.js"></script>
+        <script rel="stylesheet" type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script rel="stylesheet" type="text/javascript" src="~/lib/datatable/datatables.js"></script>
+        <script rel="stylesheet" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+        <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+        <script defer rel="stylesheet" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    </environment>
+</head>
+<body>
+    @*Menu Superior*@
+    <nav id="NavbarSuperior" class="navbar navbar-expand-md w-100">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+            <img id="Logo" src="~/img/Logo/Favicon.png" alt="Logo" />
+        </a>
+
+        @*Esquerda*@
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link navText" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-home"></i> Home
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link navText" asp-controller="Home" asp-action="Assinar">
+                    <i class="fas fa-paste"></i> Assinar
+                </a>
+            </li>
+        </ul>
+
+        @*Direita*@
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Account" asp-action="Login">
+                    <i class="fas fa-user"></i> Login
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <partial name="_CookieConsentPartial" />
+    <main role="main" class="">
+        @RenderBody()
+    </main>
+
+    <footer>
+        <div id="Inferior"></div>
+    </footer>
+</body>
+</html>

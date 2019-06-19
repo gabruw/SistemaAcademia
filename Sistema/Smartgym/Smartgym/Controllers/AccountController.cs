@@ -8,6 +8,11 @@ namespace Smartgym.Controllers
 {
     public class AccountController : Controller
     {
+        public IActionResult Login()
+        {
+            return View();
+        }
+
         public IActionResult SemAutorizacao()
         {
             return View();

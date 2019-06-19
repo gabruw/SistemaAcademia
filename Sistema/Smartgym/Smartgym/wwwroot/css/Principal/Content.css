@@ -124,14 +124,13 @@ html, body {
     border-radius: 0px !important; 
 }
 
-.card button{
+.card a{
 	margin-top: -2%;
 	margin-bottom: 3%;
 	border-color: #8F2828;
 	border-radius: 0px !important;
 	background-color: #8F2828 !important;
 }
-
 
 .card-body .row{
 	position: relative;

@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = string.Empty;
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Gabriel Marques, Raphaelli, Igor e Thiago" />
+    <meta name="keywords" content="HTML, CSS e JavaScript" />
+    <meta name="description" content="Smart Gym" />
+
+    <title>Smartgym - @ViewData["Title"]</title>
+
+    @*Favicon*@
+    <environment include="Development">
+        <link rel="shortcut icon" href="~/favicon.ico" />
+    </environment>
+
+    @*Links CSS*@
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="~/css/Login/Content.css" />
+    </environment>
+
+    @*Frameworks CSS*@
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+
+    @*Links Fontes*@
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" />
+    </environment>
+
+    @*Frameworks JS*@
+    <environment include="Development">
+        <script rel="stylesheet" type="text/javascript" src="~/lib/jquery/dist/jquery-min.js"></script>
+        <script rel="stylesheet" type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+        <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    </environment>
+</head>
+<body>
+    <div class="login-form">
+        <form action="" method="post">
+            <img id="Logo" src="~/img/Logo/Logo Smartgym.png" />
+
+            <br>
+
+            <div class="form-group col-lg-15">
+                <label class="sr-only" for="inlineFormInputGroup">Email</label>
+
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+
+                    <input type="text" id="Email" class="form-control" name="email" placeholder="Email" required>
+                </div>
+            </div>
+
+            <div class="form-group col-lg-15">
+                <label class="sr-only" for="inlineFormInputGroup">Password</label>
+
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fas fa-unlock"></i>
+                        </div>
+                    </div>
+
+                    <input type="password" id="Password" class="form-control" name="password" placeholder="Password" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" id="Login" class="btn btn-primary btn-lg btn-block">ENTRAR</button>
+            </div>
+
+            <p><a href="#">Esqueceu sua senha?</a></p>
+        </form>
+    </div>
+</body>
+</html>
