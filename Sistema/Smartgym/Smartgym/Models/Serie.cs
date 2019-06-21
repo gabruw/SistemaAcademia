@@ -13,9 +13,9 @@ namespace Smartgym.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdSerie { get; set; }
+        public long IdSerie { get; set; }
 
-        public int IdFichaSerie { get; set; }
+        public long IdFichaSerie { get; set; }
 
         [ForeignKey("IdFichaSerie")]
         public virtual Ficha FichaSerie { get; set; }

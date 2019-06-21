@@ -47,7 +47,7 @@ namespace Smartgym.Controllers
         }
 
         // GET: Aparelho/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(long id)
         {
             var aparelhoDTO = _aparelhoRepository.GetbyId(id);
 
@@ -57,7 +57,7 @@ namespace Smartgym.Controllers
         // POST: Aparelho/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Models.Aparelho newAparelho)
+        public ActionResult Edit(long id, Models.Aparelho newAparelho)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace Smartgym.Controllers
         }
 
         // GET: Aparelho/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(long id)
         {
             Domain.DTO.Aparelho aparelhoDTO = new Domain.DTO.Aparelho();
             aparelhoDTO.IdAparelho = id;

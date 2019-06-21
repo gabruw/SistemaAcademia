@@ -21,7 +21,10 @@ namespace Smartgym.Controllers
             return View();
         }
 
-        public IActionResult CheckLogin(Models.Conta newConta)
+        // POST: Account/CheckLogin
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckLogin(Models.Conta newConta)
         {
             Domain.DTO.Conta contaDTO = new Domain.DTO.Conta();
             contaDTO.EmailConta = newConta.EmailConta;

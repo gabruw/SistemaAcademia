@@ -14,14 +14,14 @@ namespace Smartgym.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdAluno { get; set; }
+        public long IdAluno { get; set; }
 
-        public int IdContaAluno { get; set; }
+        public long IdContaAluno { get; set; }
 
         [ForeignKey("IdContaAluno")]
         public virtual Conta ContaAluno { get; set; }
 
-        public int IdEnderecoAluno { get; set; }
+        public long IdEnderecoAluno { get; set; }
 
         [ForeignKey("IdEnderecoAluno")]
         public virtual Endereco EnderecoAluno { get; set; }
@@ -48,7 +48,7 @@ namespace Smartgym.Models
         [MinLength(11)]
         [MaxLength(11)]
         [Required(ErrorMessage = "Necessário adicionar um CPF ao Aluno.")]
-        public int CpfAluno { get; set; }
+        public long CpfAluno { get; set; }
 
         public DateTime DataNascimentoAluno { get; set; }
 

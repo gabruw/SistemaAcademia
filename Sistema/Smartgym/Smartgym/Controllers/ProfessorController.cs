@@ -31,7 +31,7 @@ namespace Smartgym.Controllers
         // POST: Professor/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int idUnidade, Models.Conta newConta, Models.Endereco newEndereco, Models.Professor newProfessor)
+        public ActionResult Create(long idUnidade, Models.Conta newConta, Models.Endereco newEndereco, Models.Professor newProfessor)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace Smartgym.Controllers
         }
 
         // GET: Professor/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(long id)
         {
             var professorDTO = _professorRepository.GetbyId(id);
 
@@ -89,7 +89,7 @@ namespace Smartgym.Controllers
         // POST: Professor/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int idUnidade, Models.Conta newConta, Models.Endereco newEndereco, Models.Professor newProfessor)
+        public ActionResult Edit(long idUnidade, Models.Conta newConta, Models.Endereco newEndereco, Models.Professor newProfessor)
         {
             try
             {
@@ -137,7 +137,7 @@ namespace Smartgym.Controllers
         }
 
         // GET: Professor/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(long id)
         {
             Domain.DTO.Professor professorDTO = new Domain.DTO.Professor();
             professorDTO.IdProfessor = id;

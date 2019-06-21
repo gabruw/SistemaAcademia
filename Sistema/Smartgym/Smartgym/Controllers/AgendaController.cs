@@ -1,5 +1,4 @@
-﻿using Auxiliary.Partial;
-using Domain.Repository;
+﻿using Domain.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,7 +29,7 @@ namespace Smartgym.Controllers
         // GET: Agenda/Create
         public ActionResult Create()
         {
-            ViewAgenda newViewAgenda = new ViewAgenda();
+            Models.ViewAgenda newViewAgenda = new Models.ViewAgenda();
             newViewAgenda.ProfessorViewAgenda = _professorRepository.GetAll();
             newViewAgenda.AlunoViewAgenda = _alunoRepository.GetAll();
 
@@ -40,7 +39,7 @@ namespace Smartgym.Controllers
         // POST: Agenda/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int idAluno, int idProfessor, Models.Agenda newAgenda)
+        public ActionResult Create(long idAluno, long idProfessor, Models.Agenda newAgenda)
         {
             try
             {
@@ -65,9 +64,9 @@ namespace Smartgym.Controllers
         }
 
         // GET: Agenda/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(long id)
         {
-            ViewAgenda newViewAgenda = new ViewAgenda();
+            Models.ViewAgenda newViewAgenda = new Models.ViewAgenda();
             newViewAgenda.AgendaViewAgenda = _agendaRepository.GetbyId(id);
             newViewAgenda.ProfessorViewAgenda = _professorRepository.GetAll();
             newViewAgenda.AlunoViewAgenda = _alunoRepository.GetAll();
@@ -78,7 +77,7 @@ namespace Smartgym.Controllers
         // POST: Agenda/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int idAluno, int idProfessor, Models.Agenda newAgenda)
+        public ActionResult Edit(long idAluno, long idProfessor, Models.Agenda newAgenda)
         {
             try
             {
@@ -103,7 +102,7 @@ namespace Smartgym.Controllers
         }
 
         // GET: Agenda/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(long id)
         {
             Domain.DTO.Agenda agendaDTO = new Domain.DTO.Agenda();
             agendaDTO.IdAgenda = id;

@@ -35,7 +35,7 @@ CREATE TABLE `__efmigrationshistory` (
 
 LOCK TABLES `__efmigrationshistory` WRITE;
 /*!40000 ALTER TABLE `__efmigrationshistory` DISABLE KEYS */;
-INSERT INTO `__efmigrationshistory` VALUES ('20190619213138_Main','2.2.4-servicing-10062');
+INSERT INTO `__efmigrationshistory` VALUES ('20190621162952_Main','2.2.4-servicing-10062');
 /*!40000 ALTER TABLE `__efmigrationshistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -47,9 +47,9 @@ DROP TABLE IF EXISTS `agenda`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `agenda` (
-  `IdAgenda` int(11) NOT NULL AUTO_INCREMENT,
-  `IdProfessorAgenda` int(11) NOT NULL,
-  `IdAlunoAgenda` int(11) NOT NULL,
+  `IdAgenda` bigint(20) NOT NULL AUTO_INCREMENT,
+  `IdProfessorAgenda` bigint(20) NOT NULL,
+  `IdAlunoAgenda` bigint(20) NOT NULL,
   `DataAgenda` date NOT NULL,
   PRIMARY KEY (`IdAgenda`),
   KEY `IX_Agenda_IdAlunoAgenda` (`IdAlunoAgenda`),
@@ -76,18 +76,18 @@ DROP TABLE IF EXISTS `aluno`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `aluno` (
-  `IdAluno` int(11) NOT NULL AUTO_INCREMENT,
-  `IdContaAluno` int(11) NOT NULL,
-  `IdEnderecoAluno` int(11) NOT NULL,
+  `IdAluno` bigint(20) NOT NULL AUTO_INCREMENT,
+  `IdContaAluno` bigint(20) NOT NULL,
+  `IdEnderecoAluno` bigint(20) NOT NULL,
   `PermissaoAluno` int(1) NOT NULL,
   `MatriculaAluno` varchar(8) NOT NULL,
   `NomeAluno` varchar(120) NOT NULL,
-  `CpfAluno` varchar(11) NOT NULL,
+  `CpfAluno` bigint(20) NOT NULL,
   `DataNascimentoAluno` date NOT NULL,
-  `TelefoneAluno` int(11) NOT NULL,
-  `CelularAluno` int(11) NOT NULL,
+  `TelefoneAluno` int(10) NOT NULL,
+  `CelularAluno` bigint(20) NOT NULL,
   `SexoAluno` int(1) NOT NULL,
-  `ImagemAluno` varchar(64) DEFAULT NULL,
+  `ImagemAluno` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`IdAluno`),
   KEY `IX_Aluno_IdContaAluno` (`IdContaAluno`),
   KEY `IX_Aluno_IdEnderecoAluno` (`IdEnderecoAluno`),
@@ -113,7 +113,7 @@ DROP TABLE IF EXISTS `aparelho`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `aparelho` (
-  `IdAparelho` int(11) NOT NULL AUTO_INCREMENT,
+  `IdAparelho` bigint(20) NOT NULL AUTO_INCREMENT,
   `NomeAparelho` varchar(60) NOT NULL,
   PRIMARY KEY (`IdAparelho`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -136,9 +136,9 @@ DROP TABLE IF EXISTS `avaliacao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `avaliacao` (
-  `IdAvaliacao` int(11) NOT NULL AUTO_INCREMENT,
-  `IdAlunoAvaliacao` int(11) NOT NULL,
-  `IdProfessorAvaliacao` int(11) NOT NULL,
+  `IdAvaliacao` bigint(20) NOT NULL AUTO_INCREMENT,
+  `IdAlunoAvaliacao` bigint(20) NOT NULL,
+  `IdProfessorAvaliacao` bigint(20) NOT NULL,
   `DataAvaliacao` date NOT NULL,
   `AlturaAvaliacao` decimal(10,0) NOT NULL,
   `PesoAvaliacao` decimal(10,0) NOT NULL,
@@ -160,7 +160,7 @@ CREATE TABLE `avaliacao` (
   `DobraCutaneaPanturrilhaAvaliacao` decimal(10,0) NOT NULL,
   `PercentualGorduraAvaliacao` decimal(10,0) NOT NULL,
   `ObservacaoAvaliacao` varchar(800) NOT NULL,
-  `AlunoIdAluno` int(11) DEFAULT NULL,
+  `AlunoIdAluno` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`IdAvaliacao`),
   KEY `IX_Avaliacao_AlunoIdAluno` (`AlunoIdAluno`),
   KEY `IX_Avaliacao_IdAlunoAvaliacao` (`IdAlunoAvaliacao`),
@@ -188,9 +188,9 @@ DROP TABLE IF EXISTS `conta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `conta` (
-  `IdConta` int(11) NOT NULL AUTO_INCREMENT,
-  `IdAlunoConta` int(11) NOT NULL,
-  `IdProfessorConta` int(11) NOT NULL,
+  `IdConta` bigint(20) NOT NULL AUTO_INCREMENT,
+  `IdAlunoConta` bigint(20) NOT NULL,
+  `IdProfessorConta` bigint(20) NOT NULL,
   `EmailConta` varchar(60) NOT NULL,
   `SenhaConta` varchar(40) NOT NULL,
   PRIMARY KEY (`IdConta`),
@@ -218,7 +218,7 @@ DROP TABLE IF EXISTS `endereco`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `endereco` (
-  `IdEndereco` int(11) NOT NULL AUTO_INCREMENT,
+  `IdEndereco` bigint(20) NOT NULL AUTO_INCREMENT,
   `CepEndereco` int(8) NOT NULL,
   `RuaEndereco` varchar(80) NOT NULL,
   `BairroEndereco` varchar(80) NOT NULL,
@@ -245,9 +245,9 @@ DROP TABLE IF EXISTS `exercicio`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `exercicio` (
-  `IdExercicio` int(11) NOT NULL AUTO_INCREMENT,
-  `IdAparelhoExercicio` int(11) NOT NULL,
-  `IdSerieExercicio` int(11) NOT NULL,
+  `IdExercicio` bigint(20) NOT NULL AUTO_INCREMENT,
+  `IdAparelhoExercicio` bigint(20) NOT NULL,
+  `IdSerieExercicio` bigint(20) NOT NULL,
   `NomeExercicio` varchar(60) NOT NULL,
   `ObservacaoExercicio` varchar(800) NOT NULL,
   PRIMARY KEY (`IdExercicio`),
@@ -274,10 +274,10 @@ DROP TABLE IF EXISTS `ficha`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `ficha` (
-  `IdFicha` int(11) NOT NULL AUTO_INCREMENT,
-  `IdProfessorFicha` int(11) NOT NULL,
-  `IdAlunoFicha` int(11) NOT NULL,
-  `AlunoIdAluno` int(11) DEFAULT NULL,
+  `IdFicha` bigint(20) NOT NULL AUTO_INCREMENT,
+  `IdProfessorFicha` bigint(20) NOT NULL,
+  `IdAlunoFicha` bigint(20) NOT NULL,
+  `AlunoIdAluno` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`IdFicha`),
   KEY `IX_Ficha_AlunoIdAluno` (`AlunoIdAluno`),
   KEY `IX_Ficha_IdAlunoFicha` (`IdAlunoFicha`),
@@ -305,21 +305,21 @@ DROP TABLE IF EXISTS `professor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `professor` (
-  `IdProfessor` int(11) NOT NULL AUTO_INCREMENT,
-  `IdContaProfessor` int(11) NOT NULL,
-  `IdEnderecoProfessor` int(11) NOT NULL,
-  `IdUnidadeProfessor` int(11) NOT NULL,
-  `IdAgendaProfessor` int(11) NOT NULL,
+  `IdProfessor` bigint(20) NOT NULL AUTO_INCREMENT,
+  `IdContaProfessor` bigint(20) NOT NULL,
+  `IdEnderecoProfessor` bigint(20) NOT NULL,
+  `IdUnidadeProfessor` bigint(20) NOT NULL,
+  `IdAgendaProfessor` bigint(20) NOT NULL,
   `PermissaoProfessor` int(1) NOT NULL,
   `CrefProfessor` varchar(9) NOT NULL,
   `NomeProfessor` varchar(120) NOT NULL,
-  `CpfProfessor` varchar(11) NOT NULL,
+  `CpfProfessor` bigint(20) NOT NULL,
   `DataNascimentoProfessor` date NOT NULL,
   `DataAdmissaoProfessor` date NOT NULL,
-  `TelefoneProfessor` int(11) NOT NULL,
-  `CelularProfessor` int(11) NOT NULL,
+  `TelefoneProfessor` int(10) NOT NULL,
+  `CelularProfessor` bigint(20) NOT NULL,
   `SexoProfessor` int(1) NOT NULL,
-  `ImagemProfessor` varchar(64) DEFAULT NULL,
+  `ImagemProfessor` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`IdProfessor`),
   KEY `IX_Professor_IdAgendaProfessor` (`IdAgendaProfessor`),
   KEY `IX_Professor_IdContaProfessor` (`IdContaProfessor`),
@@ -348,11 +348,11 @@ DROP TABLE IF EXISTS `serie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `serie` (
-  `IdSerie` int(11) NOT NULL AUTO_INCREMENT,
-  `IdFichaSerie` int(11) NOT NULL,
+  `IdSerie` bigint(20) NOT NULL AUTO_INCREMENT,
+  `IdFichaSerie` bigint(20) NOT NULL,
   `NomeSerie` varchar(60) NOT NULL,
   `ObservacaoSerie` varchar(800) DEFAULT NULL,
-  `FichaIdFicha` int(11) DEFAULT NULL,
+  `FichaIdFicha` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`IdSerie`),
   KEY `IX_Serie_FichaIdFicha` (`FichaIdFicha`),
   KEY `IX_Serie_IdFichaSerie` (`IdFichaSerie`),
@@ -378,8 +378,8 @@ DROP TABLE IF EXISTS `unidade`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `unidade` (
-  `IdUnidade` int(11) NOT NULL AUTO_INCREMENT,
-  `IdEnderecoUnidade` int(11) NOT NULL,
+  `IdUnidade` bigint(20) NOT NULL AUTO_INCREMENT,
+  `IdEnderecoUnidade` bigint(20) NOT NULL,
   `NomeUnidade` varchar(120) NOT NULL,
   `ImagemUnidade` varchar(64) NOT NULL,
   PRIMARY KEY (`IdUnidade`),
@@ -406,4 +406,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-19 18:39:52
+-- Dump completed on 2019-06-21 13:31:23

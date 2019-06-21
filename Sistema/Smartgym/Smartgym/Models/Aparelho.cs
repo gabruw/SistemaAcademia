@@ -12,7 +12,7 @@ namespace Smartgym.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdAparelho { get; set; }
+        public long IdAparelho { get; set; }
 
         [MinLength(1)]
         [MaxLength(60)]

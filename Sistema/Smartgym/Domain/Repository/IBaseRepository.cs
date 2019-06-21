@@ -13,6 +13,6 @@ namespace Domain.Repository
 
         IEnumerable<TEntity> GetAll();
 
-        TEntity GetbyId(int id);
+        TEntity GetbyId(long id);
     }
 }

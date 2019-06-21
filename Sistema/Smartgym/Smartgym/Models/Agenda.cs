@@ -13,14 +13,14 @@ namespace Smartgym.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdAgenda { get; set; }
+        public long IdAgenda { get; set; }
 
-        public int IdProfessorAgenda { get; set; }
+        public long IdProfessorAgenda { get; set; }
 
         [ForeignKey("IdProfessorAgenda")]
         public virtual Professor ProfessorAgenda { get; set; }
 
-        public int IdAlunoAgenda { get; set; }
+        public long IdAlunoAgenda { get; set; }
 
         [ForeignKey("IdAlunoAgenda")]
         public virtual Aluno AlunoAgenda { get; set; }

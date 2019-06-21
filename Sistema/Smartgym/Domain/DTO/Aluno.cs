@@ -14,14 +14,14 @@ namespace Domain.DTO
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdAluno { get; set;  }
+        public long IdAluno { get; set;  }
 
-        public int IdContaAluno { get; set; }
+        public long IdContaAluno { get; set; }
 
         [ForeignKey("IdContaAluno")]
         public virtual Conta ContaAluno { get; set; }
 
-        public int IdEnderecoAluno { get; set;  }
+        public long IdEnderecoAluno { get; set;  }
 
         [ForeignKey("IdEnderecoAluno")]
         public virtual Endereco EnderecoAluno { get; set; }
@@ -36,13 +36,13 @@ namespace Domain.DTO
 
         public string NomeAluno { get; set; }
 
-        public int CpfAluno { get; set; }
+        public long CpfAluno { get; set; }
 
         public DateTime DataNascimentoAluno { get; set; }
 
         public int TelefoneAluno { get; set; }
 
-        public int CelularAluno { get; set; }
+        public long CelularAluno { get; set; }
 
         public int SexoAluno { get; set; }
 

@@ -37,7 +37,7 @@ namespace Repository.Repository
             return SmartgymContext.Set<TEntity>().ToList();
         }
 
-        public TEntity GetbyId(int Id)
+        public TEntity GetbyId(long Id)
         {
             return SmartgymContext.Set<TEntity>().Find(Id);
         }

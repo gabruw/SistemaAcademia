@@ -12,7 +12,7 @@ namespace Domain.DTO
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdAparelho { get; set; }
+        public long IdAparelho { get; set; }
 
         public string NomeAparelho { get; set; }
 

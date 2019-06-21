@@ -9,7 +9,7 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(SmartgymContext))]
-    [Migration("20190619213138_Main")]
+    [Migration("20190621162952_Main")]
     partial class Main
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,15 +21,15 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Agenda", b =>
                 {
-                    b.Property<int>("IdAgenda")
+                    b.Property<long>("IdAgenda")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DataAgenda")
                         .HasColumnType("date");
 
-                    b.Property<int>("IdAlunoAgenda");
+                    b.Property<long>("IdAlunoAgenda");
 
-                    b.Property<int>("IdProfessorAgenda");
+                    b.Property<long>("IdProfessorAgenda");
 
                     b.HasKey("IdAgenda");
 
@@ -42,29 +42,27 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Aluno", b =>
                 {
-                    b.Property<int>("IdAluno")
+                    b.Property<long>("IdAluno")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CelularAluno")
-                        .HasColumnType("int(11)")
+                    b.Property<long>("CelularAluno")
+                        .HasColumnType("bigint")
                         .HasMaxLength(11);
 
-                    b.Property<string>("CpfAluno")
-                        .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 64)))
-                        .HasColumnType("varchar(11)")
+                    b.Property<long>("CpfAluno")
+                        .HasColumnType("bigint")
                         .HasMaxLength(11);
 
                     b.Property<DateTime>("DataNascimentoAluno")
                         .HasColumnType("date");
 
-                    b.Property<int>("IdContaAluno");
+                    b.Property<long>("IdContaAluno");
 
-                    b.Property<int>("IdEnderecoAluno");
+                    b.Property<long>("IdEnderecoAluno");
 
                     b.Property<string>("ImagemAluno")
-                        .HasColumnType("varchar(64)")
-                        .HasMaxLength(64);
+                        .HasColumnType("varchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("MatriculaAluno")
                         .IsRequired()
@@ -85,8 +83,8 @@ namespace Repository.Migrations
                         .HasMaxLength(1);
 
                     b.Property<int>("TelefoneAluno")
-                        .HasColumnType("int(11)")
-                        .HasMaxLength(11);
+                        .HasColumnType("int(10)")
+                        .HasMaxLength(10);
 
                     b.HasKey("IdAluno");
 
@@ -99,7 +97,7 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Aparelho", b =>
                 {
-                    b.Property<int>("IdAparelho")
+                    b.Property<long>("IdAparelho")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("NomeAparelho")
@@ -114,7 +112,7 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Avaliacao", b =>
                 {
-                    b.Property<int>("IdAvaliacao")
+                    b.Property<long>("IdAvaliacao")
                         .ValueGeneratedOnAdd();
 
                     b.Property<decimal>("AbdomemAvaliacao")
@@ -127,7 +125,7 @@ namespace Repository.Migrations
                         .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<int?>("AlunoIdAluno");
+                    b.Property<long?>("AlunoIdAluno");
 
                     b.Property<decimal>("BracoDireitoAvaliacao")
                         .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
@@ -172,9 +170,9 @@ namespace Repository.Migrations
                         .HasColumnType("decimal")
                         .HasMaxLength(4);
 
-                    b.Property<int>("IdAlunoAvaliacao");
+                    b.Property<long>("IdAlunoAvaliacao");
 
-                    b.Property<int>("IdProfessorAvaliacao");
+                    b.Property<long>("IdProfessorAvaliacao");
 
                     b.Property<decimal>("ImcAvaliacao")
                         .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
@@ -239,7 +237,7 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Conta", b =>
                 {
-                    b.Property<int>("IdConta")
+                    b.Property<long>("IdConta")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("EmailConta")
@@ -247,9 +245,9 @@ namespace Repository.Migrations
                         .HasColumnType("varchar(60)")
                         .HasMaxLength(60);
 
-                    b.Property<int>("IdAlunoConta");
+                    b.Property<long>("IdAlunoConta");
 
-                    b.Property<int>("IdProfessorConta");
+                    b.Property<long>("IdProfessorConta");
 
                     b.Property<string>("SenhaConta")
                         .IsRequired()
@@ -267,7 +265,7 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Endereco", b =>
                 {
-                    b.Property<int>("IdEndereco")
+                    b.Property<long>("IdEndereco")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("BairroEndereco")
@@ -299,12 +297,12 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Exercicio", b =>
                 {
-                    b.Property<int>("IdExercicio")
+                    b.Property<long>("IdExercicio")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("IdAparelhoExercicio");
+                    b.Property<long>("IdAparelhoExercicio");
 
-                    b.Property<int>("IdSerieExercicio");
+                    b.Property<long>("IdSerieExercicio");
 
                     b.Property<string>("NomeExercicio")
                         .IsRequired()
@@ -325,14 +323,14 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Ficha", b =>
                 {
-                    b.Property<int>("IdFicha")
+                    b.Property<long>("IdFicha")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("AlunoIdAluno");
+                    b.Property<long?>("AlunoIdAluno");
 
-                    b.Property<int>("IdAlunoFicha");
+                    b.Property<long>("IdAlunoFicha");
 
-                    b.Property<int>("IdProfessorFicha");
+                    b.Property<long>("IdProfessorFicha");
 
                     b.HasKey("IdFicha");
 
@@ -347,17 +345,15 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Professor", b =>
                 {
-                    b.Property<int>("IdProfessor")
+                    b.Property<long>("IdProfessor")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CelularProfessor")
-                        .HasColumnType("int(11)")
+                    b.Property<long>("CelularProfessor")
+                        .HasColumnType("bigint")
                         .HasMaxLength(11);
 
-                    b.Property<string>("CpfProfessor")
-                        .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 64)))
-                        .HasColumnType("varchar(11)")
+                    b.Property<long>("CpfProfessor")
+                        .HasColumnType("bigint")
                         .HasMaxLength(11);
 
                     b.Property<string>("CrefProfessor")
@@ -371,17 +367,17 @@ namespace Repository.Migrations
                     b.Property<DateTime>("DataNascimentoProfessor")
                         .HasColumnType("date");
 
-                    b.Property<int>("IdAgendaProfessor");
+                    b.Property<long>("IdAgendaProfessor");
 
-                    b.Property<int>("IdContaProfessor");
+                    b.Property<long>("IdContaProfessor");
 
-                    b.Property<int>("IdEnderecoProfessor");
+                    b.Property<long>("IdEnderecoProfessor");
 
-                    b.Property<int>("IdUnidadeProfessor");
+                    b.Property<long>("IdUnidadeProfessor");
 
                     b.Property<string>("ImagemProfessor")
-                        .HasColumnType("varchar(64)")
-                        .HasMaxLength(64);
+                        .HasColumnType("varchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("NomeProfessor")
                         .IsRequired()
@@ -397,8 +393,8 @@ namespace Repository.Migrations
                         .HasMaxLength(1);
 
                     b.Property<int>("TelefoneProfessor")
-                        .HasColumnType("int(11)")
-                        .HasMaxLength(11);
+                        .HasColumnType("int(10)")
+                        .HasMaxLength(10);
 
                     b.HasKey("IdProfessor");
 
@@ -413,12 +409,12 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Serie", b =>
                 {
-                    b.Property<int>("IdSerie")
+                    b.Property<long>("IdSerie")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("FichaIdFicha");
+                    b.Property<long?>("FichaIdFicha");
 
-                    b.Property<int>("IdFichaSerie");
+                    b.Property<long>("IdFichaSerie");
 
                     b.Property<string>("NomeSerie")
                         .IsRequired()
@@ -440,10 +436,10 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Unidade", b =>
                 {
-                    b.Property<int>("IdUnidade")
+                    b.Property<long>("IdUnidade")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("IdEnderecoUnidade");
+                    b.Property<long>("IdEnderecoUnidade");
 
                     b.Property<string>("ImagemUnidade")
                         .IsRequired()

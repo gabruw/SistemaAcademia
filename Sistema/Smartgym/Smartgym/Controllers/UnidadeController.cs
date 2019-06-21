@@ -24,7 +24,7 @@ namespace Smartgym.Controllers
         }
 
         // GET: Unidade/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(long id)
         {
             return View();
         }
@@ -53,7 +53,7 @@ namespace Smartgym.Controllers
         }
 
         // GET: Unidade/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(long id)
         {
             return View();
         }
@@ -61,7 +61,7 @@ namespace Smartgym.Controllers
         // POST: Unidade/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(long id, IFormCollection collection)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace Smartgym.Controllers
         }
 
         // GET: Unidade/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(long id)
         {
             return View();
         }
@@ -84,7 +84,7 @@ namespace Smartgym.Controllers
         // POST: Unidade/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(long id, IFormCollection collection)
         {
             try
             {

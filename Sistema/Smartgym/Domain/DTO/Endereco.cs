@@ -13,7 +13,7 @@ namespace Domain.DTO
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdEndereco { get; set; }
+        public long IdEndereco { get; set; }
 
         public int CepEndereco { get; set; }
 

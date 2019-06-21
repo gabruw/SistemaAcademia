@@ -16,9 +16,9 @@ namespace Smartgym.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdUnidade { get; set; }
+        public long IdUnidade { get; set; }
 
-        public int IdEnderecoUnidade { get; set; }
+        public long IdEnderecoUnidade { get; set; }
 
         [ForeignKey("IdEnderecoUnidade")]
         public virtual Endereco EnderecoUnidade { get; set; }

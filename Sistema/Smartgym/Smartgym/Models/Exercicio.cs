@@ -16,14 +16,14 @@ namespace Smartgym.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdExercicio { get; set; }
+        public long IdExercicio { get; set; }
 
-        public int IdAparelhoExercicio { get; set; }
+        public long IdAparelhoExercicio { get; set; }
 
         [ForeignKey("IdAparelhoExercicio")]
         public virtual Exercicio AparelhoExercicio { get; set; }
 
-        public int IdSerieExercicio { get; set; }
+        public long IdSerieExercicio { get; set; }
 
         [ForeignKey("IdSerieExercicio")]
         public virtual Serie SerieExercicio { get; set; }

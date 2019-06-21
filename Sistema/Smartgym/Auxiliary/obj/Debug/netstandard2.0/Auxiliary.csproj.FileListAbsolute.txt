@@ -12,3 +12,7 @@ C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\ne
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\System.ComponentModel.Annotations.xml
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.csprojAssemblyReference.cache
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.csproj.CopyComplete
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.xml

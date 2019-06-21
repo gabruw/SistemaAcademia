@@ -1,7 +1,7 @@
 ﻿using Domain.DTO;
 using System.Collections.Generic;
 
-namespace Auxiliary.Partial
+namespace Smartgym.Models
 {
     public class ViewAgenda
     {

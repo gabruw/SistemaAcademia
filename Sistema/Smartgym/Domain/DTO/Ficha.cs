@@ -13,14 +13,14 @@ namespace Domain.DTO
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdFicha { get; set; }
+        public long IdFicha { get; set; }
 
-        public int IdProfessorFicha { get; set; }
+        public long IdProfessorFicha { get; set; }
 
         [ForeignKey("IdProfessorFicha")]
         public virtual Professor ProfessorFicha { get; set; }
 
-        public int IdAlunoFicha { get; set; }
+        public long IdAlunoFicha { get; set; }
 
         [ForeignKey("IdAlunoFicha")]
         public virtual Aluno AlunoFicha { get; set; }

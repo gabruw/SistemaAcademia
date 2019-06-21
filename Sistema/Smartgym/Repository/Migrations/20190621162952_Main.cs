@@ -12,7 +12,7 @@ namespace Repository.Migrations
                 name: "Aparelho",
                 columns: table => new
                 {
-                    IdAparelho = table.Column<int>(nullable: false)
+                    IdAparelho = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     NomeAparelho = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
                 },
@@ -25,7 +25,7 @@ namespace Repository.Migrations
                 name: "Endereco",
                 columns: table => new
                 {
-                    IdEndereco = table.Column<int>(nullable: false)
+                    IdEndereco = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CepEndereco = table.Column<int>(type: "int(8)", maxLength: 8, nullable: false),
                     RuaEndereco = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false),
@@ -42,9 +42,9 @@ namespace Repository.Migrations
                 name: "Unidade",
                 columns: table => new
                 {
-                    IdUnidade = table.Column<int>(nullable: false)
+                    IdUnidade = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdEnderecoUnidade = table.Column<int>(nullable: false),
+                    IdEnderecoUnidade = table.Column<long>(nullable: false),
                     NomeUnidade = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
                     ImagemUnidade = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
                 },
@@ -63,22 +63,22 @@ namespace Repository.Migrations
                 name: "Professor",
                 columns: table => new
                 {
-                    IdProfessor = table.Column<int>(nullable: false)
+                    IdProfessor = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdContaProfessor = table.Column<int>(nullable: false),
-                    IdEnderecoProfessor = table.Column<int>(nullable: false),
-                    IdUnidadeProfessor = table.Column<int>(nullable: false),
-                    IdAgendaProfessor = table.Column<int>(nullable: false),
+                    IdContaProfessor = table.Column<long>(nullable: false),
+                    IdEnderecoProfessor = table.Column<long>(nullable: false),
+                    IdUnidadeProfessor = table.Column<long>(nullable: false),
+                    IdAgendaProfessor = table.Column<long>(nullable: false),
                     PermissaoProfessor = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
                     CrefProfessor = table.Column<string>(type: "varchar(9)", maxLength: 9, nullable: false),
                     NomeProfessor = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
-                    CpfProfessor = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
+                    CpfProfessor = table.Column<long>(type: "bigint", maxLength: 11, nullable: false),
                     DataNascimentoProfessor = table.Column<DateTime>(type: "date", nullable: false),
                     DataAdmissaoProfessor = table.Column<DateTime>(type: "date", nullable: false),
-                    TelefoneProfessor = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
-                    CelularProfessor = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
+                    TelefoneProfessor = table.Column<int>(type: "int(10)", maxLength: 10, nullable: false),
+                    CelularProfessor = table.Column<long>(type: "bigint", maxLength: 11, nullable: false),
                     SexoProfessor = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
-                    ImagemProfessor = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: true)
+                    ImagemProfessor = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,10 +101,10 @@ namespace Repository.Migrations
                 name: "Agenda",
                 columns: table => new
                 {
-                    IdAgenda = table.Column<int>(nullable: false)
+                    IdAgenda = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdProfessorAgenda = table.Column<int>(nullable: false),
-                    IdAlunoAgenda = table.Column<int>(nullable: false),
+                    IdProfessorAgenda = table.Column<long>(nullable: false),
+                    IdAlunoAgenda = table.Column<long>(nullable: false),
                     DataAgenda = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
@@ -122,10 +122,10 @@ namespace Repository.Migrations
                 name: "Avaliacao",
                 columns: table => new
                 {
-                    IdAvaliacao = table.Column<int>(nullable: false)
+                    IdAvaliacao = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdAlunoAvaliacao = table.Column<int>(nullable: false),
-                    IdProfessorAvaliacao = table.Column<int>(nullable: false),
+                    IdAlunoAvaliacao = table.Column<long>(nullable: false),
+                    IdProfessorAvaliacao = table.Column<long>(nullable: false),
                     DataAvaliacao = table.Column<DateTime>(type: "date", nullable: false),
                     AlturaAvaliacao = table.Column<decimal>(type: "decimal", maxLength: 4, nullable: false),
                     PesoAvaliacao = table.Column<decimal>(type: "decimal", maxLength: 4, nullable: false),
@@ -147,7 +147,7 @@ namespace Repository.Migrations
                     DobraCutaneaPanturrilhaAvaliacao = table.Column<decimal>(type: "decimal", maxLength: 4, nullable: false),
                     PercentualGorduraAvaliacao = table.Column<decimal>(type: "decimal", maxLength: 4, nullable: false),
                     ObservacaoAvaliacao = table.Column<string>(type: "varchar(800)", maxLength: 800, nullable: false),
-                    AlunoIdAluno = table.Column<int>(nullable: true)
+                    AlunoIdAluno = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -164,10 +164,10 @@ namespace Repository.Migrations
                 name: "Conta",
                 columns: table => new
                 {
-                    IdConta = table.Column<int>(nullable: false)
+                    IdConta = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdAlunoConta = table.Column<int>(nullable: false),
-                    IdProfessorConta = table.Column<int>(nullable: false),
+                    IdAlunoConta = table.Column<long>(nullable: false),
+                    IdProfessorConta = table.Column<long>(nullable: false),
                     EmailConta = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
                     SenhaConta = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
                 },
@@ -186,19 +186,19 @@ namespace Repository.Migrations
                 name: "Aluno",
                 columns: table => new
                 {
-                    IdAluno = table.Column<int>(nullable: false)
+                    IdAluno = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdContaAluno = table.Column<int>(nullable: false),
-                    IdEnderecoAluno = table.Column<int>(nullable: false),
+                    IdContaAluno = table.Column<long>(nullable: false),
+                    IdEnderecoAluno = table.Column<long>(nullable: false),
                     PermissaoAluno = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
                     MatriculaAluno = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false),
                     NomeAluno = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
-                    CpfAluno = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
+                    CpfAluno = table.Column<long>(type: "bigint", maxLength: 11, nullable: false),
                     DataNascimentoAluno = table.Column<DateTime>(type: "date", nullable: false),
-                    TelefoneAluno = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
-                    CelularAluno = table.Column<int>(type: "int(11)", maxLength: 11, nullable: false),
+                    TelefoneAluno = table.Column<int>(type: "int(10)", maxLength: 10, nullable: false),
+                    CelularAluno = table.Column<long>(type: "bigint", maxLength: 11, nullable: false),
                     SexoAluno = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
-                    ImagemAluno = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: true)
+                    ImagemAluno = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -221,11 +221,11 @@ namespace Repository.Migrations
                 name: "Ficha",
                 columns: table => new
                 {
-                    IdFicha = table.Column<int>(nullable: false)
+                    IdFicha = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdProfessorFicha = table.Column<int>(nullable: false),
-                    IdAlunoFicha = table.Column<int>(nullable: false),
-                    AlunoIdAluno = table.Column<int>(nullable: true)
+                    IdProfessorFicha = table.Column<long>(nullable: false),
+                    IdAlunoFicha = table.Column<long>(nullable: false),
+                    AlunoIdAluno = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -254,12 +254,12 @@ namespace Repository.Migrations
                 name: "Serie",
                 columns: table => new
                 {
-                    IdSerie = table.Column<int>(nullable: false)
+                    IdSerie = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdFichaSerie = table.Column<int>(nullable: false),
+                    IdFichaSerie = table.Column<long>(nullable: false),
                     NomeSerie = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
                     ObservacaoSerie = table.Column<string>(type: "varchar(800)", maxLength: 800, nullable: true),
-                    FichaIdFicha = table.Column<int>(nullable: true)
+                    FichaIdFicha = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -282,10 +282,10 @@ namespace Repository.Migrations
                 name: "Exercicio",
                 columns: table => new
                 {
-                    IdExercicio = table.Column<int>(nullable: false)
+                    IdExercicio = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdAparelhoExercicio = table.Column<int>(nullable: false),
-                    IdSerieExercicio = table.Column<int>(nullable: false),
+                    IdAparelhoExercicio = table.Column<long>(nullable: false),
+                    IdSerieExercicio = table.Column<long>(nullable: false),
                     NomeExercicio = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
                     ObservacaoExercicio = table.Column<string>(type: "varchar(800)", maxLength: 800, nullable: false)
                 },

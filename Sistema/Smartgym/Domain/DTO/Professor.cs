@@ -13,24 +13,24 @@ namespace Domain.DTO
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdProfessor { get; set; }
+        public long IdProfessor { get; set; }
 
-        public int IdContaProfessor { get; set; }
+        public long IdContaProfessor { get; set; }
 
         [ForeignKey("IdContaProfessor")]
         public virtual Conta ContaProfessor { get; set; }
 
-        public int IdEnderecoProfessor { get; set; }
+        public long IdEnderecoProfessor { get; set; }
 
         [ForeignKey("IdEnderecoProfessor")]
         public virtual Endereco EnderecoProfessor { get; set; }
 
-        public int IdUnidadeProfessor { get; set; }
+        public long IdUnidadeProfessor { get; set; }
 
         [ForeignKey("IdUnidadeProfessor")]
         public virtual Unidade UnidadeProfessor { get; set; }
 
-        public int IdAgendaProfessor { get; set; }
+        public long IdAgendaProfessor { get; set; }
 
         [ForeignKey("IdAgendaProfessor")]
         public virtual Agenda AgendaProfessor { get; set; }
@@ -41,7 +41,7 @@ namespace Domain.DTO
 
         public string NomeProfessor { get; set; }
 
-        public int CpfProfessor { get; set; }
+        public long CpfProfessor { get; set; }
 
         public DateTime DataNascimentoProfessor { get; set; }
 
@@ -49,7 +49,7 @@ namespace Domain.DTO
 
         public int TelefoneProfessor { get; set; }
 
-        public int CelularProfessor { get; set; }
+        public long CelularProfessor { get; set; }
 
         public int SexoProfessor { get; set; }
 

@@ -13,7 +13,7 @@
     </section>
 
     <section id="DadosPessoais" class="col-sm-8">
-        <form action="" method="post">
+        <form asp-action="Create" asp-controller="Aluno" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
@@ -24,68 +24,73 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <img id="ImagemPreview" class="img-fluid mx-auto d-block" src="../Assets/imagens/CadastroAluno/Default_Image.png" alt="Imagem Perfil." />
+                                    <img id="ImagemPreview" class="img-fluid mx-auto d-block" src="~/img/Cadastro/Default_Image.png" alt="Imagem Perfil." />
                                     <br>
-                                    <input type="file" id="ImagemPerfil" class="form-control-file" name="ImagemPerfil" accept="image/*">
+                                    <input type="file" id="ImagemPerfil" class="form-control-file" name="imagemPerfil" accept="image/*" required>
                                 </div>
 
                                 <div class="col-sm-8">
                                     <span class="ls-label-text">Nome Completo</span>
-                                    <input type="text" id="NomeCompleto" class="form-control" name="NomeCompleto" required>
+                                    <input type="text" id="NomeCompleto" class="form-control" name="nomeCompleto" required>
 
                                     <span class="ls-label-text =">Email</span>
-                                    <input type="text" id="Email" class="form-control" name="Email" required>
+                                    <input type="text" id="Email" class="form-control" name="email" required>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <span class="ls-label-text =">Senha</span>
+                                            <input type="password" id="Senha" class="form-control" name="senha" required>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="ls-label-text">CPF</span>
+                                            <input type="text" id="Cpf" class="form-control" name="cpf" required>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="ls-label-text">CEP</span>
+                                            <input type="text" id="Cep" class="form-control" name="cep" required>
+                                        </div>
+                                    </div>
 
                                     <div class="row">
                                         <div class="col-sm-5">
                                             <span class="ls-label-text">Rua</span>
-                                            <input type="text" id="Rua" class="form-control" name="Rua" required>
+                                            <input type="text" id="Rua" class="form-control" name="rua" required>
                                         </div>
 
                                         <div class="col-sm-3">
                                             <span class="ls-label-text">Bairro</span>
-                                            <input type="text" id="Bairro" class="form-control" name="Bairro" required>
+                                            <input type="text" id="Bairro" class="form-control" name="bairro" required>
                                         </div>
 
                                         <div class="col-sm-2">
                                             <span class="ls-label-text">Número</span>
-                                            <input type="text" id="Numero" class="form-control" name="Numero" required>
+                                            <input type="text" id="Numero" class="form-control" name="numero" required>
                                         </div>
 
                                         <div class="col-sm-2">
                                             <span class="ls-label-text">Complemento</span>
-                                            <input type="text" id="Complemento" class="form-control" name="Complemento" required>
+                                            <input type="text" id="Complemento" class="form-control" name="complemento">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <span class="ls-label-text">Telefone</span>
-                                            <input type="text" id="Telefone" class="form-control" name="Telefone" required>
+                                            <input type="text" id="Telefone" class="form-control" name="telefone">
                                         </div>
 
                                         <div class="col-sm-6">
                                             <span class="ls-label-text">Celular</span>
-                                            <input type="text" id="Celular" class="form-control" name="Celular" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <span class="ls-label-text">RG</span>
-                                            <input type="text" id="Rg" class="form-control" name="Rg" required>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <span class="ls-label-text">CPF</span>
-                                            <input type="text" id="Cpf" class="form-control" name="Cpf" required>
+                                            <input type="text" id="Celular" class="form-control" name="celular">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <span class="ls-label-text">Data de Nascimento</span>
-                                            <input type="text" id="DataNascimento" class="form-control" name="DataNascimento" required>
+                                            <input type="date" id="DataNascimento" class="form-control" name="dataNascimento" required>
                                         </div>
 
                                         <div class="col-sm-6">
@@ -93,14 +98,14 @@
                                             <br>
                                             <div class="custom-control custom-radio custom-control-inline">
                                                 <label class="radio-inline control-label" for="Masculino">
-                                                    <input class="form-check-input" type="radio" name="Sexo" id="Masculino" value="Masculino">
+                                                    <input type="radio" class="form-check-input" id="Masculino" name="sexo" value="1">
                                                     Masculino
                                                 </label>
                                             </div>
 
                                             <div class="custom-control custom-radio custom-control-inline">
                                                 <label class="radio-inline control-label" for="Feminino">
-                                                    <input class="form-check-input" type="radio" name="Sexo" id="Feminino" value="Feminino">
+                                                    <input type="radio" class="form-check-input" id="Feminino" name="sexo" value="2">
                                                     Feminino
                                                 </label>
                                             </div>
@@ -109,11 +114,11 @@
                                 </div>
                             </div>
 
+                            <br>
+
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <br>
                                     <button type="submit" id="ConfirmarCadastroAluno" class="btn btn-primary">Confirmar</button>
-                                    <button type="submit" id="EditarCadastroAluno" class="btn btn-ligth">Editar</button>
 
                                     <button type="reset" id="ResetCadastroAluno" class="btn btn-secondary">Resetar</button>
                                 </div>

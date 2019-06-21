@@ -12,7 +12,7 @@ namespace Smartgym.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdEndereco { get; set; }
+        public long IdEndereco { get; set; }
 
         [MinLength(8)]
         [MaxLength(8)]
