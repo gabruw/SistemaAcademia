@@ -76,8 +76,8 @@ namespace Smartgym.Controllers
                 alunoDTO.NomeAluno = collection["nomeCompleto"];
                 alunoDTO.CpfAluno = newGerador.EraseEspecialAndReturnLong(collection["cpf"]);
                 alunoDTO.DataNascimentoAluno = DateTime.Parse(collection["dataNascimento"], new CultureInfo("pt-BR"));
-                alunoDTO.TelefoneAluno = newGerador.EraseEspecialAndReturnInt(collection["telefone"]);
-                alunoDTO.CelularAluno = newGerador.EraseEspecialAndReturnInt(collection["celular"]);
+                alunoDTO.TelefoneAluno = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
+                alunoDTO.CelularAluno = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 alunoDTO.SexoAluno = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
                 alunoDTO.ImagemAluno = filePath.ToString();
 

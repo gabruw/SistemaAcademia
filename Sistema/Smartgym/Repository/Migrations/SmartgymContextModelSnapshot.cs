@@ -80,8 +80,8 @@ namespace Repository.Migrations
                         .HasColumnType("int(1)")
                         .HasMaxLength(1);
 
-                    b.Property<int>("TelefoneAluno")
-                        .HasColumnType("int(10)")
+                    b.Property<long>("TelefoneAluno")
+                        .HasColumnType("bigint")
                         .HasMaxLength(10);
 
                     b.HasKey("IdAluno");
@@ -390,8 +390,8 @@ namespace Repository.Migrations
                         .HasColumnType("int(1)")
                         .HasMaxLength(1);
 
-                    b.Property<int>("TelefoneProfessor")
-                        .HasColumnType("int(10)")
+                    b.Property<long>("TelefoneProfessor")
+                        .HasColumnType("bigint")
                         .HasMaxLength(10);
 
                     b.HasKey("IdProfessor");

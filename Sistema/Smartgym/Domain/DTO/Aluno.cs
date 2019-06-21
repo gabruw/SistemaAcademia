@@ -40,7 +40,7 @@ namespace Domain.DTO
 
         public DateTime DataNascimentoAluno { get; set; }
 
-        public int TelefoneAluno { get; set; }
+        public long TelefoneAluno { get; set; }
 
         public long CelularAluno { get; set; }
 
@@ -75,11 +75,6 @@ namespace Domain.DTO
             if (DataNascimentoAluno.ToString().Length < 1)
             {
                 AddError("O campo Data de Nascimento do Aluno não foi informado.");
-            }
-
-            if (TelefoneAluno.ToString().Length < 8 && CelularAluno.ToString().Length < 9)
-            {
-                AddError("O campo Telefone ou Celular do Professor não foi informado.");
             }
 
             if (SexoAluno.ToString().Length < 1)

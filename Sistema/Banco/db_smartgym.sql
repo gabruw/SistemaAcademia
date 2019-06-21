@@ -35,7 +35,7 @@ CREATE TABLE `__efmigrationshistory` (
 
 LOCK TABLES `__efmigrationshistory` WRITE;
 /*!40000 ALTER TABLE `__efmigrationshistory` DISABLE KEYS */;
-INSERT INTO `__efmigrationshistory` VALUES ('20190621162952_Main','2.2.4-servicing-10062');
+INSERT INTO `__efmigrationshistory` VALUES ('20190621164456_Main','2.2.4-servicing-10062');
 /*!40000 ALTER TABLE `__efmigrationshistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +84,7 @@ CREATE TABLE `aluno` (
   `NomeAluno` varchar(120) NOT NULL,
   `CpfAluno` bigint(20) NOT NULL,
   `DataNascimentoAluno` date NOT NULL,
-  `TelefoneAluno` int(10) NOT NULL,
+  `TelefoneAluno` bigint(20) NOT NULL,
   `CelularAluno` bigint(20) NOT NULL,
   `SexoAluno` int(1) NOT NULL,
   `ImagemAluno` varchar(200) DEFAULT NULL,
@@ -198,7 +198,7 @@ CREATE TABLE `conta` (
   KEY `IX_Conta_IdProfessorConta` (`IdProfessorConta`),
   CONSTRAINT `FK_Conta_Aluno_IdAlunoConta` FOREIGN KEY (`IdAlunoConta`) REFERENCES `aluno` (`IdAluno`) ON DELETE CASCADE,
   CONSTRAINT `FK_Conta_Professor_IdProfessorConta` FOREIGN KEY (`IdProfessorConta`) REFERENCES `professor` (`IdProfessor`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -316,7 +316,7 @@ CREATE TABLE `professor` (
   `CpfProfessor` bigint(20) NOT NULL,
   `DataNascimentoProfessor` date NOT NULL,
   `DataAdmissaoProfessor` date NOT NULL,
-  `TelefoneProfessor` int(10) NOT NULL,
+  `TelefoneProfessor` bigint(20) NOT NULL,
   `CelularProfessor` bigint(20) NOT NULL,
   `SexoProfessor` int(1) NOT NULL,
   `ImagemProfessor` varchar(200) DEFAULT NULL,
@@ -406,4 +406,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-21 13:31:23
+-- Dump completed on 2019-06-21 13:48:08

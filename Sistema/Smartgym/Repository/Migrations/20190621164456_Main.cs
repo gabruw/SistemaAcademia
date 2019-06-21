@@ -75,7 +75,7 @@ namespace Repository.Migrations
                     CpfProfessor = table.Column<long>(type: "bigint", maxLength: 11, nullable: false),
                     DataNascimentoProfessor = table.Column<DateTime>(type: "date", nullable: false),
                     DataAdmissaoProfessor = table.Column<DateTime>(type: "date", nullable: false),
-                    TelefoneProfessor = table.Column<int>(type: "int(10)", maxLength: 10, nullable: false),
+                    TelefoneProfessor = table.Column<long>(type: "bigint", maxLength: 10, nullable: false),
                     CelularProfessor = table.Column<long>(type: "bigint", maxLength: 11, nullable: false),
                     SexoProfessor = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
                     ImagemProfessor = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
@@ -195,7 +195,7 @@ namespace Repository.Migrations
                     NomeAluno = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
                     CpfAluno = table.Column<long>(type: "bigint", maxLength: 11, nullable: false),
                     DataNascimentoAluno = table.Column<DateTime>(type: "date", nullable: false),
-                    TelefoneAluno = table.Column<int>(type: "int(10)", maxLength: 10, nullable: false),
+                    TelefoneAluno = table.Column<long>(type: "bigint", maxLength: 10, nullable: false),
                     CelularAluno = table.Column<long>(type: "bigint", maxLength: 11, nullable: false),
                     SexoAluno = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
                     ImagemAluno = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)

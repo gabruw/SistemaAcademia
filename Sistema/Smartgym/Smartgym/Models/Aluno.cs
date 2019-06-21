@@ -52,9 +52,9 @@ namespace Smartgym.Models
 
         public DateTime DataNascimentoAluno { get; set; }
 
-        public int TelefoneAluno { get; set; }
+        public long TelefoneAluno { get; set; }
 
-        public int CelularAluno { get; set; }
+        public long CelularAluno { get; set; }
 
         [MinLength(1)]
         [MaxLength(1)]

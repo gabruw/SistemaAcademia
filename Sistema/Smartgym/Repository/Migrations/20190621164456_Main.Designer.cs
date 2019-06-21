@@ -9,7 +9,7 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(SmartgymContext))]
-    [Migration("20190621162952_Main")]
+    [Migration("20190621164456_Main")]
     partial class Main
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,8 +82,8 @@ namespace Repository.Migrations
                         .HasColumnType("int(1)")
                         .HasMaxLength(1);
 
-                    b.Property<int>("TelefoneAluno")
-                        .HasColumnType("int(10)")
+                    b.Property<long>("TelefoneAluno")
+                        .HasColumnType("bigint")
                         .HasMaxLength(10);
 
                     b.HasKey("IdAluno");
@@ -392,8 +392,8 @@ namespace Repository.Migrations
                         .HasColumnType("int(1)")
                         .HasMaxLength(1);
 
-                    b.Property<int>("TelefoneProfessor")
-                        .HasColumnType("int(10)")
+                    b.Property<long>("TelefoneProfessor")
+                        .HasColumnType("bigint")
                         .HasMaxLength(10);
 
                     b.HasKey("IdProfessor");
