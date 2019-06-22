@@ -376,7 +376,7 @@ namespace Repository.Migrations
                 column: "IdProfessorAvaliacao");
 
             migrationBuilder.CreateIndex(
-                name: "AlternateKey_EmailConta",
+                name: "UniqueKey_EmailConta",
                 table: "Conta",
                 column: "EmailConta",
                 unique: true);
@@ -402,13 +402,13 @@ namespace Repository.Migrations
                 column: "IdProfessorFicha");
 
             migrationBuilder.CreateIndex(
-                name: "AlternateKey_CpfProfessor",
+                name: "UniqueKey_CpfProfessor",
                 table: "Professor",
                 column: "CpfProfessor",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "AlternateKey_CrefProfessor",
+                name: "UniqueKey_CrefProfessor",
                 table: "Professor",
                 column: "CrefProfessor",
                 unique: true);

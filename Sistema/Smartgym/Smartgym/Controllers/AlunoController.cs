@@ -14,14 +14,18 @@ namespace Smartgym.Controllers
     public class AlunoController : Controller
     {
         private readonly IAlunoRepository _alunoRepository;
+        private readonly IContaRepository _contaRepository;
+        private readonly IEnderecoRepository _enderecoRepository;
         private readonly IHostingEnvironment _hosting;
 
         private Geradores newGerador = new Geradores();
         private DataTable newDataTable = new DataTable();
 
-        public AlunoController(IAlunoRepository alunoRepository, IHostingEnvironment hosting)
+        public AlunoController(IAlunoRepository alunoRepository, IContaRepository contaRepository, IEnderecoRepository enderecoRepository, IHostingEnvironment hosting)
         {
             _alunoRepository = alunoRepository;
+            _contaRepository = contaRepository;
+            _enderecoRepository = enderecoRepository;
             _hosting = hosting;
         }
 
@@ -119,7 +123,7 @@ namespace Smartgym.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return View("~/Views/_GenericalExceptionView.cshtml", ex);
             }
@@ -178,6 +182,7 @@ namespace Smartgym.Controllers
 
                 // Aluno
                 Domain.DTO.Aluno alunoDTO = new Domain.DTO.Aluno();
+                alunoDTO.IdAluno = alunoDTOOld.IdAluno;
                 alunoDTO.ContaAluno = contaDTO;
                 alunoDTO.EnderecoAluno = enderecoDTO;
                 alunoDTO.MatriculaAluno = alunoDTOOld.MatriculaAluno;
@@ -204,10 +209,20 @@ namespace Smartgym.Controllers
         // GET: Aluno/Delete/5
         public ActionResult Delete(long id)
         {
-            Domain.DTO.Aluno alunoDTO = new Domain.DTO.Aluno();
-            alunoDTO.IdAluno = id;
+            var alunoDTO = _alunoRepository.GetbyId(id);
+            var contaDTO = alunoDTO.ContaAluno;
+            var enderecoDTO = alunoDTO.EnderecoAluno;
 
+            var imgPath = _hosting + alunoDTO.ImagemAluno;
+
+            if (Directory.Exists(imgPath))
+            {
+                System.IO.File.Delete(imgPath);
+            }
+            
             _alunoRepository.Remove(alunoDTO);
+            _contaRepository.Remove(contaDTO);
+            _enderecoRepository.Remove(enderecoDTO);
 
             return View("~/Views/Main/AlunoMain.cshtml");
         }

@@ -64,7 +64,7 @@ namespace Domain.DTO
                 AddError("O campo Permissão do Professor não foi informado.");
             }
 
-            if (CrefProfessor.Length < 1)
+            if (CrefProfessor.Length < 11)
             {
                 AddError("O campo CREF do Professor não foi informado.");
             }

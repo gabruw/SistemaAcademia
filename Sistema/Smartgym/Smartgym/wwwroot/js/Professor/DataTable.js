@@ -1,23 +1,23 @@
 ﻿$(document).ready(function () {
-    $("#AlunoTable").dataTable({
+    $("#ProfessorTable").dataTable({
         "processing": true,
         "serverSide": true,
         "ajax": {
             "method": "POST",
             "dataType": "json",
-            "url": "/Aluno/GetAllAlunos",
+            "url": "/Professor/GetAllProfessores",
         },
         "columns": [
-            { "data": "idAluno" },
-            { "data": "matriculaAluno" },
-            { "data": "nomeAluno" },
-            { "data": "cpfAluno" },
+            { "data": "idProfessor" },
+            { "data": "crefProfessor" },
+            { "data": "nomeProfessor" },
+            { "data": "cpfProfessor" },
         ],
         "columnDefs": [
-            { "targets": 0, "className": 'idAluno' },
-            { "targets": 1, "className": 'matriculaAluno' },
-            { "targets": 2, "className": 'nomeAluno' },
-            { "targets": -1, "className": 'cpfAluno' },
+            { "targets": 0, "className": 'idProfessor' },
+            { "targets": 1, "className": 'crefProfessor' },
+            { "targets": 2, "className": 'nomeProfessor' },
+            { "targets": -1, "className": 'cpfProfessor' },
         ],
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",
@@ -52,9 +52,9 @@
     $("td:contains('SuperSweet')").addClass("ls-label-text");
     $(".dataTables_info").addClass("ls-label-text");
 
-    var table = $('#AlunoTable').DataTable();
+    var table = $('#ProfessorTable').DataTable();
 
-    $('#AlunoTable tbody').on('click', 'tr', function () {
+    $('#ProfessorTable tbody').on('click', 'tr', function () {
         if (!$(this).text().includes("Nenhum registro encontrado")) {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
@@ -64,12 +64,12 @@
                 $(this).addClass('selected');
             }
 
-            var idAluno = $(this).find('td.idAluno').text();
-            $("#EditarAluno").attr("href", "/Aluno/Edit/" + idAluno);
-            $("#EditarAluno").removeClass("isDisabled");
+            var idProfessor = $(this).find('td.idProfessor').text();
+            $("#EditarProfessor").attr("href", "/Professor/Edit/" + idProfessor);
+            $("#EditarProfessor").removeClass("isDisabled");
 
-            $("#ExcluirAluno").attr("href", "/Aluno/Delete/" + idAluno);
-            $("#ExcluirAluno").removeClass("isDisabled");
+            $("#ExcluirProfessor").attr("href", "/Professor/Delete/" + idProfessor);
+            $("#ExcluirProfessor").removeClass("isDisabled");
         }
     });
 

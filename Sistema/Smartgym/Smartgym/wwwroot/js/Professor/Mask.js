@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	/* Máscara dos campos */
+	$('#Cref').mask('000000-A/AA', {reverse: true});
 	$('#Cpf').mask('000.000.000-00', {reverse: true});
 	$('#Cep').mask('00.000-000', {reverse: true});
 	$('#Telefone').mask('00 0000-0000', {reverse: true});
@@ -28,9 +29,9 @@ $(document).ready(function(){
         var senha = $('#Senha').val().length;
 
         if (senha >= 5) {
-            $("#ConfirmarCadastroAluno").prop("disabled", false);
+            $("#ConfirmarCadastroProfessor").prop("disabled", false);
         } else {
-            $("#ConfirmarCadastroAluno").prop("disabled", true);
+            $("#ConfirmarCadastroProfessor").prop("disabled", true);
         }
     });
 });

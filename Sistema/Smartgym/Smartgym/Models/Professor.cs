@@ -40,8 +40,8 @@ namespace Smartgym.Models
         [Required(ErrorMessage = "Necessário adicionar uma Permissão ao Professor.")]
         public int PermissaoProfessor { get; set; }
 
-        [MinLength(8)]
-        [MaxLength(8)]
+        [MinLength(11)]
+        [MaxLength(11)]
         [Required(ErrorMessage = "Necessário adicionar uma Matrícula ao Professor.")]
         public string CrefProfessor { get; set; }
 

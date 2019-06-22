@@ -255,7 +255,7 @@ namespace Repository.Migrations
 
                     b.HasIndex("EmailConta")
                         .IsUnique()
-                        .HasName("AlternateKey_EmailConta");
+                        .HasName("UniqueKey_EmailConta");
 
                     b.ToTable("Conta");
                 });
@@ -392,11 +392,11 @@ namespace Repository.Migrations
 
                     b.HasIndex("CpfProfessor")
                         .IsUnique()
-                        .HasName("AlternateKey_CpfProfessor");
+                        .HasName("UniqueKey_CpfProfessor");
 
                     b.HasIndex("CrefProfessor")
                         .IsUnique()
-                        .HasName("AlternateKey_CrefProfessor");
+                        .HasName("UniqueKey_CrefProfessor");
 
                     b.HasIndex("IdAgendaProfessor");
 

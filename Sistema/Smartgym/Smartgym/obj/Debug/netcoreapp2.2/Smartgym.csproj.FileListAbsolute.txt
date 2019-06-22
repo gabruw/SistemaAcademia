@@ -94,3 +94,4 @@ C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\net
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\_GenericalExceptionView.g.cshtml.cs
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_RegisterAndEdit.g.cshtml.cs
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Main\AlunoMain.g.cshtml.cs
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Main\ProfessorMain.g.cshtml.cs
