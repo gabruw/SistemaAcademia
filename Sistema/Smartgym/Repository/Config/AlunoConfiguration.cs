@@ -18,9 +18,9 @@ namespace Repository.Config
 
             builder.Property(al => al.PermissaoAluno).IsRequired().HasMaxLength(1).HasColumnType("int(1)");
 
-            builder.Property(al => al.MatriculaAluno).IsRequired().HasMaxLength(8).HasColumnType("varchar(8)");
+            builder.HasIndex(al => al.MatriculaAluno).IsUnique().HasName("UniqueKey_MatriculaAluno");
             builder.Property(al => al.NomeAluno).IsRequired().HasMaxLength(120).HasColumnType("varchar(120)");
-            builder.Property(al => al.CpfAluno).IsRequired().HasMaxLength(11).HasColumnType("bigint");
+            builder.HasIndex(al => al.CpfAluno).IsUnique().HasName("UniqueKey_CpfAluno");
             builder.Property(al => al.DataNascimentoAluno).IsRequired().HasColumnType("date");
             builder.Property(al => al.TelefoneAluno).HasMaxLength(10).HasColumnType("bigint");
             builder.Property(al => al.CelularAluno).HasMaxLength(11).HasColumnType("bigint");

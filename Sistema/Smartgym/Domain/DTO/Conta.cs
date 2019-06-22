@@ -14,16 +14,6 @@ namespace Domain.DTO
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long IdConta { get; set;  }
 
-        public long IdAlunoConta { get; set;  }
-
-        [ForeignKey("IdAlunoConta")]
-        public virtual Aluno AlunoConta { get; set; }
-
-        public long IdProfessorConta { get; set; }
-
-        [ForeignKey("IdProfessorConta")]
-        public virtual Professor ProfessorConta { get; set; }
-
         public string EmailConta { get; set; }
 
         public string SenhaConta { get; set; }
@@ -31,7 +21,6 @@ namespace Domain.DTO
         public override void Validate()
         {
             ClearValidateMensages();
-
 
             if (EmailConta.Length < 1)
             {

@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Cadastrar - Aluno";
-    Layout = "_Register";
+    Layout = "_RegisterAndEdit";
 }
 
 @*Body*@
@@ -26,7 +26,7 @@
                                 <div class="col-sm-4">
                                     <img id="ImagemPreview" class="img-fluid mx-auto d-block" src="~/img/Cadastro/Default_Image.png" alt="Imagem Perfil." />
                                     <br>
-                                    <input type="file" id="ImagemPerfil" class="form-control-file" name="imagemPerfil" accept="image/*" required>
+                                    <input type="file" id="ImagemPerfil" class="form-control-file" name="imagemPerfil" accept="image/*">
                                 </div>
 
                                 <div class="col-sm-8">
@@ -60,17 +60,17 @@
                                         </div>
 
                                         <div class="col-sm-3">
-                                            <span class="ls-label-text">Bairro</span>
+                                            <span class="ls-label-text d-inline-block text-truncate">Bairro</span>
                                             <input type="text" id="Bairro" class="form-control" name="bairro" required>
                                         </div>
 
                                         <div class="col-sm-2">
-                                            <span class="ls-label-text">Número</span>
+                                            <span class="ls-label-text d-inline-block text-truncate">Número</span>
                                             <input type="text" id="Numero" class="form-control" name="numero" required>
                                         </div>
 
                                         <div class="col-sm-2">
-                                            <span class="ls-label-text">Complemento</span>
+                                            <span class="ls-label-text d-inline-block text-truncate">Compl</span>
                                             <input type="text" id="Complemento" class="form-control" name="complemento">
                                         </div>
                                     </div>
@@ -130,5 +130,5 @@
         </form>
     </section>
 </div>
-<div class="overlay"></div>
 
+<div class="overlay"></div>

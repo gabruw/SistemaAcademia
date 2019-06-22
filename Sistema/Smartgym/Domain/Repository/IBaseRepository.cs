@@ -7,6 +7,8 @@ namespace Domain.Repository
     {
         void Incluid(TEntity entity);
 
+        TEntity IncluidAndReturnId(TEntity entity);
+
         void Update(TEntity entity);
 
         void Remove(TEntity entity);

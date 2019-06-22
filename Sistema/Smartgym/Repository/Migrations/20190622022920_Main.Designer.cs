@@ -9,7 +9,7 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(SmartgymContext))]
-    [Migration("20190621164456_Main")]
+    [Migration("20190622022920_Main")]
     partial class Main
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,14 +24,17 @@ namespace Repository.Migrations
                     b.Property<long>("IdAgenda")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DataAgenda")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("DataAgenda");
 
                     b.Property<long>("IdAlunoAgenda");
 
                     b.Property<long>("IdProfessorAgenda");
 
                     b.HasKey("IdAgenda");
+
+                    b.HasIndex("DataAgenda")
+                        .IsUnique()
+                        .HasName("UniqueKey_DataAgenda");
 
                     b.HasIndex("IdAlunoAgenda");
 
@@ -49,9 +52,7 @@ namespace Repository.Migrations
                         .HasColumnType("bigint")
                         .HasMaxLength(11);
 
-                    b.Property<long>("CpfAluno")
-                        .HasColumnType("bigint")
-                        .HasMaxLength(11);
+                    b.Property<long>("CpfAluno");
 
                     b.Property<DateTime>("DataNascimentoAluno")
                         .HasColumnType("date");
@@ -64,10 +65,7 @@ namespace Repository.Migrations
                         .HasColumnType("varchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<string>("MatriculaAluno")
-                        .IsRequired()
-                        .HasColumnType("varchar(8)")
-                        .HasMaxLength(8);
+                    b.Property<string>("MatriculaAluno");
 
                     b.Property<string>("NomeAluno")
                         .IsRequired()
@@ -88,9 +86,17 @@ namespace Repository.Migrations
 
                     b.HasKey("IdAluno");
 
+                    b.HasIndex("CpfAluno")
+                        .IsUnique()
+                        .HasName("UniqueKey_CpfAluno");
+
                     b.HasIndex("IdContaAluno");
 
                     b.HasIndex("IdEnderecoAluno");
+
+                    b.HasIndex("MatriculaAluno")
+                        .IsUnique()
+                        .HasName("UniqueKey_MatriculaAluno");
 
                     b.ToTable("Aluno");
                 });
@@ -240,14 +246,7 @@ namespace Repository.Migrations
                     b.Property<long>("IdConta")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("EmailConta")
-                        .IsRequired()
-                        .HasColumnType("varchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<long>("IdAlunoConta");
-
-                    b.Property<long>("IdProfessorConta");
+                    b.Property<string>("EmailConta");
 
                     b.Property<string>("SenhaConta")
                         .IsRequired()
@@ -256,9 +255,9 @@ namespace Repository.Migrations
 
                     b.HasKey("IdConta");
 
-                    b.HasIndex("IdAlunoConta");
-
-                    b.HasIndex("IdProfessorConta");
+                    b.HasIndex("EmailConta")
+                        .IsUnique()
+                        .HasName("AlternateKey_EmailConta");
 
                     b.ToTable("Conta");
                 });
@@ -352,14 +351,9 @@ namespace Repository.Migrations
                         .HasColumnType("bigint")
                         .HasMaxLength(11);
 
-                    b.Property<long>("CpfProfessor")
-                        .HasColumnType("bigint")
-                        .HasMaxLength(11);
+                    b.Property<long>("CpfProfessor");
 
-                    b.Property<string>("CrefProfessor")
-                        .IsRequired()
-                        .HasColumnType("varchar(9)")
-                        .HasMaxLength(9);
+                    b.Property<string>("CrefProfessor");
 
                     b.Property<DateTime>("DataAdmissaoProfessor")
                         .HasColumnType("date");
@@ -397,6 +391,14 @@ namespace Repository.Migrations
                         .HasMaxLength(10);
 
                     b.HasKey("IdProfessor");
+
+                    b.HasIndex("CpfProfessor")
+                        .IsUnique()
+                        .HasName("AlternateKey_CpfProfessor");
+
+                    b.HasIndex("CrefProfessor")
+                        .IsUnique()
+                        .HasName("AlternateKey_CrefProfessor");
 
                     b.HasIndex("IdAgendaProfessor");
 
@@ -498,19 +500,6 @@ namespace Repository.Migrations
                     b.HasOne("Domain.DTO.Professor", "ProfessorAvaliacao")
                         .WithMany()
                         .HasForeignKey("IdProfessorAvaliacao")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Domain.DTO.Conta", b =>
-                {
-                    b.HasOne("Domain.DTO.Aluno", "AlunoConta")
-                        .WithMany()
-                        .HasForeignKey("IdAlunoConta")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Domain.DTO.Professor", "ProfessorConta")
-                        .WithMany()
-                        .HasForeignKey("IdProfessorConta")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

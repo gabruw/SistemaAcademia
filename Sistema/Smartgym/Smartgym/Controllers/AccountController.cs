@@ -53,11 +53,6 @@ namespace Smartgym.Controllers
             return View("~/Views/Home/Main.cshtml");
         }
 
-        public IActionResult AlunoRegister()
-        {
-            return View("~/Views/Register/AlunoRegister.cshtml");
-        }
-
         public IActionResult SemAutorizacao()
         {
             return View();

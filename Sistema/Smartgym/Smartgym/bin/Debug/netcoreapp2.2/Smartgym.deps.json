@@ -563,7 +563,8 @@
       },
       "Auxiliary/1.0.0": {
         "dependencies": {
-          "Domain": "1.0.0"
+          "Domain": "1.0.0",
+          "Microsoft.Extensions.Primitives": "2.2.0"
         },
         "runtime": {
           "Auxiliary.dll": {}

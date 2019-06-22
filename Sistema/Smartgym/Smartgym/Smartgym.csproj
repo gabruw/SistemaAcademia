@@ -27,7 +27,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Views\Main\" />
     <Folder Include="wwwroot\img\Recebido\Perfil\Aluno\" />
     <Folder Include="wwwroot\img\Recebido\Perfil\Professor\" />
   </ItemGroup>

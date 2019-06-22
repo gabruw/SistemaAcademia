@@ -61,11 +61,6 @@ namespace Smartgym.Models
         [Required(ErrorMessage = "Necessário adicionar um Sexo ao Aluno.")]
         public int SexoAluno { get; set; }
 
-        [MinLength(1)]
-        [MaxLength(9)]
-        [Required(ErrorMessage = "Necessário adicionar um Nome ao Aluno.")]
-        public int CepAluno { get; set; }
-
         [MinLength(64)]
         [MaxLength(64)]
         [Required(ErrorMessage = "Necessário adicionar uma Imagem ao Aluno.")]

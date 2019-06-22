@@ -14,16 +14,6 @@ namespace Smartgym.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long IdConta { get; set;  }
 
-        public long IdAlunoConta { get; set;  }
-
-        [ForeignKey("IdAlunoConta")]
-        public virtual Aluno AlunoConta { get; set; }
-
-        public long IdProfessorConta { get; set; }
-
-        [ForeignKey("IdProfessorConta")]
-        public virtual Professor ProfessorConta { get; set; }
-
         [MinLength(4)]
         [MaxLength(60)]
         [Required(ErrorMessage = "Necessário adicionar um Email a Conta.")]

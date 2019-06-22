@@ -10,10 +10,7 @@ namespace Repository.Config
         {
             builder.HasKey(c => c.IdConta);
 
-            builder.HasOne(c => c.AlunoConta).WithMany().HasForeignKey(c => c.IdAlunoConta);
-            builder.HasOne(c => c.ProfessorConta).WithMany().HasForeignKey(c => c.IdProfessorConta);
-
-            builder.Property(c => c.EmailConta).IsRequired().HasMaxLength(60).HasColumnType("varchar(60)");
+            builder.HasIndex(c => c.EmailConta).IsUnique().HasName("AlternateKey_EmailConta");
             builder.Property(c => c.SenhaConta).IsRequired().HasMaxLength(40).HasColumnType("varchar(40)");
         }
     }

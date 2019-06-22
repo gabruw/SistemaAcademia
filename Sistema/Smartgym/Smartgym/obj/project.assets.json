@@ -4874,7 +4874,8 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Domain": "1.0.0"
+          "Domain": "1.0.0",
+          "Microsoft.Extensions.Primitives": "2.2.0"
         },
         "compile": {
           "bin/placeholder/Auxiliary.dll": {}

@@ -16,13 +16,50 @@
 
     @*Links CSS Geral*@
     <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="~/css/Menu/Body.css" />
         <link rel="stylesheet" type="text/css" href="~/css/Menu/TopMenu.css" />
         <link rel="stylesheet" type="text/css" href="~/css/Menu/SideMenu.css" />
+    </environment>
+
+    @*Links CSS e JS*@
+    <environment include="Development">
+        @switch (ViewData.Values.First())
+        {
+            case "Principal - Aluno":
+                <link rel="stylesheet" type="text/css" href="~/css/Aluno/Content.css" />
+                <script defer rel="stylesheet" type="text/javascript" src="~/js/Aluno/DataTable.js"></script>
+                break;
+            case "Principal - Aparelho":
+                <link rel="stylesheet" type="text/css" href="~/css/Aparelho/Content.css" />
+                <script defer rel="stylesheet" type="text/javascript" src="~/js/Aparelho/DataTable.js"></script>
+                break;
+            case "Principal - Avaliacao":
+                <link rel="stylesheet" type="text/css" href="~/css/Avaliacao/Content.css" />
+                <script defer rel="stylesheet" type="text/javascript" src="~/js/Avaliacao/DataTable.js"></script>
+                break;
+            case "Principal - Exercicio":
+                <link rel="stylesheet" type="text/css" href="~/css/Exercicio/Content.css" />
+                <script defer rel="stylesheet" type="text/javascript" src="~/js/Exercicio/DataTable.js"></script>
+                break;
+            case "Principal - Ficha":
+                <link rel="stylesheet" type="text/css" href="~/css/Ficha/Content.css" />
+                <script defer rel="stylesheet" type="text/javascript" src="~/js/Ficha/DataTable.js"></script>
+                break;
+            case "Principal - Professor":
+                <link rel="stylesheet" type="text/css" href="~/css/Professor/Content.css" />
+                <script defer rel="stylesheet" type="text/javascript" src="~/js/Professor/DataTable.js"></script>
+                break;
+            case "Principal - Unidade":
+                <link rel="stylesheet" type="text/css" href="~/css/Unidade/Content.css" />
+                <script defer rel="stylesheet" type="text/javascript" src="~/js/Unidade/DataTable.js"></script>
+                break;
+        }
     </environment>
 
     @*Frameworks CSS*@
     <environment include="Development">
         <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/datatable/datatables.css" />
     </environment>
 
     @*Links Fontes*@
@@ -31,11 +68,16 @@
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu" />
     </environment>
 
+    @*Links JS Geral*@
+    <environment include="Development">
+        <script defer rel="stylesheet" type="text/javascript" src="~/js/SideMenu/Content.js"></script>
+    </environment>
+
     @*Frameworks JS*@
     <environment include="Development">
-        <script rel="stylesheet" type="text/javascript" src="~/lib/jquery/dist/jquery-min.js"></script>
+        <script rel="stylesheet" type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
         <script rel="stylesheet" type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script rel="stylesheet" type="text/javascript" src="~/lib/datatable/datatables.js"></script>
+        <script rel="stylesheet" type="text/javascript" src="~/lib/datatable/datatables.min.js"></script>
         <script rel="stylesheet" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
         <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -117,5 +159,6 @@
         <main role="main" class="">
             @RenderBody()
         </main>
+    </div>
 </body>
 </html>

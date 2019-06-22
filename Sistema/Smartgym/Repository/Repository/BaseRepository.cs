@@ -20,6 +20,14 @@ namespace Repository.Repository
             SmartgymContext.SaveChanges();
         }
 
+        public TEntity IncluidAndReturnId(TEntity entity)
+        {
+            SmartgymContext.Set<TEntity>().Add(entity);
+            SmartgymContext.SaveChanges();
+
+            return entity;
+        }
+
         public void Update(TEntity entity)
         {
             SmartgymContext.Set<TEntity>().Update(entity);

@@ -48,7 +48,6 @@
     <environment include="Development">
         <script rel="stylesheet" type="text/javascript" src="~/lib/jquery/dist/jquery-min.js"></script>
         <script rel="stylesheet" type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script rel="stylesheet" type="text/javascript" src="~/lib/datatable/datatables.js"></script>
         <script rel="stylesheet" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
         <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -63,25 +62,25 @@
         </a>
 
         @*Esquerda*@
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link navText" asp-controller="Home" asp-action="Index">
-                    <i class="fas fa-home"></i> Home
-                </a>
-            </li>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link navText" asp-controller="Home" asp-action="Index">
+                <i class="fas fa-home"></i> Home
+            </a>
+        </li>
 
-            <li class="nav-item">
-                <a class="nav-link navText" asp-controller="Home" asp-action="Assinar">
-                    <i class="fas fa-paste"></i> Assinar
-                </a>
-            </li>
+        <li class="nav-item">
+            <a class="nav-link navText" asp-controller="Home" asp-action="Assinar">
+                <i class="fas fa-paste"></i> Assinar
+            </a>
+        </li>
 
-            <li class="nav-item">
-                <a class="nav-link navText" asp-controller="Account" asp-action="AlunoRegister">
-                    <i class="fas fa-paste"></i> Cadastrar Aluno
-                </a>
-            </li>
-        </ul>
+        <li class="nav-item">
+            <a class="nav-link navText" asp-controller="Aluno" asp-action="Create">
+                <i class="fas fa-paste"></i> Cadastrar Aluno
+            </a>
+        </li>
+    </ul>
 
         @*Direita*@
         <ul class="navbar-nav">
