@@ -144,28 +144,8 @@ namespace Smartgym.Controllers
         {
             try
             {
+                // Aluno OLD
                 var alunoDTOOld = _alunoRepository.GetbyId(id);
-
-                var nomeArquivo = string.Empty;
-
-                if (collection.Files.Count == 1)
-                {
-                    var caminhoArquivo = Path.GetTempFileName();
-                    nomeArquivo = newGerador.GetFileName(collection["nomeCompleto"], collection.Files[0].ContentType.Split("/")[1]);
-                    var filePath = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Aluno", nomeArquivo);
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await collection.Files[0].CopyToAsync(stream);
-                    }
-                }
-                else
-                {
-                    if (alunoDTOOld.ImagemAluno.Length < 0)
-                    {
-                        nomeArquivo = "img/Cadastro/Default_Image.png";
-                    }
-                }
 
                 // Conta
                 Domain.DTO.Conta contaDTO = new Domain.DTO.Conta();
@@ -182,7 +162,6 @@ namespace Smartgym.Controllers
 
                 // Aluno
                 Domain.DTO.Aluno alunoDTO = new Domain.DTO.Aluno();
-                alunoDTO.IdAluno = alunoDTOOld.IdAluno;
                 alunoDTO.ContaAluno = contaDTO;
                 alunoDTO.EnderecoAluno = enderecoDTO;
                 alunoDTO.MatriculaAluno = alunoDTOOld.MatriculaAluno;
@@ -192,7 +171,41 @@ namespace Smartgym.Controllers
                 alunoDTO.TelefoneAluno = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 alunoDTO.CelularAluno = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 alunoDTO.SexoAluno = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
-                alunoDTO.ImagemAluno = "/img/Recebido/Perfil/Aluno/" + nomeArquivo;
+
+                var nomeArquivo = string.Empty;
+
+                if (collection.Files.Count == 1)
+                {
+                    var caminhoArquivo = Path.GetTempFileName();
+                    nomeArquivo = newGerador.GetFileName(collection["nomeCompleto"], collection.Files[0].ContentType.Split("/")[1]);
+                    var filePath = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Aluno", nomeArquivo);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await collection.Files[0].CopyToAsync(stream);
+                    }
+
+                    var imgPath = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Aluno", alunoDTOOld.ImagemAluno);
+
+                    try
+                    {
+                        System.IO.File.Delete(imgPath);
+                    }
+                    catch
+                    {
+
+                    }
+
+                    alunoDTO.ImagemAluno = "/img/Recebido/Perfil/Aluno/" + nomeArquivo;
+                }
+                else if (alunoDTOOld.ImagemAluno.Length < 0)
+                {
+                    alunoDTO.ImagemAluno = "img/Cadastro/Default_Image.png"; ;
+                }
+                else
+                {
+                    alunoDTO.ImagemAluno = alunoDTOOld.ImagemAluno;
+                }
 
                 _alunoRepository.Update(alunoDTO);
 
@@ -213,13 +226,17 @@ namespace Smartgym.Controllers
             var contaDTO = alunoDTO.ContaAluno;
             var enderecoDTO = alunoDTO.EnderecoAluno;
 
-            var imgPath = _hosting + alunoDTO.ImagemAluno;
+            var imgPath = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Aluno", alunoDTO.ImagemAluno);
 
-            if (Directory.Exists(imgPath))
+            try
             {
                 System.IO.File.Delete(imgPath);
             }
-            
+            catch
+            {
+
+            }
+
             _alunoRepository.Remove(alunoDTO);
             _contaRepository.Remove(contaDTO);
             _enderecoRepository.Remove(enderecoDTO);

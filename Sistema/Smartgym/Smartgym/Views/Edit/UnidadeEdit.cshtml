@@ -3,5 +3,82 @@
     Layout = "_RegisterAndEdit";
 }
 
-<h1>UnidadeEdit</h1>
+@model Domain.DTO.Unidade
 
+@*Body*@
+<div>
+    <section>
+        <p id="Titulo">
+            <i class="fas fa-edit"></i>
+            Editar Unidade
+        </p>
+    </section>
+
+    <section id="DadosPessoais" class="col-sm-8">
+        <form asp-action="Edit" asp-controller="Unidade" asp-route-id="@Model.IdUnidade" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="ls-label-text">Unidade</span>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <img id="ImagemPreview" class="img-fluid mx-auto d-block" src="@Model.ImagemUnidade" alt="Imagem Perfil." />
+                                    <br>
+                                    <input type="file" id="ImagemPerfil" class="form-control-file" name="imagemPerfil" accept="image/*">
+                                </div>
+
+                                <div class="col-sm-8">
+                                    <span class="ls-label-text">Nome Unidade</span>
+                                    <input type="text" id="NomeUnidade" class="form-control" name="nomeUnidade"  value="@Model.NomeUnidade" required>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">CEP</span>
+                                            <input type="text" id="Cep" class="form-control" name="cep" value="@Model.EnderecoUnidade.CepEndereco" required>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Rua</span>
+                                            <input type="text" id="Rua" class="form-control" value="@Model.EnderecoUnidade.RuaEndereco" name="rua" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Bairro</span>
+                                            <input type="text" id="Bairro" class="form-control" name="bairro" value="@Model.EnderecoUnidade.BairroEndereco" required>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Número</span>
+                                            <input type="text" id="Numero" class="form-control" name="numero" value="@Model.EnderecoUnidade.NumeroEndereco" required>
+                                        </div>
+                                        
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Compl</span>
+                                            <input type="text" id="Complemento" class="form-control" name="complemento" value="@Model.EnderecoUnidade.ComplementoEndereco">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <br>
+                                    <button type="submit" id="ConfirmarEdicaoUnidade" class="btn btn-primary">Confirmar</button>
+
+                                    <button type="reset" id="ResetEdicaoUnidade" class="btn btn-secondary">Resetar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+<div class="overlay"></div>

@@ -121,5 +121,62 @@ namespace Auxiliary
 
             return null;
         }
+
+        // Unidade
+        private PropertyInfo getUnidadeProperty(string name)
+        {
+            PropertyInfo prop = null;
+
+            var properties = typeof(Domain.DTO.Unidade).GetProperties();
+
+            foreach (var unidades in properties)
+            {
+                if (unidades.Name.ToLower().Equals(name.ToLower()))
+                {
+                    prop = unidades;
+                    break;
+                }
+            }
+
+            return prop;
+        }
+
+        public IEnumerable<Domain.DTO.Unidade> UnidadeDataProcessForm(IEnumerable<Domain.DTO.Unidade> listUnidadesDTO, IFormCollection requestFormData)
+        {
+            var skip = Convert.ToInt32(requestFormData["start"].ToString());
+            var pageSize = Convert.ToInt32(requestFormData["length"].ToString());
+            Microsoft.Extensions.Primitives.StringValues tempOrder = new[] { "" };
+
+            if (requestFormData.TryGetValue("order[0][column]", out tempOrder))
+            {
+                var columnIndex = requestFormData["order[0][column]"].ToString();
+                var sortDirection = requestFormData["order[0][dir]"].ToString();
+                tempOrder = new[] { "" };
+
+                if (requestFormData.TryGetValue($"columns[{columnIndex}][data]", out tempOrder))
+                {
+                    var columnName = requestFormData[$"columns[{columnIndex}][data]"].ToString();
+
+                    if (pageSize > 0)
+                    {
+                        var prop = getUnidadeProperty(columnName);
+                        if (sortDirection == "asc")
+                        {
+                            return listUnidadesDTO.OrderBy(prop.GetValue).Skip(skip).Take(pageSize).ToList();
+                        }
+                        else
+                        {
+                            return listUnidadesDTO.OrderByDescending(prop.GetValue).Skip(skip).Take(pageSize).ToList();
+                        }
+                    }
+                    else
+                    {
+                        return listUnidadesDTO;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }

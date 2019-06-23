@@ -157,28 +157,8 @@ namespace Smartgym.Controllers
         {
             try
             {
+                // Professor OLD
                 var professorDTOOld = _professorRepository.GetbyId(id);
-
-                var nomeArquivo = string.Empty;
-
-                if (collection.Files.Count == 1)
-                {
-                    var caminhoArquivo = Path.GetTempFileName();
-                    nomeArquivo = newGerador.GetFileName(collection["nomeCompleto"], collection.Files[0].ContentType.Split("/")[1]);
-                    var filePath = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Professor", nomeArquivo);
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await collection.Files[0].CopyToAsync(stream);
-                    }
-                }
-                else
-                {
-                    if (professorDTOOld.ImagemProfessor.Length < 0)
-                    {
-                        nomeArquivo = "img/Cadastro/Default_Image.png";
-                    }
-                }
 
                 // Unidade
                 var unidadeDTO = _unidadeRepository.GetbyId(idUnidade);
@@ -210,7 +190,41 @@ namespace Smartgym.Controllers
                 professorDTO.TelefoneProfessor = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 professorDTO.CelularProfessor = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 professorDTO.SexoProfessor = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
-                professorDTO.ImagemProfessor = "/img/Recebido/Perfil/Professor/" + nomeArquivo;
+
+                var nomeArquivo = string.Empty;
+
+                if (collection.Files.Count == 1)
+                {
+                    var caminhoArquivo = Path.GetTempFileName();
+                    nomeArquivo = newGerador.GetFileName(collection["nomeCompleto"], collection.Files[0].ContentType.Split("/")[1]);
+                    var filePath = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Professor", nomeArquivo);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await collection.Files[0].CopyToAsync(stream);
+                    }
+
+                    var imgPath = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Professor", professorDTOOld.ImagemProfessor);
+
+                    try
+                    {
+                        System.IO.File.Delete(imgPath);
+                    }
+                    catch
+                    {
+
+                    }
+
+                    professorDTO.ImagemProfessor = "/img/Recebido/Perfil/Professor/" + nomeArquivo;
+                }
+                else if (professorDTOOld.ImagemProfessor.Length < 0)
+                {
+                    professorDTO.ImagemProfessor = "img/Cadastro/Default_Image.png"; ;
+                }
+                else
+                {
+                    professorDTO.ImagemProfessor = professorDTOOld.ImagemProfessor;
+                }
 
                 _professorRepository.Incluid(professorDTO);
 
@@ -231,11 +245,15 @@ namespace Smartgym.Controllers
             var contaDTO = professorDTO.ContaProfessor;
             var enderecoDTO = professorDTO.EnderecoProfessor;
 
-            var imgPath = _hosting + professorDTO.ImagemProfessor;
+            var imgPath = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Professor", professorDTO.ImagemProfessor);
 
-            if (Directory.Exists(imgPath))
+            try
             {
                 System.IO.File.Delete(imgPath);
+            }
+            catch
+            {
+
             }
 
             _professorRepository.Remove(professorDTO);
