@@ -1,0 +1,14 @@
+﻿.isDisabled {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+#EditarUnidade {
+    margin-left: 20px;
+}
+
+#ExcluirUnidade {
+    margin-left: 20px;
+}

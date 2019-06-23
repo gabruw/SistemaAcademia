@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Repository.Config
 {
-    class UnidadeConfiguration : IEntityTypeConfiguration<Unidade>
+    public class UnidadeConfiguration : IEntityTypeConfiguration<Unidade>
     {
         public void Configure(EntityTypeBuilder<Unidade> builder)
         {

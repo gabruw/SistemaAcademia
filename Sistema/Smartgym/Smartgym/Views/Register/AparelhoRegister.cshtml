@@ -3,5 +3,49 @@
     Layout = "_RegisterAndEdit";
 }
 
-<h1>AparelhoRegister</h1>
+@model Domain.DTO.Aparelho
 
+@*Body*@
+<div>
+    <section>
+        <p id="Titulo">
+            <i id="IconeTitulo" class="fas fa-plus"></i>
+            Cadastrar Aparelho
+        </p>
+    </section>
+
+    <section id="DadosAparelho" class="col-sm-8">
+        <form asp-action="Create" asp-controller="Aparelho" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="ls-label-text">Identificação</span>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span class="ls-label-text">Nome do Aparelho</span>
+                                    <input type="text" id="NomeAparelho" class="form-control" name="nomeAparelho" asp-for="@Model.NomeAparelho" required>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="submit" id="ConfirmarCadastroAparelho" class="btn btn-primary">Confirmar</button>
+
+                                    <button type="reset" id="ResetCadastroAparelho" class="btn btn-secondary">Resetar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+
+<div class="overlay"></div>

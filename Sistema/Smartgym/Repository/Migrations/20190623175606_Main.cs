@@ -117,7 +117,7 @@ namespace Repository.Migrations
                     IdContaProfessor = table.Column<long>(nullable: false),
                     IdEnderecoProfessor = table.Column<long>(nullable: false),
                     IdUnidadeProfessor = table.Column<long>(nullable: false),
-                    IdAgendaProfessor = table.Column<long>(nullable: false),
+                    IdAgendaProfessor = table.Column<long>(nullable: true),
                     PermissaoProfessor = table.Column<int>(type: "int(1)", maxLength: 1, nullable: false),
                     CrefProfessor = table.Column<string>(nullable: true),
                     NomeProfessor = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
@@ -272,7 +272,7 @@ namespace Repository.Migrations
                 {
                     IdSerie = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdFichaSerie = table.Column<long>(nullable: false),
+                    IdFichaSerie = table.Column<long>(nullable: true),
                     NomeSerie = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
                     ObservacaoSerie = table.Column<string>(type: "varchar(800)", maxLength: 800, nullable: true),
                     FichaIdFicha = table.Column<long>(nullable: true)
@@ -291,7 +291,7 @@ namespace Repository.Migrations
                         column: x => x.IdFichaSerie,
                         principalTable: "Ficha",
                         principalColumn: "IdFicha",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -301,7 +301,7 @@ namespace Repository.Migrations
                     IdExercicio = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     IdAparelhoExercicio = table.Column<long>(nullable: false),
-                    IdSerieExercicio = table.Column<long>(nullable: false),
+                    IdSerieExercicio = table.Column<long>(nullable: true),
                     NomeExercicio = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
                     ObservacaoExercicio = table.Column<string>(type: "varchar(800)", maxLength: 800, nullable: false)
                 },
@@ -309,10 +309,10 @@ namespace Repository.Migrations
                 {
                     table.PrimaryKey("PK_Exercicio", x => x.IdExercicio);
                     table.ForeignKey(
-                        name: "FK_Exercicio_Exercicio_IdAparelhoExercicio",
+                        name: "FK_Exercicio_Aparelho_IdAparelhoExercicio",
                         column: x => x.IdAparelhoExercicio,
-                        principalTable: "Exercicio",
-                        principalColumn: "IdExercicio",
+                        principalTable: "Aparelho",
+                        principalColumn: "IdAparelho",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Exercicio_Serie_IdExercicio",
@@ -376,7 +376,7 @@ namespace Repository.Migrations
                 column: "IdProfessorAvaliacao");
 
             migrationBuilder.CreateIndex(
-                name: "AlternateKey_EmailConta",
+                name: "UniqueKey_EmailConta",
                 table: "Conta",
                 column: "EmailConta",
                 unique: true);
@@ -402,13 +402,13 @@ namespace Repository.Migrations
                 column: "IdProfessorFicha");
 
             migrationBuilder.CreateIndex(
-                name: "AlternateKey_CpfProfessor",
+                name: "UniqueKey_CpfProfessor",
                 table: "Professor",
                 column: "CpfProfessor",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "AlternateKey_CrefProfessor",
+                name: "UniqueKey_CrefProfessor",
                 table: "Professor",
                 column: "CrefProfessor",
                 unique: true);
@@ -449,7 +449,7 @@ namespace Repository.Migrations
                 column: "IdAgendaProfessor",
                 principalTable: "Agenda",
                 principalColumn: "IdAgenda",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -463,13 +463,13 @@ namespace Repository.Migrations
                 table: "Agenda");
 
             migrationBuilder.DropTable(
-                name: "Aparelho");
-
-            migrationBuilder.DropTable(
                 name: "Avaliacao");
 
             migrationBuilder.DropTable(
                 name: "Exercicio");
+
+            migrationBuilder.DropTable(
+                name: "Aparelho");
 
             migrationBuilder.DropTable(
                 name: "Serie");

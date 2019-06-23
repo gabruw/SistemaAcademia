@@ -3,5 +3,174 @@
     Layout = "_RegisterAndEdit";
 }
 
-<h1>ProfessorEdit</h1>
+@model Auxiliary.Partial.ViewProfessor
 
+@*Body*@
+<div>
+    <section>
+        <p id="Titulo">
+            <i id="IconeTitulo" class="fas fa-edit"></i>
+            Editar Professor
+        </p>
+    </section>
+
+    <section id="DadosPessoais" class="col-sm-8">
+        <form asp-action="Edit" asp-controller="Professor" asp-route-id="@Model.Professor.IdProfessor" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="ls-label-text">Identificação</span>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <img id="ImagemPreview" class="img-fluid mx-auto d-block" src="@Model.Professor.ImagemProfessor" alt="Imagem Perfil." />
+                                    <br>
+                                    <input type="file" id="ImagemPerfil" class="form-control-file" name="imagemPerfil" accept="image/*">
+                                </div>
+
+                                <div class="col-sm-8">
+                                    <span class="ls-label-text">Nome Completo</span>
+                                    <input type="text" id="NomeCompleto" class="form-control" name="nomeCompleto" value="@Model.Professor.NomeProfessor" required>
+
+                                    <span class="ls-label-text =">Email</span>
+                                    <input type="text" id="Email" class="form-control" name="email" value="@Model.Professor.ContaProfessor.EmailConta" required>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <span class="ls-label-text =">Senha</span>
+                                            <input type="password" id="Senha" class="form-control" name="senha" value="@Model.Professor.ContaProfessor.SenhaConta" required>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="ls-label-text">CPF</span>
+                                            <input type="text" id="Cpf" class="form-control" name="cpf" value="@Model.Professor.CpfProfessor" required>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="ls-label-text">CEP</span>
+                                            <input type="text" id="Cep" class="form-control" name="cep" value="@Model.Professor.EnderecoProfessor.CepEndereco" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <span class="ls-label-text">Rua</span>
+                                            <input type="text" id="Rua" class="form-control" name="rua" value="@Model.Professor.EnderecoProfessor.RuaEndereco" required>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text d-inline-block text-truncate">Bairro</span>
+                                            <input type="text" id="Bairro" class="form-control" name="bairro" value="@Model.Professor.EnderecoProfessor.BairroEndereco" required>
+                                        </div>
+
+                                        <div class="col-sm-2">
+                                            <span class="ls-label-text d-inline-block text-truncate">Número</span>
+                                            <input type="text" id="Numero" class="form-control" name="numero" value="@Model.Professor.EnderecoProfessor.NumeroEndereco" required>
+                                        </div>
+
+                                        <div class="col-sm-2">
+                                            <span class="ls-label-text d-inline-block text-truncate">Compl</span>
+                                            <input type="text" id="Complemento" class="form-control" name="complemento" value="@Model.Professor.EnderecoProfessor.ComplementoEndereco">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Telefone</span>
+                                            <input type="text" id="Telefone" class="form-control" name="telefone" value="@Model.Professor.TelefoneProfessor">
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Celular</span>
+                                            <input type="text" id="Celular" class="form-control" name="celular" value="@Model.Professor.CelularProfessor">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Unidade</span>
+                                            <select type="text" id="Unidade" class="form-control" name="unidade" required>
+                                                <option>Selecione uma unidade</option>
+                                                @foreach (var unidade in Model.Unidade)
+                                                {
+                                                    if (unidade.NomeUnidade.Equals(Model.Professor.UnidadeProfessor.NomeUnidade))
+                                                    {
+                                                        <option value="@unidade.IdUnidade" selected>@unidade.NomeUnidade</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@unidade.IdUnidade">@unidade.NomeUnidade</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Celular</span>
+                                            <input type="text" id="Celular" class="form-control" name="celular" value="@Model.Professor.CelularProfessor">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Data de Nascimento</span>
+                                            <input type="date" id="DataNascimento" class="form-control" name="dataNascimento" value="@Model.Professor.DataNascimentoProfessor.Date.ToString("yyyy-MM-dd")" required>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Sexo</span>
+                                            <br>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <label class="radio-inline control-label" for="Masculino">
+                                                    @if (Model.Professor.SexoProfessor == 1)
+                                                    {
+                                                        <input type="radio" class="form-check-input" id="Masculino" name="sexo" value="1" checked>
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="radio" class="form-check-input" id="Masculino" name="sexo" value="1">
+                                                    }
+
+                                                    Masculino
+                                                </label>
+                                            </div>
+
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <label class="radio-inline control-label" for="Feminino">
+                                                    @if (Model.Professor.SexoProfessor == 2)
+                                                    {
+                                                        <input type="radio" class="form-check-input" id="Feminino" name="sexo" value="2" checked>
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="radio" class="form-check-input" id="Feminino" name="sexo" value="2">
+                                                    }
+
+                                                    Feminino
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="submit" id="ConfirmarCadastroProfessor" class="btn btn-primary">Confirmar</button>
+
+                                    <button type="reset" id="ResetCadastroProfessor" class="btn btn-secondary">Resetar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+<div class="overlay"></div>

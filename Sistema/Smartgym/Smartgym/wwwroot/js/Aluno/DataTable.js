@@ -2,6 +2,7 @@
     $("#AlunoTable").dataTable({
         "processing": true,
         "serverSide": true,
+        "searching": false,
         "ajax": {
             "method": "POST",
             "dataType": "json",
@@ -55,17 +56,22 @@
     var table = $('#AlunoTable').DataTable();
 
     $('#AlunoTable tbody').on('click', 'tr', function () {
-        if ($(this).hasClass('selected')) {
-            $(this).removeClass('selected');
-        }
-        else {
-            table.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-        }
+        if (!$(this).text().includes("Nenhum registro encontrado")) {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
 
-        var idAluno = $(this).find('td.idAluno').text();
-        $("#EditarAluno").attr("href", "/Aluno/Edit/" + idAluno);
-        $("#EditarAluno").removeClass("isDisabled");
+            var idAluno = $(this).find('td.idAluno').text();
+            $("#EditarAluno").attr("href", "/Aluno/Edit/" + idAluno);
+            $("#EditarAluno").removeClass("isDisabled");
+
+            $("#ExcluirAluno").attr("href", "/Aluno/Delete/" + idAluno);
+            $("#ExcluirAluno").removeClass("isDisabled");
+        }
     });
 
     $('#button').click(function () {

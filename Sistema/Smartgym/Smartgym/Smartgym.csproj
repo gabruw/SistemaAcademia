@@ -28,7 +28,13 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\Recebido\Perfil\Aluno\" />
+    <Folder Include="wwwroot\img\Recebido\Perfil\Unidade\" />
     <Folder Include="wwwroot\img\Recebido\Perfil\Professor\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\favicon.ico" />
   </ItemGroup>
 
 </Project>

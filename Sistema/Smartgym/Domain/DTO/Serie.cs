@@ -15,7 +15,7 @@ namespace Domain.DTO
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long IdSerie { get; set; }
 
-        public long IdFichaSerie { get; set; }
+        public long? IdFichaSerie { get; set; }
 
         [ForeignKey("IdFichaSerie")]
         public virtual Ficha FichaSerie { get; set; }

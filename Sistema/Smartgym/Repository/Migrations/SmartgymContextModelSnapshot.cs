@@ -255,7 +255,7 @@ namespace Repository.Migrations
 
                     b.HasIndex("EmailConta")
                         .IsUnique()
-                        .HasName("AlternateKey_EmailConta");
+                        .HasName("UniqueKey_EmailConta");
 
                     b.ToTable("Conta");
                 });
@@ -299,7 +299,7 @@ namespace Repository.Migrations
 
                     b.Property<long>("IdAparelhoExercicio");
 
-                    b.Property<long>("IdSerieExercicio");
+                    b.Property<long?>("IdSerieExercicio");
 
                     b.Property<string>("NomeExercicio")
                         .IsRequired()
@@ -359,7 +359,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("DataNascimentoProfessor")
                         .HasColumnType("date");
 
-                    b.Property<long>("IdAgendaProfessor");
+                    b.Property<long?>("IdAgendaProfessor");
 
                     b.Property<long>("IdContaProfessor");
 
@@ -392,11 +392,11 @@ namespace Repository.Migrations
 
                     b.HasIndex("CpfProfessor")
                         .IsUnique()
-                        .HasName("AlternateKey_CpfProfessor");
+                        .HasName("UniqueKey_CpfProfessor");
 
                     b.HasIndex("CrefProfessor")
                         .IsUnique()
-                        .HasName("AlternateKey_CrefProfessor");
+                        .HasName("UniqueKey_CrefProfessor");
 
                     b.HasIndex("IdAgendaProfessor");
 
@@ -414,7 +414,7 @@ namespace Repository.Migrations
 
                     b.Property<long?>("FichaIdFicha");
 
-                    b.Property<long>("IdFichaSerie");
+                    b.Property<long?>("IdFichaSerie");
 
                     b.Property<string>("NomeSerie")
                         .IsRequired()
@@ -503,7 +503,7 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Domain.DTO.Exercicio", b =>
                 {
-                    b.HasOne("Domain.DTO.Exercicio", "AparelhoExercicio")
+                    b.HasOne("Domain.DTO.Aparelho", "AparelhoExercicio")
                         .WithMany()
                         .HasForeignKey("IdAparelhoExercicio")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -535,8 +535,7 @@ namespace Repository.Migrations
                 {
                     b.HasOne("Domain.DTO.Agenda", "AgendaProfessor")
                         .WithMany()
-                        .HasForeignKey("IdAgendaProfessor")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("IdAgendaProfessor");
 
                     b.HasOne("Domain.DTO.Conta", "ContaProfessor")
                         .WithMany()
@@ -562,8 +561,7 @@ namespace Repository.Migrations
 
                     b.HasOne("Domain.DTO.Ficha", "FichaSerie")
                         .WithMany()
-                        .HasForeignKey("IdFichaSerie")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("IdFichaSerie");
                 });
 
             modelBuilder.Entity("Domain.DTO.Unidade", b =>

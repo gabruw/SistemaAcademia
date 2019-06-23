@@ -5,7 +5,7 @@ $(document).ready(function(){
 	$('#Telefone').mask('00 0000-0000', {reverse: true});
 	$('#Celular').mask('00 00000-0000', {reverse: true});
 	
-	/* Preview da Imagem */
+	/* Preview da imagem */
 	function PreviewImagem(input) {
 		var Imagem = input.files[0];
 		if (Imagem != null) {
@@ -21,5 +21,16 @@ $(document).ready(function(){
 
 	$("#ImagemPerfil").change(function() {
 		PreviewImagem(this);
-	});
+    });
+
+    /* Validação dos campos */
+    $('#Senha').keyup(function () {
+        var senha = $('#Senha').val().length;
+
+        if (senha >= 5) {
+            $("#ConfirmarCadastroAluno").prop("disabled", false);
+        } else {
+            $("#ConfirmarCadastroAluno").prop("disabled", true);
+        }
+    });
 });

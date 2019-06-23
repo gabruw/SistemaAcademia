@@ -30,7 +30,7 @@ namespace Domain.DTO
         [ForeignKey("IdUnidadeProfessor")]
         public virtual Unidade UnidadeProfessor { get; set; }
 
-        public long IdAgendaProfessor { get; set; }
+        public long? IdAgendaProfessor { get; set; }
 
         [ForeignKey("IdAgendaProfessor")]
         public virtual Agenda AgendaProfessor { get; set; }
@@ -64,7 +64,7 @@ namespace Domain.DTO
                 AddError("O campo Permissão do Professor não foi informado.");
             }
 
-            if (CrefProfessor.Length < 1)
+            if (CrefProfessor.Length < 11)
             {
                 AddError("O campo CREF do Professor não foi informado.");
             }
