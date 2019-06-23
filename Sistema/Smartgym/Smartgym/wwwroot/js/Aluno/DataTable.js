@@ -2,6 +2,7 @@
     $("#AlunoTable").dataTable({
         "processing": true,
         "serverSide": true,
+        "searching": false,
         "ajax": {
             "method": "POST",
             "dataType": "json",

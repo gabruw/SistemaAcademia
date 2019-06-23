@@ -2,6 +2,7 @@
     $("#UnidadeTable").dataTable({
         "processing": true,
         "serverSide": true,
+        "searching": false,
         "ajax": {
             "method": "POST",
             "dataType": "json",
@@ -10,10 +11,14 @@
         "columns": [
             { "data": "idUnidade" },
             { "data": "nomeUnidade" },
+            { "data": "enderecoUnidade.ruaEndereco" },
+            { "data": "enderecoUnidade.bairroEndereco" },
         ],
         "columnDefs": [
             { "targets": 0, "className": 'idUnidade' },
-            { "targets": -1, "className": 'nomeUnidade' },
+            { "targets": 1, "className": 'nomeUnidade' },
+            { "targets": 2, "className": 'ruaEndereco' },
+            { "targets": -1, "className": 'bairroEndereco' },
         ],
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",

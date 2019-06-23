@@ -30,7 +30,7 @@ namespace Domain.DTO
         [ForeignKey("IdUnidadeProfessor")]
         public virtual Unidade UnidadeProfessor { get; set; }
 
-        public long IdAgendaProfessor { get; set; }
+        public long? IdAgendaProfessor { get; set; }
 
         [ForeignKey("IdAgendaProfessor")]
         public virtual Agenda AgendaProfessor { get; set; }

@@ -17,9 +17,9 @@ namespace Domain.DTO
         public long IdAparelhoExercicio { get; set; }
 
         [ForeignKey("IdAparelhoExercicio")]
-        public virtual Exercicio AparelhoExercicio { get; set; }
+        public virtual Aparelho AparelhoExercicio { get; set; }
 
-        public long IdSerieExercicio { get; set; }
+        public long? IdSerieExercicio { get; set; }
 
         [ForeignKey("IdSerieExercicio")]
         public virtual Serie SerieExercicio { get; set; }

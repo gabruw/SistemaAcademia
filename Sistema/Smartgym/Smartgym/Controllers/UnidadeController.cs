@@ -30,9 +30,7 @@ namespace Smartgym.Controllers
         // GET: Unidade
         public ActionResult Index()
         {
-            var unidadeDTO = _unidadeRepository.GetAll();
-
-            return View("~/Views/Main/UnidadeMain.cshtml", unidadeDTO);
+            return View("~/Views/Main/UnidadeMain.cshtml");
         }
 
         [HttpPost]

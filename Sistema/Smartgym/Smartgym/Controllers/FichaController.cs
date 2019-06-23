@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Auxiliary;
+using Domain.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,22 +11,52 @@ namespace Smartgym.Controllers
 {
     public class FichaController : Controller
     {
+        private readonly IFichaRepository _fichaRepository;
+        private readonly IExercicioRepository _exercicioRepository;
+        private readonly ISerieRepository _serieRepository;
+
+        private Geradores newGerador = new Geradores();
+        private DataTable newDataTable = new DataTable();
+
+        public FichaController(IFichaRepository fichaRepository, IExercicioRepository exercicioRepository, ISerieRepository serieRepository)
+        {
+            _fichaRepository = fichaRepository;
+            _exercicioRepository = exercicioRepository;
+            _serieRepository = serieRepository;
+        }
+
         // GET: Ficha
         public ActionResult Index()
         {
-            return View();
+            return View("~/Views/Main/FichaMain.cshtml");
         }
 
-        // GET: Ficha/Details/5
-        public ActionResult Details(long id)
+        [HttpPost]
+        public IActionResult GetAllFichas()
         {
-            return View();
+            var requestFormData = Request.Form;
+
+            var fichaDTO = _fichaRepository.GetAll();
+
+            var listFichaForm = newDataTable.FichaDataProcessForm(fichaDTO, requestFormData);
+
+            var count = fichaDTO.Count();
+
+            dynamic response = new
+            {
+                Data = listFichaForm,
+                Draw = requestFormData["draw"],
+                RecordsFiltered = count,
+                RecordTotal = count,
+            };
+
+            return Ok(response);
         }
 
         // GET: Ficha/Create
         public ActionResult Create()
         {
-            return View();
+            return View("~/Views/Register/FichaRegister.cshtml");
         }
 
         // POST: Ficha/Create
@@ -47,7 +79,9 @@ namespace Smartgym.Controllers
         // GET: Ficha/Edit/5
         public ActionResult Edit(long id)
         {
-            return View();
+            var fichaDTO = _fichaRepository.GetbyId(id);
+
+            return View("~/Views/Edit/FichaEdit.cshtml", fichaDTO);
         }
 
         // POST: Ficha/Edit/5
@@ -65,12 +99,6 @@ namespace Smartgym.Controllers
             {
                 return View();
             }
-        }
-
-        // GET: Ficha/Delete/5
-        public ActionResult Delete(long id)
-        {
-            return View();
         }
 
         // POST: Ficha/Delete/5

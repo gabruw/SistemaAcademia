@@ -6,68 +6,68 @@
 <div>
     <section>
         <p id="Titulo">
-            <i id="IconeTitulo" class="fas fa-user-plus"></i>
+            <i id="IconeTitulo" class="fas fa-building"></i>
             Unidade
         </p>
     </section>
 
-    <section id="DadosUnidade" class="col-sm-8">
-        <form asp-action="Create" asp-controller="Unidade" method="post" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="ls-label-text">Identificação</span>
+    <section class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="ls-label-text">Principal</span>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <a class="btn btn-primary float-right" asp-controller="Unidade" asp-action="Create">
+                                <i class="fas fa-paste"></i> Cadastrar
+                            </a>
+
+                            <a class="btn btn-secondary float-left isDisabled" id="EditarUnidade" href="#">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+
+                            <a class="btn btn-secondary float-left isDisabled" id="ExcluirUnidade" href="#">
+                                <i class="fas fa-trash-alt"></i> Excluir
+                            </a>
                         </div>
 
-                        <div class="card-body">
-                            <div class="row">
-                                <a class="btn btn-primary float-right" asp-action="Create" asp-controller="Unidade">
-                                    <i class="fas fa-paste"></i> Cadastrar
-                                </a>
+                        <br />
 
-                                <a class="btn btn-secondary float-left isDisabled" id="EditarUnidade" href="#">
-                                    <i class="fas fa-edit"></i> Editar
-                                </a>
-
-                                <a class="btn btn-secondary float-left isDisabled" id="ExcluirUnidade" href="#">
-                                    <i class="fas fa-trash-alt"></i> Excluir
-                                </a>
-                            </div>
-
-                            <br />
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="panel panel-primary">
-                                        <div class="panel-body">
-                                            <table id="UnidadeTable" class="table table-striped table-bordered table-hover responsive" width="100%">
-                                                <thead class="thin-border-bottom">
-                                                    <tr>
-                                                        <th>Id</th>
-                                                        <th>Nome</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-body">
+                                        <table id="UnidadeTable" class="table table-striped table-bordered table-hover responsive" width="100%">
+                                            <thead class="thin-border-bottom">
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Nome</th>
+                                                    <th>Rua</th>
+                                                    <th>Bairro</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <br>
+                        <br>
 
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <button type="submit" id="ConfirmarCadastroUnidade" class="btn btn-primary">Confirmar</button>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="submit" id="ConfirmarCadastroUnidade" class="btn btn-primary">Confirmar</button>
 
-                                    <button type="reset" id="ResetCadastroUnidade" class="btn btn-secondary">Resetar</button>
-                                </div>
+                                <button type="reset" id="ResetCadastroUnidade" class="btn btn-secondary">Resetar</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </section>
 </div>
 <div class="overlay"></div>

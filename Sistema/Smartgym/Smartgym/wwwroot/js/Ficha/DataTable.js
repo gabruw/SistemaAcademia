@@ -1,24 +1,26 @@
 ﻿$(document).ready(function () {
-    $("#ProfessorTable").dataTable({
+    $("#FichaTable").dataTable({
         "processing": true,
         "serverSide": true,
         "searching": false,
         "ajax": {
             "method": "POST",
             "dataType": "json",
-            "url": "/Professor/GetAllProfessores",
+            "url": "/Ficha/GetAllFichas",
         },
         "columns": [
-            { "data": "idProfessor" },
-            { "data": "crefProfessor" },
-            { "data": "nomeProfessor" },
-            { "data": "cpfProfessor" },
+            { "data": "idFicha" },
+            { "data": "alunoFicha.matriculaAluno" },
+            { "data": "alunoFicha.nomeAluno" },
+            { "data": "professorFicha.crefProfessor" },
+            { "data": "professorFicha.nomeProfessor" },
         ],
         "columnDefs": [
-            { "targets": 0, "className": 'idProfessor' },
-            { "targets": 1, "className": 'crefProfessor' },
-            { "targets": 2, "className": 'nomeProfessor' },
-            { "targets": -1, "className": 'cpfProfessor' },
+            { "targets": 0, "className": 'idFicha' },
+            { "targets": 1, "className": 'matriculaAluno' },
+            { "targets": 2, "className": 'nomeAluno' },
+            { "targets": 3, "className": 'crefProfessor' },
+            { "targets": -1, "className": 'nomeProfessor' },
         ],
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",
@@ -53,9 +55,9 @@
     $("td:contains('SuperSweet')").addClass("ls-label-text");
     $(".dataTables_info").addClass("ls-label-text");
 
-    var table = $('#ProfessorTable').DataTable();
+    var table = $('#FichaTable').DataTable();
 
-    $('#ProfessorTable tbody').on('click', 'tr', function () {
+    $('#FichaTable tbody').on('click', 'tr', function () {
         if (!$(this).text().includes("Nenhum registro encontrado")) {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
@@ -65,12 +67,12 @@
                 $(this).addClass('selected');
             }
 
-            var idProfessor = $(this).find('td.idProfessor').text();
-            $("#EditarProfessor").attr("href", "/Professor/Edit/" + idProfessor);
-            $("#EditarProfessor").removeClass("isDisabled");
+            var idFicha = $(this).find('td.idFicha').text();
+            $("#EditarFicha").attr("href", "/Ficha/Edit/" + idFicha);
+            $("#EditarFicha").removeClass("isDisabled");
 
-            $("#ExcluirProfessor").attr("href", "/Professor/Delete/" + idProfessor);
-            $("#ExcluirProfessor").removeClass("isDisabled");
+            $("#ExcluirFicha").attr("href", "/Ficha/Delete/" + idFicha);
+            $("#ExcluirFicha").removeClass("isDisabled");
         }
     });
 

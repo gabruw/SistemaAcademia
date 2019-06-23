@@ -1,24 +1,20 @@
 ﻿$(document).ready(function () {
-    $("#ProfessorTable").dataTable({
+    $("#AparelhoTable").dataTable({
         "processing": true,
         "serverSide": true,
         "searching": false,
         "ajax": {
             "method": "POST",
             "dataType": "json",
-            "url": "/Professor/GetAllProfessores",
+            "url": "/Aparelho/GetAllAparelhos",
         },
         "columns": [
-            { "data": "idProfessor" },
-            { "data": "crefProfessor" },
-            { "data": "nomeProfessor" },
-            { "data": "cpfProfessor" },
+            { "data": "idAparelho" },
+            { "data": "nomeAparelho" },
         ],
         "columnDefs": [
-            { "targets": 0, "className": 'idProfessor' },
-            { "targets": 1, "className": 'crefProfessor' },
-            { "targets": 2, "className": 'nomeProfessor' },
-            { "targets": -1, "className": 'cpfProfessor' },
+            { "targets": 0, "className": 'idAparelho' },
+            { "targets": -1, "className": 'nomeAparelho' },
         ],
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",
@@ -53,9 +49,9 @@
     $("td:contains('SuperSweet')").addClass("ls-label-text");
     $(".dataTables_info").addClass("ls-label-text");
 
-    var table = $('#ProfessorTable').DataTable();
+    var table = $('#AparelhoTable').DataTable();
 
-    $('#ProfessorTable tbody').on('click', 'tr', function () {
+    $('#AparelhoTable tbody').on('click', 'tr', function () {
         if (!$(this).text().includes("Nenhum registro encontrado")) {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
@@ -65,12 +61,12 @@
                 $(this).addClass('selected');
             }
 
-            var idProfessor = $(this).find('td.idProfessor').text();
-            $("#EditarProfessor").attr("href", "/Professor/Edit/" + idProfessor);
-            $("#EditarProfessor").removeClass("isDisabled");
+            var idAparelho = $(this).find('td.idAparelho').text();
+            $("#EditarAparelho").attr("href", "/Aparelho/Edit/" + idAparelho);
+            $("#EditarAparelho").removeClass("isDisabled");
 
-            $("#ExcluirProfessor").attr("href", "/Professor/Delete/" + idProfessor);
-            $("#ExcluirProfessor").removeClass("isDisabled");
+            $("#ExcluirAparelho").attr("href", "/Aparelho/Delete/" + idAparelho);
+            $("#ExcluirAparelho").removeClass("isDisabled");
         }
     });
 

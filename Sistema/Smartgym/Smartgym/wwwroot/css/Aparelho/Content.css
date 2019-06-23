@@ -1,0 +1,14 @@
+.isDisabled {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+#EditarAparelho {
+    margin-left: 20px;
+}
+
+#ExcluirAparelho {
+    margin-left: 20px;
+}

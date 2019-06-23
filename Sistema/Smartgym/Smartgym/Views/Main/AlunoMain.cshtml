@@ -11,65 +11,63 @@
         </p>
     </section>
 
-    <section id="DadosPessoais" class="col-sm-8">
-        <form asp-action="Create" asp-controller="Aluno" method="post" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="ls-label-text">Identificação</span>
+    <section class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="ls-label-text">Principal</span>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <a class="btn btn-primary float-right" asp-controller="Aluno" asp-action="Create">
+                                <i class="fas fa-paste"></i> Cadastrar
+                            </a>
+
+                            <a class="btn btn-secondary float-left isDisabled" id="EditarAluno" href="#">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+
+                            <a class="btn btn-secondary float-left isDisabled" id="ExcluirAluno" href="#">
+                                <i class="fas fa-trash-alt"></i> Excluir
+                            </a>
                         </div>
 
-                        <div class="card-body">
-                            <div class="row">
-                                <a class="btn btn-primary float-right" asp-controller="Aluno" asp-action="Create">
-                                    <i class="fas fa-paste"></i> Cadastrar
-                                </a>
-                                
-                                <a class="btn btn-secondary float-left isDisabled" id="EditarAluno" href="#">
-                                    <i class="fas fa-edit"></i> Editar
-                                </a>
+                        <br />
 
-                                <a class="btn btn-secondary float-left isDisabled" id="ExcluirAluno" href="#">
-                                    <i class="fas fa-trash-alt"></i> Excluir
-                                </a>
-                            </div>
-
-                            <br />
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="panel panel-primary">
-                                        <div class="panel-body">
-                                            <table id="AlunoTable" class="table table-striped table-bordered table-hover responsive" width="100%">
-                                                <thead class="thin-border-bottom">
-                                                    <tr>
-                                                        <th>Id</th>
-                                                        <th>Matrícula</th>
-                                                        <th>Nome</th>
-                                                        <th>CPF</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-body">
+                                        <table id="AlunoTable" class="table table-striped table-bordered table-hover responsive" width="100%">
+                                            <thead class="thin-border-bottom">
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Matrícula</th>
+                                                    <th>Nome</th>
+                                                    <th>CPF</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <br>
+                        <br>
 
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <button type="submit" id="ConfirmarCadastroAluno" class="btn btn-primary">Confirmar</button>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="submit" id="ConfirmarCadastroAluno" class="btn btn-primary">Confirmar</button>
 
-                                    <button type="reset" id="ResetCadastroAluno" class="btn btn-secondary">Resetar</button>
-                                </div>
+                                <button type="reset" id="ResetCadastroAluno" class="btn btn-secondary">Resetar</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </section>
 </div>
 <div class="overlay"></div>

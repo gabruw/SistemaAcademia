@@ -35,9 +35,7 @@ namespace Smartgym.Controllers
         // GET: Professor
         public ActionResult Index()
         {
-            var professorDTO = _professorRepository.GetAll();
-
-            return View("~/Views/Main/ProfessorMain.cshtml", professorDTO);
+            return View("~/Views/Main/ProfessorMain.cshtml");
         }
 
         [HttpPost]
@@ -73,7 +71,7 @@ namespace Smartgym.Controllers
         // POST: Professor/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(long idUnidade, IFormCollection collection)
+        public async Task<ActionResult> Create(IFormCollection collection)
         {
             try
             {
@@ -95,9 +93,6 @@ namespace Smartgym.Controllers
                     nomeArquivo = "img/Cadastro/Default_Image.png";
                 }
 
-                // Unidade
-                var unidadeDTO = _unidadeRepository.GetbyId(idUnidade);
-
                 // Conta
                 Domain.DTO.Conta contaDTO = new Domain.DTO.Conta();
                 contaDTO.EmailConta = collection["email"];
@@ -115,7 +110,7 @@ namespace Smartgym.Controllers
                 Domain.DTO.Professor professorDTO = new Domain.DTO.Professor();
                 professorDTO.ContaProfessor = contaDTO;
                 professorDTO.EnderecoProfessor = enderecoDTO;
-                professorDTO.UnidadeProfessor = unidadeDTO;
+                professorDTO.IdUnidadeProfessor = newGerador.EraseEspecialAndReturnLong(collection["unidade"]);
                 professorDTO.PermissaoProfessor = 2;
                 professorDTO.CrefProfessor = collection["cref"];
                 professorDTO.NomeProfessor = collection["nomeCompleto"];
@@ -128,6 +123,11 @@ namespace Smartgym.Controllers
                 professorDTO.ImagemProfessor = "/img/Recebido/Perfil/Professor/" + nomeArquivo;
 
                 _professorRepository.Incluid(professorDTO);
+
+                //Domain.DTO.Unidade unidadeDTO = new Domain.DTO.Unidade();
+                //unidadeDTO.ProfessorUnidade.Add(professorDTO);
+
+                //_unidadeRepository.Update(unidadeDTO);
 
                 Created("Professor/Create", professorDTO);
 
@@ -153,15 +153,12 @@ namespace Smartgym.Controllers
         // POST: Professor/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, long idUnidade, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, IFormCollection collection)
         {
             try
             {
                 // Professor OLD
                 var professorDTOOld = _professorRepository.GetbyId(id);
-
-                // Unidade
-                var unidadeDTO = _unidadeRepository.GetbyId(idUnidade);
 
                 // Conta
                 Domain.DTO.Conta contaDTO = new Domain.DTO.Conta();
@@ -180,7 +177,7 @@ namespace Smartgym.Controllers
                 Domain.DTO.Professor professorDTO = new Domain.DTO.Professor();
                 professorDTO.ContaProfessor = contaDTO;
                 professorDTO.EnderecoProfessor = enderecoDTO;
-                professorDTO.UnidadeProfessor = unidadeDTO;
+                professorDTO.IdUnidadeProfessor = newGerador.EraseEspecialAndReturnLong(collection["unidade"]);
                 professorDTO.PermissaoProfessor = 2;
                 professorDTO.CrefProfessor = collection["cref"];
                 professorDTO.NomeProfessor = collection["nomeCompleto"];

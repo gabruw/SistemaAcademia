@@ -32,9 +32,7 @@ namespace Smartgym.Controllers
         // GET: Aluno
         public ActionResult Index()
         {
-            var alunoDTO = _alunoRepository.GetAll();
-
-            return View("~/Views/Main/AlunoMain.cshtml", alunoDTO);
+            return View("~/Views/Main/AlunoMain.cshtml");
         }
 
         [HttpPost]

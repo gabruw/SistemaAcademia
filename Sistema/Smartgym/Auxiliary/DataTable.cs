@@ -178,5 +178,119 @@ namespace Auxiliary
 
             return null;
         }
+
+        // Aparelho
+        private PropertyInfo getAparelhoProperty(string name)
+        {
+            PropertyInfo prop = null;
+
+            var properties = typeof(Domain.DTO.Aparelho).GetProperties();
+
+            foreach (var aparelhos in properties)
+            {
+                if (aparelhos.Name.ToLower().Equals(name.ToLower()))
+                {
+                    prop = aparelhos;
+                    break;
+                }
+            }
+
+            return prop;
+        }
+
+        public IEnumerable<Domain.DTO.Aparelho> AparelhoDataProcessForm(IEnumerable<Domain.DTO.Aparelho> listAparelhosDTO, IFormCollection requestFormData)
+        {
+            var skip = Convert.ToInt32(requestFormData["start"].ToString());
+            var pageSize = Convert.ToInt32(requestFormData["length"].ToString());
+            Microsoft.Extensions.Primitives.StringValues tempOrder = new[] { "" };
+
+            if (requestFormData.TryGetValue("order[0][column]", out tempOrder))
+            {
+                var columnIndex = requestFormData["order[0][column]"].ToString();
+                var sortDirection = requestFormData["order[0][dir]"].ToString();
+                tempOrder = new[] { "" };
+
+                if (requestFormData.TryGetValue($"columns[{columnIndex}][data]", out tempOrder))
+                {
+                    var columnName = requestFormData[$"columns[{columnIndex}][data]"].ToString();
+
+                    if (pageSize > 0)
+                    {
+                        var prop = getAparelhoProperty(columnName);
+                        if (sortDirection == "asc")
+                        {
+                            return listAparelhosDTO.OrderBy(prop.GetValue).Skip(skip).Take(pageSize).ToList();
+                        }
+                        else
+                        {
+                            return listAparelhosDTO.OrderByDescending(prop.GetValue).Skip(skip).Take(pageSize).ToList();
+                        }
+                    }
+                    else
+                    {
+                        return listAparelhosDTO;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        // Ficha
+        private PropertyInfo getFichaProperty(string name)
+        {
+            PropertyInfo prop = null;
+
+            var properties = typeof(Domain.DTO.Ficha).GetProperties();
+
+            foreach (var ficha in properties)
+            {
+                if (ficha.Name.ToLower().Equals(name.ToLower()))
+                {
+                    prop = ficha;
+                    break;
+                }
+            }
+
+            return prop;
+        }
+
+        public IEnumerable<Domain.DTO.Ficha> FichaDataProcessForm(IEnumerable<Domain.DTO.Ficha> listFichasDTO, IFormCollection requestFormData)
+        {
+            var skip = Convert.ToInt32(requestFormData["start"].ToString());
+            var pageSize = Convert.ToInt32(requestFormData["length"].ToString());
+            Microsoft.Extensions.Primitives.StringValues tempOrder = new[] { "" };
+
+            if (requestFormData.TryGetValue("order[0][column]", out tempOrder))
+            {
+                var columnIndex = requestFormData["order[0][column]"].ToString();
+                var sortDirection = requestFormData["order[0][dir]"].ToString();
+                tempOrder = new[] { "" };
+
+                if (requestFormData.TryGetValue($"columns[{columnIndex}][data]", out tempOrder))
+                {
+                    var columnName = requestFormData[$"columns[{columnIndex}][data]"].ToString();
+
+                    if (pageSize > 0)
+                    {
+                        var prop = getFichaProperty(columnName);
+                        if (sortDirection == "asc")
+                        {
+                            return listFichasDTO.OrderBy(prop.GetValue).Skip(skip).Take(pageSize).ToList();
+                        }
+                        else
+                        {
+                            return listFichasDTO.OrderByDescending(prop.GetValue).Skip(skip).Take(pageSize).ToList();
+                        }
+                    }
+                    else
+                    {
+                        return listFichasDTO;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }

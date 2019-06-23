@@ -1,11 +1,15 @@
-﻿using Domain.Repository;
+﻿using Auxiliary;
+using Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Smartgym.Controllers
 {
     public class AparelhoController : Controller
     {
         private readonly IAparelhoRepository _aparelhoRepository;
+
+        private DataTable newDataTable = new DataTable();
 
         public AparelhoController(IAparelhoRepository aparelhoRepository)
         {
@@ -15,13 +19,35 @@ namespace Smartgym.Controllers
         // GET: Aparelho
         public ActionResult Index()
         {
-            return View("~/Views/Main/AparelhoMain");
+            return View("~/Views/Main/AparelhoMain.cshtml");
+        }
+
+        [HttpPost]
+        public IActionResult GetAllAparelhos()
+        {
+            var requestFormData = Request.Form;
+
+            var aparelhoDTO = _aparelhoRepository.GetAll();
+
+            var listAparelhoForm = newDataTable.AparelhoDataProcessForm(aparelhoDTO, requestFormData);
+
+            var count = aparelhoDTO.Count();
+
+            dynamic response = new
+            {
+                Data = listAparelhoForm,
+                Draw = requestFormData["draw"],
+                RecordsFiltered = count,
+                RecordTotal = count,
+            };
+
+            return Ok(response);
         }
 
         // GET: Aparelho/Create
         public ActionResult Create()
         {
-            return View("~/Views/Register/AparelhoRegister");
+            return View("~/Views/Register/AparelhoRegister.cshtml");
         }
 
         // POST: Aparelho/Create
@@ -51,7 +77,7 @@ namespace Smartgym.Controllers
         {
             var aparelhoDTO = _aparelhoRepository.GetbyId(id);
 
-            return View("~/Views/Edit/AparelhoEdit", aparelhoDTO);
+            return View("~/Views/Edit/AparelhoEdit.cshtml", aparelhoDTO);
         }
 
         // POST: Aparelho/Edit/5
@@ -80,12 +106,11 @@ namespace Smartgym.Controllers
         // GET: Aparelho/Delete/5
         public ActionResult Delete(long id)
         {
-            Domain.DTO.Aparelho aparelhoDTO = new Domain.DTO.Aparelho();
-            aparelhoDTO.IdAparelho = id;
+            var aparelhoDTO = _aparelhoRepository.GetbyId(id);
 
             _aparelhoRepository.Remove(aparelhoDTO);
 
-            return View("~/Views/Main/AparelhoMain");
+            return View("~/Views/Main/AparelhoMain.cshtml");
         }
     }
 }

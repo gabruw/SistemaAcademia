@@ -21,7 +21,7 @@ namespace Smartgym.Models
         public long IdAparelhoExercicio { get; set; }
 
         [ForeignKey("IdAparelhoExercicio")]
-        public virtual Exercicio AparelhoExercicio { get; set; }
+        public virtual Aparelho AparelhoExercicio { get; set; }
 
         public long IdSerieExercicio { get; set; }
 
