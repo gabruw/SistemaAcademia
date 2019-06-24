@@ -16,7 +16,14 @@ namespace Repository.Repository
             {
                 var conta = SmartgymContext.Set<Domain.DTO.Professor>().Find(entity.CpfProfessor);
 
-                return 0;
+                if(conta != null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
             }
             catch
             {
@@ -30,7 +37,14 @@ namespace Repository.Repository
             {
                 var conta = SmartgymContext.Set<Domain.DTO.Professor>().Find(entity.CrefProfessor);
 
-                return 0;
+                if (conta != null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
             }
             catch
             {

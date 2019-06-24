@@ -84,7 +84,7 @@ namespace Auxiliary
             return prop;
         }
 
-        public IEnumerable<Domain.DTO.Professor> ProfessorDataProcessForm(IEnumerable<Domain.DTO.Professor> listProfessorsDTO, IFormCollection requestFormData)
+        public IEnumerable<Domain.DTO.Professor> ProfessorDataProcessForm(IEnumerable<Domain.DTO.Professor> listProfessoresDTO, IFormCollection requestFormData)
         {
             var skip = Convert.ToInt32(requestFormData["start"].ToString());
             var pageSize = Convert.ToInt32(requestFormData["length"].ToString());
@@ -105,16 +105,16 @@ namespace Auxiliary
                         var prop = getProfessorProperty(columnName);
                         if (sortDirection == "asc")
                         {
-                            return listProfessorsDTO.OrderBy(prop.GetValue).Skip(skip).Take(pageSize).ToList();
+                            return listProfessoresDTO.OrderBy(prop.GetValue).Skip(skip).Take(pageSize).ToList();
                         }
                         else
                         {
-                            return listProfessorsDTO.OrderByDescending(prop.GetValue).Skip(skip).Take(pageSize).ToList();
+                            return listProfessoresDTO.OrderByDescending(prop.GetValue).Skip(skip).Take(pageSize).ToList();
                         }
                     }
                     else
                     {
-                        return listProfessorsDTO;
+                        return listProfessoresDTO;
                     }
                 }
             }

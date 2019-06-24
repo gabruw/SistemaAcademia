@@ -4,7 +4,6 @@
 }
 
 @model IEnumerable<Domain.DTO.Unidade>
-
 @*Body*@
 <div>
     <section>
@@ -40,6 +39,18 @@
 
                                     <div class="row">
                                         <div class="col-sm-6">
+                                            <span class="ls-label-text =">Senha</span>
+                                            <input type="password" id="Senha" class="form-control" name="senha" required>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text =">CEP</span>
+                                            <input type="text" id="Cep" class="form-control" name="cep" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
                                             <span class="ls-label-text">Rua</span>
                                             <input type="text" id="Rua" class="form-control" name="rua" required>
                                         </div>
@@ -63,7 +74,7 @@
 
                                         <div class="col-sm-6">
                                             <span class="ls-label-text">Data de Nascimento</span>
-                                            <input type="text" id="DataNascimento" class="form-control" name="dataNascimento" required>
+                                            <input type="date" id="DataNascimento" class="form-control" name="dataNascimento" required>
                                         </div>
                                     </div>
 
@@ -108,14 +119,14 @@
                                             <br>
                                             <div class="custom-control custom-radio custom-control-inline">
                                                 <label class="radio-inline control-label" for="Masculino">
-                                                    <input class="form-check-input" type="radio" name="sexo" id="Masculino" value="Masculino">
+                                                    <input class="form-check-input" type="radio" name="sexo" id="Masculino" value="1">
                                                     Masculino
                                                 </label>
                                             </div>
 
                                             <div class="custom-control custom-radio custom-control-inline">
                                                 <label class="radio-inline control-label" for="Feminino">
-                                                    <input class="form-check-input" type="radio" name="sexo" id="Feminino" value="Feminino">
+                                                    <input class="form-check-input" type="radio" name="sexo" id="Feminino" value="2">
                                                     Feminino
                                                 </label>
                                             </div>

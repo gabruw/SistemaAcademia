@@ -139,17 +139,17 @@ namespace Smartgym.Controllers
                 }
                 else
                 {
-                    nomeArquivo = "img/Cadastro/Default_Image.png";
+                    var filePathO = Path.Combine(_hosting.WebRootPath, "img", "Cadastro", "Default_Image.png");
+                    nomeArquivo = newGerador.GetFileName("Default_Image", ".png");
+
+                    var filePathD = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Professor", nomeArquivo);
+
+                    System.IO.File.Copy(filePathO, filePathD, true);
                 }
 
                 professorDTO.ImagemProfessor = "/img/Recebido/Perfil/Professor/" + nomeArquivo;
 
                 _professorRepository.Incluid(professorDTO);
-
-                //Domain.DTO.Unidade unidadeDTO = new Domain.DTO.Unidade();
-                //unidadeDTO.ProfessorUnidade.Add(professorDTO);
-
-                //_unidadeRepository.Update(unidadeDTO);
 
                 Created("Professor/Create", professorDTO);
 

@@ -16,7 +16,14 @@ namespace Repository.Repository
             {
                 var conta = SmartgymContext.Set<Domain.DTO.Aluno>().Find(entity.CpfAluno);
 
-                return 0;
+                if(conta != null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
             }
             catch
             {
