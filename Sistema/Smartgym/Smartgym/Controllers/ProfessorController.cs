@@ -161,32 +161,26 @@ namespace Smartgym.Controllers
                 var professorDTOOld = _professorRepository.GetbyId(id);
 
                 // Conta
-                Domain.DTO.Conta contaDTO = new Domain.DTO.Conta();
-                contaDTO.EmailConta = collection["email"];
-                contaDTO.SenhaConta = collection["senha"];
+                professorDTOOld.ContaProfessor.EmailConta = collection["email"];
+                professorDTOOld.ContaProfessor.SenhaConta = collection["senha"];
 
                 // Endereço
-                Domain.DTO.Endereco enderecoDTO = new Domain.DTO.Endereco();
-                enderecoDTO.CepEndereco = newGerador.EraseEspecialAndReturnInt(collection["cep"]);
-                enderecoDTO.RuaEndereco = collection["rua"];
-                enderecoDTO.BairroEndereco = collection["bairro"];
-                enderecoDTO.NumeroEndereco = newGerador.EraseEspecialAndReturnInt(collection["numero"]);
-                enderecoDTO.ComplementoEndereco = newGerador.EraseEspecialAndReturnInt(collection["complemento"]);
+                professorDTOOld.EnderecoProfessor.CepEndereco = newGerador.EraseEspecialAndReturnInt(collection["cep"]);
+                professorDTOOld.EnderecoProfessor.RuaEndereco = collection["rua"];
+                professorDTOOld.EnderecoProfessor.BairroEndereco = collection["bairro"];
+                professorDTOOld.EnderecoProfessor.NumeroEndereco = newGerador.EraseEspecialAndReturnInt(collection["numero"]);
+                professorDTOOld.EnderecoProfessor.ComplementoEndereco = newGerador.EraseEspecialAndReturnInt(collection["complemento"]);
 
                 // Professor
-                Domain.DTO.Professor professorDTO = new Domain.DTO.Professor();
-                professorDTO.ContaProfessor = contaDTO;
-                professorDTO.EnderecoProfessor = enderecoDTO;
-                professorDTO.IdUnidadeProfessor = newGerador.EraseEspecialAndReturnLong(collection["unidade"]);
-                professorDTO.PermissaoProfessor = 2;
-                professorDTO.CrefProfessor = collection["cref"];
-                professorDTO.NomeProfessor = collection["nomeCompleto"];
-                professorDTO.CpfProfessor = newGerador.EraseEspecialAndReturnLong(collection["cpf"]);
-                professorDTO.DataNascimentoProfessor = DateTime.Parse(collection["dataNascimento"], new CultureInfo("pt-BR"));
-                professorDTO.DataAdmissaoProfessor = DateTime.Now.Date;
-                professorDTO.TelefoneProfessor = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
-                professorDTO.CelularProfessor = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
-                professorDTO.SexoProfessor = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
+                professorDTOOld.IdUnidadeProfessor = newGerador.EraseEspecialAndReturnLong(collection["unidade"]);
+                professorDTOOld.CrefProfessor = collection["cref"];
+                professorDTOOld.NomeProfessor = collection["nomeCompleto"];
+                professorDTOOld.CpfProfessor = newGerador.EraseEspecialAndReturnLong(collection["cpf"]);
+                professorDTOOld.DataNascimentoProfessor = DateTime.Parse(collection["dataNascimento"], new CultureInfo("pt-BR"));
+                professorDTOOld.DataAdmissaoProfessor = DateTime.Now.Date;
+                professorDTOOld.TelefoneProfessor = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
+                professorDTOOld.CelularProfessor = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
+                professorDTOOld.SexoProfessor = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
 
                 var nomeArquivo = string.Empty;
 
@@ -212,20 +206,12 @@ namespace Smartgym.Controllers
 
                     }
 
-                    professorDTO.ImagemProfessor = "/img/Recebido/Perfil/Professor/" + nomeArquivo;
-                }
-                else if (professorDTOOld.ImagemProfessor.Length < 0)
-                {
-                    professorDTO.ImagemProfessor = "img/Cadastro/Default_Image.png"; ;
-                }
-                else
-                {
-                    professorDTO.ImagemProfessor = professorDTOOld.ImagemProfessor;
+                    professorDTOOld.ImagemProfessor = "/img/Recebido/Perfil/Professor/" + nomeArquivo;
                 }
 
-                _professorRepository.Incluid(professorDTO);
+                _professorRepository.Incluid(professorDTOOld);
 
-                Created("Professor/Create", professorDTO);
+                Created("Professor/Create", professorDTOOld);
 
                 return RedirectToAction(nameof(Index));
             }

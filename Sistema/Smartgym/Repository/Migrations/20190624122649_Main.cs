@@ -323,7 +323,7 @@ namespace Repository.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "UniqueKey_DataAgenda",
+                name: "IX_Agenda_DataAgenda",
                 table: "Agenda",
                 column: "DataAgenda",
                 unique: true);
@@ -339,7 +339,7 @@ namespace Repository.Migrations
                 column: "IdProfessorAgenda");
 
             migrationBuilder.CreateIndex(
-                name: "UniqueKey_CpfAluno",
+                name: "IX_Aluno_CpfAluno",
                 table: "Aluno",
                 column: "CpfAluno",
                 unique: true);
@@ -355,7 +355,7 @@ namespace Repository.Migrations
                 column: "IdEnderecoAluno");
 
             migrationBuilder.CreateIndex(
-                name: "UniqueKey_MatriculaAluno",
+                name: "IX_Aluno_MatriculaAluno",
                 table: "Aluno",
                 column: "MatriculaAluno",
                 unique: true);
@@ -376,7 +376,7 @@ namespace Repository.Migrations
                 column: "IdProfessorAvaliacao");
 
             migrationBuilder.CreateIndex(
-                name: "UniqueKey_EmailConta",
+                name: "IX_Conta_EmailConta",
                 table: "Conta",
                 column: "EmailConta",
                 unique: true);
@@ -402,13 +402,13 @@ namespace Repository.Migrations
                 column: "IdProfessorFicha");
 
             migrationBuilder.CreateIndex(
-                name: "UniqueKey_CpfProfessor",
+                name: "IX_Professor_CpfProfessor",
                 table: "Professor",
                 column: "CpfProfessor",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "UniqueKey_CrefProfessor",
+                name: "IX_Professor_CrefProfessor",
                 table: "Professor",
                 column: "CrefProfessor",
                 unique: true);

@@ -144,31 +144,25 @@ namespace Smartgym.Controllers
             {
                 // Aluno OLD
                 var alunoDTOOld = _alunoRepository.GetbyId(id);
-
+                
                 // Conta
-                Domain.DTO.Conta contaDTO = new Domain.DTO.Conta();
-                contaDTO.EmailConta = collection["email"];
-                contaDTO.SenhaConta = collection["senha"];
+                alunoDTOOld.ContaAluno.EmailConta = collection["email"];
+                alunoDTOOld.ContaAluno.SenhaConta = collection["senha"];
 
                 // Endereço
-                Domain.DTO.Endereco enderecoDTO = new Domain.DTO.Endereco();
-                enderecoDTO.CepEndereco = newGerador.EraseEspecialAndReturnInt(collection["cep"]);
-                enderecoDTO.RuaEndereco = collection["rua"];
-                enderecoDTO.BairroEndereco = collection["bairro"];
-                enderecoDTO.NumeroEndereco = newGerador.EraseEspecialAndReturnInt(collection["numero"]);
-                enderecoDTO.ComplementoEndereco = newGerador.EraseEspecialAndReturnInt(collection["complemento"]);
+                alunoDTOOld.EnderecoAluno.CepEndereco = newGerador.EraseEspecialAndReturnInt(collection["cep"]);
+                alunoDTOOld.EnderecoAluno.RuaEndereco = collection["rua"];
+                alunoDTOOld.EnderecoAluno.BairroEndereco = collection["bairro"];
+                alunoDTOOld.EnderecoAluno.NumeroEndereco = newGerador.EraseEspecialAndReturnInt(collection["numero"]);
+                alunoDTOOld.EnderecoAluno.ComplementoEndereco = newGerador.EraseEspecialAndReturnInt(collection["complemento"]);
 
                 // Aluno
-                Domain.DTO.Aluno alunoDTO = new Domain.DTO.Aluno();
-                alunoDTO.ContaAluno = contaDTO;
-                alunoDTO.EnderecoAluno = enderecoDTO;
-                alunoDTO.MatriculaAluno = alunoDTOOld.MatriculaAluno;
-                alunoDTO.NomeAluno = collection["nomeCompleto"];
-                alunoDTO.CpfAluno = newGerador.EraseEspecialAndReturnLong(collection["cpf"]);
-                alunoDTO.DataNascimentoAluno = DateTime.Parse(collection["dataNascimento"], new CultureInfo("pt-BR"));
-                alunoDTO.TelefoneAluno = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
-                alunoDTO.CelularAluno = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
-                alunoDTO.SexoAluno = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
+                alunoDTOOld.NomeAluno = collection["nomeCompleto"];
+                alunoDTOOld.CpfAluno = newGerador.EraseEspecialAndReturnLong(collection["cpf"]);
+                alunoDTOOld.DataNascimentoAluno = DateTime.Parse(collection["dataNascimento"], new CultureInfo("pt-BR"));
+                alunoDTOOld.TelefoneAluno = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
+                alunoDTOOld.CelularAluno = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
+                alunoDTOOld.SexoAluno = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
 
                 var nomeArquivo = string.Empty;
 
@@ -194,20 +188,12 @@ namespace Smartgym.Controllers
 
                     }
 
-                    alunoDTO.ImagemAluno = "/img/Recebido/Perfil/Aluno/" + nomeArquivo;
-                }
-                else if (alunoDTOOld.ImagemAluno.Length < 0)
-                {
-                    alunoDTO.ImagemAluno = "img/Cadastro/Default_Image.png"; ;
-                }
-                else
-                {
-                    alunoDTO.ImagemAluno = alunoDTOOld.ImagemAluno;
+                    alunoDTOOld.ImagemAluno = "/img/Recebido/Perfil/Aluno/" + nomeArquivo;
                 }
 
-                _alunoRepository.Update(alunoDTO);
+                _alunoRepository.Update(alunoDTOOld);
 
-                Created("Aluno/Edit", alunoDTO);
+                Created("Aluno/Edit", alunoDTOOld);
 
                 return RedirectToAction(nameof(Index));
             }

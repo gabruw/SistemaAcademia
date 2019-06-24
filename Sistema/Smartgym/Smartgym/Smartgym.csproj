@@ -28,8 +28,8 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\Recebido\Perfil\Aluno\" />
-    <Folder Include="wwwroot\img\Recebido\Perfil\Unidade\" />
     <Folder Include="wwwroot\img\Recebido\Perfil\Professor\" />
+    <Folder Include="wwwroot\img\Recebido\Perfil\Unidade\" />
   </ItemGroup>
 
 

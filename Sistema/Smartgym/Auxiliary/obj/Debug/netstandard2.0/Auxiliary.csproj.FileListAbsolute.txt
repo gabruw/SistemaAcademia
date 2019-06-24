@@ -16,3 +16,19 @@ C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\ne
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Http.Features.xml
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.xml
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Auxiliary.deps.json
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Auxiliary.dll
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Auxiliary.pdb
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Domain.dll
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\System.ComponentModel.Annotations.dll
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Domain.pdb
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\bin\Debug\netstandard2.0\System.ComponentModel.Annotations.xml
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.csprojAssemblyReference.cache
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.csproj.CoreCompileInputs.cache
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.AssemblyInfoInputs.cache
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.AssemblyInfo.cs
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.csproj.CopyComplete
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.dll
+C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Auxiliary\obj\Debug\netstandard2.0\Auxiliary.pdb

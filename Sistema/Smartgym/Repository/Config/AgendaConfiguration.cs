@@ -13,7 +13,7 @@ namespace Repository.Config
             builder.HasOne(ag => ag.ProfessorAgenda).WithMany().HasForeignKey(p => p.IdProfessorAgenda);
             builder.HasOne(ag => ag.AlunoAgenda).WithMany().HasForeignKey(p => p.IdAlunoAgenda);
 
-            builder.HasIndex(ag => ag.DataAgenda).IsUnique().HasName("UniqueKey_DataAgenda");
+            builder.HasIndex(ag => ag.DataAgenda).IsUnique();
         }
     }
 }

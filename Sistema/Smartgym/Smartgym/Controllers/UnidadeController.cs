@@ -132,19 +132,14 @@ namespace Smartgym.Controllers
                 var unidadeDTOOld = _unidadeRepository.GetbyId(id);
 
                 // Endereço
-                Domain.DTO.Endereco enderecoDTO = new Domain.DTO.Endereco();
-                enderecoDTO.IdEndereco = unidadeDTOOld.EnderecoUnidade.IdEndereco;
-                enderecoDTO.CepEndereco = newGerador.EraseEspecialAndReturnInt(collection["cep"]);
-                enderecoDTO.RuaEndereco = collection["rua"];
-                enderecoDTO.BairroEndereco = collection["bairro"];
-                enderecoDTO.NumeroEndereco = newGerador.EraseEspecialAndReturnInt(collection["numero"]);
-                enderecoDTO.ComplementoEndereco = newGerador.EraseEspecialAndReturnInt(collection["complemento"]);
+                unidadeDTOOld.EnderecoUnidade.CepEndereco = newGerador.EraseEspecialAndReturnInt(collection["cep"]);
+                unidadeDTOOld.EnderecoUnidade.RuaEndereco = collection["rua"];
+                unidadeDTOOld.EnderecoUnidade.BairroEndereco = collection["bairro"];
+                unidadeDTOOld.EnderecoUnidade.NumeroEndereco = newGerador.EraseEspecialAndReturnInt(collection["numero"]);
+                unidadeDTOOld.EnderecoUnidade.ComplementoEndereco = newGerador.EraseEspecialAndReturnInt(collection["complemento"]);
 
                 // Unidade
-                Domain.DTO.Unidade unidadeDTO = new Domain.DTO.Unidade();
-                unidadeDTO.IdUnidade = id;
-                unidadeDTO.NomeUnidade = collection["nomeUnidade"];
-                unidadeDTO.EnderecoUnidade = enderecoDTO;
+                unidadeDTOOld.NomeUnidade = collection["nomeUnidade"];
 
                 var nomeArquivo = string.Empty;
 
@@ -170,20 +165,12 @@ namespace Smartgym.Controllers
                         
                     }
 
-                    unidadeDTO.ImagemUnidade = "/img/Recebido/Perfil/Unidade/" + nomeArquivo;
-                }
-                else if (unidadeDTOOld.ImagemUnidade.Length < 0)
-                {
-                    unidadeDTO.ImagemUnidade = "img/Principal/Default_Image.png";
-                }
-                else
-                {
-                    unidadeDTO.ImagemUnidade = unidadeDTOOld.ImagemUnidade;
+                    unidadeDTOOld.ImagemUnidade = "/img/Recebido/Perfil/Unidade/" + nomeArquivo;
                 }
 
-                _unidadeRepository.Update(unidadeDTO);
+                _unidadeRepository.Update(unidadeDTOOld);
 
-                Created("Unidade/Edit", unidadeDTO);
+                Created("Unidade/Edit", unidadeDTOOld);
 
                 return RedirectToAction(nameof(Index));
             }

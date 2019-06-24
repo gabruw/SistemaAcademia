@@ -9,7 +9,7 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(SmartgymContext))]
-    [Migration("20190623175606_Main")]
+    [Migration("20190624122649_Main")]
     partial class Main
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,8 +33,7 @@ namespace Repository.Migrations
                     b.HasKey("IdAgenda");
 
                     b.HasIndex("DataAgenda")
-                        .IsUnique()
-                        .HasName("UniqueKey_DataAgenda");
+                        .IsUnique();
 
                     b.HasIndex("IdAlunoAgenda");
 
@@ -87,16 +86,14 @@ namespace Repository.Migrations
                     b.HasKey("IdAluno");
 
                     b.HasIndex("CpfAluno")
-                        .IsUnique()
-                        .HasName("UniqueKey_CpfAluno");
+                        .IsUnique();
 
                     b.HasIndex("IdContaAluno");
 
                     b.HasIndex("IdEnderecoAluno");
 
                     b.HasIndex("MatriculaAluno")
-                        .IsUnique()
-                        .HasName("UniqueKey_MatriculaAluno");
+                        .IsUnique();
 
                     b.ToTable("Aluno");
                 });
@@ -256,8 +253,7 @@ namespace Repository.Migrations
                     b.HasKey("IdConta");
 
                     b.HasIndex("EmailConta")
-                        .IsUnique()
-                        .HasName("UniqueKey_EmailConta");
+                        .IsUnique();
 
                     b.ToTable("Conta");
                 });
@@ -393,12 +389,10 @@ namespace Repository.Migrations
                     b.HasKey("IdProfessor");
 
                     b.HasIndex("CpfProfessor")
-                        .IsUnique()
-                        .HasName("UniqueKey_CpfProfessor");
+                        .IsUnique();
 
                     b.HasIndex("CrefProfessor")
-                        .IsUnique()
-                        .HasName("UniqueKey_CrefProfessor");
+                        .IsUnique();
 
                     b.HasIndex("IdAgendaProfessor");
 

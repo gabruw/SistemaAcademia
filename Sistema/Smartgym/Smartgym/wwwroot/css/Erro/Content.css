@@ -1,0 +1,20 @@
+﻿#ImagemErro {
+    width: 300px;
+    height: 300px;
+}
+
+.imgError {
+    margin-left: 25%;
+    margin-right: 30%;
+}
+
+#ErroMsg{
+    font-size: 14px;
+}
+
+.btn-primary {
+    float: right !important;
+    margin-left: 15px !important;
+    border-color: #8F2828 !important;
+    background-color: #8F2828 !important;
+}

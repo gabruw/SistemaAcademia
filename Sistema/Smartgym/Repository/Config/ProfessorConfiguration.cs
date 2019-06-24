@@ -18,9 +18,9 @@ namespace Repository.Config
 
             builder.Property(p => p.PermissaoProfessor).IsRequired().HasMaxLength(1).HasColumnType("int(1)");
 
-            builder.HasIndex(p => p.CrefProfessor).IsUnique().HasName("UniqueKey_CrefProfessor");
+            builder.HasIndex(p => p.CrefProfessor).IsUnique();
             builder.Property(p => p.NomeProfessor).IsRequired().HasMaxLength(120).HasColumnType("varchar(120)");
-            builder.HasIndex(p => p.CpfProfessor).IsUnique().HasName("UniqueKey_CpfProfessor");
+            builder.HasIndex(p => p.CpfProfessor).IsUnique();
             builder.Property(p => p.DataNascimentoProfessor).IsRequired().HasColumnType("date");
             builder.Property(p => p.DataAdmissaoProfessor).IsRequired().HasColumnType("date");
             builder.Property(p => p.TelefoneProfessor).HasMaxLength(10).HasColumnType("bigint");

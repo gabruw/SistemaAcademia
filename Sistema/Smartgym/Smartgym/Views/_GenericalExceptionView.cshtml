@@ -1,6 +1,94 @@
 ﻿@{
-    ViewData["Title"] = "_GenericalExceptionView";
+    ViewData["Title"] = "Erro";
     Layout = string.Empty;
 }
 
-<h1>AAAAAAAAAAAAAAAAAA</h1>
+@model Exception
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Gabriel Marques, Raphaelli e Igor" />
+    <meta name="keywords" content="ASP.NET Core, HTML, CSS e JavaScript" />
+    <meta name="description" content="Smart Gym" />
+
+    <title>Smartgym - @ViewData["Title"]</title>
+
+    @*Favicon*@
+    <environment include="Development">
+        <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    </environment>
+
+    @*Links CSS Geral*@
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="~/css/Menu/TopMenu.css" />
+        <link rel="stylesheet" type="text/css" href="~/css/Menu/Footer.css" />
+    </environment>
+
+    @*Links CSS*@
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="~/css/Erro/Content.css" />
+    </environment>
+
+    @*Frameworks CSS*@
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+
+    @*Links Fontes*@
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu" />
+    </environment>
+
+    @*Frameworks JS*@
+    <environment include="Development">
+        <script rel="stylesheet" type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    </environment>
+</head>
+<body>
+    @*Menu Superior*@
+    <nav id="NavbarSuperior" class="navbar navbar-expand-md w-100">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+            <img id="Logo" src="~/img/Logo/Favicon.png" alt="Logo" />
+        </a>
+
+        @*Esquerda*@
+        <ul class="navbar-nav mr-auto"></ul>
+
+        @*Direita*@
+        <ul class="navbar-nav"></ul>
+    </nav>
+
+    <div class="row d-flex justify-content-center">
+        <img id="ImagemErro" class="img-fluid mx-auto d-block" src="~/img/Logo/Logo Smartgym.png" alt="Imagem de Erro" />
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <h1>ERRO</h1>
+    </div>
+
+    <br />
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-8">
+            <h1 id="ErroMsg">@Model.Message</h1>
+
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row d-flex justify-content-center">
+        <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Retornar</a>
+    </div>
+
+    <br />
+
+    <footer>
+        <div id="Inferior"></div>
+    </footer>
+</body>
+</html>
