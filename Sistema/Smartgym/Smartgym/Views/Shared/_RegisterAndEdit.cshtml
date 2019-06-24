@@ -35,6 +35,10 @@
                 <link rel="stylesheet" type="text/css" href="~/css/Aparelho/Content.css" />
                 <script defer rel="stylesheet" type="text/javascript" src="~/js/Aparelho/Mask.js"></script>
                 break;
+            case "Cadastrar - Exercício":
+            case "Editar - Exercício":
+                <link rel="stylesheet" type="text/css" href="~/css/Exercicio/Content.css" />
+                break;
             case "Cadastrar - Avaliacao":
             case "Editar - Avaliacao":
                 <link rel="stylesheet" type="text/css" href="~/css/Avaliacao/Content.css" />
@@ -116,6 +120,13 @@
                     <a class="title" asp-controller="Aparelho" asp-action="Index">
                         <i class="fas fa-sign-language"></i>
                         Aparelho
+                    </a>
+                </li>
+
+                <li>
+                    <a class="title" asp-controller="Exercicio" asp-action="Index">
+                        <i class="fas fa-dumbbell"></i>
+                        Exercício
                     </a>
                 </li>
 

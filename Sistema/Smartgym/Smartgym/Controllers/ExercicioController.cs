@@ -53,22 +53,25 @@ namespace Smartgym.Controllers
         // GET: Exercicio/Create
         public ActionResult Create()
         {
-            return View("~/Views/Register/ExercicioRegister.cshtml");
+            var aparelhosDTO = _aparelhoRepository.GetAll();
+
+            return View("~/Views/Register/ExercicioRegister.cshtml", aparelhosDTO);
         }
 
         // POST: Exercicio/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Models.Exercicio exercicio)
+        public ActionResult Create(IFormCollection collection)
         {
             try
             {
-                var aparelhoDTO = _aparelhoRepository.GetbyId(exercicio.AparelhoExercicio.IdAparelho);
+                var idAparelho = Int64.Parse(collection["aparelho"]);
+                var aparelhoDTO = _aparelhoRepository.GetbyId(idAparelho);
 
                 Domain.DTO.Exercicio exercicioDTO = new Domain.DTO.Exercicio();
                 exercicioDTO.AparelhoExercicio = aparelhoDTO;
-                exercicioDTO.NomeExercicio = exercicio.NomeExercicio;
-                exercicioDTO.ObservacaoExercicio = exercicio.ObservacaoExercicio;
+                exercicioDTO.NomeExercicio = collection["nomeExercicio"];
+                exercicioDTO.ObservacaoExercicio = collection["observacaoExercicio"];
 
                 _exercicioRepository.Incluid(exercicioDTO);
 
@@ -83,24 +86,28 @@ namespace Smartgym.Controllers
         // GET: Exercicio/Edit/5
         public ActionResult Edit(long id)
         {
-            var exercicioDTO = _exercicioRepository.GetbyId(id);
+            Auxiliary.Partial.ViewExercicio viewExercicio = new Auxiliary.Partial.ViewExercicio();
+            viewExercicio.ExercicioViewExercicio = _exercicioRepository.GetbyId(id);
+            viewExercicio.AparelhorViewAgenda = _aparelhoRepository.GetAll();
 
-            return View("~/Views/Edit/ExercicioEdit.cshtml", exercicioDTO);
+            return View("~/Views/Edit/ExercicioEdit.cshtml", viewExercicio);
         }
 
         // POST: Exercicio/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Models.Exercicio exercicio)
+        public ActionResult Edit(int id, IFormCollection collection)
         {
             try
             {
                 var exercicioDTO = _exercicioRepository.GetbyId(id);
-                var aparelhoDTO = _aparelhoRepository.GetbyId(exercicio.AparelhoExercicio.IdAparelho);
+
+                var idAparelho = Int64.Parse(collection["aparelho"]);
+                var aparelhoDTO = _aparelhoRepository.GetbyId(idAparelho);
 
                 exercicioDTO.AparelhoExercicio = aparelhoDTO;
-                exercicioDTO.NomeExercicio = exercicio.NomeExercicio;
-                exercicioDTO.ObservacaoExercicio = exercicio.ObservacaoExercicio;
+                exercicioDTO.NomeExercicio = collection["nomeExercicio"];
+                exercicioDTO.ObservacaoExercicio = collection["observacaoExercicio"];
 
                 _exercicioRepository.Update(exercicioDTO);
 

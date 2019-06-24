@@ -37,6 +37,10 @@
                 <link rel="stylesheet" type="text/css" href="~/css/Avaliacao/Content.css" />
                 <script defer rel="stylesheet" type="text/javascript" src="~/js/Avaliacao/DataTable.js"></script>
                 break;
+            case "Principal - Exercício":
+                <link rel="stylesheet" type="text/css" href="~/css/Exercicio/Content.css" />
+                <script defer rel="stylesheet" type="text/javascript" src="~/js/Exercicio/DataTable.js"></script>
+                break;
             case "Principal - Ficha":
                 <link rel="stylesheet" type="text/css" href="~/css/Ficha/Content.css" />
                 <script defer rel="stylesheet" type="text/javascript" src="~/js/Ficha/DataTable.js"></script>
@@ -111,6 +115,13 @@
                     <a class="title" asp-controller="Aparelho" asp-action="Index">
                         <i class="fas fa-sign-language"></i>
                         Aparelho
+                    </a>
+                </li>
+
+                <li>
+                    <a class="title" asp-controller="Exercicio" asp-action="Index">
+                        <i class="fas fa-dumbbell"></i>
+                        Exercício
                     </a>
                 </li>
 
