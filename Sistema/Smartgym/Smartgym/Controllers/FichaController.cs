@@ -14,15 +14,20 @@ namespace Smartgym.Controllers
         private readonly IFichaRepository _fichaRepository;
         private readonly IExercicioRepository _exercicioRepository;
         private readonly ISerieRepository _serieRepository;
+        private readonly IAlunoRepository _alunoRepository;
+        private readonly IProfessorRepository _professorRepository;
 
         private Geradores newGerador = new Geradores();
         private DataTable newDataTable = new DataTable();
 
-        public FichaController(IFichaRepository fichaRepository, IExercicioRepository exercicioRepository, ISerieRepository serieRepository)
+        public FichaController(IFichaRepository fichaRepository, IExercicioRepository exercicioRepository, ISerieRepository serieRepository, 
+            IAlunoRepository alunoRepository, IProfessorRepository professorRepository)
         {
             _fichaRepository = fichaRepository;
             _exercicioRepository = exercicioRepository;
             _serieRepository = serieRepository;
+            _alunoRepository = alunoRepository;
+            _professorRepository = professorRepository;
         }
 
         // GET: Ficha
@@ -66,7 +71,42 @@ namespace Smartgym.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                var idAluno = Int64.Parse(collection["idAluno"]);
+                var idProfessor = Int64.Parse(collection["idProfessor"]);
+
+                if(idAluno > 1 || idProfessor > 1)
+                {
+                    // Ficha
+                    Domain.DTO.Ficha fichaDTO = new Domain.DTO.Ficha();
+                    fichaDTO.IdAlunoFicha = idAluno;
+                    fichaDTO.IdProfessorFicha = idProfessor;
+
+                    var fichaReturn = _fichaRepository.IncluidAndReturnId(fichaDTO);
+
+                    // Série
+                    Domain.DTO.Serie serieDTO = new Domain.DTO.Serie();
+                    serieDTO.IdFichaSerie = fichaReturn.IdFicha;
+                    serieDTO.NomeSerie = collection["nomeSerie"];
+                }
+               
+
+
+
+
+                List<Domain.DTO.Exercicio> exercicios = new List<Domain.DTO.Exercicio>();
+
+                foreach(var exercicio in collection){
+                    Domain.DTO.Exercicio exercicioDTO = new Domain.DTO.Exercicio();
+                    exercicioDTO.NomeExercicio = collection["nomeExercicio"];
+                    exercicioDTO.ObservacaoExercicio = collection["observacaoExercicio"];
+
+                    exercicios.Add(exercicioDTO);
+                }
+                
+
+               
+
+                
 
                 return RedirectToAction(nameof(Index));
             }

@@ -30,7 +30,7 @@ namespace Smartgym.Models
 
         [MinLength(1)]
         [MaxLength(60)]
-        [Required(ErrorMessage = "Necessário adicionar um Nme ao Exercício.")]
+        [Required(ErrorMessage = "Necessário adicionar um Nome ao Exercício.")]
         public string NomeExercicio { get; set; }
 
         [MinLength(1)]

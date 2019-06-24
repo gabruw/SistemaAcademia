@@ -10,15 +10,19 @@ namespace Smartgym.Controllers
     public class AccountController : Controller
     {
         private readonly IContaRepository _contaRepository;
+        private readonly IAlunoRepository _alunoRepository;
+        private readonly IProfessorRepository _professorRepository;
 
-        public AccountController(IContaRepository contaRepository)
+        public AccountController(IContaRepository contaRepository, IAlunoRepository alunoRepository, IProfessorRepository professorRepository)
         {
             _contaRepository = contaRepository;
+            _alunoRepository = alunoRepository;
+            _professorRepository = professorRepository;
         }
 
         public IActionResult Login()
         {
-            return View();
+            return View("~/Views/Account/Login.cshtml");
         }
 
         // POST: Account/CheckLogin
@@ -30,24 +34,38 @@ namespace Smartgym.Controllers
             contaDTO.EmailConta = newConta.EmailConta;
             contaDTO.SenhaConta = newConta.SenhaConta;
 
-            var returnDB = _contaRepository.Logar(contaDTO);
+            var idConta = _contaRepository.Logar(contaDTO);
 
-            if (returnDB != null)
+            var permissao = 0;
+
+            if (idConta != 0)
             {
-                //Domain.DTO.Professor alunoDTO = new Domain.DTO.Aluno();
-                //alunoDTO.EmailAluno = newAluno.EmailAluno;
-                //alunoDTO.SenhaAluno = newAluno.SenhaAluno;
+                if (idConta != -1)
+                {
+                    var alunoDTO = new Domain.DTO.Aluno();
+                    var professorDTO = new Domain.DTO.Professor();
 
-                //if (logAluno.NomeAluno.Contains("Email"))
-                //{
-                //    ModelState.AddModelError("Email", "Email incorreta!");
-                //    return View("~/Views/Login/Login.cshtml");
-                //}
-                //else
-                //{
-                //    ModelState.AddModelError("Senha", "Senha incorreta!");
-                //    return View("~/Views/Login/Login.cshtml");
-                //}
+                    alunoDTO = _alunoRepository.GetbyId(idConta);
+
+                    if(string.IsNullOrEmpty(alunoDTO.NomeAluno))
+                    {
+                        professorDTO = _professorRepository.GetbyId(idConta);
+
+                        permissao = professorDTO.PermissaoProfessor;
+                    }
+                    else
+                    {
+                        permissao = alunoDTO.PermissaoAluno;
+                    }
+                }
+                else
+                {
+                    var erro = "Senha incorreta.";
+                }
+            }
+            else
+            {
+                var erro = "Email incorreto.";
             }
 
             return View("~/Views/Home/Main.cshtml");

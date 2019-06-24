@@ -10,21 +10,25 @@ namespace Repository.Repository
            
         }
 
-        public Domain.DTO.Conta Logar(Domain.DTO.Conta entity)
+        public long Logar(Domain.DTO.Conta entity)
         {
-            var entidadeBanco = SmartgymContext.Set<Domain.DTO.Conta>().Find(entity.EmailConta);
-            var senha = entidadeBanco.SenhaConta;
+            var conta = SmartgymContext.Set<Domain.DTO.Conta>().Find(entity.EmailConta);
 
-            if (entidadeBanco != null)
+            if (conta.EmailConta.Length < 4)
             {
-                entidadeBanco.EmailConta = "Email inválido!";
+                if(conta.SenhaConta == entity.SenhaConta)
+                {
+                    return conta.IdConta;
+                }
+                else
+                {
+                    return -1;
+                }
             }
-            else if (senha != entity.SenhaConta)
+            else
             {
-                entidadeBanco.EmailConta = "Senha inválida!";
+                return 0;
             }
-
-            return entidadeBanco;
         }
     }
 }
