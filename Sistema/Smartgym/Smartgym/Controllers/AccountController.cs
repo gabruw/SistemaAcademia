@@ -60,12 +60,12 @@ namespace Smartgym.Controllers
                 }
                 else
                 {
-                    var erro = "Senha incorreta.";
+                    ViewBag.Erro = "Senha incorreta.";
                 }
             }
             else
             {
-                var erro = "Email incorreto.";
+                ViewBag.Erro = "Email incorreto.";
             }
 
             return View("~/Views/Home/Main.cshtml");

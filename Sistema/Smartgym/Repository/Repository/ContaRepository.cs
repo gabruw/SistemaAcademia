@@ -12,11 +12,11 @@ namespace Repository.Repository
 
         public long Logar(Domain.DTO.Conta entity)
         {
-            var conta = SmartgymContext.Set<Domain.DTO.Conta>().Find(entity.EmailConta);
-
-            if (conta.EmailConta.Length < 4)
+            try
             {
-                if(conta.SenhaConta == entity.SenhaConta)
+                var conta = SmartgymContext.Set<Domain.DTO.Conta>().Find(entity.EmailConta);
+
+                if (conta.SenhaConta == entity.SenhaConta)
                 {
                     return conta.IdConta;
                 }
@@ -25,7 +25,7 @@ namespace Repository.Repository
                     return -1;
                 }
             }
-            else
+            catch
             {
                 return 0;
             }
