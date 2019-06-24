@@ -295,7 +295,7 @@ namespace Repository.Migrations
 
                     b.Property<long>("IdAparelhoExercicio");
 
-                    b.Property<long?>("IdSerieExercicio");
+                    b.Property<long>("IdSerieExercicio");
 
                     b.Property<string>("NomeExercicio")
                         .IsRequired()
@@ -408,7 +408,7 @@ namespace Repository.Migrations
 
                     b.Property<long?>("FichaIdFicha");
 
-                    b.Property<long?>("IdFichaSerie");
+                    b.Property<long>("IdFichaSerie");
 
                     b.Property<string>("NomeSerie")
                         .IsRequired()
@@ -418,6 +418,10 @@ namespace Repository.Migrations
                     b.Property<string>("ObservacaoSerie")
                         .HasColumnType("varchar(800)")
                         .HasMaxLength(800);
+
+                    b.Property<int>("RepeticoesSerie")
+                        .HasColumnType("int")
+                        .HasMaxLength(2);
 
                     b.HasKey("IdSerie");
 
@@ -555,7 +559,8 @@ namespace Repository.Migrations
 
                     b.HasOne("Domain.DTO.Ficha", "FichaSerie")
                         .WithMany()
-                        .HasForeignKey("IdFichaSerie");
+                        .HasForeignKey("IdFichaSerie")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Domain.DTO.Unidade", b =>

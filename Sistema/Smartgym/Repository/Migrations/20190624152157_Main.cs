@@ -272,9 +272,10 @@ namespace Repository.Migrations
                 {
                     IdSerie = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdFichaSerie = table.Column<long>(nullable: true),
+                    IdFichaSerie = table.Column<long>(nullable: false),
                     NomeSerie = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
                     ObservacaoSerie = table.Column<string>(type: "varchar(800)", maxLength: 800, nullable: true),
+                    RepeticoesSerie = table.Column<int>(type: "int", maxLength: 2, nullable: false),
                     FichaIdFicha = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
@@ -291,7 +292,7 @@ namespace Repository.Migrations
                         column: x => x.IdFichaSerie,
                         principalTable: "Ficha",
                         principalColumn: "IdFicha",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -301,7 +302,7 @@ namespace Repository.Migrations
                     IdExercicio = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     IdAparelhoExercicio = table.Column<long>(nullable: false),
-                    IdSerieExercicio = table.Column<long>(nullable: true),
+                    IdSerieExercicio = table.Column<long>(nullable: false),
                     NomeExercicio = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
                     ObservacaoExercicio = table.Column<string>(type: "varchar(800)", maxLength: 800, nullable: false)
                 },

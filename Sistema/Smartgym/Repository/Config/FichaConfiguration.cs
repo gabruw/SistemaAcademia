@@ -13,7 +13,7 @@ namespace Repository.Config
             builder.HasOne(fc => fc.ProfessorFicha).WithMany().HasForeignKey(fc => fc.IdProfessorFicha);
             builder.HasOne(fc => fc.AlunoFicha).WithMany().HasForeignKey(fc => fc.IdAlunoFicha);
 
-            builder.HasMany(fc => fc.SerieFicha).WithOne(s => s.FichaSerie).HasForeignKey(s => s.IdFichaSerie);
+            builder.HasMany(fc => fc.SerieFicha).WithOne(s => s.FichaSerie).HasForeignKey(p => p.IdSerie);
         }
     }
 }

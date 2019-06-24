@@ -1,0 +1,14 @@
+.isDisabled {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+#EditarExercicio {
+    margin-left: 20px;
+}
+
+#ExcluirExercicio {
+    margin-left: 20px;
+}

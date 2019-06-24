@@ -236,6 +236,63 @@ namespace Auxiliary
             return null;
         }
 
+        // Exercício
+        private PropertyInfo getExercicioProperty(string name)
+        {
+            PropertyInfo prop = null;
+
+            var properties = typeof(Domain.DTO.Exercicio).GetProperties();
+
+            foreach (var exercicio in properties)
+            {
+                if (exercicio.Name.ToLower().Equals(name.ToLower()))
+                {
+                    prop = exercicio;
+                    break;
+                }
+            }
+
+            return prop;
+        }
+
+        public IEnumerable<Domain.DTO.Exercicio> ExercicioDataProcessForm(IEnumerable<Domain.DTO.Exercicio> listExerciciosDTO, IFormCollection requestFormData)
+        {
+            var skip = Convert.ToInt32(requestFormData["start"].ToString());
+            var pageSize = Convert.ToInt32(requestFormData["length"].ToString());
+            Microsoft.Extensions.Primitives.StringValues tempOrder = new[] { "" };
+
+            if (requestFormData.TryGetValue("order[0][column]", out tempOrder))
+            {
+                var columnIndex = requestFormData["order[0][column]"].ToString();
+                var sortDirection = requestFormData["order[0][dir]"].ToString();
+                tempOrder = new[] { "" };
+
+                if (requestFormData.TryGetValue($"columns[{columnIndex}][data]", out tempOrder))
+                {
+                    var columnName = requestFormData[$"columns[{columnIndex}][data]"].ToString();
+
+                    if (pageSize > 0)
+                    {
+                        var prop = getExercicioProperty(columnName);
+                        if (sortDirection == "asc")
+                        {
+                            return listExerciciosDTO.OrderBy(prop.GetValue).Skip(skip).Take(pageSize).ToList();
+                        }
+                        else
+                        {
+                            return listExerciciosDTO.OrderByDescending(prop.GetValue).Skip(skip).Take(pageSize).ToList();
+                        }
+                    }
+                    else
+                    {
+                        return listExerciciosDTO;
+                    }
+                }
+            }
+
+            return null;
+        }
+
         // Ficha
         private PropertyInfo getFichaProperty(string name)
         {

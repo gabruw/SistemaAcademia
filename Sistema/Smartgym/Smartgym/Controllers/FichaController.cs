@@ -85,7 +85,6 @@ namespace Smartgym.Controllers
 
                     // Série
                     Domain.DTO.Serie serieDTO = new Domain.DTO.Serie();
-                    serieDTO.IdFichaSerie = fichaReturn.IdFicha;
                     serieDTO.NomeSerie = collection["nomeSerie"];
                 }
                
