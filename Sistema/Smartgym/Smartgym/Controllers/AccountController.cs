@@ -61,11 +61,13 @@ namespace Smartgym.Controllers
                 else
                 {
                     ViewBag.Erro = "Senha incorreta.";
+                    return View("~/Views/Account/Login.cshtml");
                 }
             }
             else
             {
                 ViewBag.Erro = "Email incorreto.";
+                return View("~/Views/Account/Login.cshtml");
             }
 
             return View("~/Views/Home/Main.cshtml");
