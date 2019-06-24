@@ -9,5 +9,19 @@ namespace Repository.Repository
         {
            
         }
+
+        public long VerifyCpf(Domain.DTO.Aluno entity)
+        {
+            try
+            {
+                var conta = SmartgymContext.Set<Domain.DTO.Aluno>().Find(entity.CpfAluno);
+
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
+        }
     }
 }

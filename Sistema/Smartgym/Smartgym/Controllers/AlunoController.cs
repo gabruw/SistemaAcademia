@@ -70,28 +70,17 @@ namespace Smartgym.Controllers
         {
             try
             {
-                var nomeArquivo = string.Empty;
-
-                if (collection.Files.Count == 1)
-                {
-                    var caminhoArquivo = Path.GetTempFileName();
-                    nomeArquivo = newGerador.GetFileName(collection["nomeCompleto"], collection.Files[0].ContentType.Split("/")[1]);
-                    var filePath = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Aluno", nomeArquivo);
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await collection.Files[0].CopyToAsync(stream);
-                    }
-                }
-                else
-                {
-                    nomeArquivo = "img/Cadastro/Default_Image.png";
-                }
-
                 // Conta
                 Domain.DTO.Conta contaDTO = new Domain.DTO.Conta();
                 contaDTO.EmailConta = collection["email"];
                 contaDTO.SenhaConta = collection["senha"];
+
+                var verifyEmail = _contaRepository.VerifyEmail(contaDTO);
+                if(verifyEmail == 0)
+                {
+                    ViewBag.Erro = "O Email já existe.";
+                    return View("~/Views/Register/AlunoRegister.cshtml");
+                }
 
                 // Endereço
                 Domain.DTO.Endereco enderecoDTO = new Domain.DTO.Endereco();
@@ -113,6 +102,32 @@ namespace Smartgym.Controllers
                 alunoDTO.TelefoneAluno = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 alunoDTO.CelularAluno = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 alunoDTO.SexoAluno = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
+
+                var verifyCpf = _alunoRepository.VerifyCpf(alunoDTO);
+                if (verifyCpf == 0)
+                {
+                    ViewBag.Erro = "O CPF já existe.";
+                    return View("~/Views/Register/AlunoRegister.cshtml");
+                }
+
+                var nomeArquivo = string.Empty;
+
+                if (collection.Files.Count == 1)
+                {
+                    var caminhoArquivo = Path.GetTempFileName();
+                    nomeArquivo = newGerador.GetFileName(collection["nomeCompleto"], collection.Files[0].ContentType.Split("/")[1]);
+                    var filePath = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Aluno", nomeArquivo);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await collection.Files[0].CopyToAsync(stream);
+                    }
+                }
+                else
+                {
+                    nomeArquivo = "img/Cadastro/Default_Image.png";
+                }
+
                 alunoDTO.ImagemAluno = "/img/Recebido/Perfil/Aluno/" + nomeArquivo;
 
                 _alunoRepository.Incluid(alunoDTO);
@@ -149,6 +164,13 @@ namespace Smartgym.Controllers
                 alunoDTOOld.ContaAluno.EmailConta = collection["email"];
                 alunoDTOOld.ContaAluno.SenhaConta = collection["senha"];
 
+                var verifyEmail = _contaRepository.VerifyEmail(alunoDTOOld.ContaAluno);
+                if (verifyEmail == 0)
+                {
+                    ViewBag.Erro = "O Email já existe.";
+                    return View("~/Views/Edit/AlunoEdit.cshtml");
+                }
+
                 // Endereço
                 alunoDTOOld.EnderecoAluno.CepEndereco = newGerador.EraseEspecialAndReturnInt(collection["cep"]);
                 alunoDTOOld.EnderecoAluno.RuaEndereco = collection["rua"];
@@ -163,6 +185,13 @@ namespace Smartgym.Controllers
                 alunoDTOOld.TelefoneAluno = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 alunoDTOOld.CelularAluno = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 alunoDTOOld.SexoAluno = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
+
+                var verifyCpf = _alunoRepository.VerifyCpf(alunoDTOOld);
+                if (verifyCpf == 0)
+                {
+                    ViewBag.Erro = "O CPF já existe.";
+                    return View("~/Views/Edit/AlunoEdit.cshtml");
+                }
 
                 var nomeArquivo = string.Empty;
 

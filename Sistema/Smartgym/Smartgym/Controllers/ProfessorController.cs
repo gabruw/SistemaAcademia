@@ -75,28 +75,17 @@ namespace Smartgym.Controllers
         {
             try
             {
-                var nomeArquivo = string.Empty;
-
-                if (collection.Files.Count == 1)
-                {
-                    var caminhoArquivo = Path.GetTempFileName();
-                    nomeArquivo = newGerador.GetFileName(collection["nomeCompleto"], collection.Files[0].ContentType.Split("/")[1]);
-                    var filePath = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Professor", nomeArquivo);
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await collection.Files[0].CopyToAsync(stream);
-                    }
-                }
-                else
-                {
-                    nomeArquivo = "img/Cadastro/Default_Image.png";
-                }
-
                 // Conta
                 Domain.DTO.Conta contaDTO = new Domain.DTO.Conta();
                 contaDTO.EmailConta = collection["email"];
                 contaDTO.SenhaConta = collection["senha"];
+
+                var verifyEmail = _contaRepository.VerifyEmail(contaDTO);
+                if (verifyEmail == 0)
+                {
+                    ViewBag.Erro = "O Email já existe.";
+                    return View("~/Views/Register/ProfessorRegister.cshtml");
+                }
 
                 // Endereço
                 Domain.DTO.Endereco enderecoDTO = new Domain.DTO.Endereco();
@@ -120,6 +109,39 @@ namespace Smartgym.Controllers
                 professorDTO.TelefoneProfessor = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 professorDTO.CelularProfessor = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 professorDTO.SexoProfessor = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
+
+                var verifyCpf = _professorRepository.VerifyCpf(professorDTO);
+                if (verifyCpf == 0)
+                {
+                    ViewBag.Erro = "O CPF já existe.";
+                    return View("~/Views/Register/ProfessorRegister.cshtml");
+                }
+
+                var verifyCref = _professorRepository.VerifyCref(professorDTO);
+                if (verifyCref == 0)
+                {
+                    ViewBag.Erro = "O CREF já existe.";
+                    return View("~/Views/Register/ProfessorRegister.cshtml");
+                }
+
+                var nomeArquivo = string.Empty;
+
+                if (collection.Files.Count == 1)
+                {
+                    var caminhoArquivo = Path.GetTempFileName();
+                    nomeArquivo = newGerador.GetFileName(collection["nomeCompleto"], collection.Files[0].ContentType.Split("/")[1]);
+                    var filePath = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Professor", nomeArquivo);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await collection.Files[0].CopyToAsync(stream);
+                    }
+                }
+                else
+                {
+                    nomeArquivo = "img/Cadastro/Default_Image.png";
+                }
+
                 professorDTO.ImagemProfessor = "/img/Recebido/Perfil/Professor/" + nomeArquivo;
 
                 _professorRepository.Incluid(professorDTO);
@@ -164,6 +186,13 @@ namespace Smartgym.Controllers
                 professorDTOOld.ContaProfessor.EmailConta = collection["email"];
                 professorDTOOld.ContaProfessor.SenhaConta = collection["senha"];
 
+                var verifyEmail = _contaRepository.VerifyEmail(professorDTOOld.ContaProfessor);
+                if (verifyEmail == 0)
+                {
+                    ViewBag.Erro = "O Email já existe.";
+                    return View("~/Views/Edit/ProfessorEdit.cshtml");
+                }
+
                 // Endereço
                 professorDTOOld.EnderecoProfessor.CepEndereco = newGerador.EraseEspecialAndReturnInt(collection["cep"]);
                 professorDTOOld.EnderecoProfessor.RuaEndereco = collection["rua"];
@@ -181,6 +210,20 @@ namespace Smartgym.Controllers
                 professorDTOOld.TelefoneProfessor = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 professorDTOOld.CelularProfessor = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 professorDTOOld.SexoProfessor = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
+
+                var verifyCpf = _professorRepository.VerifyCpf(professorDTOOld);
+                if (verifyCpf == 0)
+                {
+                    ViewBag.Erro = "O CPF já existe.";
+                    return View("~/Views/Edit/ProfessorEdit.cshtml");
+                }
+
+                var verifyCref = _professorRepository.VerifyCref(professorDTOOld);
+                if (verifyCref == 0)
+                {
+                    ViewBag.Erro = "O CREF já existe.";
+                    return View("~/Views/Edit/ProfessorEdit.cshtml");
+                }
 
                 var nomeArquivo = string.Empty;
 

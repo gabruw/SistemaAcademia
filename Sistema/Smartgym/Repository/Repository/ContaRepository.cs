@@ -30,5 +30,19 @@ namespace Repository.Repository
                 return 0;
             }
         }
+
+        public long VerifyEmail(Domain.DTO.Conta entity)
+        {
+            try
+            {
+                var conta = SmartgymContext.Set<Domain.DTO.Conta>().Find(entity.EmailConta);
+
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
+        }
     }
 }
