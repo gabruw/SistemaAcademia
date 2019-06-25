@@ -53,6 +53,8 @@ namespace Domain.DTO
 
         public int SexoProfessor { get; set; }
 
+        public int IdadeProfessor { get; set; }
+
         public string ImagemProfessor { get; set; }
 
         public override void Validate()
@@ -92,6 +94,11 @@ namespace Domain.DTO
             if (SexoProfessor.ToString().Length < 1)
             {
                 AddError("O campo Sexo do Professor não foi informado.");
+            }
+
+            if (IdadeProfessor < 1)
+            {
+                AddError("O campo Idade do Professor não foi informado.");
             }
         }
     }

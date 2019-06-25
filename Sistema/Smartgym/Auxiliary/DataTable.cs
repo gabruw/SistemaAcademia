@@ -349,5 +349,62 @@ namespace Auxiliary
 
             return null;
         }
+
+        // Avaliação
+        private PropertyInfo getAvaliacaoProperty(string name)
+        {
+            PropertyInfo prop = null;
+
+            var properties = typeof(Domain.DTO.Avaliacao).GetProperties();
+
+            foreach (var avaliacao in properties)
+            {
+                if (avaliacao.Name.ToLower().Equals(name.ToLower()))
+                {
+                    prop = avaliacao;
+                    break;
+                }
+            }
+
+            return prop;
+        }
+
+        public IEnumerable<Domain.DTO.Avaliacao> AvaliacaoDataProcessForm(IEnumerable<Domain.DTO.Avaliacao> listAvaliacoesDTO, IFormCollection requestFormData)
+        {
+            var skip = Convert.ToInt32(requestFormData["start"].ToString());
+            var pageSize = Convert.ToInt32(requestFormData["length"].ToString());
+            Microsoft.Extensions.Primitives.StringValues tempOrder = new[] { "" };
+
+            if (requestFormData.TryGetValue("order[0][column]", out tempOrder))
+            {
+                var columnIndex = requestFormData["order[0][column]"].ToString();
+                var sortDirection = requestFormData["order[0][dir]"].ToString();
+                tempOrder = new[] { "" };
+
+                if (requestFormData.TryGetValue($"columns[{columnIndex}][data]", out tempOrder))
+                {
+                    var columnName = requestFormData[$"columns[{columnIndex}][data]"].ToString();
+
+                    if (pageSize > 0)
+                    {
+                        var prop = getAvaliacaoProperty(columnName);
+                        if (sortDirection == "asc")
+                        {
+                            return listAvaliacoesDTO.OrderBy(prop.GetValue).Skip(skip).Take(pageSize).ToList();
+                        }
+                        else
+                        {
+                            return listAvaliacoesDTO.OrderByDescending(prop.GetValue).Skip(skip).Take(pageSize).ToList();
+                        }
+                    }
+                    else
+                    {
+                        return listAvaliacoesDTO;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }

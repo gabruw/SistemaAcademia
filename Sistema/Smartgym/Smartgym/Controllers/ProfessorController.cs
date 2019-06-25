@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -49,9 +51,22 @@ namespace Smartgym.Controllers
 
             var count = professorDTO.Count();
 
+            List<Models.Professor> list = new List<Models.Professor>();
+
+            foreach(var prof in listProfessorForm)
+            {
+                Models.Professor partialProf = new Models.Professor();
+                partialProf.IdProfessor = prof.IdProfessor;
+                partialProf.NomeProfessor = prof.NomeProfessor;
+                partialProf.CpfProfessor = prof.CpfProfessor;
+                partialProf.CrefProfessor = prof.CrefProfessor;
+
+                list.Add(partialProf);
+            }
+
             dynamic response = new
             {
-                Data = listProfessorForm,
+                Data = list,
                 Draw = requestFormData["draw"],
                 RecordsFiltered = count,
                 RecordTotal = count,
@@ -109,6 +124,7 @@ namespace Smartgym.Controllers
                 professorDTO.TelefoneProfessor = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 professorDTO.CelularProfessor = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 professorDTO.SexoProfessor = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
+                professorDTO.IdadeProfessor = Int32.Parse(collection["idade"]);
 
                 var verifyCpf = _professorRepository.VerifyCpf(professorDTO);
                 if (verifyCpf == 0)
@@ -206,10 +222,10 @@ namespace Smartgym.Controllers
                 professorDTOOld.NomeProfessor = collection["nomeCompleto"];
                 professorDTOOld.CpfProfessor = newGerador.EraseEspecialAndReturnLong(collection["cpf"]);
                 professorDTOOld.DataNascimentoProfessor = DateTime.Parse(collection["dataNascimento"], new CultureInfo("pt-BR"));
-                professorDTOOld.DataAdmissaoProfessor = DateTime.Now.Date;
                 professorDTOOld.TelefoneProfessor = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 professorDTOOld.CelularProfessor = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 professorDTOOld.SexoProfessor = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
+                professorDTOOld.IdadeProfessor = Int32.Parse(collection["idade"]);
 
                 var verifyCpf = _professorRepository.VerifyCpf(professorDTOOld);
                 if (verifyCpf == 0)
@@ -252,7 +268,7 @@ namespace Smartgym.Controllers
                     professorDTOOld.ImagemProfessor = "/img/Recebido/Perfil/Professor/" + nomeArquivo;
                 }
 
-                _professorRepository.Incluid(professorDTOOld);
+                _professorRepository.Update(professorDTOOld);
 
                 Created("Professor/Create", professorDTOOld);
 

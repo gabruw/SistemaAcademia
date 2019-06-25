@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Principal - Avaliação";
+    Layout = "_Main";
+}
+
+<div>
+    <section>
+        <p id="Titulo">
+            <i id="IconeTitulo" class="fas fa-paste"></i>
+            Avaliação
+        </p>
+    </section>
+
+    <section class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="ls-label-text">Principal</span>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <a class="btn btn-primary float-right" asp-controller="Avaliacao" asp-action="Create">
+                                <i class="fas fa-paste"></i> Cadastrar
+                            </a>
+
+                            <a class="btn btn-secondary float-left isDisabled" id="EditarAvaliacao" href="#">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+
+                            <a class="btn btn-secondary float-left isDisabled" id="ExcluirAvaliacao" href="#">
+                                <i class="fas fa-trash-alt"></i> Excluir
+                            </a>
+                        </div>
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-body">
+                                        <table id="AvaliacaoTable" class="table table-striped table-bordered table-hover responsive" width="100%">
+                                            <thead class="thin-border-bottom">
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Nome do Aluno</th>
+                                                    <th>Nome do Professor</th>
+                                                    <th>IMC</th>
+                                                    <th>Data da Avaliação</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="submit" id="ConfirmarCadastroAluno" class="btn btn-primary">Confirmar</button>
+
+                                <button type="reset" id="ResetCadastroAluno" class="btn btn-secondary">Resetar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="overlay"></div>

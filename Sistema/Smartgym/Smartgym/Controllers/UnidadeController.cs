@@ -44,9 +44,25 @@ namespace Smartgym.Controllers
 
             var count = unidadeDTO.Count();
 
+            List<Models.Unidade> list = new List<Models.Unidade>();
+
+            foreach (var unic in listUnidadeForm)
+            {
+                Models.Endereco partialEnd = new Models.Endereco();
+                partialEnd.RuaEndereco = unic.EnderecoUnidade.RuaEndereco;
+                partialEnd.BairroEndereco = unic.EnderecoUnidade.BairroEndereco;
+
+                Models.Unidade partialUnd = new Models.Unidade();
+                partialUnd.IdUnidade = unic.IdUnidade;
+                partialUnd.NomeUnidade = unic.NomeUnidade;
+                partialUnd.EnderecoUnidade = partialEnd;
+
+                list.Add(partialUnd);
+            }
+
             dynamic response = new
             {
-                Data = listUnidadeForm,
+                Data = list,
                 Draw = requestFormData["draw"],
                 RecordsFiltered = count,
                 RecordTotal = count,

@@ -4,7 +4,6 @@
 }
 
 @model Auxiliary.Partial.ViewProfessor
-
 @*Body*@
 <div>
     <section>
@@ -39,53 +38,67 @@
                                     <input type="text" id="Email" class="form-control" name="email" value="@Model.Professor.ContaProfessor.EmailConta" required>
 
                                     <div class="row">
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <span class="ls-label-text =">Senha</span>
                                             <input type="password" id="Senha" class="form-control" name="senha" value="@Model.Professor.ContaProfessor.SenhaConta" required>
                                         </div>
 
-                                        <div class="col-sm-4">
-                                            <span class="ls-label-text">CPF</span>
-                                            <input type="text" id="Cpf" class="form-control" name="cpf" value="@Model.Professor.CpfProfessor" required>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <span class="ls-label-text">CEP</span>
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text =">CEP</span>
                                             <input type="text" id="Cep" class="form-control" name="cep" value="@Model.Professor.EnderecoProfessor.CepEndereco" required>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-6">
                                             <span class="ls-label-text">Rua</span>
                                             <input type="text" id="Rua" class="form-control" name="rua" value="@Model.Professor.EnderecoProfessor.RuaEndereco" required>
                                         </div>
 
-                                        <div class="col-sm-3">
-                                            <span class="ls-label-text d-inline-block text-truncate">Bairro</span>
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Bairro</span>
                                             <input type="text" id="Bairro" class="form-control" name="bairro" value="@Model.Professor.EnderecoProfessor.BairroEndereco" required>
                                         </div>
+                                    </div>
 
-                                        <div class="col-sm-2">
-                                            <span class="ls-label-text d-inline-block text-truncate">Número</span>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Número</span>
                                             <input type="text" id="Numero" class="form-control" name="numero" value="@Model.Professor.EnderecoProfessor.NumeroEndereco" required>
                                         </div>
 
-                                        <div class="col-sm-2">
-                                            <span class="ls-label-text d-inline-block text-truncate">Compl</span>
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Compl</span>
                                             <input type="text" id="Complemento" class="form-control" name="complemento" value="@Model.Professor.EnderecoProfessor.ComplementoEndereco">
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Data de Nascimento</span>
+                                            <input type="date" id="DataNascimento" class="form-control" name="dataNascimento" value="@Model.Professor.DataNascimentoProfessor.Date.ToString("yyyy-MM-dd")" required>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <span class="ls-label-text">Telefone</span>
-                                            <input type="text" id="Telefone" class="form-control" name="telefone" value="@Model.Professor.TelefoneProfessor">
+                                            <input type="text" id="Telefone" class="form-control" name="telefone" value="@Model.Professor.TelefoneProfessor" required>
                                         </div>
 
                                         <div class="col-sm-6">
                                             <span class="ls-label-text">Celular</span>
-                                            <input type="text" id="Celular" class="form-control" name="celular" value="@Model.Professor.CelularProfessor">
+                                            <input type="text" id="Celular" class="form-control" name="celular" value="@Model.Professor.CelularProfessor" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">CREF</span>
+                                            <input type="text" id="Cref" class="form-control" name="cref" value="@Model.Professor.CrefProfessor" required>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">CPF</span>
+                                            <input type="text" id="Cpf" class="form-control" name="cpf" value="@Model.Professor.CpfProfessor" required>
                                         </div>
                                     </div>
 
@@ -106,18 +119,6 @@
                                                     }
                                                 }
                                             </select>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <span class="ls-label-text">Celular</span>
-                                            <input type="text" id="Celular" class="form-control" name="celular" value="@Model.Professor.CelularProfessor">
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <span class="ls-label-text">Data de Nascimento</span>
-                                            <input type="date" id="DataNascimento" class="form-control" name="dataNascimento" value="@Model.Professor.DataNascimentoProfessor.Date.ToString("yyyy-MM-dd")" required>
                                         </div>
 
                                         <div class="col-sm-6">
@@ -154,16 +155,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <br>
+                                    <br>
 
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <button type="submit" id="ConfirmarCadastroProfessor" class="btn btn-primary">Confirmar</button>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <button type="submit" id="ConfirmarCadastroProfessor" class="btn btn-primary">Confirmar</button>
 
-                                    <button type="reset" id="ResetCadastroProfessor" class="btn btn-secondary">Resetar</button>
+                                            <button type="reset" id="ResetCadastroProfessor" class="btn btn-secondary">Resetar</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

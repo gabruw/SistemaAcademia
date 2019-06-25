@@ -94,7 +94,7 @@
   },
   "libraries": {
     "Microsoft.Extensions.Primitives/2.2.0": {
-      "sha512": "azyQtqbm4fSaDzZHD/J+V6oWMFaf2tWP4WEGIYePLCMw3+b2RQdj9ybgbQyjCshcitQKQ4lEDOZjmSlTTrHxUg==",
+      "sha512": "vpH+o7f8obVx65PiEtBXxTwL5RosK60fNIMy/y8WGE4/r4IvAqQGukOzMhxsp//Accvd7kmukyQTVkqVYdaDyA==",
       "type": "package",
       "path": "microsoft.extensions.primitives/2.2.0",
       "files": [
@@ -381,40 +381,38 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\snyp_\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\SHU Aeronáutica 01\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\snyp_\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Auxiliary\\Auxiliary.csproj",
+      "projectUniqueName": "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Auxiliary\\Auxiliary.csproj",
       "projectName": "Auxiliary",
-      "projectPath": "C:\\Users\\snyp_\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Auxiliary\\Auxiliary.csproj",
-      "packagesPath": "C:\\Users\\snyp_\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\snyp_\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Auxiliary\\obj\\",
+      "projectPath": "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Auxiliary\\Auxiliary.csproj",
+      "packagesPath": "C:\\Users\\SHU Aeronáutica 01\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Auxiliary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\snyp_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\SHU Aeronáutica 01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://www.nuget.org/api/v2/curated-feeds/microsoftdotnet/": {}
       },
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\snyp_\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\snyp_\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Domain\\Domain.csproj"
+            "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\SHU Aeronáutica 01\\Documents\\GitHub\\Smartgym\\Sistema\\Smartgym\\Domain\\Domain.csproj"
             }
           }
         }

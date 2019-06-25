@@ -102,6 +102,7 @@ namespace Smartgym.Controllers
                 alunoDTO.TelefoneAluno = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 alunoDTO.CelularAluno = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 alunoDTO.SexoAluno = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
+                alunoDTO.IdadeAluno = Int32.Parse(collection["idade"]);
 
                 var verifyCpf = _alunoRepository.VerifyCpf(alunoDTO);
                 if (verifyCpf == 0)
@@ -214,6 +215,7 @@ namespace Smartgym.Controllers
                 alunoDTOOld.TelefoneAluno = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 alunoDTOOld.CelularAluno = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 alunoDTOOld.SexoAluno = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
+                alunoDTOOld.IdadeAluno = Int32.Parse(collection["idade"]);
 
                 var nomeArquivo = string.Empty;
 
