@@ -20,7 +20,9 @@ namespace Smartgym.Controllers
         private Geradores newGerador = new Geradores();
         private DataTable newDataTable = new DataTable();
 
-        public FichaController(IFichaRepository fichaRepository, IExercicioRepository exercicioRepository, ISerieRepository serieRepository, 
+        ICollection<Domain.DTO.Serie> listSerieDTOTemp;
+
+        public FichaController(IFichaRepository fichaRepository, IExercicioRepository exercicioRepository, ISerieRepository serieRepository,
             IAlunoRepository alunoRepository, IProfessorRepository professorRepository)
         {
             _fichaRepository = fichaRepository;
@@ -64,6 +66,30 @@ namespace Smartgym.Controllers
             return View("~/Views/Register/FichaRegister.cshtml");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public void CreateSerie(ICollection<Domain.DTO.Exercicio> listExerciciosDTO, IFormCollection collection)
+        {
+            foreach (var exercicio in listExerciciosDTO)
+            {
+                Domain.DTO.Serie serieDTO = new Domain.DTO.Serie();
+                serieDTO.NomeSerie = collection["nomeSerie"];
+                serieDTO.ObservacaoSerie = collection["observacaoSerie"];
+                serieDTO.RepeticoesSerie = Int32.Parse(collection["repeticoesSerie"]);
+                serieDTO.ExercicioSerie.Add(exercicio);
+
+                listSerieDTOTemp.Add(serieDTO);
+            }
+        }
+
+        [HttpGet]
+        public void RemoveSerie(long id)
+        {
+            var serieDTO = _serieRepository.GetbyId(id);
+
+            listSerieDTOTemp.Remove(serieDTO);
+        }
+
         // POST: Ficha/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -74,38 +100,33 @@ namespace Smartgym.Controllers
                 var idAluno = Int64.Parse(collection["idAluno"]);
                 var idProfessor = Int64.Parse(collection["idProfessor"]);
 
-                if(idAluno > 1 || idProfessor > 1)
-                {
-                    // Ficha
-                    Domain.DTO.Ficha fichaDTO = new Domain.DTO.Ficha();
-                    fichaDTO.IdAlunoFicha = idAluno;
-                    fichaDTO.IdProfessorFicha = idProfessor;
+                // Ficha
+                Domain.DTO.Ficha fichaDTO = new Domain.DTO.Ficha();
+                fichaDTO.IdAlunoFicha = idAluno;
+                fichaDTO.IdProfessorFicha = idProfessor;
 
-                    var fichaReturn = _fichaRepository.IncluidAndReturnEntity(fichaDTO);
+                var fichaReturn = _fichaRepository.IncluidAndReturnEntity(fichaDTO);
 
-                    // Série
-                    Domain.DTO.Serie serieDTO = new Domain.DTO.Serie();
-                    serieDTO.NomeSerie = collection["nomeSerie"];
-                }
-               
+
 
 
 
 
                 List<Domain.DTO.Exercicio> exercicios = new List<Domain.DTO.Exercicio>();
 
-                foreach(var exercicio in collection){
+                foreach (var exercicio in collection)
+                {
                     Domain.DTO.Exercicio exercicioDTO = new Domain.DTO.Exercicio();
                     exercicioDTO.NomeExercicio = collection["nomeExercicio"];
                     exercicioDTO.ObservacaoExercicio = collection["observacaoExercicio"];
 
                     exercicios.Add(exercicioDTO);
                 }
-                
 
-               
 
-                
+
+
+
 
                 return RedirectToAction(nameof(Index));
             }

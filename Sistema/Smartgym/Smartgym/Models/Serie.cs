@@ -31,5 +31,10 @@ namespace Smartgym.Models
         [MaxLength(800)]
         [Required(ErrorMessage = "Necessário adicionar uma Observação a Série.")]
         public string ObservacaoSerie { get; set; }
+
+        [MinLength(1)]
+        [MaxLength(3)]
+        [Required(ErrorMessage = "Necessário adicionar um número de Repetições a Série.")]
+        public string RepeticoesSerie { get; set; }
     }
 }

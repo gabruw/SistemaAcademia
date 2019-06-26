@@ -35,7 +35,7 @@ CREATE TABLE `__efmigrationshistory` (
 
 LOCK TABLES `__efmigrationshistory` WRITE;
 /*!40000 ALTER TABLE `__efmigrationshistory` DISABLE KEYS */;
-INSERT INTO `__efmigrationshistory` VALUES ('20190621164456_Main','2.2.4-servicing-10062');
+INSERT INTO `__efmigrationshistory` VALUES ('20190626114452_Main','2.2.4-servicing-10062');
 /*!40000 ALTER TABLE `__efmigrationshistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,8 +50,9 @@ CREATE TABLE `agenda` (
   `IdAgenda` bigint(20) NOT NULL AUTO_INCREMENT,
   `IdProfessorAgenda` bigint(20) NOT NULL,
   `IdAlunoAgenda` bigint(20) NOT NULL,
-  `DataAgenda` date NOT NULL,
+  `DataAgenda` datetime(6) NOT NULL,
   PRIMARY KEY (`IdAgenda`),
+  UNIQUE KEY `IX_Agenda_DataAgenda` (`DataAgenda`),
   KEY `IX_Agenda_IdAlunoAgenda` (`IdAlunoAgenda`),
   KEY `IX_Agenda_IdProfessorAgenda` (`IdProfessorAgenda`),
   CONSTRAINT `FK_Agenda_Aluno_IdAlunoAgenda` FOREIGN KEY (`IdAlunoAgenda`) REFERENCES `aluno` (`IdAluno`) ON DELETE CASCADE,
@@ -80,7 +81,7 @@ CREATE TABLE `aluno` (
   `IdContaAluno` bigint(20) NOT NULL,
   `IdEnderecoAluno` bigint(20) NOT NULL,
   `PermissaoAluno` int(1) NOT NULL,
-  `MatriculaAluno` varchar(8) NOT NULL,
+  `MatriculaAluno` varchar(255) DEFAULT NULL,
   `NomeAluno` varchar(120) NOT NULL,
   `CpfAluno` bigint(20) NOT NULL,
   `DataNascimentoAluno` date NOT NULL,
@@ -89,6 +90,8 @@ CREATE TABLE `aluno` (
   `SexoAluno` int(1) NOT NULL,
   `ImagemAluno` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`IdAluno`),
+  UNIQUE KEY `IX_Aluno_CpfAluno` (`CpfAluno`),
+  UNIQUE KEY `IX_Aluno_MatriculaAluno` (`MatriculaAluno`),
   KEY `IX_Aluno_IdContaAluno` (`IdContaAluno`),
   KEY `IX_Aluno_IdEnderecoAluno` (`IdEnderecoAluno`),
   CONSTRAINT `FK_Aluno_Conta_IdContaAluno` FOREIGN KEY (`IdContaAluno`) REFERENCES `conta` (`IdConta`) ON DELETE CASCADE,
@@ -189,16 +192,11 @@ DROP TABLE IF EXISTS `conta`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `conta` (
   `IdConta` bigint(20) NOT NULL AUTO_INCREMENT,
-  `IdAlunoConta` bigint(20) NOT NULL,
-  `IdProfessorConta` bigint(20) NOT NULL,
-  `EmailConta` varchar(60) NOT NULL,
+  `EmailConta` varchar(255) DEFAULT NULL,
   `SenhaConta` varchar(40) NOT NULL,
   PRIMARY KEY (`IdConta`),
-  KEY `IX_Conta_IdAlunoConta` (`IdAlunoConta`),
-  KEY `IX_Conta_IdProfessorConta` (`IdProfessorConta`),
-  CONSTRAINT `FK_Conta_Aluno_IdAlunoConta` FOREIGN KEY (`IdAlunoConta`) REFERENCES `aluno` (`IdAluno`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Conta_Professor_IdProfessorConta` FOREIGN KEY (`IdProfessorConta`) REFERENCES `professor` (`IdProfessor`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `IX_Conta_EmailConta` (`EmailConta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +250,7 @@ CREATE TABLE `exercicio` (
   `ObservacaoExercicio` varchar(800) NOT NULL,
   PRIMARY KEY (`IdExercicio`),
   KEY `IX_Exercicio_IdAparelhoExercicio` (`IdAparelhoExercicio`),
-  CONSTRAINT `FK_Exercicio_Exercicio_IdAparelhoExercicio` FOREIGN KEY (`IdAparelhoExercicio`) REFERENCES `exercicio` (`IdExercicio`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Exercicio_Aparelho_IdAparelhoExercicio` FOREIGN KEY (`IdAparelhoExercicio`) REFERENCES `aparelho` (`IdAparelho`) ON DELETE CASCADE,
   CONSTRAINT `FK_Exercicio_Serie_IdExercicio` FOREIGN KEY (`IdExercicio`) REFERENCES `serie` (`IdSerie`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -309,9 +307,9 @@ CREATE TABLE `professor` (
   `IdContaProfessor` bigint(20) NOT NULL,
   `IdEnderecoProfessor` bigint(20) NOT NULL,
   `IdUnidadeProfessor` bigint(20) NOT NULL,
-  `IdAgendaProfessor` bigint(20) NOT NULL,
+  `IdAgendaProfessor` bigint(20) DEFAULT NULL,
   `PermissaoProfessor` int(1) NOT NULL,
-  `CrefProfessor` varchar(9) NOT NULL,
+  `CrefProfessor` varchar(255) DEFAULT NULL,
   `NomeProfessor` varchar(120) NOT NULL,
   `CpfProfessor` bigint(20) NOT NULL,
   `DataNascimentoProfessor` date NOT NULL,
@@ -321,10 +319,12 @@ CREATE TABLE `professor` (
   `SexoProfessor` int(1) NOT NULL,
   `ImagemProfessor` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`IdProfessor`),
+  UNIQUE KEY `IX_Professor_CpfProfessor` (`CpfProfessor`),
+  UNIQUE KEY `IX_Professor_CrefProfessor` (`CrefProfessor`),
   KEY `IX_Professor_IdAgendaProfessor` (`IdAgendaProfessor`),
   KEY `IX_Professor_IdContaProfessor` (`IdContaProfessor`),
   KEY `IX_Professor_IdEnderecoProfessor` (`IdEnderecoProfessor`),
-  CONSTRAINT `FK_Professor_Agenda_IdAgendaProfessor` FOREIGN KEY (`IdAgendaProfessor`) REFERENCES `agenda` (`IdAgenda`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Professor_Agenda_IdAgendaProfessor` FOREIGN KEY (`IdAgendaProfessor`) REFERENCES `agenda` (`IdAgenda`) ON DELETE RESTRICT,
   CONSTRAINT `FK_Professor_Conta_IdContaProfessor` FOREIGN KEY (`IdContaProfessor`) REFERENCES `conta` (`IdConta`) ON DELETE CASCADE,
   CONSTRAINT `FK_Professor_Endereco_IdEnderecoProfessor` FOREIGN KEY (`IdEnderecoProfessor`) REFERENCES `endereco` (`IdEndereco`) ON DELETE CASCADE,
   CONSTRAINT `FK_Professor_Unidade_IdProfessor` FOREIGN KEY (`IdProfessor`) REFERENCES `unidade` (`IdUnidade`) ON DELETE CASCADE
@@ -352,6 +352,7 @@ CREATE TABLE `serie` (
   `IdFichaSerie` bigint(20) NOT NULL,
   `NomeSerie` varchar(60) NOT NULL,
   `ObservacaoSerie` varchar(800) DEFAULT NULL,
+  `RepeticoesSerie` int(11) NOT NULL,
   `FichaIdFicha` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`IdSerie`),
   KEY `IX_Serie_FichaIdFicha` (`FichaIdFicha`),
@@ -406,4 +407,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-21 13:48:08
+-- Dump completed on 2019-06-26 19:07:21

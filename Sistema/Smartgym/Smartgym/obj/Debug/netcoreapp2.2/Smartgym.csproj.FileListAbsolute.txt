@@ -127,3 +127,4 @@ C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Main\ExercicioMain.g.cshtml.cs
 C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Register\ExercicioRegister.g.cshtml.cs
 C:\Users\SHU Aeronáutica 01\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Main\AvaliacaoMain.g.cshtml.cs
+C:\Users\snyp_\Documents\GitHub\Smartgym\Sistema\Smartgym\Smartgym\obj\Debug\netcoreapp2.2\Razor\Views\Main\AvaliacaoMain.g.cshtml.cs
