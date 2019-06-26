@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 using Auxiliary;
 using Domain.Repository;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +17,7 @@ namespace Smartgym.Controllers
 
         private Geradores newGerador = new Geradores();
         private DataTable newDataTable = new DataTable();
+        private CultureInfo newCultureInfo = new CultureInfo("en-US");
 
         public AvaliacaoController(IAvaliacaoRepository avaliacaoRepository, IAlunoRepository alunoRepository, IProfessorRepository professorRepository)
         {
@@ -42,9 +43,30 @@ namespace Smartgym.Controllers
 
             var count = avaliacaoDTO.Count();
 
+            List<Models.Avaliacao> list = new List<Models.Avaliacao>();
+
+            foreach (var aval in listAvaliacoesForm)
+            {
+                Models.Professor partialProf = new Models.Professor();
+                partialProf.NomeProfessor = aval.ProfessorAvaliacao.NomeProfessor;
+
+                Models.Aluno partialAlu = new Models.Aluno();
+                partialAlu.NomeAluno = aval.AlunoAvaliacao.NomeAluno;
+
+                Models.Avaliacao partialAval = new Models.Avaliacao();
+                partialAval.IdAvaliacao = aval.IdAvaliacao;
+                partialAval.DataAvaliacao = aval.DataAvaliacao;
+                partialAval.ImcAvaliacao = aval.ImcAvaliacao;
+                partialAval.PercentualGorduraAvaliacao = aval.PercentualGorduraAvaliacao;
+                partialAval.AlunoAvaliacao = partialAlu;
+                partialAval.ProfessorAvaliacao = partialProf;
+
+                list.Add(partialAval);
+            }
+
             dynamic response = new
             {
-                Data = listAvaliacoesForm,
+                Data = list,
                 Draw = requestFormData["draw"],
                 RecordsFiltered = count,
                 RecordTotal = count,
@@ -57,8 +79,8 @@ namespace Smartgym.Controllers
         public ActionResult Create()
         {
             Auxiliary.Partial.ViewAvaliacao viewAvaliacao = new Auxiliary.Partial.ViewAvaliacao();
-            viewAvaliacao.AlunoViewAgenda = _alunoRepository.GetAll();
-            viewAvaliacao.ProfessorViewAgenda = _professorRepository.GetAll();
+            viewAvaliacao.AlunoViewAvaliacao = _alunoRepository.GetAll();
+            viewAvaliacao.ProfessorViewAvaliacao = _professorRepository.GetAll();
 
             return View("~/Views/Register/AvaliacaoRegister.cshtml", viewAvaliacao);
         }
@@ -76,45 +98,31 @@ namespace Smartgym.Controllers
                 avaliacaoDTO.IdAlunoAvaliacao = Int64.Parse(collection["aluno"]);
                 avaliacaoDTO.IdProfessorAvaliacao = Int64.Parse(collection["professor"]);
 
-                avaliacaoDTO.AbdomemAvaliacao = Double.Parse(collection["abdomem"]);
-                avaliacaoDTO.BracoDireitoAvaliacao = Double.Parse(collection["bracoDireito"]);
-                avaliacaoDTO.BracoEsquerdoAvaliacao = Double.Parse(collection["bracoEsquerdo"]);
-                avaliacaoDTO.DobraCutaneaAbdomemAvaliacao = Double.Parse(collection["dobraCutaneaAbdomem"]);
-                avaliacaoDTO.DobraCutaneaCoxaAvaliacao = Double.Parse(collection["dobraCutaneaCoxa"]);
-                avaliacaoDTO.DobraCutaneaPanturrilhaAvaliacao = Double.Parse(collection["dobraCutaneaPanturrilha"]);
-                avaliacaoDTO.DobraCutaneaPeitoAvaliacao = Double.Parse(collection["dobraCutaneaPeito"]);
-                avaliacaoDTO.DobraCutaneaQuadrilAvaliacao = Double.Parse(collection["dobraCutaneaQuadril"]);
-                avaliacaoDTO.DobraCutaneaTricepsAvaliacao = Double.Parse(collection["dobraCutaneaTriceps"]);
-                avaliacaoDTO.PanturrilhaDireitaAvaliacao = Double.Parse(collection["panturrilhaDireita"]);
-                avaliacaoDTO.PanturrilhaEsquerdaAvaliacao = Double.Parse(collection["panturrilhaEsquerda"]);
-                avaliacaoDTO.PeitoralAvaliacao = Double.Parse(collection["peitoral"]);
-                avaliacaoDTO.QuadrcepsEsquerdoAvaliacao = Double.Parse(collection["quadrcepsEsquerdo"]);
-                avaliacaoDTO.QuadricepsDireitoAvaliacao = Double.Parse(collection["quadricepsDireito"]);
-                avaliacaoDTO.QuadrilAvaliacao = Double.Parse(collection["quadril"]);
+                avaliacaoDTO.AbdomemAvaliacao = Double.Parse(collection["abdomem"], newCultureInfo);
+                avaliacaoDTO.BracoDireitoAvaliacao = Double.Parse(collection["bracoDireito"], newCultureInfo);
+                avaliacaoDTO.BracoEsquerdoAvaliacao = Double.Parse(collection["bracoEsquerdo"], newCultureInfo);
+                avaliacaoDTO.DobraCutaneaAbdomemAvaliacao = Double.Parse(collection["dobraCutaneaAbdomem"], newCultureInfo);
+                avaliacaoDTO.DobraCutaneaCoxaAvaliacao = Double.Parse(collection["dobraCutaneaCoxa"], newCultureInfo);
+                avaliacaoDTO.DobraCutaneaPanturrilhaAvaliacao = Double.Parse(collection["dobraCutaneaPanturrilha"], newCultureInfo);
+                avaliacaoDTO.DobraCutaneaPeitoAvaliacao = Double.Parse(collection["dobraCutaneaPeito"], newCultureInfo);
+                avaliacaoDTO.DobraCutaneaQuadrilAvaliacao = Double.Parse(collection["dobraCutaneaQuadril"], newCultureInfo);
+                avaliacaoDTO.DobraCutaneaTricepsAvaliacao = Double.Parse(collection["dobraCutaneaTriceps"], newCultureInfo);
+                avaliacaoDTO.PanturrilhaDireitaAvaliacao = Double.Parse(collection["panturrilhaDireita"], newCultureInfo);
+                avaliacaoDTO.PanturrilhaEsquerdaAvaliacao = Double.Parse(collection["panturrilhaEsquerda"], newCultureInfo);
+                avaliacaoDTO.PeitoralAvaliacao = Double.Parse(collection["peitoral"], newCultureInfo);
+                avaliacaoDTO.QuadrcepsEsquerdoAvaliacao = Double.Parse(collection["quadricepsEsquerdo"], newCultureInfo);
+                avaliacaoDTO.QuadricepsDireitoAvaliacao = Double.Parse(collection["quadricepsDireito"], newCultureInfo);
+                avaliacaoDTO.QuadrilAvaliacao = Double.Parse(collection["quadril"], newCultureInfo);
 
                 avaliacaoDTO.DataAvaliacao = DateTime.Now.Date;
-                avaliacaoDTO.AlturaAvaliacao = Double.Parse(collection["altura"]);
-                avaliacaoDTO.PesoAvaliacao = Double.Parse(collection["peso"]);
+                avaliacaoDTO.AlturaAvaliacao = Double.Parse(collection["altura"], newCultureInfo);
+                avaliacaoDTO.PesoAvaliacao = Double.Parse(collection["peso"], newCultureInfo);
 
-                var soma7 = avaliacaoDTO.DobraCutaneaAbdomemAvaliacao + avaliacaoDTO.DobraCutaneaCoxaAvaliacao +
-                       avaliacaoDTO.DobraCutaneaPanturrilhaAvaliacao + avaliacaoDTO.DobraCutaneaPeitoAvaliacao +
-                       avaliacaoDTO.DobraCutaneaQuadrilAvaliacao + avaliacaoDTO.DobraCutaneaTricepsAvaliacao;
+                double percentualGordura;
 
-                double densidadeCorporal = 0;
-                if (alunoDTO.SexoAluno == 1)
-                {
-                    densidadeCorporal = 1.112 - 0.00043499 * soma7 + 0.00000055 * (soma7 * soma7) - 0.00028826 * alunoDTO.IdadeAluno;
-                }
-                else
-                {
-                    densidadeCorporal = 1.0970 - 0.000464971 * soma7 + 0.00000056 * (soma7 * soma7) - 0.00012828 * alunoDTO.IdadeAluno;
-                }
-
-                double percentualGordura = ((4.95 / densidadeCorporal) - 4.50) * 100;
-
+                avaliacaoDTO.ImcAvaliacao = newGerador.CalcularIMC(alunoDTO.DataNascimentoAluno, avaliacaoDTO, alunoDTO.SexoAluno, out percentualGordura);
                 avaliacaoDTO.PercentualGorduraAvaliacao = percentualGordura;
-                avaliacaoDTO.ImcAvaliacao = avaliacaoDTO.PesoAvaliacao / (avaliacaoDTO.AlturaAvaliacao * avaliacaoDTO.AlturaAvaliacao);
-                avaliacaoDTO.ObservacaoAvaliacao = collection["observacaoAvaliacao"];
+                avaliacaoDTO.ObservacaoAvaliacao = collection["observacoesAvaliacao"];
 
                 _avaliacaoRepository.Incluid(avaliacaoDTO);
 
@@ -122,18 +130,21 @@ namespace Smartgym.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return View("~/Views/_GenericalExceptionView.cshtml", ex);
             }
         }
 
         // GET: Avaliacao/Edit/5
         public ActionResult Edit(long id)
         {
-            var avaliacaoDTO = _avaliacaoRepository.GetbyId(id);
+            Auxiliary.Partial.ViewAvaliacao viewAvaliacao = new Auxiliary.Partial.ViewAvaliacao();
+            viewAvaliacao.AvaliacaoViewAvaliacao = _avaliacaoRepository.GetbyId(id);
+            viewAvaliacao.AlunoViewAvaliacao = _alunoRepository.GetAll();
+            viewAvaliacao.ProfessorViewAvaliacao = _professorRepository.GetAll();
 
-            return View("~/Views/Edit/AlunoEdit.cshtml", avaliacaoDTO);
+            return View("~/Views/Edit/AvaliacaoEdit.cshtml", viewAvaliacao);
         }
 
         // POST: Avaliacao/Edit/5
@@ -143,20 +154,53 @@ namespace Smartgym.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                var alunoDTO = _alunoRepository.GetbyId(Int64.Parse(collection["aluno"]));
+
+                var avaliacaoDTO = _avaliacaoRepository.GetbyId(id);
+
+                avaliacaoDTO.IdAlunoAvaliacao = Int64.Parse(collection["aluno"]);
+                avaliacaoDTO.IdProfessorAvaliacao = Int64.Parse(collection["professor"]);
+
+                avaliacaoDTO.AbdomemAvaliacao = Double.Parse(collection["abdomem"], newCultureInfo);
+                avaliacaoDTO.BracoDireitoAvaliacao = Double.Parse(collection["bracoDireito"], newCultureInfo);
+                avaliacaoDTO.BracoEsquerdoAvaliacao = Double.Parse(collection["bracoEsquerdo"], newCultureInfo);
+                avaliacaoDTO.DobraCutaneaAbdomemAvaliacao = Double.Parse(collection["dobraCutaneaAbdomem"], newCultureInfo);
+                avaliacaoDTO.DobraCutaneaCoxaAvaliacao = Double.Parse(collection["dobraCutaneaCoxa"], newCultureInfo);
+                avaliacaoDTO.DobraCutaneaPanturrilhaAvaliacao = Double.Parse(collection["dobraCutaneaPanturrilha"], newCultureInfo);
+                avaliacaoDTO.DobraCutaneaPeitoAvaliacao = Double.Parse(collection["dobraCutaneaPeito"], newCultureInfo);
+                avaliacaoDTO.DobraCutaneaQuadrilAvaliacao = Double.Parse(collection["dobraCutaneaQuadril"], newCultureInfo);
+                avaliacaoDTO.DobraCutaneaTricepsAvaliacao = Double.Parse(collection["dobraCutaneaTriceps"], newCultureInfo);
+                avaliacaoDTO.PanturrilhaDireitaAvaliacao = Double.Parse(collection["panturrilhaDireita"], newCultureInfo);
+                avaliacaoDTO.PanturrilhaEsquerdaAvaliacao = Double.Parse(collection["panturrilhaEsquerda"], newCultureInfo);
+                avaliacaoDTO.PeitoralAvaliacao = Double.Parse(collection["peitoral"], newCultureInfo);
+                avaliacaoDTO.QuadrcepsEsquerdoAvaliacao = Double.Parse(collection["quadricepsEsquerdo"], newCultureInfo);
+                avaliacaoDTO.QuadricepsDireitoAvaliacao = Double.Parse(collection["quadricepsDireito"], newCultureInfo);
+                avaliacaoDTO.QuadrilAvaliacao = Double.Parse(collection["quadril"], newCultureInfo);
+
+                avaliacaoDTO.DataAvaliacao = DateTime.Now.Date;
+                avaliacaoDTO.AlturaAvaliacao = Double.Parse(collection["altura"], newCultureInfo);
+                avaliacaoDTO.PesoAvaliacao = Double.Parse(collection["peso"], newCultureInfo);
+
+                double percentualGordura;
+
+                avaliacaoDTO.ImcAvaliacao = newGerador.CalcularIMC(alunoDTO.DataNascimentoAluno, avaliacaoDTO, alunoDTO.SexoAluno, out percentualGordura);
+                avaliacaoDTO.PercentualGorduraAvaliacao = percentualGordura;
+                avaliacaoDTO.ObservacaoAvaliacao = collection["observacoesAvaliacao"];
+
+                _avaliacaoRepository.Update(avaliacaoDTO);
+
+                Created("Avaliacao/Create", avaliacaoDTO);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return View("~/Views/_GenericalExceptionView.cshtml", ex);
             }
         }
 
-        // POST: Avaliacao/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(long id, IFormCollection collection)
+        // GET: Avaliacao/Delete/5
+        public ActionResult Delete(long id)
         {
             var avaliacaoDTO = _avaliacaoRepository.GetbyId(id);
 

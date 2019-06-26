@@ -114,7 +114,7 @@ namespace Smartgym.Controllers
                 Domain.DTO.Professor professorDTO = new Domain.DTO.Professor();
                 professorDTO.ContaProfessor = contaDTO;
                 professorDTO.EnderecoProfessor = enderecoDTO;
-                professorDTO.IdUnidadeProfessor = newGerador.EraseEspecialAndReturnLong(collection["unidade"]);
+                professorDTO.IdUnidadeProfessor = Int64.Parse(collection["unidade"]);
                 professorDTO.PermissaoProfessor = 2;
                 professorDTO.CrefProfessor = collection["cref"];
                 professorDTO.NomeProfessor = collection["nomeCompleto"];
@@ -124,7 +124,6 @@ namespace Smartgym.Controllers
                 professorDTO.TelefoneProfessor = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 professorDTO.CelularProfessor = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 professorDTO.SexoProfessor = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
-                professorDTO.IdadeProfessor = Int32.Parse(collection["idade"]);
 
                 var verifyCpf = _professorRepository.VerifyCpf(professorDTO);
                 if (verifyCpf == 0)
@@ -165,9 +164,15 @@ namespace Smartgym.Controllers
 
                 professorDTO.ImagemProfessor = "/img/Recebido/Perfil/Professor/" + nomeArquivo;
 
-                _professorRepository.Incluid(professorDTO);
+                var professor = _professorRepository.IncluidAndReturnEntity(professorDTO);
 
                 Created("Professor/Create", professorDTO);
+
+                // Update Unidade
+                //var unidadeDTO = _unidadeRepository.GetbyId(Int64.Parse(collection["unidade"]));
+                //unidadeDTO.ProfessorUnidade.Add(professor);
+
+                //_unidadeRepository.Update(unidadeDTO);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -198,6 +203,14 @@ namespace Smartgym.Controllers
                 // Professor OLD
                 var professorDTOOld = _professorRepository.GetbyId(id);
 
+                var idUnidade = Int64.Parse(collection["unidade"]);
+
+                //var unidadeDTO = _unidadeRepository.GetbyId(idUnidade);
+                //if (professorDTOOld.IdUnidadeProfessor != idUnidade)
+                //{
+                //    unidadeDTO.ProfessorUnidade.Remove(professorDTOOld);
+                //}
+                
                 // Conta
                 professorDTOOld.ContaProfessor.EmailConta = collection["email"];
                 professorDTOOld.ContaProfessor.SenhaConta = collection["senha"];
@@ -217,7 +230,7 @@ namespace Smartgym.Controllers
                 professorDTOOld.EnderecoProfessor.ComplementoEndereco = newGerador.EraseEspecialAndReturnInt(collection["complemento"]);
 
                 // Professor
-                professorDTOOld.IdUnidadeProfessor = newGerador.EraseEspecialAndReturnLong(collection["unidade"]);
+                professorDTOOld.IdUnidadeProfessor = idUnidade;
                 professorDTOOld.CrefProfessor = collection["cref"];
                 professorDTOOld.NomeProfessor = collection["nomeCompleto"];
                 professorDTOOld.CpfProfessor = newGerador.EraseEspecialAndReturnLong(collection["cpf"]);
@@ -225,7 +238,6 @@ namespace Smartgym.Controllers
                 professorDTOOld.TelefoneProfessor = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 professorDTOOld.CelularProfessor = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 professorDTOOld.SexoProfessor = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
-                professorDTOOld.IdadeProfessor = Int32.Parse(collection["idade"]);
 
                 var verifyCpf = _professorRepository.VerifyCpf(professorDTOOld);
                 if (verifyCpf == 0)
@@ -271,6 +283,11 @@ namespace Smartgym.Controllers
                 _professorRepository.Update(professorDTOOld);
 
                 Created("Professor/Create", professorDTOOld);
+
+                // Update Unidade
+                //unidadeDTO.ProfessorUnidade.Add(professorDTOOld);
+
+                //_unidadeRepository.Update(unidadeDTO);
 
                 return RedirectToAction(nameof(Index));
             }

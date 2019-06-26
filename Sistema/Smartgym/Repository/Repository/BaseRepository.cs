@@ -20,7 +20,7 @@ namespace Repository.Repository
             SmartgymContext.SaveChanges();
         }
 
-        public TEntity IncluidAndReturnId(TEntity entity)
+        public TEntity IncluidAndReturnEntity(TEntity entity)
         {
             SmartgymContext.Set<TEntity>().Add(entity);
             SmartgymContext.SaveChanges();

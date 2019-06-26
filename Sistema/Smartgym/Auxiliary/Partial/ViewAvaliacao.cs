@@ -5,8 +5,10 @@ namespace Auxiliary.Partial
 {
     public class ViewAvaliacao
     {
-        public IEnumerable<Professor> ProfessorViewAgenda { get; set; }
+        public Avaliacao AvaliacaoViewAvaliacao { get; set; }
 
-        public IEnumerable<Aluno> AlunoViewAgenda { get; set; }
+        public IEnumerable<Professor> ProfessorViewAvaliacao { get; set; }
+
+        public IEnumerable<Aluno> AlunoViewAvaliacao { get; set; }
     }
 }

@@ -112,7 +112,12 @@ namespace Smartgym.Controllers
                 }
                 else
                 {
-                    nomeArquivo = "img/Principal/Default_Image.png";
+                    var filePathO = Path.Combine(_hosting.WebRootPath, "img", "Principal", "Default_Image.png");
+                    nomeArquivo = newGerador.GetFileName("Default_Image", ".png");
+
+                    var filePathD = Path.Combine(_hosting.WebRootPath, "img", "Recebido", "Perfil", "Unidade", nomeArquivo);
+
+                    System.IO.File.Copy(filePathO, filePathD, true);
                 }
 
                 unidadeDTO.ImagemUnidade = "/img/Recebido/Perfil/Unidade/" + nomeArquivo;

@@ -119,9 +119,7 @@ namespace Smartgym.Controllers
             }
         }
 
-        // POST: Exercicio/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // GET: Exercicio/Delete/5
         public ActionResult Delete(int id)
         {
             var exercicioDTO = _exercicioRepository.GetbyId(id);

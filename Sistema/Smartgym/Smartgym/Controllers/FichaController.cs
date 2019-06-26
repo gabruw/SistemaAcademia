@@ -81,7 +81,7 @@ namespace Smartgym.Controllers
                     fichaDTO.IdAlunoFicha = idAluno;
                     fichaDTO.IdProfessorFicha = idProfessor;
 
-                    var fichaReturn = _fichaRepository.IncluidAndReturnId(fichaDTO);
+                    var fichaReturn = _fichaRepository.IncluidAndReturnEntity(fichaDTO);
 
                     // Série
                     Domain.DTO.Serie serieDTO = new Domain.DTO.Serie();
@@ -140,9 +140,7 @@ namespace Smartgym.Controllers
             }
         }
 
-        // POST: Ficha/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // GET: Ficha/Delete/5
         public ActionResult Delete(long id, IFormCollection collection)
         {
             try

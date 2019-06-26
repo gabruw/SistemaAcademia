@@ -3,5 +3,179 @@
     Layout = "_RegisterAndEdit";
 }
 
-<h1>AvaliacaoEdit</h1>
+@model Auxiliary.Partial.ViewAvaliacao
 
+@*Body*@
+<div>
+    <section>
+        <p id="Titulo">
+            <i id="IconeTitulo" class="fas fa-edit"></i>
+            Editar Avaliação
+        </p>
+    </section>
+
+    <section id="DadosPessoais" class="col-sm-8">
+        <form asp-action="Edit" asp-controller="Avaliacao" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="ls-label-text">Avaliação</span>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Professor</span>
+                                            <select type="text" id="Professor" class="form-control" name="professor" required>
+                                                <option>Selecione um professor</option>
+                                                @foreach (var professor in Model.ProfessorViewAvaliacao)
+                                                {
+                                                    if (professor.IdProfessor == Model.AvaliacaoViewAvaliacao.IdProfessorAvaliacao)
+                                                    {
+                                                        <option value="@professor.IdProfessor" selected>@professor.NomeProfessor</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@professor.IdProfessor">@professor.NomeProfessor</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Aluno</span>
+                                            <select type="text" id="Aluno" class="form-control" name="aluno" required>
+                                                <option>Selecione um aluno</option>
+                                                @foreach (var aluno in Model.AlunoViewAvaliacao)
+                                                {
+                                                    if (aluno.IdAluno == Model.AvaliacaoViewAvaliacao.IdAlunoAvaliacao)
+                                                    {
+                                                        <option value="@aluno.IdAluno" selected>@aluno.NomeAluno</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@aluno.IdAluno">@aluno.NomeAluno</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Altura</span>
+                                            <input type="number" step="0.01" id="Altura" class="form-control" name="altura" value="@Model.AvaliacaoViewAvaliacao.AlturaAvaliacao" required>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <span class="ls-label-text">Peso</span>
+                                            <input type="number" step="0.01" id="Peso" class="form-control" name="peso" value="@Model.AvaliacaoViewAvaliacao.PesoAvaliacao" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <span class="ls-label-text">Peitoral</span>
+                                            <input type="number" step="0.01" id="Peitoral" class="form-control" name="peitoral" value="@Model.AvaliacaoViewAvaliacao.PeitoralAvaliacao" required>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="ls-label-text">Abdômem</span>
+                                            <input type="number" step="0.01" id="Abdomem" class="form-control" name="abdomem" value="@Model.AvaliacaoViewAvaliacao.AbdomemAvaliacao" required>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="ls-label-text">Quadril</span>
+                                            <input type="number" step="0.01" id="Quadril" class="form-control" name="quadril" value="@Model.AvaliacaoViewAvaliacao.QuadrilAvaliacao" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Braço Esquerdo</span>
+                                            <input type="number" step="0.01" id="BracoEsquerdo" class="form-control" name="bracoEsquerdo" value="@Model.AvaliacaoViewAvaliacao.BracoEsquerdoAvaliacao" required>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Braço Direito</span>
+                                            <input type="number" step="0.01" id="BracoDireito" class="form-control" name="bracoDireito" value="@Model.AvaliacaoViewAvaliacao.BracoDireitoAvaliacao" required>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Quadríceps Esquerdo</span>
+                                            <input type="number" step="0.01" id="QuadricepsEsquerdo" class="form-control" name="quadricepsEsquerdo" value="@Model.AvaliacaoViewAvaliacao.QuadrcepsEsquerdoAvaliacao" required>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Quadríceps Direito</span>
+                                            <input type="number" step="0.01" id="QuadricepsDireito" class="form-control" name="quadricepsDireito" value="@Model.AvaliacaoViewAvaliacao.QuadricepsDireitoAvaliacao" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Panturrilha Esquerda</span>
+                                            <input type="number" step="0.01" id="PanturrilhaEsquerda" class="form-control" name="panturrilhaEsquerda" value="@Model.AvaliacaoViewAvaliacao.PanturrilhaEsquerdaAvaliacao" required>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Panturrilha Direita</span>
+                                            <input type="number" step="0.01" id="PanturrilhaDireita" class="form-control" name="panturrilhaDireita" value="@Model.AvaliacaoViewAvaliacao.PanturrilhaDireitaAvaliacao" required>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Dobra Cut. Peito</span>
+                                            <input type="number" step="0.01" id="DobraCutaneaPeito" class="form-control" name="dobraCutaneaPeito" value="@Model.AvaliacaoViewAvaliacao.DobraCutaneaPeitoAvaliacao" required>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Dobra Cut. Tríceps</span>
+                                            <input type="number" step="0.01" id="DobraCutaneaTriceps" class="form-control" name="dobraCutaneaTriceps" value="@Model.AvaliacaoViewAvaliacao.DobraCutaneaTricepsAvaliacao" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Dobra Cut. Abdômem</span>
+                                            <input type="number" step="0.01" id="DobraCutaneaAbdomem" class="form-control" name="dobraCutaneaAbdomem" value="@Model.AvaliacaoViewAvaliacao.DobraCutaneaAbdomemAvaliacao" required>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Dobra Cut. Quadril</span>
+                                            <input type="number" step="0.01" id="DobraCutaneaQuadril" class="form-control" name="dobraCutaneaQuadril" value="@Model.AvaliacaoViewAvaliacao.DobraCutaneaQuadrilAvaliacao" required>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Dobra Cut. Panturrilha</span>
+                                            <input type="number" step="0.01" id="DobraCutaneaPanturrilha" class="form-control" name="dobraCutaneaPanturrilha" value="@Model.AvaliacaoViewAvaliacao.DobraCutaneaPanturrilhaAvaliacao" required>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <span class="ls-label-text">Dobra Cut. Coxa</span>
+                                            <input type="number" step="0.01" id="DobraCutaneaCoxa" class="form-control" name="dobraCutaneaCoxa" value="@Model.AvaliacaoViewAvaliacao.DobraCutaneaCoxaAvaliacao" required>
+                                        </div>
+                                    </div>
+
+                                    <span class="ls-label-text">Observações:</span>
+                                    <textarea type="text" id="ObservacoesAvaliacao" class="form-control" name="observacoesAvaliacao" rows="3" required>@Model.AvaliacaoViewAvaliacao.ObservacaoAvaliacao</textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <br>
+                                    <button type="submit" id="ConfirmarCadastroAvaliacao" class="btn btn-primary">Confirmar</button>
+
+                                    <button type="reset" id="ResetCadastroAvaliacao" class="btn btn-secondary">Resetar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>

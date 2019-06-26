@@ -25,7 +25,6 @@ namespace Repository.Config
             builder.Property(al => al.TelefoneAluno).HasMaxLength(10).HasColumnType("bigint");
             builder.Property(al => al.CelularAluno).HasMaxLength(11).HasColumnType("bigint");
             builder.Property(al => al.SexoAluno).IsRequired().HasMaxLength(1).HasColumnType("int(1)");
-            builder.Property(al => al.IdadeAluno).IsRequired().HasMaxLength(3).HasColumnType("int(3)");
 
             builder.Property(al => al.ImagemAluno).HasMaxLength(200).HasColumnType("varchar(200)");
         }

@@ -4,6 +4,7 @@
 }
 
 @model Auxiliary.Partial.ViewAvaliacao
+
 @*Body*@
 <div>
     <section>
@@ -14,7 +15,7 @@
     </section>
 
     <section id="DadosPessoais" class="col-sm-8">
-        <form action="" method="post">
+        <form asp-action="Create" asp-controller="Avaliacao" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
@@ -30,7 +31,7 @@
                                             <span class="ls-label-text">Professor</span>
                                             <select type="text" id="Professor" class="form-control" name="professor" required>
                                                 <option>Selecione um professor</option>
-                                                @foreach (var professor in Model.ProfessorViewAgenda)
+                                                @foreach (var professor in Model.ProfessorViewAvaliacao)
                                                 {
                                                     <option value="@professor.IdProfessor">@professor.NomeProfessor</option>
                                                 }
@@ -41,7 +42,7 @@
                                             <span class="ls-label-text">Aluno</span>
                                             <select type="text" id="Aluno" class="form-control" name="aluno" required>
                                                 <option>Selecione um aluno</option>
-                                                @foreach (var aluno in Model.AlunoViewAgenda)
+                                                @foreach (var aluno in Model.AlunoViewAvaliacao)
                                                 {
                                                     <option value="@aluno.IdAluno">@aluno.NomeAluno</option>
                                                 }
@@ -52,95 +53,95 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <span class="ls-label-text">Altura</span>
-                                            <input type="number"  step="0.01" id="Altura" class="form-control" name="altura" required>
+                                            <input type="number" step="0.01" id="Altura" class="form-control" name="altura" required>
                                         </div>
 
                                         <div class="col-sm-6">
                                             <span class="ls-label-text">Peso</span>
-                                            <input type="number"  step="0.01" id="Peso" class="form-control" name="peso" required>
+                                            <input type="number" step="0.01" id="Peso" class="form-control" name="peso" required>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <span class="ls-label-text">Peitoral</span>
-                                            <input type="number"  step="0.01" id="Peitoral" class="form-control" name="peitoral" required>
+                                            <input type="number" step="0.01" id="Peitoral" class="form-control" name="peitoral" required>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <span class="ls-label-text">Abdômem</span>
-                                            <input type="number"  step="0.01" id="Abdomem" class="form-control" name="abdomem" required>
+                                            <input type="number" step="0.01" id="Abdomem" class="form-control" name="abdomem" required>
                                         </div>
 
                                         <div class="col-sm-4">
                                             <span class="ls-label-text">Quadril</span>
-                                            <input type="number"  step="0.01"id="Quadril" class="form-control" name="quadril" required>
+                                            <input type="number" step="0.01" id="Quadril" class="form-control" name="quadril" required>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <span class="ls-label-text">Braço Esquerdo</span>
-                                            <input type="number"  step="0.01"id="BracoEsquerdo" class="form-control" name="bracoEsquerdo" required>
+                                            <input type="number" step="0.01" id="BracoEsquerdo" class="form-control" name="bracoEsquerdo" required>
                                         </div>
 
                                         <div class="col-sm-3">
                                             <span class="ls-label-text">Braço Direito</span>
-                                            <input type="number"  step="0.01"id="BracoDireito" class="form-control" name="bracoDireito" required>
+                                            <input type="number" step="0.01" id="BracoDireito" class="form-control" name="bracoDireito" required>
                                         </div>
 
                                         <div class="col-sm-3">
                                             <span class="ls-label-text">Quadríceps Esquerdo</span>
-                                            <input type="number"  step="0.01"id="QuadricepsEsquerdo" class="form-control" name="quadricepsEsquerdo" required>
+                                            <input type="number" step="0.01" id="QuadricepsEsquerdo" class="form-control" name="quadricepsEsquerdo" required>
                                         </div>
 
                                         <div class="col-sm-3">
                                             <span class="ls-label-text">Quadríceps Direito</span>
-                                            <input type="number"  step="0.01"id="QuadricepsDireito" class="form-control" name="quadricepsDireito" required>
+                                            <input type="number" step="0.01" id="QuadricepsDireito" class="form-control" name="quadricepsDireito" required>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <span class="ls-label-text">Panturrilha Esquerda</span>
-                                            <input type="number"  step="0.01"id="PanturrilhaEsquerda" class="form-control" name="panturrilhaEsquerda" required>
+                                            <input type="number" step="0.01" id="PanturrilhaEsquerda" class="form-control" name="panturrilhaEsquerda" required>
                                         </div>
 
                                         <div class="col-sm-3">
                                             <span class="ls-label-text">Panturrilha Direita</span>
-                                            <input type="number"  step="0.01"id="PanturrilhaDireita" class="form-control" name="panturrilhaDireita" required>
+                                            <input type="number" step="0.01" id="PanturrilhaDireita" class="form-control" name="panturrilhaDireita" required>
                                         </div>
 
                                         <div class="col-sm-3">
                                             <span class="ls-label-text">Dobra Cut. Peito</span>
-                                            <input type="number"  step="0.01"id="DobraCutaneaPeito" class="form-control" name="dobraCutaneaPeito" required>
+                                            <input type="number" step="0.01" id="DobraCutaneaPeito" class="form-control" name="dobraCutaneaPeito" required>
                                         </div>
 
                                         <div class="col-sm-3">
                                             <span class="ls-label-text">Dobra Cut. Tríceps</span>
-                                            <input type="number"  step="0.01"id="DobraCutaneaTriceps" class="form-control" name="dobraCutaneaTriceps" required>
+                                            <input type="number" step="0.01" id="DobraCutaneaTriceps" class="form-control" name="dobraCutaneaTriceps" required>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <span class="ls-label-text">Dobra Cut. Abdômem</span>
-                                            <input type="number"  step="0.01"id="DobraCutaneaAbdomem" class="form-control" name="dobraCutaneaAbdomem" required>
+                                            <input type="number" step="0.01" id="DobraCutaneaAbdomem" class="form-control" name="dobraCutaneaAbdomem" required>
                                         </div>
 
                                         <div class="col-sm-3">
                                             <span class="ls-label-text">Dobra Cut. Quadril</span>
-                                            <input type="number"  step="0.01"id="DobraCutaneaQuadril" class="form-control" name="dobraCutaneaQuadril" required>
+                                            <input type="number" step="0.01" id="DobraCutaneaQuadril" class="form-control" name="dobraCutaneaQuadril" required>
                                         </div>
 
                                         <div class="col-sm-3">
                                             <span class="ls-label-text">Dobra Cut. Panturrilha</span>
-                                            <input type="number"  step="0.01"id="DobraCutaneaPanturrilha" class="form-control" name="dobraCutaneaPanturrilha" required>
+                                            <input type="number" step="0.01" id="DobraCutaneaPanturrilha" class="form-control" name="dobraCutaneaPanturrilha" required>
                                         </div>
 
                                         <div class="col-sm-3">
                                             <span class="ls-label-text">Dobra Cut. Coxa</span>
-                                            <input type="number"  step="0.01"id="DobraCutaneaCoxa" class="form-control" name="dobraCutaneaCoxa" required>
+                                            <input type="number" step="0.01" id="DobraCutaneaCoxa" class="form-control" name="dobraCutaneaCoxa" required>
                                         </div>
                                     </div>
 
