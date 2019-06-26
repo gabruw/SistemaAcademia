@@ -177,7 +177,6 @@ namespace Smartgym.Controllers
                 avaliacaoDTO.QuadricepsDireitoAvaliacao = Double.Parse(collection["quadricepsDireito"], newCultureInfo);
                 avaliacaoDTO.QuadrilAvaliacao = Double.Parse(collection["quadril"], newCultureInfo);
 
-                avaliacaoDTO.DataAvaliacao = avaliacaoDTO.DataAvaliacao;
                 avaliacaoDTO.AlturaAvaliacao = Double.Parse(collection["altura"], newCultureInfo);
                 avaliacaoDTO.PesoAvaliacao = Double.Parse(collection["peso"], newCultureInfo);
 
