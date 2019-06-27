@@ -39,6 +39,28 @@ namespace Smartgym.Controllers
         }
 
         [HttpPost]
+        public IActionResult GetAllExercicios()
+        {
+            var requestFormData = Request.Form;
+
+            var exercicioDTO = _exercicioRepository.GetAll();
+
+            var listExercicioForm = newDataTable.ExercicioDataProcessForm(exercicioDTO, requestFormData);
+
+            var count = exercicioDTO.Count();
+
+            dynamic response = new
+            {
+                Data = listExercicioForm,
+                Draw = requestFormData["draw"],
+                RecordsFiltered = count,
+                RecordTotal = count,
+            };
+
+            return Ok(response);
+        }
+
+        [HttpPost]
         public IActionResult GetAllFichas()
         {
             var requestFormData = Request.Form;
@@ -63,7 +85,11 @@ namespace Smartgym.Controllers
         // GET: Ficha/Create
         public ActionResult Create()
         {
-            return View("~/Views/Register/FichaRegister.cshtml");
+            var newPartial = new Auxiliary.Partial.PartialCollectionProfessorAluno();
+            newPartial.Aluno = _alunoRepository.GetAll();
+            newPartial.Professor = _professorRepository.GetAll();
+
+            return View("~/Views/Register/FichaRegister.cshtml", newPartial);
         }
 
         [HttpPost]

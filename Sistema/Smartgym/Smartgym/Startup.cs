@@ -50,6 +50,7 @@ namespace Smartgym
             services.AddScoped<Domain.Repository.IEnderecoRepository, Repository.Repository.EnderecoRepository>();
             services.AddScoped<Domain.Repository.IAvaliacaoRepository, Repository.Repository.AvaliacaoRepository>();
             services.AddScoped<Domain.Repository.IExercicioRepository, Repository.Repository.ExercicioRepository>();
+            services.AddScoped<Domain.Repository.IExercicioSerieRepository, Repository.Repository.ExercicioSerieRepository>();
             services.AddScoped<Domain.Repository.IFichaRepository, Repository.Repository.FichaRepository>();
             services.AddScoped<Domain.Repository.IProfessorRepository, Repository.Repository.ProfessorRepository>();
             services.AddScoped<Domain.Repository.ISerieRepository, Repository.Repository.SerieRepository>();

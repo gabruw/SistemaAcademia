@@ -29,7 +29,7 @@ namespace Smartgym.Controllers
         // GET: Agenda/Create
         public ActionResult Create()
         {
-            Models.ViewAgenda newViewAgenda = new Models.ViewAgenda();
+            var newViewAgenda = new Auxiliary.Partial.ViewAgenda();
             newViewAgenda.ProfessorViewAgenda = _professorRepository.GetAll();
             newViewAgenda.AlunoViewAgenda = _alunoRepository.GetAll();
 
@@ -66,7 +66,7 @@ namespace Smartgym.Controllers
         // GET: Agenda/Edit/5
         public ActionResult Edit(long id)
         {
-            Models.ViewAgenda newViewAgenda = new Models.ViewAgenda();
+            var newViewAgenda = new Auxiliary.Partial.ViewAgenda();
             newViewAgenda.AgendaViewAgenda = _agendaRepository.GetbyId(id);
             newViewAgenda.ProfessorViewAgenda = _professorRepository.GetAll();
             newViewAgenda.AlunoViewAgenda = _alunoRepository.GetAll();

@@ -32,9 +32,4 @@
     <Folder Include="wwwroot\img\Recebido\Perfil\Unidade\" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <None Include="wwwroot\favicon.ico" />
-  </ItemGroup>
-
 </Project>

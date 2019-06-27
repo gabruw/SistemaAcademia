@@ -11,7 +11,7 @@
 
     @*Favicon*@
     <environment include="Development">
-        <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="~/img/favicon.ico" />
     </environment>
 
     @*Links CSS Geral*@
@@ -48,6 +48,9 @@
             case "Editar - Ficha":
                 <link rel="stylesheet" type="text/css" href="~/css/Ficha/Content.css" />
                 <script defer rel="stylesheet" type="text/javascript" src="~/js/Ficha/Mask.js"></script>
+                <script defer rel="stylesheet" type="text/javascript" src="~/js/Ficha/DataTableExercicio.js"></script>
+
+                <script defer rel="stylesheet" type="text/javascript" src="~/lib/datatable/datatables.min.js"></script>
                 break;
             case "Cadastrar - Professor":
             case "Editar - Professor":
@@ -80,7 +83,7 @@
 
     @*Frameworks JS*@
     <environment include="Development">
-        <script rel="stylesheet" type="text/javascript" src="~/lib/jquery/dist/jquery-min.js"></script>
+        <script rel="stylesheet" type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
         <script rel="stylesheet" type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script rel="stylesheet" type="text/javascript" src="~/lib/jquery_mask_plugin/jquery.mask.js"></script>
         <script rel="stylesheet" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>

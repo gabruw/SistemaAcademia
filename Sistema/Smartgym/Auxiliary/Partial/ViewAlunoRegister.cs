@@ -1,6 +1,6 @@
 ﻿using Domain.DTO;
 
-namespace Smartgym.Models
+namespace Auxiliary.Partial
 {
     public class ViewAlunoRegister
     {
