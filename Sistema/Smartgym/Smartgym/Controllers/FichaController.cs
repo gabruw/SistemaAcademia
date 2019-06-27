@@ -76,7 +76,6 @@ namespace Smartgym.Controllers
                 serieDTO.NomeSerie = collection["nomeSerie"];
                 serieDTO.ObservacaoSerie = collection["observacaoSerie"];
                 serieDTO.RepeticoesSerie = Int32.Parse(collection["repeticoesSerie"]);
-                serieDTO.ExercicioSerie.Add(exercicio);
 
                 listSerieDTOTemp.Add(serieDTO);
             }

@@ -23,8 +23,8 @@ namespace Repository.Config
             builder.HasIndex(p => p.CpfProfessor).IsUnique();
             builder.Property(p => p.DataNascimentoProfessor).IsRequired().HasColumnType("date");
             builder.Property(p => p.DataAdmissaoProfessor).IsRequired().HasColumnType("date");
-            builder.Property(p => p.TelefoneProfessor).HasMaxLength(10).HasColumnType("bigint");
-            builder.Property(p => p.CelularProfessor).HasMaxLength(11).HasColumnType("bigint");
+            builder.Property(p => p.TelefoneProfessor).HasMaxLength(10).HasColumnType("bigint(10)");
+            builder.Property(p => p.CelularProfessor).HasMaxLength(11).HasColumnType("bigint(11)");
             builder.Property(p => p.SexoProfessor).IsRequired().HasMaxLength(1).HasColumnType("int(1)");
 
             builder.Property(p => p.ImagemProfessor).HasMaxLength(200).HasColumnType("varchar(200)");

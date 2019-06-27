@@ -20,7 +20,7 @@ namespace Domain.DTO
         [ForeignKey("IdFichaSerie")]
         public virtual Ficha FichaSerie { get; set; }
 
-        public virtual ICollection<Exercicio> ExercicioSerie { get; set; }
+        public virtual ICollection<ExercicioSerie> ExercicioExercicioSerie { get; set; }
 
         public string NomeSerie { get; set; }
 
@@ -32,7 +32,7 @@ namespace Domain.DTO
         {
             ClearValidateMensages();
 
-            if (ExercicioSerie.Count < 1)
+            if (ExercicioExercicioSerie.Count < 1)
             {
                 AddError("O campo Exercício da Série não foi informado.");
             }

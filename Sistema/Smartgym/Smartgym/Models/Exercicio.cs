@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Smartgym.Models
 {
@@ -22,11 +18,6 @@ namespace Smartgym.Models
 
         [ForeignKey("IdAparelhoExercicio")]
         public virtual Aparelho AparelhoExercicio { get; set; }
-
-        public long IdSerieExercicio { get; set; }
-
-        [ForeignKey("IdSerieExercicio")]
-        public virtual Serie SerieExercicio { get; set; }
 
         [MinLength(1)]
         [MaxLength(60)]

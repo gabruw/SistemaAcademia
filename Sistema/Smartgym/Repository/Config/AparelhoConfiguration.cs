@@ -10,7 +10,7 @@ namespace Repository.Config
         {
             builder.HasKey(ap => ap.IdAparelho);
 
-            builder.Property(ap => ap.NomeAparelho).IsRequired().HasMaxLength(60).HasColumnType("varchar(60)");
+            builder.HasIndex(ap => ap.NomeAparelho).IsUnique();
         }
     }
 }

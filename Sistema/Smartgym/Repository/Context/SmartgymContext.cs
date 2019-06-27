@@ -20,6 +20,7 @@ namespace Repository.Context
             modelBuilder.Ignore<Avaliacao>();
             modelBuilder.Ignore<Endereco>();
             modelBuilder.Ignore<Exercicio>();
+            modelBuilder.Ignore<ExercicioSerie>();
             modelBuilder.Ignore<Ficha>();
             modelBuilder.Ignore<Professor>();
             modelBuilder.Ignore<Serie>();
@@ -32,6 +33,7 @@ namespace Repository.Context
             modelBuilder.ApplyConfiguration(new AvaliacaoConfiguration());
             modelBuilder.ApplyConfiguration(new EnderecoConfiguration());
             modelBuilder.ApplyConfiguration(new ExercicioConfiguration());
+            modelBuilder.ApplyConfiguration(new ExercicioSerieConfiguration());
             modelBuilder.ApplyConfiguration(new FichaConfiguration());
             modelBuilder.ApplyConfiguration(new ProfessorConfiguration());
             modelBuilder.ApplyConfiguration(new SerieConfiguration());
@@ -53,6 +55,8 @@ namespace Repository.Context
         public DbSet<Endereco> Endereco { get; set; }
 
         public DbSet<Exercicio> Exercicio { get; set; }
+
+        public DbSet<ExercicioSerie> ExercicioSerie { get; set; }
 
         public DbSet<Ficha> Ficha { get; set; }
 

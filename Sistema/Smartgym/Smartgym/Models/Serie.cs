@@ -20,7 +20,7 @@ namespace Smartgym.Models
         [ForeignKey("IdFichaSerie")]
         public virtual Ficha FichaSerie { get; set; }
 
-        public virtual ICollection<Exercicio> ExercicioSerie { get; set; }
+        public virtual ICollection<ExercicioSerie> ExercicioExercicioSerie { get; set; }
 
         [MinLength(1)]
         [MaxLength(60)]

@@ -20,8 +20,6 @@ namespace Domain.DTO
         [ForeignKey("IdEnderecoUnidade")]
         public virtual Endereco EnderecoUnidade { get; set; }
 
-        public virtual ICollection<Professor> ProfessorUnidade { get; set; }
-
         public string NomeUnidade { get; set; }
 
         public string ImagemUnidade { get; set; }

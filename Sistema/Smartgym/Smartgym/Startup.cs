@@ -37,7 +37,7 @@ namespace Smartgym
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // DB Connection
-            var connectionString = Configuration.GetConnectionString("db_Smartgym");
+            var connectionString = Configuration.GetConnectionString("SmartgymDB");
             services.AddDbContext<SmartgymContext>(option =>
                                                             option.UseLazyLoadingProxies().UseMySql(connectionString,
                                                                 m => m.MigrationsAssembly("Repository")));
