@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Gabriel Marques, Raphaelli e Igor" />
+    <meta name="keywords" content="ASP.NET Core, HTML, CSS e JavaScript" />
+    <meta name="description" content="Smart Gym" />
+
+    <title>Smartgym - @ViewData["Title"]</title>
+
+    @*Favicon*@
+    <environment include="Development">
+        <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    </environment>
+
+    @*Links CSS Geral*@
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="~/css/Menu/Body.css" />
+        <link rel="stylesheet" type="text/css" href="~/css/Menu/TopMenu.css" />
+        <link rel="stylesheet" type="text/css" href="~/css/Menu/SideMenu.css" />
+    </environment>
+
+    @*Links CSS e JS*@
+    <environment include="Development">
+        @switch (ViewData.Values.First())
+        {
+            case "Principal - Avaliação":
+                <link rel="stylesheet" type="text/css" href="~/css/Avaliacao/Content.css" />
+                <script defer rel="stylesheet" type="text/javascript" src="~/js/Avaliacao/DataTableAluno.js"></script>
+                break;
+            case "Principal - Ficha":
+                <link rel="stylesheet" type="text/css" href="~/css/Ficha/Content.css" />
+                <script defer rel="stylesheet" type="text/javascript" src="~/js/Ficha/DataTableAluno.js"></script>
+                break;
+        }
+    </environment>
+
+    @*Frameworks CSS*@
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/datatable/datatables.css" />
+    </environment>
+
+    @*Links Fontes*@
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu" />
+    </environment>
+
+    @*Links JS Geral*@
+    <environment include="Development">
+        <script defer rel="stylesheet" type="text/javascript" src="~/js/SideMenu/Content.js"></script>
+    </environment>
+
+    @*Frameworks JS*@
+    <environment include="Development">
+        <script rel="stylesheet" type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+        <script rel="stylesheet" type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script rel="stylesheet" type="text/javascript" src="~/lib/datatable/datatables.min.js"></script>
+        <script rel="stylesheet" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+        <script defer rel="stylesheet" type="text/javascript" src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+        <script defer rel="stylesheet" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    </environment>
+</head>
+<body>
+    <div class="wrapper">
+        @*Menu Lateral*@
+        <nav id="Sidebar">
+            <div id="Dismiss">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+
+            <div class="sidebar-header">
+                <img class="img-fluid" alt="Logo" src="~/img/Logo/Logo Smartgym.png" />
+            </div>
+
+            <ul id="SidebarMenu" class="list-unstyled components">
+                <li>
+                    <a class="title" asp-controller="Ficha" asp-action="Index">
+                        <i class="fas fa-file-alt"></i>
+                        Ficha
+                    </a>
+                </li>
+
+                <li>
+                    <a class="title" asp-controller="Avaliacao" asp-action="Index">
+                        <i class="fas fa-paste"></i>
+                        Avaliação
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        @*Menu Superior*@
+        <nav id="NavbarSuperior" class="navbar navbar-expand-md w-100">
+            <button type="button" id="SidebarCollapse" class="btn btn-info">
+                <i class="fas fa-align-left"></i>
+            </button>
+
+            <a class="nav-link navText" style="margin-left: 20px;" asp-controller="Home" asp-action="Index">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+        </nav>
+
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="">
+            @RenderBody()
+        </main>
+    </div>
+</body>
+</html>

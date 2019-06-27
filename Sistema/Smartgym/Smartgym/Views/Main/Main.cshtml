@@ -1,0 +1,17 @@
+﻿
+@model int
+
+@{
+    ViewData["Title"] = "Main";
+    if(Model == 1)
+    {
+        Layout = "_MainProfessor";
+    }
+    else
+    {
+        Layout = "_MainAluno";
+    }
+}
+
+<h1>Main</h1>
+

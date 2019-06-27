@@ -70,7 +70,7 @@ namespace Smartgym.Controllers
                 return View("~/Views/Account/Login.cshtml");
             }
 
-            return View("~/Views/Home/Main.cshtml");
+            return View("~/Views/Home/Main.cshtml", permissao);
         }
 
         public IActionResult SemAutorizacao()
