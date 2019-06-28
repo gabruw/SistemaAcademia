@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Smartgym.Models;
 
@@ -10,8 +7,17 @@ namespace Smartgym.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUnidadeRepository _unidadeRepository;
+
+        public HomeController(IUnidadeRepository unidadeRepository)
+        {
+            _unidadeRepository = unidadeRepository;
+        }
+
         public IActionResult Index()
         {
+            var unidadesDTO = _unidadeRepository.GetAll();
+
             return View();
         }
 

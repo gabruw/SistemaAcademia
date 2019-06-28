@@ -30,9 +30,13 @@ namespace Smartgym.Controllers
         }
 
         // GET: Aluno
-        public ActionResult Index()
+        public ActionResult Index(int permissao, string nome)
         {
-            return View("~/Views/Main/AlunoMain.cshtml");
+            Auxiliary.Partial.AccountInformation accountInformation = new Auxiliary.Partial.AccountInformation();
+            accountInformation.Permissao = permissao;
+            accountInformation.Nome = nome;
+
+            return View("~/Views/Main/AlunoMain.cshtml", accountInformation);
         }
 
         [HttpPost]
@@ -102,13 +106,6 @@ namespace Smartgym.Controllers
                 alunoDTO.TelefoneAluno = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 alunoDTO.CelularAluno = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 alunoDTO.SexoAluno = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
-
-                var verifyCpf = _alunoRepository.VerifyCpf(alunoDTO);
-                if (verifyCpf == 0)
-                {
-                    ViewBag.Erro = "O CPF já existe.";
-                    return View("~/Views/Register/AlunoRegister.cshtml");
-                }
 
                 var nomeArquivo = string.Empty;
 
@@ -192,22 +189,6 @@ namespace Smartgym.Controllers
                 alunoDTOOld.EnderecoAluno.ComplementoEndereco = newGerador.EraseEspecialAndReturnInt(collection["complemento"]);
 
                 // Aluno
-                if (newGerador.EraseEspecialAndReturnLong(collection["cpf"]).Equals(alunoDTOOld.CpfAluno))
-                {
-                    alunoDTOOld.CpfAluno = newGerador.EraseEspecialAndReturnLong(collection["cpf"]);
-                }
-                else
-                {
-                    alunoDTOOld.CpfAluno = newGerador.EraseEspecialAndReturnLong(collection["cpf"]);
-
-                    var verifyCpf = _alunoRepository.VerifyCpf(alunoDTOOld);
-                    if (verifyCpf == 0)
-                    {
-                        ViewBag.Erro = "O CPF já existe.";
-                        return View("~/Views/Edit/AlunoEdit.cshtml");
-                    }
-                }
-
                 alunoDTOOld.NomeAluno = collection["nomeCompleto"];
                 alunoDTOOld.CpfAluno = newGerador.EraseEspecialAndReturnLong(collection["cpf"]);
                 alunoDTOOld.DataNascimentoAluno = DateTime.Parse(collection["dataNascimento"], new CultureInfo("pt-BR"));

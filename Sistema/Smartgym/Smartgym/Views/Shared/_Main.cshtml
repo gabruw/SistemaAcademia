@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model Auxiliary.Partial.AccountInformation
+
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
@@ -97,52 +99,55 @@
             </div>
 
             <ul id="SidebarMenu" class="list-unstyled components">
+                @if (Model.Permissao == 1)
+                {
+                    <li>
+                        <a class="title" href="@Url.Action("Index", "Ficha", new { permissao = @Model.Permissao, nome = @Model.Nome })">
+                            <i class="fas fa-file-alt"></i>
+                            Ficha
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="title" href="@Url.Action("Index", "Avaliacao", new { permissao = @Model.Permissao, nome = @Model.Nome })">
+                            <i class="fas fa-paste"></i>
+                            Avaliação
+                        </a>
+                    </li>
+                }
+
                 <li>
-                    <a class="title" asp-controller="Aluno" asp-action="Index">
+                    <a class="title" href="@Url.Action("Index", "Aluno", new { permissao = @Model.Permissao, nome = @Model.Nome })">
                         <i class="fas fa-user-plus"></i>
                         Aluno
                     </a>
                 </li>
 
                 <li>
-                    <a class="title" asp-controller="Professor" asp-action="Index">
+                    <a class="title" href="@Url.Action("Index", "Professor", new { permissao = @Model.Permissao, nome = @Model.Nome })">
                         <i class="fas fa-chalkboard-teacher"></i>
                         Professor
                     </a>
                 </li>
 
                 <li>
-                    <a class="title" asp-controller="Aparelho" asp-action="Index">
-                        <i class="fas fa-sign-language"></i>
-                        Aparelho
-                    </a>
-                </li>
-
-                <li>
-                    <a class="title" asp-controller="Exercicio" asp-action="Index">
-                        <i class="fas fa-dumbbell"></i>
-                        Exercício
-                    </a>
-                </li>
-
-                <li>
-                    <a class="title" asp-controller="Ficha" asp-action="Index">
-                        <i class="fas fa-file-alt"></i>
-                        Ficha
-                    </a>
-                </li>
-
-                <li>
-                    <a class="title" asp-controller="Unidade" asp-action="Index">
+                    <a class="title" href="@Url.Action("Index", "Unidade", new { permissao = @Model.Permissao, nome = @Model.Nome })">
                         <i class="fas fa-building"></i>
                         Unidade
                     </a>
                 </li>
 
                 <li>
-                    <a class="title" asp-controller="Avaliacao" asp-action="Index">
-                        <i class="fas fa-paste"></i>
-                        Avaliação
+                    <a class="title" href="@Url.Action("Index", "Aparelho", new { permissao = @Model.Permissao, nome = @Model.Nome })">
+                        <i class="fas fa-sign-language"></i>
+                        Aparelho
+                    </a>
+                </li>
+
+                <li>
+                    <a class="title" href="@Url.Action("Index", "Exercicio", new { permissao = @Model.Permissao, nome = @Model.Nome })">
+                        <i class="fas fa-dumbbell"></i>
+                        Exercício
                     </a>
                 </li>
             </ul>
@@ -154,10 +159,30 @@
                 <i class="fas fa-align-left"></i>
             </button>
 
-            <a class="nav-link navText" style="margin-left: 20px;" asp-controller="Home" asp-action="Index">
-                <i class="fas fa-home"></i>
-                Home
-            </a>
+            @*Esquerda*@
+            <ul class="navbar-nav mr-auto">
+                <a class="nav-link navText" style="margin-left: 20px;" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </ul>
+
+            @*Direita*@
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link navText float-right" style="margin-left: 20px;">
+                        @if (Model.Permissao == 2)
+                        {
+                            <b> Professor - @Model.Nome </b>
+                        }
+                        else
+                        {
+                            <b> Aluno - @Model.Nome </b>
+                        }
+                    </a>
+                </li>
+            </ul>
+
         </nav>
 
         <partial name="_CookieConsentPartial" />

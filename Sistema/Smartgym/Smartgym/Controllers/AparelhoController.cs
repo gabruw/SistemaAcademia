@@ -45,9 +45,13 @@ namespace Smartgym.Controllers
         }
 
         // GET: Aparelho/Create
-        public ActionResult Create()
+        public ActionResult Index(int permissao, string nome)
         {
-            return View("~/Views/Register/AparelhoRegister.cshtml");
+            Auxiliary.Partial.AccountInformation accountInformation = new Auxiliary.Partial.AccountInformation();
+            accountInformation.Permissao = permissao;
+            accountInformation.Nome = nome;
+
+            return View("~/Views/Register/AparelhoRegister.cshtml", accountInformation);
         }
 
         // POST: Aparelho/Create

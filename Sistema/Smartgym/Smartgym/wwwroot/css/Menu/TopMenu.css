@@ -19,6 +19,12 @@ html, body {
 	color: #FFFFFF;
 }
 
+b{
+    color: #FFFFFF !important;
+    font-family: Roboto;
+    font-size: 14px;
+}
+
 .navText:hover{
 	color: #FFFFFF;
 	background-color: #3D3E45;

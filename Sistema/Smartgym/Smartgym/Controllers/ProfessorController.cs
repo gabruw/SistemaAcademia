@@ -35,9 +35,13 @@ namespace Smartgym.Controllers
         }
 
         // GET: Professor
-        public ActionResult Index()
+        public ActionResult Index(int permissao, string nome)
         {
-            return View("~/Views/Main/ProfessorMain.cshtml");
+            Auxiliary.Partial.AccountInformation accountInformation = new Auxiliary.Partial.AccountInformation();
+            accountInformation.Permissao = permissao;
+            accountInformation.Nome = nome;
+
+            return View("~/Views/Main/ProfessorMain.cshtml", accountInformation);
         }
 
         [HttpPost]
@@ -124,20 +128,6 @@ namespace Smartgym.Controllers
                 professorDTO.TelefoneProfessor = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 professorDTO.CelularProfessor = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 professorDTO.SexoProfessor = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
-
-                var verifyCpf = _professorRepository.VerifyCpf(professorDTO);
-                if (verifyCpf == 0)
-                {
-                    ViewBag.Erro = "O CPF já existe.";
-                    return View("~/Views/Register/ProfessorRegister.cshtml");
-                }
-
-                var verifyCref = _professorRepository.VerifyCref(professorDTO);
-                if (verifyCref == 0)
-                {
-                    ViewBag.Erro = "O CREF já existe.";
-                    return View("~/Views/Register/ProfessorRegister.cshtml");
-                }
 
                 var nomeArquivo = string.Empty;
 
@@ -226,20 +216,6 @@ namespace Smartgym.Controllers
                 professorDTOOld.TelefoneProfessor = newGerador.EraseEspecialAndReturnLong(collection["telefone"]);
                 professorDTOOld.CelularProfessor = newGerador.EraseEspecialAndReturnLong(collection["celular"]);
                 professorDTOOld.SexoProfessor = newGerador.EraseEspecialAndReturnInt(collection["sexo"]);
-
-                var verifyCpf = _professorRepository.VerifyCpf(professorDTOOld);
-                if (verifyCpf == 0)
-                {
-                    ViewBag.Erro = "O CPF já existe.";
-                    return View("~/Views/Edit/ProfessorEdit.cshtml");
-                }
-
-                var verifyCref = _professorRepository.VerifyCref(professorDTOOld);
-                if (verifyCref == 0)
-                {
-                    ViewBag.Erro = "O CREF já existe.";
-                    return View("~/Views/Edit/ProfessorEdit.cshtml");
-                }
 
                 var nomeArquivo = string.Empty;
 

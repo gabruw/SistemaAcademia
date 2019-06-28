@@ -33,9 +33,13 @@ namespace Smartgym.Controllers
         }
 
         // GET: Ficha
-        public ActionResult Index()
+        public ActionResult Index(int permissao, string nome)
         {
-            return View("~/Views/Main/FichaMain.cshtml");
+            Auxiliary.Partial.AccountInformation accountInformation = new Auxiliary.Partial.AccountInformation();
+            accountInformation.Permissao = permissao;
+            accountInformation.Nome = nome;
+
+            return View("~/Views/Main/FichaMain.cshtml", accountInformation);
         }
 
         [HttpPost]
@@ -150,10 +154,15 @@ namespace Smartgym.Controllers
             return serieForReturn.IdSerie;
         }
 
-        [HttpGet]
+        [HttpPost]
         public void RemoveSerie(long id)
         {
+            var serieDTO = _serieRepository.GetbyId(id);
 
+            var fichaDTO = _fichaRepository.GetbyId(id);
+            fichaDTO.SerieFicha.Remove(serieDTO);
+
+            _fichaRepository.Update(fichaDTO);
         }
 
         // POST: Ficha/Create

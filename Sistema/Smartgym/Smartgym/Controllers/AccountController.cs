@@ -34,43 +34,46 @@ namespace Smartgym.Controllers
             contaDTO.EmailConta = newConta.EmailConta;
             contaDTO.SenhaConta = newConta.SenhaConta;
 
-            var idConta = _contaRepository.Logar(contaDTO);
+            long[] loginResult = _contaRepository.Logar(contaDTO);
 
             var permissao = 0;
-
-            if (idConta != 0)
+            var nome = "";
+            if (loginResult.First() != 0 || loginResult.First() != -1)
             {
-                if (idConta != -1)
+                var professorDTO = new Domain.DTO.Professor();
+                var alunoDTO = new Domain.DTO.Aluno();
+
+                if (loginResult[1] == 1)
                 {
-                    var alunoDTO = new Domain.DTO.Aluno();
-                    var professorDTO = new Domain.DTO.Professor();
-
-                    alunoDTO = _alunoRepository.GetbyId(idConta);
-
-                    if(string.IsNullOrEmpty(alunoDTO.NomeAluno))
-                    {
-                        professorDTO = _professorRepository.GetbyId(idConta);
-
-                        permissao = professorDTO.PermissaoProfessor;
-                    }
-                    else
-                    {
-                        permissao = alunoDTO.PermissaoAluno;
-                    }
+                    alunoDTO = _alunoRepository.GetbyId(loginResult.First());
+                    permissao = alunoDTO.PermissaoAluno;
+                    nome = alunoDTO.NomeAluno;
                 }
                 else
                 {
-                    ViewBag.Erro = "Senha incorreta.";
-                    return View("~/Views/Account/Login.cshtml");
+                    professorDTO = _professorRepository.GetbyId(loginResult.First());
+
+                    permissao = professorDTO.PermissaoProfessor;
+                    nome = professorDTO.NomeProfessor;
                 }
+                
             }
-            else
+            else if (loginResult.First() == 0)
             {
                 ViewBag.Erro = "Email incorreto.";
                 return View("~/Views/Account/Login.cshtml");
             }
+            else
+            {
+                ViewBag.Erro = "Senha incorreta.";
+                return View("~/Views/Account/Login.cshtml");
+            }
 
-            return View("~/Views/Home/Main.cshtml", permissao);
+            Auxiliary.Partial.AccountInformation accountInformation = new Auxiliary.Partial.AccountInformation();
+            accountInformation.Permissao = permissao;
+            accountInformation.Nome = nome;
+
+            return View("~/Views/Home/Main.cshtml", accountInformation);
         }
 
         public IActionResult SemAutorizacao()

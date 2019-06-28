@@ -23,9 +23,13 @@ namespace Smartgym.Controllers
         }
 
         // GET: Exercicio
-        public ActionResult Index()
+        public ActionResult Index(int permissao, string nome)
         {
-            return View("~/Views/Main/ExercicioMain.cshtml");
+            Auxiliary.Partial.AccountInformation accountInformation = new Auxiliary.Partial.AccountInformation();
+            accountInformation.Permissao = permissao;
+            accountInformation.Nome = nome;
+
+            return View("~/Views/Main/ExercicioMain.cshtml", accountInformation);
         }
 
         [HttpPost]

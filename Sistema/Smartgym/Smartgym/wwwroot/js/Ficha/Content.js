@@ -21,6 +21,8 @@
                 $("#Aluno").attr("disabled", true);
                 $("#Professor").attr("disabled", true);
                 $("#ConfirmarCadastroFicha").attr("disabled", true);
+
+                $("#ConfirmarCadastroSerie").attr("disabled", false);
             },
         });
     });

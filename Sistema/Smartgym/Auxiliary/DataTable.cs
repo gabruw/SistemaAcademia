@@ -15,7 +15,7 @@ namespace Auxiliary
 
             var properties = typeof(Domain.DTO.Aluno).GetProperties();
 
-            foreach(var aluno in properties)
+            foreach (var aluno in properties)
             {
                 if (aluno.Name.ToLower().Equals(name.ToLower()))
                 {
@@ -33,20 +33,20 @@ namespace Auxiliary
             var pageSize = Convert.ToInt32(requestFormData["length"].ToString());
             Microsoft.Extensions.Primitives.StringValues tempOrder = new[] { "" };
 
-            if(requestFormData.TryGetValue("order[0][column]", out tempOrder))
+            if (requestFormData.TryGetValue("order[0][column]", out tempOrder))
             {
                 var columnIndex = requestFormData["order[0][column]"].ToString();
                 var sortDirection = requestFormData["order[0][dir]"].ToString();
                 tempOrder = new[] { "" };
 
-                if(requestFormData.TryGetValue($"columns[{columnIndex}][data]", out tempOrder))
+                if (requestFormData.TryGetValue($"columns[{columnIndex}][data]", out tempOrder))
                 {
                     var columnName = requestFormData[$"columns[{columnIndex}][data]"].ToString();
 
-                    if(pageSize > 0)
+                    if (pageSize > 0)
                     {
                         var prop = getAlunoProperty(columnName);
-                        if(sortDirection == "asc")
+                        if (sortDirection == "asc")
                         {
                             return listAlunosDTO.OrderBy(prop.GetValue).Skip(skip).Take(pageSize).ToList();
                         }

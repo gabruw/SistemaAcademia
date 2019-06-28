@@ -7,42 +7,7 @@ namespace Repository.Repository
     {
         public ContaRepository(SmartgymContext smartgymContext) : base(smartgymContext)
         {
-           
-        }
-
-        public long Logar(Domain.DTO.Conta entity)
-        {
-            try
-            {
-                var conta = SmartgymContext.Set<Domain.DTO.Conta>().Find(entity.EmailConta);
-
-                if (conta.SenhaConta == entity.SenhaConta)
-                {
-                    return conta.IdConta;
-                }
-                else
-                {
-                    return -1;
-                }
-            }
-            catch
-            {
-                return 0;
-            }
-        }
-
-        public long VerifyEmail(Domain.DTO.Conta entity)
-        {
-            try
-            {
-                var conta = SmartgymContext.Set<Domain.DTO.Conta>().Find(entity.EmailConta);
-
-                return 0;
-            }
-            catch
-            {
-                return 1;
-            }
+            
         }
     }
 }
