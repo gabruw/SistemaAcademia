@@ -99,23 +99,6 @@
             </div>
 
             <ul id="SidebarMenu" class="list-unstyled components">
-                @if (Model.Permissao == 1)
-                {
-                    <li>
-                        <a class="title" href="@Url.Action("Index", "Ficha", new { permissao = @Model.Permissao, nome = @Model.Nome })">
-                            <i class="fas fa-file-alt"></i>
-                            Ficha
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="title" href="@Url.Action("Index", "Avaliacao", new { permissao = @Model.Permissao, nome = @Model.Nome })">
-                            <i class="fas fa-paste"></i>
-                            Avaliação
-                        </a>
-                    </li>
-                }
-
                 <li>
                     <a class="title" href="@Url.Action("Index", "Aluno", new { permissao = @Model.Permissao, nome = @Model.Nome })">
                         <i class="fas fa-user-plus"></i>
@@ -150,6 +133,23 @@
                         Exercício
                     </a>
                 </li>
+
+                @if (Model.Permissao == 1 || Model.Permissao == 0)
+                {
+                    <li>
+                        <a class="title" href="@Url.Action("Index", "Ficha", new { permissao = @Model.Permissao, nome = @Model.Nome })">
+                            <i class="fas fa-file-alt"></i>
+                            Ficha
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="title" href="@Url.Action("Index", "Avaliacao", new { permissao = @Model.Permissao, nome = @Model.Nome })">
+                            <i class="fas fa-paste"></i>
+                            Avaliação
+                        </a>
+                    </li>
+                }
             </ul>
         </nav>
 

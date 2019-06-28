@@ -17,9 +17,13 @@ namespace Smartgym.Controllers
         }
 
         // GET: Aparelho
-        public ActionResult Index()
+        public ActionResult Index(int permissao, string nome)
         {
-            return View("~/Views/Main/AparelhoMain.cshtml");
+            Auxiliary.Partial.AccountInformation accountInformation = new Auxiliary.Partial.AccountInformation();
+            accountInformation.Permissao = permissao;
+            accountInformation.Nome = nome;
+
+            return View("~/Views/Main/AparelhoMain.cshtml", accountInformation);
         }
 
         [HttpPost]
@@ -45,13 +49,9 @@ namespace Smartgym.Controllers
         }
 
         // GET: Aparelho/Create
-        public ActionResult Index(int permissao, string nome)
+        public ActionResult Create()
         {
-            Auxiliary.Partial.AccountInformation accountInformation = new Auxiliary.Partial.AccountInformation();
-            accountInformation.Permissao = permissao;
-            accountInformation.Nome = nome;
-
-            return View("~/Views/Register/AparelhoRegister.cshtml", accountInformation);
+            return View("~/Views/Register/AparelhoRegister.cshtml");
         }
 
         // POST: Aparelho/Create
