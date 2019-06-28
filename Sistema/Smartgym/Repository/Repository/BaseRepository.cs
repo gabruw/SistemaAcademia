@@ -20,6 +20,11 @@ namespace Repository.Repository
             SmartgymContext.SaveChanges();
         }
 
+        public void IncluidWithoutSave(TEntity entity)
+        {
+            SmartgymContext.Set<TEntity>().Add(entity);
+        }
+
         public TEntity IncluidAndReturnEntity(TEntity entity)
         {
             SmartgymContext.Set<TEntity>().Add(entity);
@@ -28,10 +33,25 @@ namespace Repository.Repository
             return entity;
         }
 
+        public TEntity IncluidWithoutSaveAndReturnEntity(TEntity entity)
+        {
+            SmartgymContext.Set<TEntity>().Add(entity);
+
+            return entity;
+        }
+
         public void Update(TEntity entity)
         {
             SmartgymContext.Set<TEntity>().Update(entity);
             SmartgymContext.SaveChanges();
+        }
+
+        public TEntity UpdateAndReturnEntity(TEntity entity)
+        {
+            SmartgymContext.Set<TEntity>().Update(entity);
+            SmartgymContext.SaveChanges();
+
+            return entity;
         }
 
         public void Remove(TEntity entity)
@@ -48,6 +68,11 @@ namespace Repository.Repository
         public TEntity GetbyId(long Id)
         {
             return SmartgymContext.Set<TEntity>().Find(Id);
+        }
+
+        public void SaveChanges()
+        {
+            SmartgymContext.SaveChanges();
         }
 
         public void Dispose()

@@ -168,12 +168,6 @@ namespace Smartgym.Controllers
 
                 Created("Professor/Create", professorDTO);
 
-                // Update Unidade
-                //var unidadeDTO = _unidadeRepository.GetbyId(Int64.Parse(collection["unidade"]));
-                //unidadeDTO.ProfessorUnidade.Add(professor);
-
-                //_unidadeRepository.Update(unidadeDTO);
-
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -204,12 +198,6 @@ namespace Smartgym.Controllers
                 var professorDTOOld = _professorRepository.GetbyId(id);
 
                 var idUnidade = Int64.Parse(collection["unidade"]);
-
-                //var unidadeDTO = _unidadeRepository.GetbyId(idUnidade);
-                //if (professorDTOOld.IdUnidadeProfessor != idUnidade)
-                //{
-                //    unidadeDTO.ProfessorUnidade.Remove(professorDTOOld);
-                //}
                 
                 // Conta
                 professorDTOOld.ContaProfessor.EmailConta = collection["email"];
@@ -283,11 +271,6 @@ namespace Smartgym.Controllers
                 _professorRepository.Update(professorDTOOld);
 
                 Created("Professor/Create", professorDTOOld);
-
-                // Update Unidade
-                //unidadeDTO.ProfessorUnidade.Add(professorDTOOld);
-
-                //_unidadeRepository.Update(unidadeDTO);
 
                 return RedirectToAction(nameof(Index));
             }

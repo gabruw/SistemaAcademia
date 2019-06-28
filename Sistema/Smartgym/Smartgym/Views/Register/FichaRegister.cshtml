@@ -4,7 +4,6 @@
 }
 
 @model Auxiliary.Partial.PartialCollectionProfessorAluno
-
 @*Body*@
 <div>
     <section>
@@ -14,79 +13,47 @@
         </p>
     </section>
 
-    <section id="DadosAparelho" class="col-sm-8">
-        <form asp-action="Create" asp-controller="Ficha" method="post" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-sm-6">
-                    @* Ficha *@
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <span class="ls-label-text">Identificação da Ficha</span>
-                                </div>
-
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-12">
-                                                <span class="ls-label-text">Professor</span>
-                                                <select type="text" id="Professor" class="form-control" name="professor" required>
-                                                    <option>Selecione um professor</option>
-                                                    @foreach (var professor in Model.Professor)
-                                                    {
-                                                    <option value="@professor.IdProfessor">@professor.NomeProfessor</option>
-                                                    }
-                                                </select>
-                                            </div>
-
-                                            <div class="col-sm-12">
-                                                <span class="ls-label-text">Aluno</span>
-                                                <select type="text" id="Aluno" class="form-control" name="aluno" required>
-                                                    <option>Selecione um aluno</option>
-                                                    @foreach (var aluno in Model.Aluno)
-                                                    {
-                                                    <option value="@aluno.IdAluno">@aluno.NomeAluno</option>
-                                                    }
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+    <section id="DadosAparelho" class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-3">
+                @* Ficha *@
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="ls-label-text">Ficha</span>
                             </div>
-                        </div>
-                    </div>
 
-                    <br />
-
-                    @* Série *@
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <span class="ls-label-text">Identificação da Série</span>
-                                </div>
-
-                                <div class="card-body">
-                                    <div class="row">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
                                         <div class="col-sm-12">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <span class="ls-label-text">Nome da Série</span>
-                                                    <input type="text" id="NomeSerie" class="form-control" name="nomeSerie" required>
-                                                </div>
+                                            <span class="ls-label-text">Professor</span>
+                                            <select type="text" id="Professor" class="form-control" name="professor" required>
+                                                <option>Selecione um professor</option>
+                                                @foreach (var professor in Model.Professor)
+                                                {
+                                                    <option value="@professor.IdProfessor">@professor.NomeProfessor</option>
+                                                }
+                                            </select>
+                                        </div>
 
-                                                <div class="col-sm-6">
-                                                    <span class="ls-label-text">Repetições</span>
-                                                    <input type="number" id="RepeticoesSerie" class="form-control" name="repeticoesSerie" required>
-                                                </div>
-                                            </div>
+                                        <div class="col-sm-12">
+                                            <span class="ls-label-text">Aluno</span>
+                                            <select type="text" id="Aluno" class="form-control" name="aluno" required>
+                                                <option>Selecione um aluno</option>
+                                                @foreach (var aluno in Model.Aluno)
+                                                {
+                                                    <option value="@aluno.IdAluno">@aluno.NomeAluno</option>
+                                                }
+                                            </select>
+                                        </div>
 
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <span class="ls-label-text">Observações</span>
-                                                    <textarea id="ObservacoesSerie" class="form-control" name="observacoesSerie" required></textarea>
-                                                </div>
+                                        <br />
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <button type="submit" id="ConfirmarCadastroFicha" class="btn btn-primary">Confirmar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -96,34 +63,151 @@
                     </div>
                 </div>
 
+                <br />
 
+                @* Série *@
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="ls-label-text">Série</span>
+                            </div>
 
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <span class="ls-label-text">Nome da Série</span>
+                                                <input type="text" id="NomeSerie" class="form-control" name="nomeSerie" required>
+                                            </div>
 
-                @* Exercício *@
-                <div class="col-sm-6">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <span class="ls-label-text">Exercícios</span>
+                                            <div class="col-sm-6">
+                                                <span class="ls-label-text">Repetições</span>
+                                                <input type="number" id="RepeticoesSerie" class="form-control" name="repeticoesSerie" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <span class="ls-label-text">Observações</span>
+                                                <textarea id="ObservacoesSerie" class="form-control" name="observacoesSerie" required></textarea>
+                                            </div>
+                                        </div>
+
+                                        <br />
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <button type="submit" id="ConfirmarCadastroSerie" class="btn btn-primary">Confirmar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @* Exercício *@
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="ls-label-text">Exercícios</span>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <span class="ls-label-text">Id</span>
+                                                <input type="number" id="IdExercicio" class="form-control" name="idExercicio" readonly>
+                                            </div>
+
+                                            <div class="col-sm-8">
+                                                <span class="ls-label-text">Nome</span>
+                                                <input type="text" id="NomeExercicio" class="form-control" name="nomeExercicio" disabled>
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <span class="ls-label-text">Repetições</span>
+                                                <input type="number" id="RepeticoesExercicio" class="form-control" name="repeticoesExercicio" required>
+                                            </div>
+                                        </div>
+
+                                        <br />
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <button type="submit" id="ConfirmarCadastroExercicioSerie" class="btn btn-primary" disabled>Confirmar</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="card-body">
-                                    <br />
+                                <br />
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="panel panel-primary">
-                                                <div class="panel-body">
-                                                    <table id="ExercicioTable" class="table table-striped table-bordered table-hover responsive" width="100%">
-                                                        <thead class="thin-border-bottom">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-body">
+                                                <table id="ExercicioTable" class="table table-striped table-bordered table-hover responsive" width="100%">
+                                                    <thead class="thin-border-bottom">
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Nome do Exercício</th>
+                                                            <th>Nome do Aparelho</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @* Série *@
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="ls-label-text">Série </span>
+                            </div>
+
+                            <div class="card-body">
+                                <br />
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-body">
+                                                <div class="card-body table-responsive">
+                                                    <table id="SeriesTable" class="table table-hover table-valign-middle table-bordered">
+                                                        <thead>
                                                             <tr>
                                                                 <th>Id</th>
-                                                                <th>Nome do Exercício</th>
-                                                                <th>Nome do Aparelho</th>
+                                                                <th>Nome da Série</th>
+                                                                <th>Repetições</th>
                                                             </tr>
                                                         </thead>
+
+                                                        <tbody id="BodySeriesTable">
+                                                           
+                                                        </tbody>
                                                     </table>
+
+                                                    <div id="ExerciciosTable">
+                                                       
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -134,7 +218,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </section>
 </div>
 

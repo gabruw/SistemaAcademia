@@ -26,16 +26,11 @@ namespace Domain.DTO
 
         public string ObservacaoSerie { get; set; }
 
-        public int RepeticoesSerie { get; set; }
+        public int? RepeticoesSerie { get; set; }
 
         public override void Validate()
         {
             ClearValidateMensages();
-
-            if (ExercicioExercicioSerie.Count < 1)
-            {
-                AddError("O campo Exercício da Série não foi informado.");
-            }
 
             if (NomeSerie.Length < 1)
             {

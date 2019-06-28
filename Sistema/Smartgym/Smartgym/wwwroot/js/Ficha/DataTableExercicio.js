@@ -16,7 +16,7 @@
         "columnDefs": [
             { "targets": 0, "className": 'idExercicio' },
             { "targets": 1, "className": 'nomeExercicio' },
-            { "targets": -1, "className": 'aparelhoExercicio.nomeAparelho' },
+            { "targets": -1, "className": 'nomeAparelho' },
         ],
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",
@@ -57,18 +57,28 @@
         if (!$(this).text().includes("Nenhum registro encontrado")) {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
+
+                $("#ConfirmarCadastroExercicioSerie").attr("disabled", true);
+                $("#ExcluirExercicio").addClass("isDisabled");
             }
             else {
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
+
+                $("#ConfirmarCadastroExercicioSerie").attr("disabled", false);
+                $("#ExcluirExercicio").removeClass("isDisabled");
             }
 
             var idExercicio = $(this).find('td.idExercicio').text();
-            $("#EditarExercicio").attr("href", "/Exercicio/Edit/" + idExercicio);
-            $("#EditarExercicio").removeClass("isDisabled");
+            $("#IdExercicio").val(idExercicio);
 
-            $("#ExcluirExercicio").attr("href", "/Exercicio/Delete/" + idExercicio);
+            var nomeExercicio = $(this).find('td.nomeExercicio').text();
+            $("#NomeExercicio").val(nomeExercicio);
+
+            $("#ExcluirExercicio").attr("href", "/Exercicio/RemoveExercicio/" + idExercicio);
             $("#ExcluirExercicio").removeClass("isDisabled");
+
+            $("#FormCadastroExercicio").attr("action", "/Ficha/CreateExercicio/" + idExercicio);
         }
     });
 

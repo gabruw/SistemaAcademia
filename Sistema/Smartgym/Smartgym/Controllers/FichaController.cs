@@ -13,6 +13,7 @@ namespace Smartgym.Controllers
     {
         private readonly IFichaRepository _fichaRepository;
         private readonly IExercicioRepository _exercicioRepository;
+        private readonly IExercicioSerieRepository _exercicioSerieRepository;
         private readonly ISerieRepository _serieRepository;
         private readonly IAlunoRepository _alunoRepository;
         private readonly IProfessorRepository _professorRepository;
@@ -20,13 +21,12 @@ namespace Smartgym.Controllers
         private Geradores newGerador = new Geradores();
         private DataTable newDataTable = new DataTable();
 
-        ICollection<Domain.DTO.Serie> listSerieDTOTemp;
-
-        public FichaController(IFichaRepository fichaRepository, IExercicioRepository exercicioRepository, ISerieRepository serieRepository,
+        public FichaController(IFichaRepository fichaRepository, IExercicioRepository exercicioRepository, IExercicioSerieRepository exercicioSerieRepository, ISerieRepository serieRepository,
             IAlunoRepository alunoRepository, IProfessorRepository professorRepository)
         {
             _fichaRepository = fichaRepository;
             _exercicioRepository = exercicioRepository;
+            _exercicioSerieRepository = exercicioSerieRepository;
             _serieRepository = serieRepository;
             _alunoRepository = alunoRepository;
             _professorRepository = professorRepository;
@@ -82,6 +82,25 @@ namespace Smartgym.Controllers
             return Ok(response);
         }
 
+        [HttpPost]
+        public IActionResult GetAllExerciciosSerieBySerie(IFormCollection collection)
+        {
+            var serieDTO = _serieRepository.GetbyId(Int64.Parse(collection["idSerie"]));
+            var listExercicioSerie = serieDTO.ExercicioExercicioSerie;
+
+            var listExeSerie = new List<Domain.DTO.ExercicioSerie>();
+            foreach(var exeSer in listExercicioSerie)
+            {
+                var exercicioSerieFiltrado = new Domain.DTO.ExercicioSerie();
+                exercicioSerieFiltrado.ExercicioExercicioSerie = exeSer.ExercicioExercicioSerie;
+                exercicioSerieFiltrado.RepeticoesExercicioSerie = exeSer.RepeticoesExercicioSerie;
+
+                listExeSerie.Add(exercicioSerieFiltrado);
+            }
+
+            return Ok(listExeSerie);
+        }
+
         // GET: Ficha/Create
         public ActionResult Create()
         {
@@ -93,72 +112,64 @@ namespace Smartgym.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public void CreateSerie(ICollection<Domain.DTO.Exercicio> listExerciciosDTO, IFormCollection collection)
+        public void CreateExercicio(IFormCollection collection)
         {
-            foreach (var exercicio in listExerciciosDTO)
-            {
-                Domain.DTO.Serie serieDTO = new Domain.DTO.Serie();
-                serieDTO.NomeSerie = collection["nomeSerie"];
-                serieDTO.ObservacaoSerie = collection["observacaoSerie"];
-                serieDTO.RepeticoesSerie = Int32.Parse(collection["repeticoesSerie"]);
+            Domain.DTO.ExercicioSerie exercicioSerieDTO = new Domain.DTO.ExercicioSerie();
+            exercicioSerieDTO.IdExercicioExercicioSerie = Int64.Parse(collection["idExercicio"]);
+            exercicioSerieDTO.IdSerieExercicioSerie = Int64.Parse(collection["idSerie"]);
+            exercicioSerieDTO.RepeticoesExercicioSerie = Int32.Parse(collection["repeticoesExercicio"]);
 
-                listSerieDTOTemp.Add(serieDTO);
-            }
+            var serieDTO = _serieRepository.GetbyId(Int64.Parse(collection["idSerie"]));
+            serieDTO.ExercicioExercicioSerie.Add(exercicioSerieDTO);
+
+            _serieRepository.Update(serieDTO);
+        }
+
+        [HttpGet]
+        public void RemoveExercicio(long idExercicio)
+        {
+            var exercicioDTO = _exercicioRepository.GetbyId(idExercicio);
+        }
+
+        [HttpPost]
+        public long CreateSerie(IFormCollection collection)
+        {
+            Domain.DTO.Serie serieDTO = new Domain.DTO.Serie();
+            serieDTO.IdFichaSerie = Int64.Parse(collection["idFicha"]);
+            serieDTO.NomeSerie = collection["nomeSerie"];
+            serieDTO.ObservacaoSerie = collection["observacoesSerie"];
+            serieDTO.RepeticoesSerie = Int32.Parse(collection["repeticoesSerie"]);
+
+            var fichaDTO = _fichaRepository.GetbyId(Int64.Parse(collection["idFicha"]));
+            fichaDTO.SerieFicha.Add(serieDTO);
+
+            var fichaReturned =_fichaRepository.UpdateAndReturnEntity(fichaDTO);
+
+            var serieForReturn = fichaReturned.SerieFicha.Last();
+
+            return serieForReturn.IdSerie;
         }
 
         [HttpGet]
         public void RemoveSerie(long id)
         {
-            var serieDTO = _serieRepository.GetbyId(id);
 
-            listSerieDTOTemp.Remove(serieDTO);
         }
 
         // POST: Ficha/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public long Create(IFormCollection collection)
         {
-            try
-            {
-                var idAluno = Int64.Parse(collection["idAluno"]);
-                var idProfessor = Int64.Parse(collection["idProfessor"]);
+            var idAluno = Int64.Parse(collection["idAluno"]);
+            var idProfessor = Int64.Parse(collection["idProfessor"]);
 
-                // Ficha
-                Domain.DTO.Ficha fichaDTO = new Domain.DTO.Ficha();
-                fichaDTO.IdAlunoFicha = idAluno;
-                fichaDTO.IdProfessorFicha = idProfessor;
+            Domain.DTO.Ficha fichaDTO = new Domain.DTO.Ficha();
+            fichaDTO.IdAlunoFicha = idAluno;
+            fichaDTO.IdProfessorFicha = idProfessor;
 
-                var fichaReturn = _fichaRepository.IncluidAndReturnEntity(fichaDTO);
+            var fichaReturned = _fichaRepository.IncluidAndReturnEntity(fichaDTO);
 
-
-
-
-
-
-                List<Domain.DTO.Exercicio> exercicios = new List<Domain.DTO.Exercicio>();
-
-                foreach (var exercicio in collection)
-                {
-                    Domain.DTO.Exercicio exercicioDTO = new Domain.DTO.Exercicio();
-                    exercicioDTO.NomeExercicio = collection["nomeExercicio"];
-                    exercicioDTO.ObservacaoExercicio = collection["observacaoExercicio"];
-
-                    exercicios.Add(exercicioDTO);
-                }
-
-
-
-
-
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return fichaReturned.IdFicha;
         }
 
         // GET: Ficha/Edit/5
@@ -171,7 +182,6 @@ namespace Smartgym.Controllers
 
         // POST: Ficha/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(long id, IFormCollection collection)
         {
             try
