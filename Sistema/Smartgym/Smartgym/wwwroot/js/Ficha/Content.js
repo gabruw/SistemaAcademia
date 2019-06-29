@@ -138,5 +138,7 @@
                 });
             },
         });
+
+        $("#Finalizar").attr("disabled", false);
     });
 });

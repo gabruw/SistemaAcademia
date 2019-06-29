@@ -134,7 +134,7 @@
                     </a>
                 </li>
 
-                @if (Model.Permissao == 1 || Model.Permissao == 0)
+                @if (Model.Permissao == 1 || Model.Permissao == 0 || Model.Permissao == 2)
                 {
                     <li>
                         <a class="title" href="@Url.Action("Index", "Ficha", new { permissao = @Model.Permissao, nome = @Model.Nome })">
